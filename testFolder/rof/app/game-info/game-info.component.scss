@@ -1,0 +1,12 @@
+mat-card {
+  @media (max-width: 900px) {
+    min-height: 120px;
+  }
+}
+mat-card {
+  @media (max-width: 900px) {
+    border-radius: 0px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+}

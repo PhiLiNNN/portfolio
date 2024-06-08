@@ -1,7 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
 body {
   margin: 0;
-  background-color: #fffcf3;
-  color: black;
+  overflow: hidden;
+  background-color: #0f0f12;
+  color: whitesmoke;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
@@ -14,6 +16,7 @@ body {
   scrollbar-color: #6bc1e1 #ffffff00;
 }
 
+/* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 4px;
 }

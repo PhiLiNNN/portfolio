@@ -1,0 +1,14 @@
+<nav>
+  <div class="flex">
+    <div>[PW]</div>
+    <div
+      (click)="toggleMenu()"
+      class="burger-menu"
+      [ngClass]="{
+        openMenuAnimation: menuOpen === true,
+        closeMenuAnimation: menuOpen === false
+      }"
+    ></div>
+  </div>
+</nav>
+<app-menu [menuOpen]="menuOpen"></app-menu>

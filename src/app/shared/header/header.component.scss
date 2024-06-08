@@ -1,0 +1,61 @@
+@import "./../../../mixin.scss";
+$headerHeight: 100px;
+nav {
+  padding: 31px 100px;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  max-width: 1920px;
+  height: $headerHeight;
+  .flex {
+    @include dflex($jc: space-between);
+    .burger-menu {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url("./../../../../public/assets/img/burger_menu/1.svg");
+    }
+    .openMenuAnimation {
+      background-image: url("./../../../../public/assets/img/burger_menu/5.svg");
+      animation: openBurgerMenu 1s;
+    }
+    .closeMenuAnimation {
+      background-image: url("./../../../../public/assets/img/burger_menu/1.svg");
+      animation: closeBurgerMenu 1s;
+    }
+  }
+}
+
+@keyframes openBurgerMenu {
+  0% {
+    background-image: url("./../../../../public/assets/img/burger_menu/1.svg");
+  }
+  25% {
+    background-image: url("./../../../../public/assets/img/burger_menu/2.svg");
+  }
+  50% {
+    background-image: url("./../../../../public/assets/img/burger_menu/3.svg");
+  }
+  75% {
+    background-image: url("./../../../../public/assets/img/burger_menu/4.svg");
+  }
+  100% {
+    background-image: url("./../../../../public/assets/img/burger_menu/5.svg");
+  }
+}
+@keyframes closeBurgerMenu {
+  0% {
+    background-image: url("./../../../../public/assets/img/burger_menu/5.svg");
+  }
+  33% {
+    background-image: url("./../../../../public/assets/img/burger_menu/6.svg");
+  }
+  66% {
+    background-image: url("./../../../../public/assets/img/burger_menu/7.svg");
+  }
+  100% {
+    background-image: url("./../../../../public/assets/img/burger_menu/8.svg");
+  }
+}

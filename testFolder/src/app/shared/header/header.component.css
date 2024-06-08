@@ -1,0 +1,42 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+  background-color: #09212a;
+  height: 100px;
+}
+
+.addBtn {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border: 2px solid #fd5b4f;
+  color: #fd5b4f;
+  border-radius: 24px;
+  padding: 0 24px;
+  cursor: pointer;
+}
+.addBtn > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+}
+.addBtn > div > svg {
+  margin-left: 8px;
+  height: 14px;
+  width: 14px;
+}
+
+.addBtn:hover {
+  color: white;
+  background-color: #fd5b4f;
+}
+
+.addBtn:active {
+  color: white;
+  background-color: #fc2d1c;
+  border-color: #fc2d1c;
+}/*# sourceMappingURL=header.component.css.map */

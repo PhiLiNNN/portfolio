@@ -1,0 +1,12 @@
+@use "./../header.component.scss" as header;
+@import "./../../../../mixin.scss";
+@import "./../header.component.scss";
+
+.menu-overlay {
+  position: absolute;
+  width: 100vw;
+  max-width: 100%;
+  height: calc(100vh - header.$headerHeight);
+  margin-top: 100px;
+  background: black;
+}

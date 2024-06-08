@@ -1,0 +1,28 @@
+@import "./../../mixin.scss";
+
+.player {
+  width: 100px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  padding: 12px;
+
+  @include dflex();
+  flex-direction: column;
+  background: rgba(50, 50, 50, 0.8);
+  text-align: center;
+  color: white;
+  img {
+    margin-block: 16px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+  span {
+    font-size: 14px;
+  }
+}
+
+.player-active {
+  background: rgba(255, 166, 0, 0.8) !important;
+}

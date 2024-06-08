@@ -1,0 +1,104 @@
+.add_dialog_wrapper {
+  padding: 32px 64px;
+  width: 500px;
+  background-color: #09212a;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media screen and (max-width: 500px) {
+  .add_dialog_wrapper {
+    width: 100vw;
+    padding: 16px 32px;
+  }
+}
+.input_wrapper {
+  color: white;
+}
+.input_wrapper > p {
+  font-size: 32px;
+  margin: 16px 0;
+}
+.input_wrapper > input {
+  color: #b6c4c9;
+  outline: none;
+  border: none;
+  padding: 16px 16px;
+  border-radius: 16px;
+  width: 100%;
+  background-color: #0d3240;
+}
+.input_wrapper > textarea {
+  color: #b6c4c9;
+  outline: none;
+  resize: none;
+  border: none;
+  padding: 16px 16px;
+  border-radius: 16px;
+  width: 100%;
+  background-color: #0d3240;
+}
+
+.btn_wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btn {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border: 2px solid #fd5b4f;
+  color: #fd5b4f;
+  border-radius: 24px;
+  padding: 16px 24px;
+  cursor: pointer;
+}
+.btn > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+}
+.btn > div > svg {
+  margin-left: 8px;
+  height: 14px;
+  width: 14px;
+}
+
+.emptyBtn {
+  background-color: transparent;
+}
+
+.emptyBtn:hover {
+  color: white;
+  background-color: #fd5b4f;
+}
+
+.emptyBtn:active {
+  color: white;
+  background-color: #fc2d1c;
+  border-color: #fc2d1c;
+}
+
+.fullBtn {
+  color: white;
+  background-color: #fd5b4f;
+}
+
+.fullBtn:hover {
+  color: white;
+  background-color: #fc2d1c;
+  border-color: #fc2d1c;
+}
+
+.fullBtn:active {
+  color: white;
+  background-color: #fc2d1c;
+  border-color: #fc2d1c;
+}/*# sourceMappingURL=add-note-dialog.component.css.map */

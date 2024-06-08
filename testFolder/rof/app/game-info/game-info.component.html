@@ -1,0 +1,12 @@
+<mat-card style="color: white">
+  <mat-card-title style="padding: 16px"
+    >{{ card ? title : "Please add at least 2 player ann then pick a card!" }}
+  </mat-card-title>
+  <mat-card-content>
+    {{
+      card
+        ? description
+        : "Please click on the card stack to select the next card."
+    }}
+  </mat-card-content>
+</mat-card>
