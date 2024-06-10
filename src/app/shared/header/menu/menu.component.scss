@@ -18,30 +18,68 @@ $menu-overlay-height: calc(100vh - header.$headerHeight);
   }
 }
 .menu-content {
-  @include dflex($fd: column);
-  color: black;
   height: $menu-overlay-height;
   position: relative;
-  .bottom-menu {
-    width: 100vw;
-    position: absolute;
-    bottom: 0;
+  .menu-links {
+    position: relative;
+    z-index: 2;
+    @include dflex($fd: column, $g: 106px);
+    .ml-wrapper {
+      text-align: center;
+      cursor: pointer;
+      a {
+        font-size: 5vw;
+        font-weight: 700;
+        transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+      }
 
-    color: white;
-    .rectangle {
-      position: relative;
-      height: 348px;
-      background-image: url("./../../../../../public/assets/img/rectangle.svg");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      .sayHello {
-        position: absolute;
-        margin-left: 100px;
-        background: black;
-        top: 150px;
+      a:hover {
+        color: #fff;
+        box-shadow: inset 1000px 0 0 0 black;
+      }
+    }
+  }
+}
 
-        font-size: 78px;
+.bottom-menu {
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  color: white;
+  z-index: 1;
+  .rectangle {
+    position: relative;
+    height: 348px;
+    background-image: url("./../../../../../public/assets/img/rectangle.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    .sayHello {
+      position: absolute;
+      margin-left: 100px;
+      background: black;
+      top: 150px;
+
+      cursor: default;
+      @include dflex($fd: column, $ai: start, $jc: start);
+      span {
+        font-weight: 800;
+        font-size: 4.063vw;
+        &:hover {
+          color: #00bc8f;
+        }
+      }
+      a {
+        cursor: pointer;
+        font-family: Overpass;
+        font-weight: 300;
+        margin-top: 8px;
+        text-decoration: none;
+        color: white;
+        font-size: 1.198vw;
+        &:hover {
+          color: #00bc8f;
+        }
       }
     }
   }
@@ -63,3 +101,51 @@ $menu-overlay-height: calc(100vh - header.$headerHeight);
     height: 0;
   }
 }
+
+// .Title {
+//   cursor: pointer;
+//   position: relative;
+//   padding-top: 5px;
+//   h1 {
+//     position: relative;
+//     margin: 0;
+//     padding: 0;
+//     overflow: hidden;
+//     font-size: 5vw;
+//     font-weight: 700;
+//     transition: color 0.5s ease-in-out;
+//     &:hover {
+//       color: #00bc8f;
+//     }
+//   }
+
+//   &__underline {
+//     position: absolute;
+//     width: 100%;
+//     left: 0;
+//     bottom: 0.3em;
+//     height: 3px;
+//     background-color: black;
+//     z-index: 5;
+//     transition: transform 580ms cubic-bezier(0.2, 0.1, 0.15, 1.32);
+//   }
+
+//   &__highlight {
+//     position: absolute;
+//     width: 100%;
+//     bottom: -50;
+//     left: 0;
+//     height: 50px;
+//     background-color: #00bc8f;
+//     z-index: -1;
+//     transition: transform 400ms ease;
+//   }
+//   &:hover {
+//     .Title__underline {
+//       transform: translateY(-6em);
+//     }
+//     .Title__highlight {
+//       transform: translateY(-2.2em);
+//     }
+//   }
+// }

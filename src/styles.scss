@@ -2,7 +2,7 @@ body {
   margin: 0;
   background-color: #fffcf3;
   color: black;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Syne";
 }
 
 * {
@@ -26,4 +26,68 @@ body {
   background-color: #6bc1e1;
   border-radius: 10px;
   border: 3px solid #ffffff00;
+}
+/* Syne*/
+@font-face {
+  font-display: swap;
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./../public/assets/fonts/syne/syne-v22-latin-regular.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./../public/assets/fonts/syne/syne-v22-latin-500.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 600;
+  src: url("./../public/assets/fonts/syne/syne-v22-latin-600.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./../public/assets/fonts/syne/syne-v22-latin-700.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Syne";
+  font-style: normal;
+  font-weight: 800;
+  src: url("./../public/assets/fonts/syne/syne-v22-latin-800.woff2")
+    format("woff2");
+}
+
+/* overpass*/
+@font-face {
+  font-display: swap;
+  font-family: "Overpass";
+  font-style: normal;
+  font-weight: 300;
+  src: url("./../public/assets/fonts/overpass/overpass-v13-latin-300.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Overpass";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./../public/assets/fonts/overpass/overpass-v13-latin-regular.woff2")
+    format("woff2");
 }

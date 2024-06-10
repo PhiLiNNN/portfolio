@@ -19,11 +19,11 @@ nav {
     }
     .openMenuAnimation {
       background-image: url("./../../../../public/assets/img/burger_menu/5.svg");
-      animation: openBurgerMenu 1s;
+      animation: openBurgerMenu 0.4s;
     }
     .closeMenuAnimation {
       background-image: url("./../../../../public/assets/img/burger_menu/1.svg");
-      animation: closeBurgerMenu 1s;
+      animation: closeBurgerMenu 0.4s;
     }
   }
 }
