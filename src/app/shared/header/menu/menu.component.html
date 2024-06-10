@@ -1,3 +1,14 @@
-@if(menuOpen) {
-<div class="menu-overlay"></div>
-}
+<div class="menu-overlay" [ngClass]="{ open: menuOpen, close: !menuOpen }">
+  <div class="menu-content">
+    <div>Über mich</div>
+    <div>Meine Fähigkeiten</div>
+    <div>Portfolio</div>
+    <div class="bottom-menu">
+      <div class="rectangle">
+        <div class="sayHello">
+          <span>Sag Hallo!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
