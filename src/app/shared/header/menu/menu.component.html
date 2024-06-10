@@ -1,15 +1,11 @@
-<div class="menu-overlay" [ngClass]="{ open: menuOpen }">
+<div class="menu-overlay" [ngClass]="{ open: menuOpen, close: !menuOpen }">
   <div class="menu-content">
     <div class="menu-links">
-      <div class="ml-wrapper">
-        <a>Über mich</a>
-      </div>
-      <div class="ml-wrapper">
-        <a>Meine Fähigkeiten</a>
-      </div>
-      <div class="ml-wrapper">
-        <a>Portfolio</a>
-      </div>
+      <a>Über mich</a>
+
+      <a>Meine Fähigkeiten</a>
+
+      <a>Portfolio</a>
     </div>
     <div class="bottom-menu">
       <div class="rectangle">

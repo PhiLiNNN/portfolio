@@ -24,19 +24,18 @@ $menu-overlay-height: calc(100vh - header.$headerHeight);
     position: relative;
     z-index: 2;
     @include dflex($fd: column, $g: 106px);
-    .ml-wrapper {
-      text-align: center;
-      cursor: pointer;
-      a {
-        font-size: 5vw;
-        font-weight: 700;
-        transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-      }
+    text-align: center;
+    cursor: pointer;
+    a {
+      font-size: 5vw;
+      padding-inline: 32px;
+      font-weight: 700;
+      transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    }
 
-      a:hover {
-        color: #fff;
-        box-shadow: inset 1000px 0 0 0 black;
-      }
+    a:hover {
+      color: #fff;
+      box-shadow: inset 1200px 0 0 0 black;
     }
   }
 }
