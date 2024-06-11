@@ -1,14 +1,19 @@
 @import "./../../../mixin.scss";
-$headerHeight: 100px;
+@import "./../../../var.scss";
+
 nav {
   padding: 31px 100px;
   position: fixed;
   z-index: 999;
   width: 100%;
   max-width: 1920px;
-  height: $headerHeight;
+  height: $navHeight;
   .flex {
     @include dflex($jc: space-between);
+    .initials {
+      font-weight: 800;
+      font-size: 20px;
+    }
     .burger-menu {
       cursor: pointer;
       width: 40px;

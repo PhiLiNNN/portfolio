@@ -1,13 +1,15 @@
-@use "./../header.component.scss" as header;
 @import "./../../../../mixin.scss";
+@import "./../../../../var.scss";
 
-$menu-overlay-height: calc(100vh - header.$headerHeight);
+$menu-overlay-height: calc(100vh - $navHeight);
 
 .menu-overlay {
   position: absolute;
   width: 100vw;
   max-width: 100%;
   height: $menu-overlay-height;
+  background: $bg-color;
+  z-index: 999;
   bottom: 0;
   overflow: hidden;
   &.open {
@@ -32,7 +34,6 @@ $menu-overlay-height: calc(100vh - header.$headerHeight);
       font-weight: 700;
       transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
     }
-
     a:hover {
       color: #fff;
       box-shadow: inset 1200px 0 0 0 black;
@@ -58,16 +59,23 @@ $menu-overlay-height: calc(100vh - header.$headerHeight);
       margin-left: 100px;
       background: black;
       top: 150px;
-
       cursor: default;
       @include dflex($fd: column, $ai: start, $jc: start);
       span {
         font-weight: 800;
         font-size: 4.063vw;
         &:hover {
-          color: #00bc8f;
+          color: $color-highlight;
         }
       }
+    }
+    .menu-email {
+      padding-inline: 100px;
+      position: absolute;
+      color: $color-highlight;
+      bottom: 50px;
+      width: 100%;
+      @include dflex($ai: center, $jc: space-between);
       a {
         cursor: pointer;
         font-family: Overpass;
@@ -75,9 +83,20 @@ $menu-overlay-height: calc(100vh - header.$headerHeight);
         margin-top: 8px;
         text-decoration: none;
         color: white;
-        font-size: 1.198vw;
+        font-size: 1.2vw;
         &:hover {
-          color: #00bc8f;
+          color: $color-highlight;
+        }
+      }
+      .menu-icons {
+        @include dflex($g: 2.7vw);
+        a svg {
+          path {
+            transition: fill 0.2s ease;
+          }
+          &:hover path {
+            fill: $color-highlight;
+          }
         }
       }
     }
@@ -135,7 +154,7 @@ $menu-overlay-height: calc(100vh - header.$headerHeight);
 //     bottom: -50;
 //     left: 0;
 //     height: 50px;
-//     background-color: #00bc8f;
+//     background-color: $color-highlight;
 //     z-index: -1;
 //     transition: transform 400ms ease;
 //   }

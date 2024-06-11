@@ -1,6 +1,7 @@
+@import "./var.scss";
 body {
   margin: 0;
-  background-color: #fffcf3;
+  background-color: $bg-color;
   color: black;
   font-family: "Syne";
 }
@@ -11,7 +12,7 @@ body {
 
 * {
   scrollbar-width: auto;
-  scrollbar-color: #6bc1e1 #ffffff00;
+  scrollbar-color: $color-highlight #ffffff00;
 }
 
 *::-webkit-scrollbar {
@@ -23,7 +24,7 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #6bc1e1;
+  background-color: $color-highlight;
   border-radius: 10px;
   border: 3px solid #ffffff00;
 }
