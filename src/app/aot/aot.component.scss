@@ -17,26 +17,47 @@
     margin-block-start: 0;
     margin-block-end: 0;
     font-weight: 800;
-    font-size: 6.667vw;
+    font-size: 7vw;
+    @media (max-width: 1200px) {
+      font-size: 10.2vw;
+    }
+    @media (max-width: 700px) {
+      font-size: 11vw;
+    }
+    @media (max-width: 500px) {
+      font-size: 10vw;
+    }
   }
   .underline-name {
     @include dflex($g: 8px);
     .underline {
       height: 3px;
-      width: 32.708vw;
+      width: 26vw;
       background: black;
+      @media (max-width: 1200px) {
+        width: 36vw;
+      }
     }
     span {
       color: $color-highlight;
       font-size: 2.5vw;
       font-weight: 700;
       font-family: Overpass;
+      @media (max-width: 1200px) {
+        font-size: 4vw;
+      }
     }
   }
 }
 .bottom-title {
   margin: 64px 100px 0px 100px;
   @include dflex($jc: space-between, $ai: end);
+  @media (max-width: 1200px) {
+    margin: 64px 50px 0px 50px;
+  }
+  @media (max-width: 700px) {
+    margin: 64px 25px 0px 25px;
+  }
   > a {
     font-size: 23px;
     text-decoration: none;
