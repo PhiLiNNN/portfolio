@@ -9,8 +9,8 @@
   overflow: hidden;
 }
 .title {
+  position: relative;
   text-wrap: wrap;
-  width: 100%;
   text-align: center;
   @include dflex($fd: column);
   h1 {
@@ -27,6 +27,16 @@
     @media (max-width: 500px) {
       font-size: 10vw;
     }
+  }
+  .underneath {
+    position: absolute;
+    top: 0px;
+    mask-image: url("./../../../public/assets/img/mask.svg");
+    background: $bg-color;
+    mask-repeat: no-repeat;
+    mask-position: 50%;
+    mask-size: 0px;
+    color: $color-highlight;
   }
   .underline-name {
     @include dflex($g: 8px);
