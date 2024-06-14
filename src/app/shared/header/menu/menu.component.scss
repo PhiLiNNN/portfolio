@@ -3,8 +3,8 @@
 
 $menu-overlay-height: calc(100vh - $navHeight);
 
-.menu-overlay {
-  position: absolute;
+section {
+  position: fixed;
   width: 100vw;
   max-width: 100%;
   height: $menu-overlay-height;

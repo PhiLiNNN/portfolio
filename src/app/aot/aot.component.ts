@@ -15,7 +15,7 @@ export class AotComponent {
     this.renderer.setStyle(
       this.el.nativeElement.querySelector('.underneath'),
       'mask-size',
-      '150px'
+      '200px'
     );
     this.renderer.setStyle(
       this.el.nativeElement.querySelector('.underneath'),

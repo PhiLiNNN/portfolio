@@ -1,16 +1,24 @@
 @import "./../../mixin.scss";
 @import "./../../var.scss";
 
-.aot {
-  position: absolute;
-  top: 172px;
-  height: calc(100vh - 172px);
+section {
+  height: 100vh;
   width: 100vw;
+  max-width: 100%;
   overflow: hidden;
+  @include dflex($fd: column);
+  padding: 172px 100px 0px 100px;
+  @media (max-width: 1200px) {
+    padding: 172px 50px 0px 50px;
+  }
+  @media (max-width: 700px) {
+    padding: 172px 25px 0px 25px;
+  }
 }
 .title {
   position: relative;
   text-wrap: wrap;
+  max-width: 1920px;
   text-align: center;
   @include dflex($fd: column);
   h1 {
@@ -31,6 +39,8 @@
   .underneath {
     position: absolute;
     top: 0px;
+
+    cursor: default;
     mask-image: url("./../../../public/assets/img/mask.svg");
     background: $bg-color;
     mask-repeat: no-repeat;
@@ -60,14 +70,10 @@
   }
 }
 .bottom-title {
-  margin: 64px 100px 0px 100px;
+  max-width: 1920px;
+  width: 100%;
   @include dflex($jc: space-between, $ai: end);
-  @media (max-width: 1200px) {
-    margin: 64px 50px 0px 50px;
-  }
-  @media (max-width: 700px) {
-    margin: 64px 25px 0px 25px;
-  }
+
   > a {
     font-size: 23px;
     text-decoration: none;
@@ -77,6 +83,9 @@
     writing-mode: vertical-rl;
     text-orientation: sideways;
     transform: rotate(180deg);
+    @media (min-width: 1201px) {
+      font-size: 1.5vw;
+    }
   }
   .aot-arrow {
     @include dflex($fd: column);
@@ -97,14 +106,18 @@
         font-family: "Overpass";
         font-size: 23px;
         font-weight: 300;
+        @media (min-width: 1201px) {
+          font-size: 1.5vw;
+        }
       }
     }
   }
 }
 .invisibleBg {
-  height: 800px;
+  height: 100px;
   position: relative;
   z-index: 5;
+  width: 100vw;
   background: $bg-color;
 }
 @keyframes animateAotArrow {
@@ -112,6 +125,6 @@
     top: -80px;
   }
   to {
-    top: 250px;
+    top: 200px;
   }
 }

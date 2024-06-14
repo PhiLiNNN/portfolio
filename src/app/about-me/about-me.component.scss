@@ -1,0 +1,28 @@
+@import "./../../mixin.scss";
+@import "./../../var.scss";
+
+section {
+  width: 100vw;
+  max-width: 100%;
+  padding-inline: 100px;
+  @include dflex();
+  @media (max-width: 1200px) {
+    padding-inline: 50px;
+  }
+  @media (max-width: 700px) {
+    padding-inline: 25px;
+  }
+}
+
+.flex {
+  @include dflex();
+  max-width: 1920px;
+  > img {
+    height: auto;
+    width: 553px;
+    border-radius: 10px;
+    @media (max-width: 1200px) {
+      width: 45vw;
+    }
+  }
+}
