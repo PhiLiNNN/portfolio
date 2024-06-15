@@ -6,7 +6,7 @@ section {
   width: 100vw;
   max-width: 100%;
   overflow: hidden;
-  @include dflex($fd: column);
+  @include dflex($fd: column, $jc: space-between);
   padding: 172px 100px 0px 100px;
   @media (max-width: 1200px) {
     padding: 172px 50px 0px 50px;
@@ -19,7 +19,6 @@ section {
   position: relative;
   text-wrap: wrap;
   max-width: 1920px;
-
   text-align: center;
   @include dflex($fd: column);
   h1 {
@@ -33,9 +32,6 @@ section {
     @media (max-width: 900px) {
       font-size: 11vw;
     }
-    // @media (max-width: 500px) {
-    //   font-size: 128px;
-    // }
   }
   .underneath {
     position: absolute;
@@ -45,6 +41,7 @@ section {
     background: $bg-color;
     mask-repeat: no-repeat;
     color: $color-highlight;
+    transition: mask-size 0.3s ease-in-out;
   }
   .underline-name {
     @include dflex($g: 8px);
@@ -54,90 +51,94 @@ section {
       width: 480px;
       background: black;
       @media (max-width: 1200px) {
-        // width: 36vw;
         width: 26vw;
       }
       @media (max-width: 900px) {
-        // width: 36vw;
         width: 36vw;
       }
     }
     span {
       color: $color-highlight;
-      // font-size: 2.5vw;
       font-size: 48px;
       font-weight: 700;
       font-family: Overpass;
       @media (max-width: 1200px) {
-        // font-size: 4vw;
         font-size: 36px;
       }
       @media (max-width: 900px) {
-        // font-size: 4vw;
         font-size: 4vw;
       }
     }
   }
 }
-.bottom-title {
+.bottom-aot {
   max-width: 1920px;
   width: 100%;
-  @include dflex($jc: space-between, $ai: end);
-  > a {
-    font-size: 23px;
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
-    font-family: "Overpass";
-    writing-mode: vertical-rl;
-    text-orientation: sideways;
-    transform: rotate(180deg);
-    @media (min-width: 1201px) {
-      // font-size: 1.5vw;
+  .bottom-title {
+    width: 100%;
+    @include dflex($jc: space-between, $ai: end);
+    > a {
       font-size: 23px;
-    }
-    @media (max-width: 900px) {
-      // font-size: 1.5vw;
-      font-size: 23px;
-    }
-  }
-  .aot-arrow {
-    @include dflex($fd: column);
-    position: relative;
-    width: 54px;
-    height: 232px;
-    img {
-      position: absolute;
-      animation: animateAotArrow 1.5s infinite;
-    }
-    .scroll-down {
-      position: absolute;
-      bottom: 0px;
-      @include dflex($fd: column, $jc: end);
-      > span {
-        background: $bg-color;
-        z-index: 1;
-        font-family: "Overpass";
+      text-decoration: none;
+      color: black;
+      cursor: pointer;
+      font-family: "Overpass";
+      writing-mode: vertical-rl;
+      text-orientation: sideways;
+      transform: rotate(180deg);
+      @media (min-width: 1201px) {
         font-size: 23px;
-        font-weight: 300;
-        @media (min-width: 1201px) {
-          // font-size: 1.5vw;
+      }
+      @media (max-width: 900px) {
+        font-size: 23px;
+      }
+    }
+    .aot-arrow {
+      @include dflex($fd: column);
+      position: relative;
+      width: 54px;
+      height: 232px;
+      img {
+        position: absolute;
+        animation: animateAotArrow 1.5s infinite;
+      }
+      .scroll-down {
+        position: absolute;
+        bottom: 0px;
+        @include dflex($fd: column, $jc: end);
+        > span {
+          background: $bg-color;
+          z-index: 1;
+          font-family: "Overpass";
           font-size: 23px;
-        }
-        @media (max-width: 900px) {
-          // font-size: 1.5vw;
-          font-size: 23px;
+          font-weight: 300;
+          @media (min-width: 1201px) {
+            font-size: 23px;
+          }
+          @media (max-width: 900px) {
+            font-size: 23px;
+          }
         }
       }
     }
   }
+  .invisibleBg {
+    height: 24px;
+    position: relative;
+    z-index: 5;
+    width: 100vw;
+    background: $bg-color;
+  }
 }
-.invisibleBg {
-  height: 100px;
-  position: relative;
-  z-index: 5;
-  width: 100vw;
-  background: $bg-color;
+
+button {
+  @include button($width: 247px, $hoverWidth: 290px, $mt: 92px, $mb: 16px);
+  @media (max-width: 900px) {
+    @include button($width: 247px, $hoverWidth: 290px, $mt: 24px, $mb: 24px);
+  }
+  @media (min-width: 901px) {
+    display: none;
+  }
 }
 @keyframes animateAotArrow {
   from {

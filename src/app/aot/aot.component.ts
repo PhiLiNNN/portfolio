@@ -14,29 +14,13 @@ export class AotComponent {
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   onMouseEnter() {
-    const underneathElement =
-      this.el.nativeElement.querySelector('.underneath');
-    this.renderer.setStyle(
-      underneathElement,
-      'mask-size',
-      `${this.maskSize}px`
-    );
-    this.renderer.setStyle(
-      underneathElement,
-      'transition',
-      'mask-size 0.3s ease'
-    );
+    const underneathEl = this.el.nativeElement.querySelector('.underneath');
+    this.renderer.setStyle(underneathEl, 'mask-size', `${this.maskSize}px`);
   }
 
   onMouseLeave() {
-    const underneathElement =
-      this.el.nativeElement.querySelector('.underneath');
-    this.renderer.setStyle(underneathElement, 'mask-size', '0px');
-    this.renderer.setStyle(
-      underneathElement,
-      'transition',
-      'mask-size 0.3s ease'
-    );
+    const underneathEl = this.el.nativeElement.querySelector('.underneath');
+    this.renderer.setStyle(underneathEl, 'mask-size', '0px');
   }
 
   @HostListener('mousemove', ['$event'])
@@ -45,7 +29,6 @@ export class AotComponent {
       const rect = this.el.nativeElement.getBoundingClientRect();
       const mouseX = event.clientX - rect.left;
       const mouseY = event.clientY - rect.top;
-
       if (window.innerWidth <= 1200) {
         this.offsetY = 230;
         this.offsetX = 50;

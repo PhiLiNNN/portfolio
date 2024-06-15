@@ -24,6 +24,7 @@ export class HeaderComponent {
     if (this.menuOpen === null) this.menuOpen = false;
     this.menuOpen = !this.menuOpen;
     this.menuOpenChange.emit(this.menuOpen);
+
     if (this.menuOpen)
       this.renderer.setStyle(document.body, 'overflow', 'hidden');
     else this.renderer.removeStyle(document.body, 'overflow');

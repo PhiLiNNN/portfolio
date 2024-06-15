@@ -5,6 +5,7 @@ section {
   width: 100vw;
   max-width: 100%;
   padding-inline: 100px;
+  margin-top: 138px;
   @include dflex();
   @media (max-width: 1200px) {
     padding-inline: 50px;
@@ -15,14 +16,59 @@ section {
 }
 
 .flex {
-  @include dflex();
+  @include dflex($ai: start, $g: 91px);
   max-width: 1920px;
   > img {
     height: auto;
     width: 553px;
     border-radius: 10px;
+    margin-top: 98px;
     @media (max-width: 1200px) {
       width: 45vw;
+    }
+    @media (max-width: 900px) {
+      margin-top: 138px;
+      width: 553px;
+    }
+    @media (max-width: 700px) {
+      margin-top: 138px;
+      width: 100%;
+    }
+  }
+  @media (max-width: 900px) {
+    @include dflex($fd: column);
+  }
+}
+
+.content {
+  > h2 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-bottom: 52px;
+    font-size: 45px;
+    font-weight: 800;
+    @media (max-width: 900px) {
+      text-align: center;
+    }
+    @media (max-width: 500px) {
+      font-size: 34px;
+    }
+  }
+  p {
+    font-size: 23px;
+    font-family: "Overpass";
+    @media (max-width: 500px) {
+      font-size: 16px;
+    }
+  }
+  .btn-center {
+    width: 100%;
+    @include dflex();
+    > button {
+      @include button($width: 213px, $hoverWidth: 256px, $mt: 63px);
+      @media (max-width: 900px) {
+        display: none;
+      }
     }
   }
 }
