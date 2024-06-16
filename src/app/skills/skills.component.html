@@ -3,17 +3,40 @@
     <div class="skills-header">
       <h2>My skills</h2>
     </div>
-
-    <img src="./assets/img/icons/angular.svg" />
-    <img src="./assets/img/icons/typescript.svg" />
-    <img src="./assets/img/icons/javascript.svg" />
-    <img src="./assets/img/icons/html.svg" />
-    <img src="./assets/img/icons/css.svg" />
-    <img src="./assets/img/icons/firebase.svg" />
-    <img src="./assets/img/icons/git.svg" />
-    <img src="./assets/img/icons/scrum.svg" />
-    <img src="./assets/img/icons/api.svg" />
-    <img src="./assets/img/icons/material.svg" />
-    <img src="./assets/img/icons/python.svg" />
+    @for (icon of iconArr; track icon) {
+    <div class="icon-box">
+      <img
+        [src]="'./assets/img/icons/' + icon.src + '.svg'"
+        [alt]="icon.name"
+      />
+      <span>{{ icon.name }}</span>
+    </div>
+    }
+  </div>
+  <div class="to-portfolio-arrow" (mouseenter)="onMouseEnter()">
+    <svg viewBox="0 0 236 235" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_98976_714)">
+        <path
+          d="M193.893 110.893V193.52H111.266"
+          stroke="black"
+          stroke-width="4"
+        />
+        <path
+          d="M41.6865 41.3135L193.894 193.521"
+          stroke="black"
+          stroke-width="4"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_98976_714">
+          <rect
+            width="116.852"
+            height="215.254"
+            fill="white"
+            transform="matrix(-0.707107 0.707107 0.707107 0.707107 83 0)"
+          />
+        </clipPath>
+      </defs>
+    </svg>
   </div>
 </section>

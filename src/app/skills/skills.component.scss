@@ -16,14 +16,19 @@ section {
 .skills {
   position: relative;
   border: 4px solid black;
+  border-radius: 10px;
   padding: 120px 80px;
   @include dflex($g: 140px);
   flex-wrap: wrap;
+  @media (max-width: 900px) {
+    padding: 60px 40px;
+    gap: 42px;
+  }
   .skills-header {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: -60px;
+    top: -50px;
     padding-inline: 23px;
     background: $bg-color;
     @media (max-width: 900px) {
@@ -33,15 +38,53 @@ section {
       white-space: nowrap;
       font-size: 78px;
       font-weight: 800;
+      cursor: default;
+      &:hover {
+        color: $color-highlight;
+      }
       @media (max-width: 900px) {
         font-size: 6.7vw;
       }
     }
   }
-  img {
+  .icon-box {
+    @include dflex($fd: column, $g: 10px);
+    span {
+      font-family: "Overpass";
+      font-weight: 700;
+    }
+    img {
+      transition: transform 0.2s ease-in-out;
+      &:hover {
+        transform: rotateY(360deg) scale(1.2);
+      }
+      @media (max-width: 900px) {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+}
+
+.to-portfolio-arrow {
+  cursor: pointer;
+  width: 100%;
+  padding: 16px 0 0 64px;
+  @include dflex($jc: start);
+  @media (max-width: 900px) {
+    padding: 16px 0 0 16px;
+  }
+  > svg {
+    width: 190px;
+    transition: transform 0.2s;
     @media (max-width: 900px) {
-      width: 60px;
-      height: 60px;
+      width: 140px;
+    }
+  }
+  &.hovered > svg {
+    transform: translateY(100px) translateX(100px);
+    @media (max-width: 500px) {
+      transform: translateY(100px) translateX(60px);
     }
   }
 }
