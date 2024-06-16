@@ -49,7 +49,16 @@ section {
   }
   .icon-box {
     @include dflex($fd: column, $g: 10px);
+    &:hover {
+      span {
+        color: $color-highlight;
+      }
+      img {
+        transform: rotateY(360deg) scale(1.15);
+      }
+    }
     span {
+      transition: color 0.2s ease-in-out;
       font-family: "Overpass";
       font-weight: 700;
     }

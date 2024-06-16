@@ -114,7 +114,7 @@ section {
       }
       .scroll-down {
         position: absolute;
-        cursor: pointer;
+        cursor: default;
         bottom: 0px;
         @include dflex($fd: column, $jc: end);
         > span {
