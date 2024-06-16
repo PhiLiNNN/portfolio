@@ -1,0 +1,47 @@
+@import "./../../mixin.scss";
+@import "./../../var.scss";
+section {
+  width: 100vw;
+  max-width: 100%;
+  padding-inline: 100px;
+  margin-top: 39px;
+  @media (max-width: 1200px) {
+    padding-inline: 50px;
+  }
+  @media (max-width: 700px) {
+    padding-inline: 25px;
+  }
+}
+
+.skills {
+  position: relative;
+  border: 4px solid black;
+  padding: 120px 80px;
+  @include dflex($g: 140px);
+  flex-wrap: wrap;
+  .skills-header {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -60px;
+    padding-inline: 23px;
+    background: $bg-color;
+    @media (max-width: 900px) {
+      top: -5vw;
+    }
+    > h2 {
+      white-space: nowrap;
+      font-size: 78px;
+      font-weight: 800;
+      @media (max-width: 900px) {
+        font-size: 6.7vw;
+      }
+    }
+  }
+  img {
+    @media (max-width: 900px) {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}

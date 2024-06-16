@@ -20,10 +20,9 @@ section {
   text-wrap: wrap;
   max-width: 1920px;
   text-align: center;
+  cursor: default;
   @include dflex($fd: column);
   h1 {
-    margin-block-start: 0;
-    margin-block-end: 0;
     font-weight: 800;
     font-size: 128px;
     @media (max-width: 1200px) {
@@ -36,12 +35,22 @@ section {
   .underneath {
     position: absolute;
     top: 0px;
+    font-size: 134px;
     cursor: default;
     mask-image: url("./../../../public/assets/img/mask.svg");
     background: $bg-color;
     mask-repeat: no-repeat;
     color: $color-highlight;
     transition: mask-size 0.3s ease-in-out;
+    @media (max-width: 2040px) {
+      font-size: 128px;
+    }
+    @media (max-width: 1200px) {
+      font-size: 100px;
+    }
+    @media (max-width: 900px) {
+      font-size: 11vw;
+    }
   }
   .underline-name {
     @include dflex($g: 8px);
