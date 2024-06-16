@@ -58,6 +58,7 @@ section {
       }
     }
     span {
+      cursor: default;
       color: $color-highlight;
       font-size: 48px;
       font-weight: 700;
@@ -104,6 +105,7 @@ section {
       }
       .scroll-down {
         position: absolute;
+        cursor: pointer;
         bottom: 0px;
         @include dflex($fd: column, $jc: end);
         > span {
