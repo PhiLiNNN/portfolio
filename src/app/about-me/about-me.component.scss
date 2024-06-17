@@ -80,9 +80,13 @@ section {
     }
     @media (max-width: 900px) {
       text-align: center;
+      font-size: 58px;
+    }
+    @media (max-width: 700px) {
+      font-size: 45px;
     }
     @media (max-width: 500px) {
-      font-size: 34px;
+      font-size: 32px;
     }
   }
   p {
@@ -108,6 +112,7 @@ section {
   cursor: pointer;
   width: 100%;
   padding: 0 200px 100px 0;
+  max-width: 1920px;
   @include dflex($jc: end);
   @media (max-width: 900px) {
     padding: 0 0 100px 0;

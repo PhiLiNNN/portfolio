@@ -6,7 +6,14 @@
   flex-direction: $fd;
 }
 
-@mixin button($width, $hoverWidth, $mt, $mb: 0px) {
+@mixin button(
+  $width,
+  $hoverWidth,
+  $mt,
+  $mb: 0px,
+  $hmr: -21.5px,
+  $hml: -21.5px
+) {
   cursor: pointer;
   height: 68px;
   width: $width;
@@ -17,11 +24,12 @@
   border: 4px solid black;
   background: transparent;
   position: relative;
-  transition: width 0.1s ease-in-out;
+  transition: width 0.1s ease-in-out, margin 0.1s ease-in-out,
+    transform 0.1s ease-in-out;
   &:hover {
     width: $hoverWidth;
     font-weight: 700;
-    margin-left: -21.5px;
-    margin-right: -21.5px;
+    margin-left: $hml;
+    margin-right: $hmr;
   }
 }

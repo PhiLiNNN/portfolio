@@ -5,6 +5,7 @@ section {
   max-width: 100%;
   padding-inline: 100px;
   margin-top: 39px;
+  @include dflex($fd: column);
   @media (max-width: 1200px) {
     padding-inline: 50px;
   }
@@ -14,6 +15,7 @@ section {
 }
 
 .skills {
+  max-width: 1920px;
   position: relative;
   border: 4px solid black;
   border-radius: 10px;
@@ -33,6 +35,10 @@ section {
     background: $bg-color;
     @media (max-width: 900px) {
       top: -5vw;
+      padding-inline: 16px;
+    }
+    @media (max-width: 500px) {
+      padding-inline: 8px;
     }
     > h2 {
       white-space: nowrap;
@@ -43,7 +49,13 @@ section {
         color: $color-highlight;
       }
       @media (max-width: 900px) {
-        font-size: 6.7vw;
+        font-size: 58px;
+      }
+      @media (max-width: 700px) {
+        font-size: 45px;
+      }
+      @media (max-width: 500px) {
+        font-size: 32px;
       }
     }
   }
@@ -79,6 +91,7 @@ section {
   cursor: pointer;
   width: 100%;
   padding: 16px 0 0 64px;
+  max-width: 1920px;
   @include dflex($jc: start);
   @media (max-width: 900px) {
     padding: 16px 0 0 16px;

@@ -12,6 +12,7 @@ section {
   z-index: 999;
   bottom: 0;
   overflow: hidden;
+  @include dflex($fd: column);
   &.open {
     animation: slideInFromTop 0.5s forwards;
   }
@@ -22,6 +23,8 @@ section {
 .menu-content {
   height: $menu-overlay-height;
   position: relative;
+  width: 100vw;
+  max-width: 1920px;
   .menu-links {
     position: relative;
     z-index: 2;
@@ -47,6 +50,7 @@ section {
   bottom: 0;
   color: white;
   z-index: 1;
+  max-width: 1920px;
   .rectangle {
     position: relative;
     height: 348px;
