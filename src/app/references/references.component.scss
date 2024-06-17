@@ -1,0 +1,44 @@
+@import "./../../mixin.scss";
+@import "./../../var.scss";
+section {
+  width: 100vw;
+  max-width: 100%;
+  padding-inline: 100px;
+  margin-top: 106px;
+  @media (max-width: 1200px) {
+    padding-inline: 50px;
+  }
+  @media (max-width: 700px) {
+    padding-inline: 25px;
+  }
+}
+
+.ref-header {
+  @include dflex($fd: column);
+  h2 {
+    font-size: 78px;
+    font-weight: 800;
+    @media (max-width: 900px) {
+      font-size: 58px;
+    }
+    @media (max-width: 700px) {
+      font-size: 45px;
+    }
+    @media (max-width: 500px) {
+      font-size: 32px;
+    }
+  }
+  p {
+    text-wrap: wrap;
+    max-width: 525px;
+    font-family: "Overpass";
+    font-size: 23px;
+    margin: 35px 0 0 0;
+    @media (max-width: 900px) {
+      text-align: center;
+    }
+    @media (max-width: 500px) {
+      font-size: 16px;
+    }
+  }
+}
