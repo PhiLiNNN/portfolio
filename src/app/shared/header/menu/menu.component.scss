@@ -111,6 +111,9 @@ section {
   0% {
     height: 0;
   }
+  60% {
+    height: $menu-overlay-height;
+  }
   100% {
     height: $menu-overlay-height;
   }
@@ -118,6 +121,9 @@ section {
 @keyframes slideOutToTop {
   0% {
     height: $menu-overlay-height;
+  }
+  60% {
+    height: 0;
   }
   100% {
     height: 0;
