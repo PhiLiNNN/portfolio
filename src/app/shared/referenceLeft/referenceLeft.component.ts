@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-referenceLeft',
@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
   templateUrl: './referenceLeft.component.html',
   styleUrl: './referenceLeft.component.scss',
 })
-export class ReferenceLeftComponent {}
+export class ReferenceLeftComponent {
+  @Input() skills: string[] = [];
+
+  get skillsList(): string {
+    return this.skills.join(' | ');
+  }
+}
