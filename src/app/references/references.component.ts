@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { ReferenceLeftComponent } from '../shared/referenceLeft/referenceLeft.component';
 import { ReferenceRightComponent } from '../shared/referenceRight/referenceRight.component';
 interface Reference {
@@ -46,7 +46,10 @@ export class ReferencesComponent {
       img: './assets/img/references/pokecubes.png',
     },
   ];
-  ngOnInit() {
-    console.log('object :>> ', this.references.length);
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  onMouseEnter() {
+    const toSkillsArrow =
+      this.el.nativeElement.querySelector('.to-skills-arrow');
+    this.renderer.addClass(toSkillsArrow, 'hovered');
   }
 }

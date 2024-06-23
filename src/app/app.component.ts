@@ -5,6 +5,7 @@ import { AotComponent } from './aot/aot.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { SkillsComponent } from './skills/skills.component';
 import { ReferencesComponent } from './references/references.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { ReferencesComponent } from './references/references.component';
     AboutMeComponent,
     SkillsComponent,
     ReferencesComponent,
+    FooterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

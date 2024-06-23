@@ -48,3 +48,27 @@ section {
     }
   }
 }
+.to-skills-arrow {
+  cursor: pointer;
+  width: 100%;
+  padding: 0 200px 100px 0;
+  max-width: 1920px;
+  @include dflex($jc: end);
+  @media (max-width: 900px) {
+    padding: 0 0 100px 0;
+    justify-content: center;
+  }
+  > svg {
+    width: 190px;
+    transition: transform 0.2s;
+    @media (max-width: 900px) {
+      width: 140px;
+    }
+  }
+  &.hovered > svg {
+    transform: translateY(100px) translateX(-100px);
+    @media (max-width: 500px) {
+      transform: translateY(100px) translateX(-60px);
+    }
+  }
+}
