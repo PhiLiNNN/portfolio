@@ -7,7 +7,7 @@ interface Reference {
   description: string;
   githubLink: string;
   liveLink: string;
-  imageUrl: string;
+  img: string;
 }
 @Component({
   selector: 'app-references',
@@ -25,7 +25,7 @@ export class ReferencesComponent {
         ' Task manger inspired by the kanban System. Create and organize tasks drag and drop functions , assign users and categories.',
       githubLink: 'https://github.com/example/join',
       liveLink: 'https://example.com/join',
-      imageUrl: './assets/img/references/join.png',
+      img: './assets/img/references/join.png',
     },
     {
       name: 'Sharkie',
@@ -34,7 +34,7 @@ export class ReferencesComponent {
         'An underwater adventure game using an object-oriented approach. Guide Sharkie, collect poison, and defeat the giant shark.',
       githubLink: 'https://github.com/example/join',
       liveLink: 'https://example.com/join',
-      imageUrl: './assets/img/references/join.png',
+      img: './assets/img/references/sharkie.png',
     },
     {
       name: 'PokéCubes',
@@ -43,7 +43,7 @@ export class ReferencesComponent {
         'A web app using PokeAPI to display first-gen Pokémon on interactive, rotatable cubes. Click on a Pokémon for more info.',
       githubLink: 'https://github.com/example/join',
       liveLink: 'https://example.com/join',
-      imageUrl: './assets/img/references/join.png',
+      img: './assets/img/references/pokecubes.png',
     },
   ];
   ngOnInit() {

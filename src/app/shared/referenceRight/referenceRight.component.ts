@@ -13,4 +13,5 @@ export class ReferenceRightComponent {
   @Input() refNum: number = 0;
   @Input() refAll: number = 0;
   @Input() description: string = '';
+  @Input() imageUrl: string = '';
 }

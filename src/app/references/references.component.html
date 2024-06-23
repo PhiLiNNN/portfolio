@@ -13,6 +13,7 @@
     [refNum]="$index + 1"
     [refAll]="references.length"
     [description]="ref.description"
+    [imageUrl]="ref.img"
   ></app-referenceLeft>
   } @else if ($index % 2 !== 0) {
   <app-referenceRight
@@ -21,6 +22,7 @@
     [refNum]="$index + 1"
     [refAll]="references.length"
     [description]="ref.description"
+    [imageUrl]="ref.img"
   ></app-referenceRight>
   } }
 </section>
