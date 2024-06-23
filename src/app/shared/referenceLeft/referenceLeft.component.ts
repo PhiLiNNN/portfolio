@@ -8,9 +8,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './referenceLeft.component.scss',
 })
 export class ReferenceLeftComponent {
-  @Input() skills: string[] = [];
-
-  get skillsList(): string {
-    return this.skills.join(' | ');
-  }
+  @Input() skills: string = '';
+  @Input() name: string = '';
+  @Input() refNum: number = 0;
+  @Input() refAll: number = 0;
+  @Input() description: string = '';
 }

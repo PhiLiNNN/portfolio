@@ -6,9 +6,21 @@
       skills in action.
     </p>
   </div>
+  @for (ref of references; track $index) { @if ($index % 2 === 0) {
   <app-referenceLeft
-    [skills]="['JavaScript', 'HTML', 'CSS', 'Firebase', 'Git']"
+    [skills]="ref.skills.join(' | ')"
+    [name]="ref.name"
+    [refNum]="$index + 1"
+    [refAll]="references.length"
+    [description]="ref.description"
   ></app-referenceLeft>
-  <app-referenceRight></app-referenceRight>
-  <app-referenceLeft></app-referenceLeft>
+  } @else if ($index % 2 !== 0) {
+  <app-referenceRight
+    [skills]="ref.skills.join(' | ')"
+    [name]="ref.name"
+    [refNum]="$index + 1"
+    [refAll]="references.length"
+    [description]="ref.description"
+  ></app-referenceRight>
+  } }
 </section>

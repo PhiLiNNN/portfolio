@@ -18,7 +18,7 @@ export class SkillsComponent {
     { src: 'firebase', name: 'Firebase' },
     { src: 'git', name: 'Git' },
     { src: 'scrum', name: 'Scrum' },
-    { src: 'api', name: 'REST API' },
+    { src: 'api', name: 'Rest Api' },
     { src: 'material', name: 'Material Design' },
   ];
 
