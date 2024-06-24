@@ -28,6 +28,10 @@ section {
     font-size: 23px;
     text-align: center;
   }
+  form {
+    width: 100%;
+    @include dflex($fd: column);
+  }
 }
 .rectangle {
   position: relative;
@@ -200,6 +204,17 @@ textarea {
     .checkbox-btn .checkmark {
       border: 2.5px solid $color-highlight;
       border-radius: 50%;
+    }
+  }
+}
+
+.btn-center {
+  width: 100%;
+  @include dflex();
+  > button {
+    @include button($width: 213px, $hoverWidth: 256px, $mt: 63px, $co: white);
+    @media (max-width: 900px) {
+      display: none;
     }
   }
 }

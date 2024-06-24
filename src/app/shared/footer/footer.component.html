@@ -6,46 +6,60 @@
 <section>
   <h4>Want to discuss a new project?</h4>
   <span>Say hello! let's discuss your ideas and make it happen</span>
-  <div class="form__group">
-    <input
-      type="input"
-      class="form__field"
-      placeholder="Your name"
-      name="Your name"
-      required
-    />
-    <label class="form__label">Your name</label>
-  </div>
-  <div class="form__group">
-    <input
-      type="input"
-      class="form__field"
-      placeholder="Your email"
-      name="Your email"
-      required
-    />
-    <label class="form__label">Your email</label>
-  </div>
-  <div class="form__group textarea-height" style="height: 202px">
-    <textarea
-      style="height: 202px"
-      type="input"
-      class="form__field"
-      placeholder="Your message"
-      name="Your message"
-      required
-    ></textarea>
-    <label class="form__label">Your message</label>
-  </div>
-  <div class="confimation">
-    <label class="checkbox-btn">
-      <label for="checkbox"></label>
-      <input type="checkbox" />
-      <span class="checkmark"></span>
-    </label>
-    <span
-      >I've read the <span class="highlight">privacy policy</span> and agree to
-      the processing of my data as outlined</span
-    >
-  </div>
+  <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+    <div class="form__group">
+      <input
+        [(ngModel)]="contactData.name"
+        type="input"
+        class="form__field"
+        placeholder="Your name"
+        name="Your name"
+        required
+      />
+      <label class="form__label">Your name</label>
+    </div>
+    <div class="form__group">
+      <input
+        [(ngModel)]="contactData.email"
+        type="input"
+        class="form__field"
+        placeholder="Your email"
+        name="Your email"
+        required
+        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+      />
+      <label class="form__label">Your email</label>
+    </div>
+    <div class="form__group textarea-height" style="height: 202px">
+      <textarea
+        minlength="4"
+        #message="ngModel"
+        [(ngModel)]="contactData.message"
+        style="height: 202px"
+        type="input"
+        class="form__field"
+        placeholder="Your message"
+        name="Your message"
+        required
+      ></textarea>
+      <label class="form__label">Your message</label>
+      @if(!message.valid && message.touched) {
+      <span> Pleaser enter a message</span>
+      }
+    </div>
+    <div class="confimation">
+      <label class="checkbox-btn">
+        <label for="checkbox"></label>
+        <input type="checkbox" />
+        <span class="checkmark"></span>
+      </label>
+      <span
+        >I've read the <span class="highlight">privacy policy</span> and agree
+        to the processing of my data as outlined</span
+      >
+    </div>
+    <div class="btn-center">
+      <button type="submit" value="submit">Send message</button>
+    </div>
+  </form>
 </section>
