@@ -3,11 +3,16 @@
 .ref-flex {
   max-width: 1920px;
   width: calc(100vw - 200px);
-  height: 320px;
+  height: 420px;
   position: relative;
-  margin-top: 103px;
+  @media (max-width: 1400px) {
+    height: 29.167vw;
+  }
   @media (max-width: 1200px) {
     width: calc(100vw - 100px);
+  }
+  @media (max-width: 900px) {
+    height: 100vw;
   }
   @media (max-width: 700px) {
     width: calc(100vw - 50px);
@@ -15,13 +20,13 @@
   &:hover {
     .ref-animate .ref-content {
       opacity: 1;
-
-      right: -8vw;
-      @media (min-width: 901px) and (min-width: 1601px) {
-        right: 10%;
-      }
-      @media (min-width: 901px) and (max-width: 1600px) {
+      right: 10%;
+      @media (max-width: 1600px) {
         right: 0;
+      }
+      @media (max-width: 900px) {
+        right: 0%;
+        transform: translateY(50vw);
       }
     }
     .ref-animate .img-container::before {
@@ -34,22 +39,25 @@
     .ref-animate .img-container .ref-arrow {
       transform: rotate(-135deg) scale(1.9);
       opacity: 1;
-      @media (min-width: 901px) and (max-width: 1300px) {
+      @media (max-width: 1300px) {
         transform: rotate(-135deg) scale(1.15);
       }
-      @media (min-width: 901px) and (max-width: 950px) {
+      @media (max-width: 950px) {
         transform: rotate(-135deg) scale(0.8);
       }
     }
   }
   .ref-number {
     position: absolute;
-    top: -70px;
+    top: -20px;
     right: 0;
+    @media (max-width: 900px) {
+      top: -46px;
+    }
     > span {
       font-weight: 700;
       font-size: 48px;
-      @media (min-width: 901px) and (max-width: 1400px) {
+      @media (max-width: 1400px) {
         font-size: 3.333vw;
       }
     }
@@ -59,6 +67,9 @@
     .img-container {
       position: absolute;
       display: inline-block;
+      @media (max-width: 900px) {
+        position: relative;
+      }
       .ref-arrow {
         position: absolute;
         right: -50px;
@@ -67,8 +78,13 @@
         z-index: 3;
         opacity: 0;
         transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+        @media (max-width: 900px) {
+          left: 45%;
+          transform: translateX(-10%);
+          bottom: -12vw;
+          top: auto;
+        }
       }
-
       img {
         border-radius: 10px;
         max-width: 620px;
@@ -76,8 +92,12 @@
         width: 620px;
         filter: grayscale(100);
         transition: filter 0.175s ease-in-out;
-        @media (min-width: 901px) and (max-width: 1400px) {
+        @media (max-width: 1400px) {
           width: 41.86vw;
+        }
+        @media (max-width: 900px) {
+          max-width: none;
+          width: 100%;
         }
       }
 
@@ -100,13 +120,18 @@
       opacity: 0;
       right: 50%;
       top: 40px;
-      transition: opacity 0.2s ease-in-out, right 0.2s ease-in-out;
-      @media (min-width: 901px) and (max-width: 1300px) {
-        top: 1vw;
+      transition: opacity 0.2s ease-in-out, right 0.2s ease-in-out,
+        transform 0.2s ease-in-out;
+      @media (max-width: 1300px) {
+        top: 3vw;
+      }
+      @media (max-width: 900px) {
+        right: 0%;
+        transform: translateY(0);
       }
       .ref-info {
         @include dflex($fd: column, $g: 15px, $ai: start);
-        @media (min-width: 901px) and (max-width: 1050px) {
+        @media (max-width: 1050px) {
           gap: 10px;
         }
         > h2 {
@@ -115,12 +140,13 @@
           padding-left: 50px;
           @media (min-width: 901px) and (max-width: 1400px) {
             font-size: 3.2vw;
-          }
-          @media (min-width: 901px) and (max-width: 1400px) {
-            padding-left: 100px;
+            padding-left: 120px;
           }
           @media (min-width: 901px) and (max-width: 1000px) {
             padding-left: 150px;
+          }
+          @media (max-width: 900px) {
+            font-size: 4vw;
           }
         }
         > span {
@@ -129,7 +155,7 @@
           font-family: "Overpass";
           padding-left: 50px;
           @media (min-width: 901px) and (max-width: 1400px) {
-            padding-left: 100px;
+            padding-left: 120px;
             font-size: 16px;
           }
           @media (min-width: 901px) and (max-width: 1000px) {
@@ -137,6 +163,9 @@
           }
           @media (min-width: 901px) and (max-width: 950px) {
             font-size: 14px;
+          }
+          @media (max-width: 900px) {
+            font-size: 23px;
           }
         }
         > p {
@@ -146,14 +175,21 @@
           max-width: 550px;
           padding-left: 50px;
           @media (min-width: 901px) and (max-width: 1400px) {
-            padding-left: 100px;
+            padding-left: 120px;
+            font-size: 16px;
+          }
+          @media (min-width: 901px) and (max-width: 1100px) {
+            font-size: 14px;
           }
           @media (min-width: 901px) and (max-width: 1050px) {
             padding-left: 150px;
             width: 500px;
           }
-          @media (min-width: 901px) and (max-width: 950px) {
-            font-size: 14px;
+          @media (min-width: 901px) and (max-width: 1050px) {
+            font-size: 16px;
+          }
+          @media (max-width: 900px) {
+            font-size: 20px;
           }
         }
         .ref-btns {
@@ -161,11 +197,8 @@
           width: 500px;
           padding-left: 50px;
           @media (min-width: 901px) and (max-width: 1400px) {
-            padding-left: 50px;
             gap: 16px;
-          }
-          @media (min-width: 901px) and (max-width: 1400px) {
-            padding-left: 100px;
+            padding-left: 120px;
           }
           @media (min-width: 901px) and (max-width: 1000px) {
             padding-left: 150px;
@@ -179,7 +212,7 @@
               $hmr: 0,
               $hml: 0
             );
-            @media (min-width: 901px) and (max-width: 1400px) {
+            @media (max-width: 1400px) {
               width: 150px;
               height: 50px;
               font-size: 16px;
