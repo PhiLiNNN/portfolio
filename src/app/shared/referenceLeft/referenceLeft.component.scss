@@ -12,41 +12,40 @@
     width: calc(100vw - 100px);
   }
   @media (max-width: 900px) {
-    height: 100vw;
+    height: auto;
   }
   @media (max-width: 700px) {
     width: calc(100vw - 50px);
   }
-  &:hover {
-    .ref-animate .ref-content {
-      opacity: 1;
-      right: 10%;
-      @media (max-width: 1600px) {
+  @media (min-width: 901px) {
+    &:hover {
+      .ref-animate .ref-content {
+        opacity: 1;
         right: 0;
+        @media (max-width: 900px) {
+          transform: translateY(0);
+        }
       }
-      @media (max-width: 900px) {
-        right: 0%;
-        transform: translateY(50vw);
+      .ref-animate .img-container::before {
+        border: 4px solid black;
+        transform: translateY(20px) translateX(20px);
       }
-    }
-    .ref-animate .img-container::before {
-      border: 4px solid black;
-      transform: translateY(20px) translateX(20px);
-    }
-    .ref-animate .img-container img {
-      filter: grayscale(0);
-    }
-    .ref-animate .img-container .ref-arrow {
-      transform: rotate(-135deg) scale(1.9);
-      opacity: 1;
-      @media (max-width: 1300px) {
-        transform: rotate(-135deg) scale(1.15);
+      .ref-animate .img-container img {
+        filter: grayscale(0);
       }
-      @media (max-width: 950px) {
-        transform: rotate(-135deg) scale(0.8);
+      .ref-animate .img-container .ref-arrow {
+        transform: rotate(-135deg) scale(1.9);
+        opacity: 1;
+        @media (max-width: 1300px) {
+          transform: rotate(-135deg) scale(1.15);
+        }
+        @media (max-width: 950px) {
+          transform: rotate(-135deg) scale(0.8);
+        }
       }
     }
   }
+
   .ref-number {
     position: absolute;
     top: -20px;
@@ -65,24 +64,19 @@
 
   .ref-animate {
     .img-container {
-      position: absolute;
+      position: relative;
       display: inline-block;
-      @media (max-width: 900px) {
-        position: relative;
-      }
+
       .ref-arrow {
         position: absolute;
         right: -50px;
-        top: 50%;
+        top: 45%;
         width: 60px;
         z-index: 3;
         opacity: 0;
         transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
         @media (max-width: 900px) {
-          left: 45%;
-          transform: translateX(-10%);
-          bottom: -12vw;
-          top: auto;
+          left: 89.5%;
         }
       }
       img {
@@ -97,7 +91,7 @@
         }
         @media (max-width: 900px) {
           max-width: none;
-          width: 100%;
+          width: 90%;
         }
       }
 
@@ -113,6 +107,9 @@
         transition: transform 0.175s, border-color 0.175s;
         height: calc(100% - 12px);
         z-index: 1;
+        @media (max-width: 900px) {
+          width: 90%;
+        }
       }
     }
     .ref-content {
@@ -126,8 +123,9 @@
         top: 3vw;
       }
       @media (max-width: 900px) {
-        right: 0%;
-        transform: translateY(0);
+        position: static;
+        transform: translateY(-100%);
+        margin: 50px 0 100px 0;
       }
       .ref-info {
         @include dflex($fd: column, $g: 15px, $ai: start);
@@ -142,10 +140,11 @@
             font-size: 3.2vw;
             padding-left: 120px;
           }
-          @media (min-width: 901px) and (max-width: 1000px) {
+          @media (min-width: 901px) and (max-width: 1050px) {
             padding-left: 150px;
           }
           @media (max-width: 900px) {
+            padding-left: 0px;
             font-size: 4vw;
           }
         }
@@ -158,22 +157,32 @@
             padding-left: 120px;
             font-size: 16px;
           }
-          @media (min-width: 901px) and (max-width: 1000px) {
+          @media (min-width: 901px) and (max-width: 1050px) {
             padding-left: 150px;
           }
           @media (min-width: 901px) and (max-width: 950px) {
             font-size: 14px;
           }
           @media (max-width: 900px) {
+            padding-left: 0px;
             font-size: 23px;
+          }
+          @media (max-width: 800px) {
+            font-size: 19px;
+          }
+          @media (max-width: 500px) {
+            font-size: 16px;
           }
         }
         > p {
           font-family: "Overpass";
           text-wrap: wrap;
           font-size: 20px;
-          max-width: 550px;
+          max-width: 650px;
           padding-left: 50px;
+          @media (min-width: 901px) and (max-width: 1500px) {
+            max-width: 550px;
+          }
           @media (min-width: 901px) and (max-width: 1400px) {
             padding-left: 120px;
             font-size: 16px;
@@ -183,13 +192,19 @@
           }
           @media (min-width: 901px) and (max-width: 1050px) {
             padding-left: 150px;
-            width: 500px;
-          }
-          @media (min-width: 901px) and (max-width: 1050px) {
+            max-width: 500px;
             font-size: 16px;
           }
           @media (max-width: 900px) {
+            padding-left: 0px;
             font-size: 20px;
+          }
+          @media (max-width: 800px) {
+            font-size: 16px;
+            max-width: 400px;
+          }
+          @media (max-width: 500px) {
+            font-size: 14px;
           }
         }
         .ref-btns {
@@ -200,8 +215,15 @@
             gap: 16px;
             padding-left: 120px;
           }
-          @media (min-width: 901px) and (max-width: 1000px) {
+          @media (min-width: 901px) and (max-width: 1050px) {
             padding-left: 150px;
+          }
+          @media (max-width: 900px) {
+            padding-left: 0px;
+          }
+          @media (max-width: 600px) {
+            gap: 12px;
+            width: 71.429vw;
           }
           button {
             cursor: pointer;
@@ -218,6 +240,14 @@
               font-size: 16px;
               &:hover {
                 width: 180px;
+              }
+            }
+            @media (max-width: 500px) {
+              width: 120px;
+              font-size: 14px;
+              height: 40px;
+              &:hover {
+                width: 150px;
               }
             }
           }

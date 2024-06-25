@@ -22,7 +22,7 @@ export class ReferencesComponent {
       name: 'Join',
       skills: ['JavaScript', 'HTML', 'CSS', 'Firebase', 'Git'],
       description:
-        ' Task manger inspired by the kanban System. Create and organize tasks drag and drop functions , assign users and categories.',
+        'Task manger inspired by the kanban System. Create and organize tasks drag and drop functions, assign users and categories.',
       githubLink: 'https://github.com/example/join',
       liveLink: 'https://example.com/join',
       img: './assets/img/references/join.png',
