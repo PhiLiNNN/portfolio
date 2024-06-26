@@ -123,6 +123,16 @@ textarea {
   resize: none;
 }
 
+.feedback-icon-txt,
+.feedback-icon-input {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+}
+.feedback-icon-input {
+  top: 27px;
+}
+
 .highlight {
   display: inline-block;
   cursor: pointer;
@@ -132,8 +142,10 @@ textarea {
 }
 
 .confimation {
-  @include dflex($g: 4px);
+  @include dflex($g: 4px, $jc: start);
   padding-inline: 4px;
+  width: 50%;
+  margin-top: 5px;
   > span {
     margin-top: 26px;
     font-family: "Overpass";
@@ -219,6 +231,24 @@ textarea {
   }
 }
 
+.err-msg,
+.err-msg-text {
+  position: absolute;
+  bottom: -30px;
+  color: $err-color;
+  display: block;
+  font-family: "Overpass";
+  transition: opacity 0.175s ease;
+  opacity: 1;
+}
+.err-msg-text {
+  bottom: -40px;
+}
+.err-msg.hidden,
+.hidden {
+  opacity: 0;
+}
+
 @keyframes pulse {
   0%,
   100% {
@@ -226,5 +256,74 @@ textarea {
   }
   50% {
     transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
+  }
+}
+
+.bottom {
+  margin-block: 48px;
+  height: 69px;
+  width: 100%;
+  @include dflex($jc: space-between);
+  .content {
+    width: 200px;
+    height: 69px;
+    @include dflex($fd: column, $ai: start, $jc: space-around, $g: 20px);
+    .email {
+      @include dflex($g: 5px);
+      .padding {
+        padding-bottom: 3px;
+      }
+    }
+    .initials {
+      position: relative;
+      font-weight: 800;
+      font-size: 24px;
+      width: 105px;
+      > span {
+        position: absolute;
+      }
+      > span:nth-child(1) {
+        left: 0;
+      }
+      > span:nth-child(2) {
+        top: -3px;
+        left: 15px;
+      }
+      > span:nth-child(3) {
+        top: 5px;
+        color: black;
+        transform: rotate(20deg);
+        font-size: 30px;
+        line-height: 40px;
+        left: 49px;
+        z-index: 1;
+      }
+      > span:nth-child(4) {
+        top: 5px;
+        left: 46px;
+      }
+      > span:nth-child(5) {
+        right: 0;
+      }
+    }
+  }
+  .menu-icons {
+    position: relative;
+    width: 204px;
+    height: 40px;
+    @include dflex($jc: space-between);
+    a svg {
+      path {
+        transition: fill 0.2s ease;
+      }
+      &:hover path {
+        fill: $color-highlight;
+      }
+    }
+    > span {
+      position: absolute;
+      bottom: -20px;
+      right: 0;
+    }
   }
 }
