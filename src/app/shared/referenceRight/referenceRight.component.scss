@@ -5,6 +5,11 @@
   width: calc(100vw - 200px);
   height: 420px;
   position: relative;
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(100%);
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out,
+    filter 1s ease-in-out;
   @media (max-width: 1400px) {
     height: 29.167vw;
   }
@@ -67,10 +72,11 @@
   }
   .ref-animate {
     .img-container {
-      position: relative;
+      position: absolute;
       display: inline-block;
       right: 0;
       @media (max-width: 900px) {
+        position: relative;
         display: flex;
         justify-content: end;
       }
@@ -246,4 +252,15 @@
       }
     }
   }
+}
+
+@media (prefers-reduced-motion) {
+  .ref-flex {
+    transition: none;
+  }
+}
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
 }

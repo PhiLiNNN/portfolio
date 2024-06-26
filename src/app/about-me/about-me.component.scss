@@ -22,10 +22,9 @@ section {
   .img-container {
     position: relative;
     display: inline-block;
-
     > img {
       height: auto;
-      width: 553px;
+      width: 453px;
       border-radius: 10px;
       margin-top: 98px;
       @media (max-width: 1200px) {
