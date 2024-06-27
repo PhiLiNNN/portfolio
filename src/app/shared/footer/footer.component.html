@@ -1,13 +1,15 @@
 <div class="rectangle">
-  <div class="sayHello">
+  <div class="sayHello autoShow">
     <span>Say Hi!</span>
   </div>
 </div>
 <section>
-  <h4>Want to discuss a new project?</h4>
-  <span>Say hello! let's discuss your ideas and make it happen</span>
+  <h4 class="autoShow">Want to discuss a new project?</h4>
+  <span class="autoShow"
+    >Say hello! let's discuss your ideas and make it happen</span
+  >
   <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
-    <div class="form__group">
+    <div class="form__group autoShow">
       <input
         minlength="2"
         #nameInput="ngModel"
@@ -33,7 +35,7 @@
       <span class="err-msg">Please enter at least 2 characters!</span>
       }
     </div>
-    <div class="form__group">
+    <div class="form__group autoShow">
       <input
         [(ngModel)]="contactData.email"
         type="input"
@@ -58,7 +60,7 @@
       >
       }
     </div>
-    <div class="form__group textarea-height" style="height: 202px">
+    <div class="form__group textarea-height autoShow" style="height: 202px">
       <textarea
         minlength="4"
         #textMessage="ngModel"
@@ -88,7 +90,7 @@
       }
     </div>
 
-    <div class="confimation">
+    <div class="confimation autoShow">
       <label class="checkbox-btn">
         <label for="checkbox"></label>
         <input type="checkbox" />
@@ -99,7 +101,7 @@
         to the processing of my data as outlined</span
       >
     </div>
-    <div class="btn-center">
+    <div class="btn-center autoShow">
       <button type="submit" value="submit">Send message</button>
     </div>
   </form>

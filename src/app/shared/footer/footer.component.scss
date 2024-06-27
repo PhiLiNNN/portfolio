@@ -4,7 +4,6 @@ section {
   width: 100vw;
   max-width: 100%;
   color: white;
-  overflow: hidden;
   padding: 172px 100px 0px 100px;
   background: black;
   @include dflex($fd: column);
