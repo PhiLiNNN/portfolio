@@ -3,13 +3,8 @@
 .ref-flex {
   max-width: 1920px;
   width: calc(100vw - 200px);
-  height: 420px;
+  height: 450px;
   position: relative;
-  opacity: 0;
-  filter: blur(5px);
-  transform: translateX(100%);
-  transition: transform 1s ease-in-out, opacity 1s ease-in-out,
-    filter 1s ease-in-out;
   @media (max-width: 1400px) {
     height: 29.167vw;
   }
@@ -34,6 +29,9 @@
       z-index: 1;
       border-color: black;
       transform: translateY(20px) translateX(-20px);
+      @media (max-width: 500px) {
+        transform: translateY(10px) translateX(10px);
+      }
     }
     .ref-animate .img-container img {
       filter: grayscale(0);
@@ -65,8 +63,11 @@
     > span {
       font-weight: 700;
       font-size: 48px;
-      @media (max-width: 1400px) {
-        font-size: 3.333vw;
+      @media (min-width: 901px) and (max-width: 1400px) {
+        font-size: 3.4vw;
+      }
+      @media (max-width: 900px) {
+        font-size: 4vw;
       }
     }
   }
@@ -91,6 +92,23 @@
         @media (max-width: 900px) {
           left: auto;
           right: 89.5%;
+        }
+        @media (max-width: 500px) {
+          top: 40%;
+          width: 55px;
+          right: 82.5%;
+        }
+        @media (max-width: 430px) {
+          right: 82%;
+        }
+        @media (max-width: 400px) {
+          width: 50px;
+        }
+        @media (max-width: 370px) {
+          right: 81%;
+        }
+        @media (max-width: 330px) {
+          right: 80%;
         }
       }
       img {
@@ -211,12 +229,11 @@
         }
         .ref-btns {
           @include dflex($jc: start, $g: 48px);
-          width: 500px;
+
           @media (min-width: 901px) and (max-width: 1400px) {
             gap: 16px;
           }
           @media (max-width: 900px) {
-            width: 100%;
             justify-content: end;
           }
           @media (max-width: 600px) {
@@ -247,20 +264,15 @@
                 width: 150px;
               }
             }
+            @media (max-width: 330px) {
+              width: 110px;
+              &:hover {
+                width: 140px;
+              }
+            }
           }
         }
       }
     }
   }
-}
-
-@media (prefers-reduced-motion) {
-  .ref-flex {
-    transition: none;
-  }
-}
-.show {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateX(0);
 }

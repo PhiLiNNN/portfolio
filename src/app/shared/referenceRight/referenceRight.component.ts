@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, Renderer2 } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-referenceRight',
@@ -14,23 +14,4 @@ export class ReferenceRightComponent {
   @Input() refAll: number = 0;
   @Input() description: string = '';
   @Input() imageUrl: string = '';
-
-  private observer: IntersectionObserver;
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-    this.observer = new IntersectionObserver((entries) => {
-      const refFlexElement = this.el.nativeElement.querySelector('.ref-flex');
-      entries.forEach((entry) => {
-        if (entry.isIntersecting)
-          this.renderer.addClass(refFlexElement, 'show');
-      });
-    });
-  }
-
-  ngAfterViewInit() {
-    this.observer.observe(this.el.nativeElement);
-  }
-
-  ngOnDestroy() {
-    this.observer.disconnect();
-  }
 }

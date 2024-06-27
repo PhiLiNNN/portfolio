@@ -3,66 +3,88 @@
 section {
   width: 100vw;
   max-width: 100%;
-  color: white;
-  padding: 172px 100px 0px 100px;
-  background: black;
-  @include dflex($fd: column);
-  @media (max-width: 1200px) {
-    padding: 172px 50px 0px 50px;
-  }
-  @media (max-width: 700px) {
-    padding: 172px 25px 0px 25px;
-  }
-  h4 {
-    font-family: "Overpass";
-    font-size: 32px;
-    font-weight: 700;
-    color: $color-highlight;
-    text-align: center;
-  }
-  > span {
+  margin-top: 138px;
+  @include dflex();
+  .wrapper {
+    position: relative;
     color: white;
-    margin-top: 18px;
-    font-family: "Overpass";
-    font-size: 23px;
-    text-align: center;
-  }
-  form {
-    width: 100%;
-    @include dflex($fd: column);
-  }
-}
-.rectangle {
-  position: relative;
-  width: 100%;
-  height: 148px;
-  background-image: url("./../../../../public/assets/img/rectangle.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  .sayHello {
-    position: absolute;
-    margin-left: 100px;
+    padding: 172px 100px 0px 100px;
     background: black;
-    color: white;
-    top: 150px;
-    cursor: default;
-    @include dflex($fd: column, $ai: start, $jc: start);
-    span {
-      font-weight: 800;
-      font-size: 4.063vw;
-      &:hover {
-        color: $color-highlight;
+    width: 100%;
+    max-width: 1920px;
+    @include dflex($fd: column);
+    @media (max-width: 1200px) {
+      padding: 172px 50px 0px 50px;
+    }
+    @media (max-width: 700px) {
+      padding: 172px 25px 0px 25px;
+    }
+
+    .rectangle {
+      position: absolute;
+      top: -138px;
+      width: 100%;
+      height: 138px;
+      max-width: 1920px;
+      background-image: url("./../../../../public/assets/img/rectangle.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .sayHello {
+      position: absolute;
+      background: black;
+      color: white;
+      top: 0px;
+      left: 100px;
+      cursor: default;
+      @include dflex($fd: column, $ai: start, $jc: start);
+      @media (max-width: 1200px) {
+        left: 50px;
       }
+      @media (max-width: 700px) {
+        left: 25px;
+      }
+      span {
+        font-weight: 800;
+        font-size: 4.063vw;
+        @media (min-width: 1921px) {
+          font-size: 78px;
+        }
+        &:hover {
+          color: $color-highlight;
+        }
+      }
+    }
+    h4 {
+      font-family: "Overpass";
+      font-size: 32px;
+      font-weight: 700;
+      color: $color-highlight;
+      text-align: center;
+    }
+    > span {
+      color: white;
+      margin-top: 18px;
+      font-family: "Overpass";
+      font-size: 23px;
+      text-align: center;
+    }
+    form {
+      width: 100%;
+      @include dflex($fd: column);
     }
   }
 }
+
 .form__group {
   position: relative;
   padding: 15px 0 0;
   margin-block: 20px;
   width: 50%;
   height: 62px;
+  @media (max-width: 1100px) {
+    width: 80%;
+  }
   .form__field {
     position: relative;
     cursor: pointer;
@@ -145,6 +167,9 @@ textarea {
   padding-inline: 4px;
   width: 50%;
   margin-top: 5px;
+  @media (max-width: 1100px) {
+    width: 80%;
+  }
   > span {
     margin-top: 26px;
     font-family: "Overpass";
@@ -269,9 +294,6 @@ textarea {
     @include dflex($fd: column, $ai: start, $jc: space-around, $g: 20px);
     .email {
       @include dflex($g: 5px);
-      .padding {
-        padding-bottom: 3px;
-      }
     }
     .initials {
       position: relative;
@@ -311,6 +333,10 @@ textarea {
     width: 204px;
     height: 40px;
     @include dflex($jc: space-between);
+    @media (max-width: 750px) {
+      justify-content: center;
+      gap: 24px;
+    }
     a svg {
       path {
         transition: fill 0.2s ease;
@@ -323,6 +349,9 @@ textarea {
       position: absolute;
       bottom: -20px;
       right: 0;
+      @media (max-width: 750px) {
+        right: 32px;
+      }
     }
   }
 }
