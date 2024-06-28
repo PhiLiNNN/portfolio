@@ -22,9 +22,9 @@ section {
 
     .rectangle {
       position: absolute;
-      top: -138px;
+      top: -148px;
       width: 100%;
-      height: 138px;
+      height: 148px;
       max-width: 1920px;
       background-image: url("./../../../../public/assets/img/rectangle.svg");
       background-repeat: no-repeat;
@@ -174,6 +174,9 @@ textarea {
     margin-top: 26px;
     font-family: "Overpass";
     font-size: 14px;
+    @media (max-width: 500px) {
+      font-size: 12px;
+    }
   }
   .checkbox-btn {
     display: block;
@@ -245,12 +248,34 @@ textarea {
 }
 
 .btn-center {
-  width: 100%;
-  @include dflex();
+  width: 102%;
+  margin-top: 42px;
+  height: 60px;
+  @include dflex($jc: space-between);
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
   > button {
-    @include button($width: 213px, $hoverWidth: 256px, $mt: 63px, $co: white);
+    @include button($width: 213px, $hoverWidth: 256px, $mt: 0px, $co: white);
+  }
+  .arrow {
+    cursor: pointer;
+    overflow: visible;
     @media (max-width: 900px) {
       display: none;
+    }
+    .arrow-shaft {
+      transition: transform 0.175s;
+      transform-origin: bottom;
+    }
+    .arrow-head {
+      transition: transform 0.175s;
+    }
+    &:hover .arrow-shaft {
+      transform: scaleY(1.2);
+    }
+    &:hover .arrow-head {
+      transform: translateY(-10px);
     }
   }
 }
@@ -284,16 +309,48 @@ textarea {
 }
 
 .bottom {
-  margin-block: 48px;
-  height: 69px;
+  margin: 48px 0 100px;
   width: 100%;
   @include dflex($jc: space-between);
+  @media (max-width: 900px) {
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    gap: 26px;
+  }
   .content {
     width: 200px;
     height: 69px;
     @include dflex($fd: column, $ai: start, $jc: space-around, $g: 20px);
+    @media (max-width: 900px) {
+      order: 2;
+      gap: 56px;
+      align-items: center;
+    }
     .email {
       @include dflex($g: 5px);
+      @media (min-width: 901px) {
+        display: none;
+      }
+      > a {
+        font-size: 23px;
+        text-decoration: none;
+        color: white;
+        cursor: pointer;
+        font-family: "Overpass";
+        &:active {
+          color: $color-highlight;
+        }
+        @media (max-width: 500px) {
+          font-size: 19px;
+        }
+      }
+    }
+    .tag {
+      @include dflex($g: 5px);
+      @media (max-width: 900px) {
+        display: none;
+      }
     }
     .initials {
       position: relative;
@@ -333,8 +390,12 @@ textarea {
     width: 204px;
     height: 40px;
     @include dflex($jc: space-between);
-    @media (max-width: 750px) {
+    @media (max-width: 900px) {
+      position: static;
       justify-content: center;
+      gap: 47px;
+    }
+    @media (max-width: 750px) {
       gap: 24px;
     }
     a svg {
@@ -349,8 +410,14 @@ textarea {
       position: absolute;
       bottom: -20px;
       right: 0;
-      @media (max-width: 750px) {
-        right: 32px;
+      @media (max-width: 900px) {
+        width: 100px;
+        bottom: -45px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      @media (max-width: 500px) {
+        font-size: 12px;
       }
     }
   }

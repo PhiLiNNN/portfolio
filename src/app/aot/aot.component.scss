@@ -96,12 +96,6 @@ section {
       writing-mode: vertical-rl;
       text-orientation: sideways;
       transform: rotate(180deg);
-      @media (min-width: 1201px) {
-        font-size: 23px;
-      }
-      @media (max-width: 900px) {
-        font-size: 23px;
-      }
     }
     .aot-arrow {
       @include dflex($fd: column);
