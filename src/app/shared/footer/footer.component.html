@@ -10,6 +10,7 @@
     >
     <form
       class="autoShow"
+      #ngForm="ngForm"
       (ngSubmit)="onSubmit(contactForm)"
       #contactForm="ngForm"
     >
@@ -96,22 +97,32 @@
       <div class="confimation">
         <label class="checkbox-btn">
           <label for="checkbox"></label>
-          <input type="checkbox" ngModel name="privacyPolicy" required />
-          <span class="checkmark"></span>
+          <input
+            type="checkbox"
+            ngModel
+            name="privacyPolicy"
+            required
+            #checkBox="ngModel"
+          />
+          <span class="checkmark"> </span>
         </label>
-        <span
-          >I've read the <span class="highlight">privacy policy</span> and agree
-          to the processing of my data as outlined</span
+        @if(ngForm.submitted && checkBox.invalid) {
+        <span class="conf-msg"
+          >I've read the
+          <span class="highlight" style="color: #e61c40">privacy policy</span>
+          and agree to the processing of my data as outlined</span
         >
+        } @else {
+        <span class="conf-msg"
+          >I've read the
+          <span class="highlight" style="color: #00bc8f">privacy policy</span>
+          and agree to the processing of my data as outlined</span
+        >
+        }
       </div>
       <div class="btn-center">
         <div></div>
-        <button
-          class="btn-desk"
-          type="submit"
-          value="submit"
-          [disabled]="!contactForm.form.valid"
-        >
+        <button class="btn-desk" type="submit" value="submit">
           Send message
         </button>
         <button
