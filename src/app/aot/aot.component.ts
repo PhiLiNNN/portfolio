@@ -42,4 +42,10 @@ export class AotComponent {
       );
     }
   }
+  scrollToAboutMe() {
+    const element = document.getElementById('aboutme-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

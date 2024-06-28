@@ -29,4 +29,10 @@ export class SkillsComponent {
     );
     this.renderer.addClass(toSkillsArrow, 'hovered');
   }
+  scrollToRefs() {
+    const element = document.getElementById('ref-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

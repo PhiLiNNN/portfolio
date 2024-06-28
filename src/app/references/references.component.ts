@@ -52,4 +52,10 @@ export class ReferencesComponent {
       this.el.nativeElement.querySelector('.to-skills-arrow');
     this.renderer.addClass(toSkillsArrow, 'hovered');
   }
+  scrollToFooter() {
+    const element = document.getElementById('footer-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

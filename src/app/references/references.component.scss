@@ -4,7 +4,7 @@ section {
   width: 100vw;
   max-width: 100%;
   padding-inline: 100px;
-  margin-top: 106px;
+  padding-top: 106px;
   @include dflex($fd: column);
   @media (max-width: 1200px) {
     padding-inline: 50px;
@@ -50,7 +50,7 @@ section {
     }
   }
 }
-.to-skills-arrow {
+.to-footer-arrow {
   cursor: pointer;
   width: 100%;
   padding: 0 200px 100px 0;

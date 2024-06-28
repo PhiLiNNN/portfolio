@@ -98,6 +98,7 @@ section {
       transform: rotate(180deg);
     }
     .aot-arrow {
+      cursor: pointer;
       @include dflex($fd: column);
       position: relative;
       width: 54px;
@@ -108,7 +109,6 @@ section {
       }
       .scroll-down {
         position: absolute;
-        cursor: default;
         bottom: 0px;
         @include dflex($fd: column, $jc: end);
         > span {

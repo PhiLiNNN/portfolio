@@ -13,24 +13,24 @@
 section {
   width: 100vw;
   max-width: 100%;
-  margin-top: 138px;
+  padding-top: 138px;
   @include dflex();
   .wrapper {
     position: relative;
     color: white;
-    padding: 58px 100px 0px 100px;
+    padding: 100px 100px 0px 100px;
     background: black;
     width: 100%;
     max-width: 1920px;
     @include dflex($fd: column);
     @media (max-width: 1200px) {
-      padding: 58px 50px 0px 50px;
+      padding: 100px 50px 0px 50px;
     }
     @media (max-width: 900px) {
-      padding: 39px 50px 0px 50px;
+      padding: 80px 50px 0px 50px;
     }
     @media (max-width: 700px) {
-      padding: 39px 25px 0px 25px;
+      padding: 80px 25px 0px 25px;
     }
     .rectangle {
       position: absolute;
@@ -46,7 +46,7 @@ section {
       position: absolute;
       background: black;
       color: white;
-      top: -70px;
+      top: -45px;
       left: 100px;
       cursor: default;
       @include dflex($fd: column, $ai: start, $jc: start);

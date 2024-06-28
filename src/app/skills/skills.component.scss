@@ -4,7 +4,7 @@ section {
   width: 100vw;
   max-width: 100%;
   padding-inline: 100px;
-  margin-top: 39px;
+  padding-top: 39px;
   @include dflex($fd: column);
   @media (max-width: 1200px) {
     padding-inline: 50px;

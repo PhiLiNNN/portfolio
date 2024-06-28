@@ -1,4 +1,4 @@
-<section>
+<section id="ref-section">
   <div class="ref-header autoShow">
     <h2>Portfolio</h2>
     <p>
@@ -27,7 +27,11 @@
     [imageUrl]="ref.img"
   ></app-referenceRight>
   } }
-  <div class="to-skills-arrow autoShow" (mouseenter)="onMouseEnter()">
+  <div
+    class="to-footer-arrow autoShow"
+    (mouseenter)="onMouseEnter()"
+    (click)="scrollToFooter()"
+  >
     <svg viewBox="0 0 236 235" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M42.1074 110.893V193.52H124.734"

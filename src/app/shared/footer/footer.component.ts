@@ -24,4 +24,11 @@ export class FooterComponent {
       console.log('Test :>> ');
     } else console.log('Form is invalid or privacy policy not accepted.');
   }
+
+  scrollToAot() {
+    const element = document.getElementById('aot-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

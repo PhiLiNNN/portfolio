@@ -14,4 +14,11 @@ export class AboutMeComponent {
       this.el.nativeElement.querySelector('.to-skills-arrow');
     this.renderer.addClass(toSkillsArrow, 'hovered');
   }
+
+  scrollToSkills() {
+    const element = document.getElementById('skills-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
