@@ -21,9 +21,11 @@ section {
     font-size: 78px;
     font-weight: 800;
     cursor: default;
+
     &:hover {
       color: $color-highlight;
     }
+
     @media (max-width: 900px) {
       font-size: 58px;
     }

@@ -14,7 +14,6 @@ section {
     padding-inline: 25px;
   }
 }
-
 .flex {
   @include dflex($ai: start, $g: 91px);
   max-width: 1920px;
@@ -42,7 +41,6 @@ section {
         width: 90%;
       }
     }
-
     &::before {
       content: "";
       position: absolute;
@@ -54,42 +52,42 @@ section {
       border-radius: 10px;
       transition: transform 0.175s, border-color 0.175s;
       height: calc(100% - 107px);
-    }
-    &:hover::before {
-      border-color: black;
-      transform: translateY(20px) translateX(20px);
       @media (max-width: 900px) {
         top: 135px;
         height: calc(100% - 150px);
       }
       @media (max-width: 700px) {
+        height: calc(100% - 140px);
         left: 5%;
         right: 4%;
       }
       @media (max-width: 450px) {
         top: 138px;
         height: calc(100% - 142px);
+      }
+    }
+    &:hover::before {
+      border-color: black;
+      transform: translateY(20px) translateX(20px);
+      @media (max-width: 450px) {
         transform: translateY(10px) translateX(10px);
       }
     }
   }
-
   @media (max-width: 900px) {
     @include dflex($fd: column);
   }
 }
-
 .content {
   > h2 {
     margin-bottom: 52px;
     font-size: 45px;
     font-weight: 800;
     cursor: default;
-    @media (min-width: 901px) {
-      transition: color 0.2s ease-in-out;
-      &:hover {
-        color: $color-highlight;
-      }
+
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: $color-highlight;
     }
     @media (max-width: 900px) {
       text-align: center;
@@ -120,7 +118,6 @@ section {
     }
   }
 }
-
 .to-skills-arrow {
   cursor: pointer;
   width: 100%;

@@ -117,12 +117,6 @@ section {
           font-family: "Overpass";
           font-size: 23px;
           font-weight: 300;
-          @media (min-width: 1201px) {
-            font-size: 23px;
-          }
-          @media (max-width: 900px) {
-            font-size: 23px;
-          }
         }
       }
     }
@@ -135,7 +129,6 @@ section {
     background: $bg-color;
   }
 }
-
 button {
   @include button($width: 247px, $hoverWidth: 290px, $mt: 92px, $mb: 16px);
   @media (max-width: 900px) {

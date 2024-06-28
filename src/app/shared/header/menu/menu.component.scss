@@ -12,7 +12,14 @@ section {
   z-index: 999;
   bottom: 0;
   overflow: hidden;
+  padding: 0px 100px 0px 100px;
   @include dflex($fd: column);
+  @media (max-width: 1200px) {
+    padding: 0px 50px 0px 50px;
+  }
+  @media (max-width: 700px) {
+    padding: 0px 25px 0px 25px;
+  }
   &.open {
     animation: slideInFromTop 0.5s forwards;
   }
@@ -36,10 +43,10 @@ section {
       padding-inline: 32px;
       font-weight: 700;
       transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-    }
-    a:hover {
-      color: #fff;
-      box-shadow: inset 1200px 0 0 0 black;
+      &:hover {
+        color: #fff;
+        box-shadow: inset 1200px 0 0 0 black;
+      }
     }
   }
 }
@@ -65,9 +72,21 @@ section {
       top: 150px;
       cursor: default;
       @include dflex($fd: column, $ai: start, $jc: start);
+      @media (max-width: 1200px) {
+        margin-left: 50px;
+      }
+      @media (max-width: 900px) {
+        top: 220px;
+      }
+      @media (max-width: 700px) {
+        margin-left: 25px;
+      }
       span {
         font-weight: 800;
         font-size: 4.063vw;
+        @media (max-width: 900px) {
+          font-size: 32px;
+        }
         &:hover {
           color: $color-highlight;
         }
@@ -80,6 +99,12 @@ section {
       bottom: 50px;
       width: 100%;
       @include dflex($ai: center, $jc: space-between);
+      @media (max-width: 1200px) {
+        padding-left: 50px;
+      }
+      @media (max-width: 700px) {
+        padding-left: 25px;
+      }
       a {
         cursor: pointer;
         font-family: Overpass;
@@ -88,12 +113,21 @@ section {
         text-decoration: none;
         color: white;
         font-size: 1.2vw;
+        @media (max-width: 1200px) {
+          font-size: 19px;
+        }
         &:hover {
           color: $color-highlight;
+        }
+        @media (max-width: 600px) {
+          font-size: 16px;
         }
       }
       .menu-icons {
         @include dflex($g: 2.7vw);
+        @media (max-width: 900px) {
+          display: none;
+        }
         a svg {
           path {
             transition: fill 0.2s ease;
@@ -129,51 +163,3 @@ section {
     height: 0;
   }
 }
-
-// .Title {
-//   cursor: pointer;
-//   position: relative;
-//   padding-top: 5px;
-//   h1 {
-//     position: relative;
-//     margin: 0;
-//     padding: 0;
-//     overflow: hidden;
-//     font-size: 5vw;
-//     font-weight: 700;
-//     transition: color 0.5s ease-in-out;
-//     &:hover {
-//       color: #00bc8f;
-//     }
-//   }
-
-//   &__underline {
-//     position: absolute;
-//     width: 100%;
-//     left: 0;
-//     bottom: 0.3em;
-//     height: 3px;
-//     background-color: black;
-//     z-index: 5;
-//     transition: transform 580ms cubic-bezier(0.2, 0.1, 0.15, 1.32);
-//   }
-
-//   &__highlight {
-//     position: absolute;
-//     width: 100%;
-//     bottom: -50;
-//     left: 0;
-//     height: 50px;
-//     background-color: $color-highlight;
-//     z-index: -1;
-//     transition: transform 400ms ease;
-//   }
-//   &:hover {
-//     .Title__underline {
-//       transform: translateY(-6em);
-//     }
-//     .Title__highlight {
-//       transform: translateY(-2.2em);
-//     }
-//   }
-// }

@@ -1,5 +1,15 @@
 @import "./../../../mixin.scss";
 @import "./../../../var.scss";
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
+  }
+}
 section {
   width: 100vw;
   max-width: 100%;
@@ -8,18 +18,20 @@ section {
   .wrapper {
     position: relative;
     color: white;
-    padding: 172px 100px 0px 100px;
+    padding: 58px 100px 0px 100px;
     background: black;
     width: 100%;
     max-width: 1920px;
     @include dflex($fd: column);
     @media (max-width: 1200px) {
-      padding: 172px 50px 0px 50px;
+      padding: 58px 50px 0px 50px;
+    }
+    @media (max-width: 900px) {
+      padding: 39px 50px 0px 50px;
     }
     @media (max-width: 700px) {
-      padding: 172px 25px 0px 25px;
+      padding: 39px 25px 0px 25px;
     }
-
     .rectangle {
       position: absolute;
       top: -148px;
@@ -34,7 +46,7 @@ section {
       position: absolute;
       background: black;
       color: white;
-      top: 0px;
+      top: -70px;
       left: 100px;
       cursor: default;
       @include dflex($fd: column, $ai: start, $jc: start);
@@ -50,6 +62,12 @@ section {
         @media (min-width: 1921px) {
           font-size: 78px;
         }
+        @media (max-width: 1200px) {
+          font-size: 45px;
+        }
+        @media (max-width: 500px) {
+          font-size: 40px;
+        }
         &:hover {
           color: $color-highlight;
         }
@@ -61,6 +79,12 @@ section {
       font-weight: 700;
       color: $color-highlight;
       text-align: center;
+      @media (max-width: 500px) {
+        font-size: 28px;
+      }
+      @media (max-width: 435px) {
+        font-size: 25px;
+      }
     }
     > span {
       color: white;
@@ -68,6 +92,12 @@ section {
       font-family: "Overpass";
       font-size: 23px;
       text-align: center;
+      @media (max-width: 500px) {
+        font-size: 19px;
+      }
+      @media (max-width: 435px) {
+        font-size: 16px;
+      }
     }
     form {
       width: 100%;
@@ -75,7 +105,6 @@ section {
     }
   }
 }
-
 .form__group {
   position: relative;
   padding: 15px 0 0;
@@ -98,11 +127,9 @@ section {
     padding: 12.5px 0px 12.5px 25px;
     background: transparent;
     transition: border-color 0.175s ease-in-out, border 0.1s ease-in-out;
-
     &::placeholder {
       color: transparent;
     }
-
     &:placeholder-shown ~ .form__label {
       font-family: "Overpass";
       font-size: 16px;
@@ -139,11 +166,9 @@ section {
     }
   }
 }
-
 textarea {
   resize: none;
 }
-
 .feedback-icon-txt,
 .feedback-icon-input {
   position: absolute;
@@ -153,7 +178,6 @@ textarea {
 .feedback-icon-input {
   top: 27px;
 }
-
 .highlight {
   display: inline-block;
   cursor: pointer;
@@ -161,7 +185,6 @@ textarea {
   color: $color-highlight;
   transition: transform 0.175s;
 }
-
 .confimation {
   @include dflex($g: 4px, $jc: start);
   padding-inline: 4px;
@@ -246,7 +269,6 @@ textarea {
     }
   }
 }
-
 .btn-center {
   width: 102%;
   margin-top: 42px;
@@ -255,9 +277,34 @@ textarea {
   @media (max-width: 900px) {
     justify-content: center;
   }
-  > button {
+  .btn-desk {
     @include button($width: 213px, $hoverWidth: 256px, $mt: 0px, $co: white);
+    display: block; // Standardmäßig anzeigen
+
+    @media (max-width: 900px) {
+      display: none; // Auf mobilen Geräten ausblenden
+    }
+    &:disabled {
+      border-color: gray;
+      color: gray;
+      cursor: not-allowed;
+    }
   }
+
+  .btn-mob {
+    @include button($width: 213px, $hoverWidth: 256px, $mt: 0px, $co: white);
+    display: none; // Standardmäßig ausblenden
+
+    @media (max-width: 900px) {
+      display: block; // Auf mobilen Geräten anzeigen
+    }
+    &:disabled {
+      border-color: gray;
+      color: gray;
+      cursor: not-allowed;
+    }
+  }
+
   .arrow {
     cursor: pointer;
     overflow: visible;
@@ -279,7 +326,6 @@ textarea {
     }
   }
 }
-
 .err-msg,
 .err-msg-text {
   position: absolute;
@@ -297,22 +343,12 @@ textarea {
 .hidden {
   opacity: 0;
 }
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) rotate(0deg) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
-  }
-}
-
 .bottom {
-  margin: 48px 0 100px;
+  margin: 48px 0 48px 0;
   width: 100%;
   @include dflex($jc: space-between);
   @media (max-width: 900px) {
+    margin: 48px 0 100px;
     position: relative;
     flex-direction: column;
     justify-content: center;
@@ -407,6 +443,7 @@ textarea {
       }
     }
     > span {
+      cursor: pointer;
       position: absolute;
       bottom: -20px;
       right: 0;

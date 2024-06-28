@@ -18,5 +18,6 @@ export class FooterComponent {
   onSubmit(ngForm: NgForm) {
     if (ngForm.valid && ngForm.submitted)
       console.log('sadasdsadsadsad :>> ', this.contactData);
+    else console.log('Form is invalid or privacy policy not accepted.');
   }
 }

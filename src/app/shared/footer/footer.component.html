@@ -8,8 +8,12 @@
     <span class="autoShow"
       >Say hello! let's discuss your ideas and make it happen</span
     >
-    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
-      <div class="form__group autoShow">
+    <form
+      class="autoShow"
+      (ngSubmit)="onSubmit(contactForm)"
+      #contactForm="ngForm"
+    >
+      <div class="form__group">
         <input
           minlength="2"
           #nameInput="ngModel"
@@ -17,7 +21,7 @@
           type="input"
           class="form__field"
           placeholder="Your name"
-          name="Your name"
+          name="name"
           required
         />
         @if(!nameInput.valid && nameInput.touched) {
@@ -35,7 +39,7 @@
         <span class="err-msg">Please enter at least 2 characters!</span>
         }
       </div>
-      <div class="form__group autoShow">
+      <div class="form__group">
         <input
           [(ngModel)]="contactData.email"
           type="input"
@@ -60,7 +64,7 @@
         >
         }
       </div>
-      <div class="form__group textarea-height autoShow" style="height: 202px">
+      <div class="form__group textarea-height" style="height: 202px">
         <textarea
           minlength="4"
           #textMessage="ngModel"
@@ -72,7 +76,6 @@
           name="Your message"
           required
         ></textarea>
-
         @if(!textMessage.valid && textMessage.touched) {
         <img class="feedback-icon-txt" src="./assets/img/icons/wrong.svg" />
         } @else if (textMessage.valid && textMessage.touched) {<img
@@ -90,10 +93,10 @@
         }
       </div>
 
-      <div class="confimation autoShow">
+      <div class="confimation">
         <label class="checkbox-btn">
           <label for="checkbox"></label>
-          <input type="checkbox" />
+          <input type="checkbox" ngModel name="privacyPolicy" required />
           <span class="checkmark"></span>
         </label>
         <span
@@ -101,9 +104,24 @@
           to the processing of my data as outlined</span
         >
       </div>
-      <div class="btn-center autoShow">
+      <div class="btn-center">
         <div></div>
-        <button type="submit" value="submit">Send message</button>
+        <button
+          class="btn-desk"
+          type="submit"
+          value="submit"
+          [disabled]="!contactForm.form.valid"
+        >
+          Send message
+        </button>
+        <button
+          class="btn-mob"
+          type="submit"
+          value="submit"
+          [disabled]="!contactForm.form.valid"
+        >
+          Say hello :)
+        </button>
         <svg
           class="arrow"
           width="40"
