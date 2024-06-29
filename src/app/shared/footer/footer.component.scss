@@ -306,6 +306,9 @@ textarea {
       color: gray;
       cursor: not-allowed;
     }
+    .disabled-hover:hover {
+      width: 100px;
+    }
   }
 
   .arrow {

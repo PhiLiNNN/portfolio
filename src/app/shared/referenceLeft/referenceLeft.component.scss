@@ -166,10 +166,6 @@
             padding-left: 0px;
             font-size: 4vw;
           }
-          @media (max-width: 500px) {
-            text-align: center;
-            width: 100%;
-          }
         }
         > span {
           color: $color-highlight;
@@ -195,8 +191,6 @@
           }
           @media (max-width: 500px) {
             font-size: 16px;
-            width: 100%;
-            text-align: center;
           }
         }
         > p {
@@ -230,8 +224,7 @@
           }
           @media (max-width: 500px) {
             font-size: 14px;
-            text-align: center;
-            width: 100%;
+            width: 290px;
           }
         }
         .ref-btns {
@@ -249,10 +242,6 @@
           }
           @media (max-width: 600px) {
             gap: 12px;
-          }
-          @media (max-width: 500px) {
-            width: 100%;
-            justify-content: center;
           }
           button {
             cursor: pointer;

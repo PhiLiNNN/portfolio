@@ -122,7 +122,12 @@
       </div>
       <div class="btn-center">
         <div></div>
-        <button class="btn-desk" type="submit" value="submit">
+        <button
+          class="btn-desk"
+          type="submit"
+          value="submit"
+          [disabled]="!contactForm.form.valid"
+        >
           Send message
         </button>
         <button

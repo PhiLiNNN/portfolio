@@ -33,4 +33,15 @@
     margin-left: $hml;
     margin-right: $hmr;
   }
+  &:disabled {
+    cursor: not-allowed;
+    border-color: gray;
+    color: gray;
+    &:hover {
+      width: $width;
+      margin-left: 0;
+      margin-right: 0;
+      font-weight: normal;
+    }
+  }
 }
