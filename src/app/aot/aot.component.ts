@@ -43,7 +43,7 @@ export class AotComponent {
     }
   }
   scrollToAboutMe() {
-    const element = document.getElementById('aboutme-section');
+    const element = document.getElementById('aboutMe-section');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }

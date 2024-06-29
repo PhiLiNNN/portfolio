@@ -3,7 +3,7 @@
 section {
   width: 100vw;
   max-width: 100%;
-  padding: 30px 100px 0 100px;
+  padding: 110px 100px 0 100px;
   @include dflex($fd: column);
   @media (max-width: 900px) {
     padding-top: 100px;

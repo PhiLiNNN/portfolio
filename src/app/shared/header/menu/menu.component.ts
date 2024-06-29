@@ -1,4 +1,10 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  Renderer2,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,4 +16,22 @@ import { CommonModule } from '@angular/common';
 })
 export class MenuComponent {
   @Input() menuOpen: boolean | null = null;
+  @Output() menuToggle = new EventEmitter<void>();
+
+  constructor(private renderer: Renderer2) {}
+
+  closeMenu() {
+    this.menuOpen = false;
+    this.renderer.removeStyle(document.body, 'overflow');
+    this.menuToggle.emit();
+  }
+
+  scrollTo(section: string) {
+    this.closeMenu();
+
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

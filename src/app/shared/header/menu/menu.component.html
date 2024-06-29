@@ -1,9 +1,9 @@
 <section [ngClass]="{ open: menuOpen, close: !menuOpen }">
   <div class="menu-content">
     <div class="menu-links">
-      <a>Über mich</a>
-      <a>Meine Fähigkeiten</a>
-      <a>Portfolio</a>
+      <a (click)="scrollTo('aboutMe-section')">Über mich</a>
+      <a (click)="scrollTo('skills-section')">Meine Fähigkeiten</a>
+      <a (click)="scrollTo('ref-section')">Portfolio</a>
     </div>
     <div class="bottom-menu">
       <div class="rectangle">

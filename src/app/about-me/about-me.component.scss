@@ -79,7 +79,7 @@ section {
 .content {
   > h2 {
     margin-bottom: 52px;
-    font-size: 45px;
+    font-size: 78px;
     font-weight: 800;
     cursor: default;
 
@@ -133,7 +133,6 @@ section {
   max-width: 1920px;
   width: 80%;
   height: 180px;
-  margin-bottom: 100px;
   @include dflex($jc: end);
   @media (max-width: 900px) {
     justify-content: center;

@@ -67,7 +67,7 @@
       </div>
       <div class="form__group textarea-height" style="height: 202px">
         <textarea
-          minlength="4"
+          minlength="10"
           #textMessage="ngModel"
           [(ngModel)]="contactData.message"
           style="height: 202px"
@@ -106,7 +106,7 @@
           />
           <span class="checkmark"> </span>
         </label>
-        @if(ngForm.submitted && checkBox.invalid) {
+        @if(!ngForm.submitted && checkBox.invalid) {
         <span class="conf-msg"
           >I've read the
           <span class="highlight" style="color: #e61c40">privacy policy</span>

@@ -4,7 +4,7 @@ section {
   width: 100vw;
   max-width: 100%;
   padding-inline: 100px;
-  padding-top: 39px;
+  padding-top: 110px;
   @include dflex($fd: column);
   @media (max-width: 1200px) {
     padding-inline: 50px;
@@ -70,12 +70,12 @@ section {
       }
     }
     span {
-      transition: color 0.2s ease-in-out;
+      transition: color 0.175s ease-in-out;
       font-family: "Overpass";
       font-weight: 700;
     }
     img {
-      transition: transform 0.2s ease-in-out;
+      transition: transform 0.175s ease-in-out;
       &:hover {
         transform: rotateY(360deg) scale(1.2);
       }
@@ -90,7 +90,7 @@ section {
 .to-portfolio-arrow {
   cursor: pointer;
   width: 100%;
-  margin: 16px 0 100px 64px;
+  margin: 16px 0 0px 64px;
   max-width: 1920px;
   height: 180px;
   @include dflex($jc: start);

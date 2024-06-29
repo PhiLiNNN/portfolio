@@ -18,8 +18,6 @@ export class FooterComponent {
   };
   constructor(private el: ElementRef, private renderer: Renderer2) {}
   onSubmit(ngForm: NgForm) {
-    const mobBtn = this.el.nativeElement.querySelector('.btn-desk');
-    const deskBtn = this.el.nativeElement.querySelector('.btn-desk');
     if (ngForm.valid && ngForm.submitted) {
       console.log('Test :>> ');
     } else console.log('Form is invalid or privacy policy not accepted.');
