@@ -21,4 +21,10 @@ export class AboutMeComponent {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   }
+  scrollToFooter() {
+    const element = document.getElementById('footer-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

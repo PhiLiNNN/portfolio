@@ -49,7 +49,7 @@ export class ReferencesComponent {
   constructor(private el: ElementRef, private renderer: Renderer2) {}
   onMouseEnter() {
     const toSkillsArrow =
-      this.el.nativeElement.querySelector('.to-skills-arrow');
+      this.el.nativeElement.querySelector('.to-footer-arrow');
     this.renderer.addClass(toSkillsArrow, 'hovered');
   }
   scrollToFooter() {

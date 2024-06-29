@@ -27,17 +27,15 @@ section {
     }
     > img {
       height: auto;
-      width: 453px;
+      width: 353px;
       border-radius: 10px;
-      margin-top: 98px;
-      @media (max-width: 1200px) {
-        width: 45vw;
-      }
+      margin-top: 85px;
       @media (max-width: 900px) {
         margin-top: 138px;
-        width: 553px;
+        width: 400px;
       }
-      @media (max-width: 700px) {
+
+      @media (max-width: 500px) {
         width: 90%;
       }
     }
@@ -56,7 +54,7 @@ section {
         top: 135px;
         height: calc(100% - 150px);
       }
-      @media (max-width: 700px) {
+      @media (max-width: 500px) {
         height: calc(100% - 140px);
         left: 5%;
         right: 4%;
@@ -103,6 +101,15 @@ section {
   p {
     font-size: 23px;
     font-family: "Overpass";
+    @media (max-width: 1300px) {
+      font-size: 19px;
+    }
+    @media (max-width: 1000px) {
+      font-size: 17px;
+    }
+    @media (max-width: 900px) {
+      font-size: 23px;
+    }
     @media (max-width: 500px) {
       font-size: 16px;
     }
@@ -112,6 +119,9 @@ section {
     @include dflex();
     > button {
       @include button($width: 213px, $hoverWidth: 256px, $mt: 63px);
+      @media (max-width: 1100px) {
+        margin-top: 16px;
+      }
       @media (max-width: 900px) {
         display: none;
       }
@@ -120,25 +130,60 @@ section {
 }
 .to-skills-arrow {
   cursor: pointer;
-  width: 100%;
-  padding: 0 200px 100px 0;
   max-width: 1920px;
+  width: 80%;
+  height: 180px;
+  margin-bottom: 100px;
   @include dflex($jc: end);
   @media (max-width: 900px) {
-    padding: 0 0 100px 0;
     justify-content: center;
   }
-  > svg {
-    width: 190px;
-    transition: transform 0.2s;
-    @media (max-width: 900px) {
-      width: 140px;
+  @media (max-width: 600px) {
+    height: 80px;
+  }
+  .arrow {
+    width: 180px;
+    height: inherit;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("./../../../public/assets/img/arrows/toLeft1.svg");
+    @media (max-width: 600px) {
+      background-size: 60%;
     }
   }
-  &.hovered > svg {
-    transform: translateY(100px) translateX(-100px);
-    @media (max-width: 500px) {
-      transform: translateY(100px) translateX(-60px);
+
+  &.hovered .arrow {
+    @media (min-width: 901px) {
+      animation: arrowAnimation 0.175s forwards;
     }
+    @media (max-width: 900px) {
+      animation: arrowAnimationMobile 0.175s forwards;
+    }
+  }
+}
+@keyframes arrowAnimation {
+  0% {
+    background-image: url("./../../../public/assets/img/arrows/toLeft1.svg");
+  }
+  50% {
+    background-image: url("./../../../public/assets/img/arrows/toLeft2.svg");
+    transform: translateY(50px) translateX(-50px);
+  }
+  100% {
+    background-image: url("./../../../public/assets/img/arrows/toLeft3.svg");
+    transform: translateY(100px) translateX(-100px);
+  }
+}
+@keyframes arrowAnimationMobile {
+  0% {
+    background-image: url("./../../../public/assets/img/arrows/toLeft1.svg");
+  }
+  50% {
+    background-image: url("./../../../public/assets/img/arrows/toLeft2.svg");
+    transform: translateY(30px) translateX(-30px);
+  }
+  100% {
+    background-image: url("./../../../public/assets/img/arrows/toLeft3.svg");
+    transform: translateY(60px) translateX(-60px);
   }
 }
