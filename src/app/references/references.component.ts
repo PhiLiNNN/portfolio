@@ -23,8 +23,8 @@ export class ReferencesComponent {
       skills: ['JavaScript', 'HTML', 'CSS', 'Firebase', 'Git'],
       description:
         'Task manger inspired by the kanban System. Create and organize tasks drag and drop functions, assign users and categories.',
-      githubLink: 'https://github.com/example/join',
-      liveLink: 'https://example.com/join',
+      githubLink: 'https://github.com/PhiLiNNN/Join',
+      liveLink: 'https://philipp-wendschuch.developerakademie.net/join/',
       img: './assets/img/references/join.png',
     },
     {
@@ -32,8 +32,8 @@ export class ReferencesComponent {
       skills: ['JavaScript', 'HTML', 'CSS', 'Git'],
       description:
         'An underwater adventure game using an object-oriented approach. Guide Sharkie, collect poison, and defeat the giant shark.',
-      githubLink: 'https://github.com/example/join',
-      liveLink: 'https://example.com/join',
+      githubLink: 'https://github.com/PhiLiNNN/Sharkie',
+      liveLink: 'https://philipp-wendschuch.developerakademie.net/sharkie/',
       img: './assets/img/references/sharkie.png',
     },
     {
@@ -41,8 +41,8 @@ export class ReferencesComponent {
       skills: ['JavaScript', 'Rest-Api', 'HTML', 'CSS', 'Git'],
       description:
         'A web app using PokeAPI to display first-gen Pokémon on interactive, rotatable cubes. Click on a Pokémon for more info.',
-      githubLink: 'https://github.com/example/join',
-      liveLink: 'https://example.com/join',
+      githubLink: 'https://github.com/PhiLiNNN/Pokedex',
+      liveLink: 'https://philipp-wendschuch.developerakademie.net/pokecube/',
       img: './assets/img/references/pokecubes.png',
     },
   ];

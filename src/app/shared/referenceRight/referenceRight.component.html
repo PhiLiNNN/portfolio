@@ -7,14 +7,16 @@
       <img src="{{ imageUrl }}" />
       <img class="ref-arrow" src="./assets/img/arrows/ref_arrow.svg" />
     </div>
-    <div class="ref-content">
-      <div class="ref-info">
-        <h2>{{ name }}</h2>
-        <span>{{ skills }}</span>
-        <p>{{ description }}</p>
-        <div class="ref-btns">
-          <button>Github</button>
-          <button>Live</button>
+    <div class="right-aligned">
+      <div class="ref-content">
+        <div class="ref-info">
+          <h2>{{ name }}</h2>
+          <span>{{ skills }}</span>
+          <p>{{ description }}</p>
+          <div class="ref-btns">
+            <button (click)="openGitHub(gitHub)">Github</button>
+            <button (click)="openLiveLink(liveLink)">Live</button>
+          </div>
         </div>
       </div>
     </div>

@@ -11,11 +11,15 @@
       <span>Philipp Wendschuch</span>
     </div>
   </div>
-  <div>
-    <button (click)="scrollToFooter()">Send me a message</button>
-  </div>
+
   <div class="bottom-aot">
     <div class="bottom-title">
+      <div class="aot-btn">
+        <button (click)="scrollToFooter()">
+          <span class="msg-desk">Send me a message</span>
+          <span class="msg-mob">Send message</span>
+        </button>
+      </div>
       <a href="mailto:ph.wendschuch@web.de">ph.wendschuch&#64;web.de</a>
       <div (click)="scrollToAboutMe()" class="aot-arrow">
         <img src="./assets/img/arrows/aot_arrow.svg" />

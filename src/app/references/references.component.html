@@ -11,6 +11,8 @@
     class="autoShow"
     [skills]="ref.skills.join(' | ')"
     [name]="ref.name"
+    [gitHub]="ref.githubLink"
+    [liveLink]="ref.liveLink"
     [refNum]="$index + 1"
     [refAll]="references.length"
     [description]="ref.description"
@@ -21,6 +23,8 @@
     class="autoShow"
     [skills]="ref.skills.join(' | ')"
     [name]="ref.name"
+    [gitHub]="ref.githubLink"
+    [liveLink]="ref.liveLink"
     [refNum]="$index + 1"
     [refAll]="references.length"
     [description]="ref.description"
@@ -28,7 +32,7 @@
   ></app-referenceRight>
   } }
   <div
-    class="to-footer-arrow autoShow"
+    class="to-footer-arrow"
     (mouseenter)="onMouseEnter()"
     (click)="scrollToFooter()"
   >
