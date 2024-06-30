@@ -117,30 +117,52 @@ nav {
 }
 
 .lang [type="checkbox"] + label {
+  width: 50px;
+  height: 50px;
   position: relative;
-  width: 75px;
-  height: 75px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  font-family: "Overpass";
-  cursor: pointer;
-  z-index: 1;
-  background: black;
-  color: white;
+  margin: auto;
+  overflow: hidden;
   border-radius: 50%;
-  transition: all 0.175s;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 0 5px 5px #000 inset, 0 0 5px 2px #000;
+}
+.lang [type="checkbox"] + label:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: -20px -20px 50px 2px #0000009b inset;
+  border-radius: 50%;
 }
 
-.lang [type="checkbox"] + label:hover {
-  background: $color-highlight;
+.lang [type="checkbox"] + label > div {
+  width: 400%;
+  height: 240%;
+  position: absolute;
+  top: -65px;
+  left: -27px;
+  background: url(./../../../../public/assets/img/icons/earth.svg);
+  background-size: cover;
+}
+
+.lang [type="checkbox"] + label:hover > div {
+  animation: spin 10s linear alternate infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .menu li {
   position: absolute;
   top: 15px;
   left: 10%;
+  transform: translateX(-15%) translateY(-30%);
   transition: all 0.4s;
 }
 
@@ -159,9 +181,15 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
   background: $color-highlight;
 }
-
+.menu li:first-child a {
+  background-image: url("./../../../../public/assets/img/icons/en.svg");
+}
+.menu li:nth-child(2) a {
+  background-image: url("./../../../../public/assets/img/icons/ger.svg");
+}
 .menu li a span {
   position: absolute;
   top: 0;
@@ -186,11 +214,15 @@ nav {
 
 .lang input:checked ~ .menu li:nth-child(2) {
   top: 90px;
-  left: calc(0% - 55px);
+  left: calc(0% - 30px);
   transition-delay: 0.2s;
 }
 
 .lang input:checked ~ .menu li a span {
   opacity: 1;
   transition-delay: 0.9s;
+}
+
+.menu-ri {
+  @include dflex();
 }
