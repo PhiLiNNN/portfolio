@@ -2,14 +2,15 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
-  selector: 'app-about-me',
+  selector: 'app-aboutMe',
   standalone: true,
   imports: [NgOptimizedImage],
-  templateUrl: './about-me.component.html',
-  styleUrl: './about-me.component.scss',
+  templateUrl: './aboutMe.component.html',
+  styleUrl: './aboutMe.component.scss',
 })
 export class AboutMeComponent {
   constructor(private el: ElementRef, private renderer: Renderer2) {}
+
   onMouseEnter() {
     const toSkillsArrow =
       this.el.nativeElement.querySelector('.to-skills-arrow');
