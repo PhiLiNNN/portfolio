@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-
+import { NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'app-referenceRight',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './referenceRight.component.html',
   styleUrl: './referenceRight.component.scss',
 })

@@ -1,9 +1,10 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-about-me',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './about-me.component.html',
   styleUrl: './about-me.component.scss',
 })

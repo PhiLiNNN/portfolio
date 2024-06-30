@@ -13,7 +13,9 @@
   $mb: 0px,
   $hmr: -21.5px,
   $hml: -21.5px,
-  $co: black
+  $co: black,
+  $bgCo: black,
+  $coAc: white
 ) {
   cursor: pointer;
   height: 68px;
@@ -25,13 +27,19 @@
   border: 4px solid $co;
   background: transparent;
   position: relative;
-  transition: width 0.175s ease-in-out;
+  transition: width 0.175s ease-in-out, color 0.175s ease-in-out,
+    background-color 0.175s ease-in-out;
   color: $co;
   &:hover {
     width: $hoverWidth;
     font-weight: 700;
     margin-left: $hml;
     margin-right: $hmr;
+  }
+  &:active {
+    color: $coAc;
+    font-weight: 700;
+    background-color: $bgCo;
   }
   &:disabled {
     cursor: not-allowed;

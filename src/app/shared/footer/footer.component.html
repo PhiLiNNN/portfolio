@@ -49,7 +49,7 @@
           name="Your email"
           required
           #emailInput="ngModel"
-          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
         />
         @if(!emailInput.valid && emailInput.touched) {
         <img class="feedback-icon-input" src="./assets/img/icons/wrong.svg" />

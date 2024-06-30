@@ -281,7 +281,14 @@ textarea {
     justify-content: center;
   }
   .btn-desk {
-    @include button($width: 213px, $hoverWidth: 256px, $mt: 0px, $co: white);
+    @include button(
+      $width: 213px,
+      $hoverWidth: 256px,
+      $mt: 0px,
+      $co: white,
+      $bgCo: white,
+      $coAc: black
+    );
     display: block;
 
     @media (max-width: 900px) {
