@@ -1,8 +1,76 @@
 {
-  "general": {
-    "hello": "hallo"
+  "header": {
+    "german": "Deutsch",
+    "english": "Englisch"
   },
-  "home": {
-    "title": "Zu Hause"
+  "menu": {
+    "aboutMe": "Über mich",
+    "mySkills": "Meine Fähigkeiten",
+    "portfolio": "Portfolio",
+    "sayHello": "Sag Hallo!"
+  },
+  "aot": {
+    "scroll": "Scrolle",
+    "down": "Nach Unten",
+    "sendMsg": "Nachricht senden",
+    "sendMsgMobile": "Sende Nachricht"
+  },
+  "aboutMe": {
+    "aboutMe": "Über mich",
+    "description": "Aufgaben-Manager inspiriert vom Kanban-System. Erstelle und organisiere Aufgaben mit Drag-and-Drop-Funktionen, weise Benutzer und Kategorien zu.",
+    "contactMe": "Wenn Sie denken, dass ich gut zu Ihren Projekten passen würde, kontaktieren Sie mich!",
+    "letsTalk": "Lass uns reden"
+  },
+  "portfolio": {
+    "headerDescription": "Entdecke hier eine Auswahl meiner Arbeiten - Interagiere mit den Projekten, um meine Fähigkeiten in Aktion zu sehen."
+  },
+  "references": [
+    {
+      "name": "Join",
+      "skills": ["JavaScript", "HTML", "CSS", "Firebase", "Git"],
+      "description": "Ein Unterwasser-Abenteuerspiel mit objektorientiertem Ansatz. Führe Sharkie, sammle Gift und besiege den Riesenhai.",
+      "githubLink": "https://github.com/PhiLiNNN/Join",
+      "liveLink": "https://philipp-wendschuch.developerakademie.net/join/",
+      "img": "./assets/img/references/join.png"
+    },
+    {
+      "name": "Sharkie",
+      "skills": ["JavaScript", "HTML", "CSS", "Git"],
+      "description": "Ein Unterwasser-Abenteuerspiel mit objektorientiertem Ansatz. Führe Sharkie, sammle Gift und besiege den Riesenhai.",
+      "githubLink": "https://github.com/PhiLiNNN/Sharkie",
+      "liveLink": "https://philipp-wendschuch.developerakademie.net/sharkie/",
+      "img": "./assets/img/references/sharkie.png"
+    },
+    {
+      "name": "PokéCubes",
+      "skills": ["JavaScript", "Rest-Api", "HTML", "CSS", "Git"],
+      "description": "Eine Web-App, welche die PokeAPI verwendet, um Pokémon der ersten Generation auf interaktiven, drehbaren Würfeln anzuzeigen. Klicke auf ein Pokémon für weitere Infos.",
+      "githubLink": "https://github.com/PhiLiNNN/Pokedex",
+      "liveLink": "https://philipp-wendschuch.developerakademie.net/pokecube/",
+      "img": "./assets/img/references/pokecubes.png"
+    }
+  ],
+  "footer": {
+    "error": {
+      "nameEmpty": "Dein Name wird benötigt.",
+      "nameTooShort": "Bitte gib mindestens 2 Zeichen ein!",
+      "emailEmpty": "Deine E-Mail-Adresse wird benötigt.",
+      "emailNotValid": "Bitte gib eine gültige E-Mail-Adresse ein (z.B. user&#64;example.com)!",
+      "textFieldEmpty": "Deine Nachricht ist leer.",
+      "textFieldTooShort": "Bitte gib mindestens 4 Zeichen ein!"
+    },
+
+    "sayHello": "Sag Hallo!",
+    "discussProject": "Möchten Sie ein neues Projekt besprechen?",
+    "contactRequest": "Sag hallo! Lass uns deine Ideen besprechen und umsetzen.",
+    "formName": "Dein Name",
+    "formEmail": "Deine E-Mail",
+    "formMessage": "Deine Nachricht",
+    "privacyPolicyTextBefore": "Ich habe die ",
+    "privacyPolicy": "Datenschutzerklärung",
+    "privacyPolicyTextAfter": " gelesen und stimme der Verarbeitung meiner Daten zu.",
+    "sendMessage": "Nachricht senden",
+    "sendMessageMobile": "Sag Hallo :)",
+    "legalNotice": "Impressum"
   }
 }

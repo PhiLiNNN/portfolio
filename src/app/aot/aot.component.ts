@@ -1,9 +1,9 @@
 import { Component, HostListener, ElementRef, Renderer2 } from '@angular/core';
-
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-aot',
   standalone: true,
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './aot.component.html',
   styleUrls: ['./aot.component.scss'],
 })

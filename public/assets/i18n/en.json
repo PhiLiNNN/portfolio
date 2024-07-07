@@ -1,8 +1,78 @@
 {
-  "language": "English",
-  "tr": "türkisch",
-  "en": "English",
-  "ru": "Russian",
-  "title": "Title",
-  "welcome": "Welcome"
+  "header": {
+    "german": "German",
+    "english": "English"
+  },
+  "menu": {
+    "aboutMe": "About me",
+    "mySkills": "My Skills",
+    "portfolio": "Portfolio",
+    "sayHello": "Say Hi!"
+  },
+  "aot": {
+    "scroll": "Scroll",
+    "down": "Down",
+    "sendMsg": "Send me a message",
+    "sendMsgMobile": "Send message"
+  },
+  "aboutMe": {
+    "aboutMe": "About me",
+    "description": "I am a Front-End Developer based in Leipzig, Germany. After a decade in logistics, I transitioned to education, earning a Master's in Medical Physics. My journey into programming began during my master's studies, where I gained foundational knowledge in Python for data analysis. Having completed my front-end development training, I am now expanding my expertise into back-end development to become a full-stack developer. I am passionate about coding and aim to pursue a professional career as a skilled programmer.",
+    "contactMe": "If you think I'd be good match for your Peojects, contac me!",
+    "letsTalk": "Let's talk"
+  },
+  "mySkills": {
+    "mySkills": "My Skills"
+  },
+  "portfolio": {
+    "headerDescription": "Explore a selection of my work here - Interact with projects to see my skills in action."
+  },
+  "references": [
+    {
+      "name": "Join",
+      "skills": ["JavaScript", "HTML", "CSS", "Firebase", "Git"],
+      "description": "Task manager inspired by the kanban system. Create and organize tasks with drag and drop functions, assign users and categories.",
+      "githubLink": "https://github.com/PhiLiNNN/Join",
+      "liveLink": "https://philipp-wendschuch.developerakademie.net/join/",
+      "img": "./assets/img/references/join.png"
+    },
+    {
+      "name": "Sharkie",
+      "skills": ["JavaScript", "HTML", "CSS", "Git"],
+      "description": "An underwater adventure game using an object-oriented approach. Guide Sharkie, collect poison, and defeat the giant shark.",
+      "githubLink": "https://github.com/PhiLiNNN/Sharkie",
+      "liveLink": "https://philipp-wendschuch.developerakademie.net/sharkie/",
+      "img": "./assets/img/references/sharkie.png"
+    },
+    {
+      "name": "PokéCubes",
+      "skills": ["JavaScript", "Rest-Api", "HTML", "CSS", "Git"],
+      "description": "A web app using PokeAPI to display first-gen Pokémon on interactive, rotatable cubes. Click on a Pokémon for more info.",
+      "githubLink": "https://github.com/PhiLiNNN/Pokedex",
+      "liveLink": "https://philipp-wendschuch.developerakademie.net/pokecube/",
+      "img": "./assets/img/references/pokecubes.png"
+    }
+  ],
+  "footer": {
+    "error": {
+      "nameEmpty": "Your name is required.",
+      "nameTooShort": "Please enter at least 2 characters!",
+      "emailEmpty": "Your email is required.",
+      "emailNotValid": "Please enter a valid email (e.g., user&#64;example.com)!",
+      "textFieldEmpty": "Your message is empty.",
+      "textFieldTooShort": "Please enter at least 4 characters!"
+    },
+    "sayHello": "Say Hi!",
+    "discussProject": "Want to discuss a new project?",
+    "contactRequest": "Say hello! let's discuss your ideas and make it happen",
+    "formName": "Your name",
+    "formEmail": "Your email",
+    "formMessage": "Your message",
+    "privacyPolicyTextBefore": "I've read the",
+    "privacyPolicy": "privacy policy",
+    "privacyPolicyTextAfter": "and agree to the processing of my data as outlined",
+    "sendMessage": "Send message",
+    "sendMessageMobile": "Say hello :)",
+    "legalNotice": "Legal notice"
+  }
 }

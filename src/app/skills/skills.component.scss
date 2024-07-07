@@ -54,13 +54,21 @@ section {
       @media (max-width: 700px) {
         font-size: 45px;
       }
-      @media (max-width: 500px) {
+      @media (max-width: 550px) {
         font-size: 32px;
+      }
+      @media (max-width: 390px) {
+        font-size: 24px;
       }
     }
   }
   .icon-box {
     @include dflex($fd: column, $g: 10px);
+    width: 76px;
+    @media (max-width: 900px) {
+      width: 70px;
+    }
+
     &:hover {
       span {
         color: $color-highlight;
@@ -73,6 +81,10 @@ section {
       transition: color 0.175s ease-in-out;
       font-family: "Overpass";
       font-weight: 700;
+      text-align: center;
+      @media (max-width: 550px) {
+        font-size: 14px;
+      }
     }
     img {
       transition: transform 0.175s ease-in-out;
@@ -80,8 +92,16 @@ section {
         transform: rotateY(360deg) scale(1.2);
       }
       @media (max-width: 900px) {
-        width: 60px;
         height: 60px;
+      }
+      @media (max-width: 700px) {
+        height: 50px;
+      }
+      @media (max-width: 550px) {
+        height: 40px;
+      }
+      @media (max-width: 390px) {
+        height: 35px;
       }
     }
   }

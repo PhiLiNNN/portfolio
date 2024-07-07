@@ -2,12 +2,10 @@
   <div class="wrapper">
     <div class="rectangle"></div>
     <div class="sayHello autoShow">
-      <span>Say Hi!</span>
+      <span>{{ "footer.sayHello" | translate }}</span>
     </div>
-    <h4 class="autoShow">Want to discuss a new project?</h4>
-    <span class="autoShow"
-      >Say hello! let's discuss your ideas and make it happen</span
-    >
+    <h4 class="autoShow">{{ "footer.discussProject" | translate }}</h4>
+    <span class="autoShow">{{ "footer.contactRequest" | translate }}</span>
     <form
       class="autoShow"
       #ngForm="ngForm"
@@ -31,13 +29,15 @@
           class="feedback-icon-input"
           src="./assets/img/icons/right.svg"
         />}
-        <label class="form__label">Your name</label>
+        <label class="form__label">{{ "footer.formName" | translate }}</label>
         @if (nameInput.touched && (!nameInput.value || nameInput.value.length
         === 0)) {
-        <span class="err-msg">Your name is required.</span>
+        <span class="err-msg">{{ "footer.error.nameEmpty" | translate }}</span>
         } @else if (nameInput.touched && nameInput.value &&
         nameInput.value.length > 0 && nameInput.value.length < 2) {
-        <span class="err-msg">Please enter at least 2 characters!</span>
+        <span class="err-msg">{{
+          "footer.error.nameTooShort" | translate
+        }}</span>
         }
       </div>
       <div class="form__group">
@@ -55,14 +55,14 @@
         <img class="feedback-icon-input" src="./assets/img/icons/wrong.svg" />
         } @else if (emailInput.valid && emailInput.touched) {
         <img class="feedback-icon-input" src="./assets/img/icons/right.svg" />}
-        <label class="form__label">Your email</label>
+        <label class="form__label">{{ "footer.formEmail" | translate }}</label>
         @if (emailInput.touched && (!emailInput.value || emailInput.value.length
         === 0)) {
-        <span class="err-msg">Your email is required.</span>
+        <span class="err-msg">{{ "footer.error.emailEmpty" | translate }}</span>
         } @else if (!emailInput.valid && emailInput.touched) {
-        <span class="err-msg"
-          >Please enter a valid email (e.g., user&#64;example.com)!</span
-        >
+        <span class="err-msg">{{
+          "footer.error.emailNotValid" | translate
+        }}</span>
         }
       </div>
       <div class="form__group textarea-height" style="height: 202px">
@@ -84,13 +84,19 @@
           src="./assets/img/icons/right.svg"
         />}
 
-        <label class="form__label">Your message</label>
+        <label class="form__label">{{
+          "footer.formMessage" | translate
+        }}</label>
         @if (textMessage.touched && (!textMessage.value ||
         textMessage.value.length === 0)) {
-        <span class="err-msg-text">Your message is empty.</span>
+        <span class="err-msg-text">{{
+          "footer.error.textFieldEmpty" | translate
+        }}</span>
         } @else if (textMessage.touched && textMessage.value &&
         textMessage.value.length > 0 && textMessage.value.length < 4) {
-        <span class="err-msg-text">Please enter at least 4 characters!</span>
+        <span class="err-msg-text">{{
+          "footer.error.textFieldTooShort" | translate
+        }}</span>
         }
       </div>
 
@@ -108,15 +114,19 @@
         </label>
         @if(!ngForm.submitted && checkBox.invalid) {
         <span class="conf-msg"
-          >I've read the
-          <span class="highlight" style="color: #e61c40">privacy policy</span>
-          and agree to the processing of my data as outlined</span
+          >{{ "footer.privacyPolicyTextBefore" | translate }}
+          <span class="highlight" style="color: #e61c40">{{
+            "footer.privacyPolicy" | translate
+          }}</span>
+          {{ "footer.privacyPolicyTextAfter" | translate }}</span
         >
         } @else {
         <span class="conf-msg"
-          >I've read the
-          <span class="highlight" style="color: #00bc8f">privacy policy</span>
-          and agree to the processing of my data as outlined</span
+          >{{ "footer.privacyPolicyTextBefore" | translate }}
+          <span class="highlight" style="color: #00bc8f">{{
+            "footer.privacyPolicy" | translate
+          }}</span>
+          {{ "footer.privacyPolicyTextAfter" | translate }}</span
         >
         }
       </div>
@@ -128,7 +138,7 @@
           value="submit"
           [disabled]="!contactForm.form.valid"
         >
-          Send message
+          {{ "footer.sendMessage" | translate }}
         </button>
         <button
           class="btn-mob"
@@ -136,7 +146,7 @@
           value="submit"
           [disabled]="!contactForm.form.valid"
         >
-          Say hello :)
+          {{ "footer.sendMessageMobile" | translate }}
         </button>
         <svg
           (click)="scrollToAot()"
@@ -222,7 +232,7 @@
             />
           </svg>
         </a>
-        <span>Legal notice</span>
+        <span>{{ "footer.legalNotice" | translate }}</span>
       </div>
     </div>
   </div>

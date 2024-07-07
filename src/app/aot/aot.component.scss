@@ -97,6 +97,9 @@ section {
       @media (max-width: 500px) {
         top: -85px;
       }
+      @media (max-width: 400px) {
+        top: -140px;
+      }
       button {
         @include button(
           $width: 247px,
@@ -115,8 +118,8 @@ section {
         }
         @media (max-width: 500px) {
           @include button(
-            $width: 180px,
-            $hoverWidth: 210px,
+            $width: 200px,
+            $hoverWidth: 230px,
             $mt: 0px,
             $mb: 0px
           );
@@ -155,6 +158,7 @@ section {
         animation: animateAotArrow 1.5s infinite;
       }
       .scroll-down {
+        text-align: center;
         position: absolute;
         bottom: 0px;
         @include dflex($fd: column, $jc: end);

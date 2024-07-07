@@ -174,23 +174,23 @@ nav {
   transition-delay: 0.15s;
 }
 
-.menu li a {
+.menu li button {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 999;
   background: $color-highlight;
 }
-.menu li:first-child a {
+.menu li:first-child button {
   background-image: url("./../../../../public/assets/img/icons/en.svg");
 }
-.menu li:nth-child(2) a {
+.menu li:nth-child(2) button {
   background-image: url("./../../../../public/assets/img/icons/ger.svg");
 }
-.menu li a span {
+.menu li button span {
   position: absolute;
   top: 0;
   left: 0;
@@ -218,7 +218,7 @@ nav {
   transition-delay: 0.2s;
 }
 
-.lang input:checked ~ .menu li a span {
+.lang input:checked ~ .menu li button span {
   opacity: 1;
   transition-delay: 0.9s;
 }

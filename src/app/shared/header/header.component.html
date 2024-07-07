@@ -13,16 +13,16 @@
         <label for="menu"><div></div></label>
         <ul class="menu">
           <li>
-            <a href="#0">
-              <span>English</span>
+            <button (click)="switchLanguage('en')" href="#0">
+              <span>{{ "header.english" | translate }}</span>
               <i class="fas fa-address-card" aria-hidden="true"></i>
-            </a>
+            </button>
           </li>
           <li>
-            <a href="#0">
-              <span>German</span>
+            <button (click)="switchLanguage('ger')" href="#0">
+              <span>{{ "header.german" | translate }}</span>
               <i class="fas fa-tasks" aria-hidden="true"></i>
-            </a>
+            </button>
           </li>
         </ul>
       </div>

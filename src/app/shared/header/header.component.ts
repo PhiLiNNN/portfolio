@@ -7,18 +7,28 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu/menu.component';
-
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, MenuComponent],
+  imports: [CommonModule, MenuComponent, TranslateModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   @Output() menuOpenChange = new EventEmitter<boolean>();
   menuOpen: boolean | null = null;
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
+  constructor(
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private translate: TranslateService
+  ) {
+    this.translate.setDefaultLang('en');
+  }
+
+  switchLanguage(languge: string) {
+    this.translate.use(languge);
+  }
 
   toggleMenu(): void {
     if (this.menuOpen === null) this.menuOpen = false;
