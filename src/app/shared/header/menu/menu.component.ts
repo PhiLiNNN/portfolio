@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-menu',
   standalone: true,
@@ -18,7 +19,7 @@ export class MenuComponent {
   @Input() menuOpen: boolean | null = null;
   @Output() menuToggle = new EventEmitter<void>();
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private router: Router) {}
 
   closeMenu() {
     this.menuOpen = false;
@@ -26,12 +27,12 @@ export class MenuComponent {
     this.menuToggle.emit();
   }
 
-  scrollTo(section: string) {
+  navigateToSection(section: string) {
     this.closeMenu();
-
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    setTimeout(() => {
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([], { fragment: section });
+      });
+    }, 10);
   }
 }

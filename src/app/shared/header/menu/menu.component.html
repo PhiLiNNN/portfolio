@@ -1,13 +1,13 @@
 <section [ngClass]="{ open: menuOpen, close: !menuOpen }">
   <div class="menu-content">
     <div class="menu-links">
-      <a (click)="scrollTo('aboutMe-section')">{{
+      <a (click)="navigateToSection('aboutMe-section')">{{
         "menu.aboutMe" | translate
       }}</a>
-      <a (click)="scrollTo('skills-section')">{{
+      <a (click)="navigateToSection('skills-section')">{{
         "menu.mySkills" | translate
       }}</a>
-      <a (click)="scrollTo('ref-section')">{{
+      <a (click)="navigateToSection('ref-section')">{{
         "menu.portfolio" | translate
       }}</a>
     </div>
@@ -67,40 +67,3 @@
     </div>
   </div>
 </section>
-
-<!-- <div class="menu-overlay" [ngClass]="{ open: menuOpen }">
-    <div class="menu-content">
-      <div class="menu-links">
-        <div class="Title">
-          <h1>
-            Über mich
-            <div class="Title__highlight"></div>
-          </h1>
-          <div class="Title__underline"></div>
-        </div>
-        <div class="Title">
-          <h1>
-            Meine Fähigkeiten
-            <div class="Title__highlight"></div>
-          </h1>
-          <div class="Title__underline"></div>
-        </div>
-        <div class="Title">
-          <h1>
-            Portfolio
-            <div class="Title__highlight"></div>
-          </h1>
-          <div class="Title__underline"></div>
-        </div>
-      </div>
-      <div class="bottom-menu">
-        <div class="rectangle">
-          <div class="sayHello">
-            <span>Sag Hallo!</span>
-            <a href="mailto:ph.wendschuch@web.de">ph.wendschuch&#64;web.de</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-   -->

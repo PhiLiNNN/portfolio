@@ -31,7 +31,6 @@ export class ReferencesComponent implements OnInit {
   ) {
     this.translate.get('references').subscribe((translations: any) => {
       this.references = translations;
-      console.log('this.references :>> ', this.references);
     });
   }
 

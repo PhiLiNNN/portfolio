@@ -1,9 +1,13 @@
-import { Component, EventEmitter, Output, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  Renderer2,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu/menu.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -14,8 +18,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 export class HeaderComponent {
   @Output() menuOpenChange = new EventEmitter<boolean>();
   menuOpen: boolean | null = null;
+  @Input() scrollToBottomBool: boolean | undefined;
+  @Input() testVariable: boolean | undefined;
+
   constructor(
-    private router: Router,
     private renderer: Renderer2,
     private translate: TranslateService
   ) {
@@ -34,16 +40,5 @@ export class HeaderComponent {
     if (this.menuOpen)
       this.renderer.setStyle(document.body, 'overflow', 'hidden');
     else this.renderer.removeStyle(document.body, 'overflow');
-  }
-
-  backToMainPage() {
-    this.router.navigate(['/']);
-    this.scrollToBottom();
-  }
-
-  scrollToBottom() {
-    setTimeout(() => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }, 100);
   }
 }

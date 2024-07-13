@@ -2,14 +2,15 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
-  selector: 'app-footer',
+  selector: 'app-contact',
   standalone: true,
   imports: [FormsModule, CommonModule, TranslateModule],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss',
+  templateUrl: './contact.component.html',
+  styleUrl: './contact.component.scss',
 })
-export class FooterComponent {
+export class ContactComponent {
   privacyPolicyChecked: boolean = false;
   contactData = {
     name: '',
