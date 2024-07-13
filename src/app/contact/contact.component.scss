@@ -335,10 +335,10 @@ textarea {
       transition: transform 0.175s;
     }
     &:hover .arrow-shaft {
-      transform: scaleY(1.2);
+      transform: scaleY(1.5);
     }
     &:hover .arrow-head {
-      transform: translateY(-10px);
+      transform: translateY(-25px);
     }
   }
 }

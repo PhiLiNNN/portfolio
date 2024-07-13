@@ -3,8 +3,12 @@
     <div class="skills-header">
       <h2>{{ "mySkills.mySkills" | translate }}</h2>
     </div>
-    @for (icon of iconArr; track icon) {
-    <div class="icon-box">
+    @for (icon of iconArr; track icon; let idx = $index) {
+    <div
+      class="icon-box"
+      [style.animation-delay]="idx * 0.125 + 's'"
+      [ngClass]="{ 'show-icons': showIcons }"
+    >
       <img
         [src]="'./assets/img/icons/' + icon.src + '.svg'"
         [alt]="icon.name"

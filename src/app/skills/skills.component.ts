@@ -1,9 +1,10 @@
-import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Renderer2, HostListener } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule, CommonModule],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
 })
@@ -21,8 +22,18 @@ export class SkillsComponent {
     { src: 'api', name: 'Rest Api' },
     { src: 'material', name: 'Material Design' },
   ];
-
+  showIcons = false;
   constructor(private el: ElementRef, private renderer: Renderer2) {}
+
+  @HostListener('window:scroll', ['$event'])
+  checkScroll() {
+    const sectionElement = this.el.nativeElement.querySelector('section');
+    if (this.isElementInViewport(sectionElement)) this.showIcons = true;
+  }
+  private isElementInViewport(el: HTMLElement) {
+    return el.getBoundingClientRect().top <= 200;
+  }
+
   onMouseEnter() {
     const toSkillsArrow = this.el.nativeElement.querySelector(
       '.to-portfolio-arrow'
