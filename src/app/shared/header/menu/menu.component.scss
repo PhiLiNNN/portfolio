@@ -38,19 +38,17 @@ section {
     height: 70%;
     @include dflex($fd: column, $g: 106px);
     text-align: center;
-    cursor: pointer;
     @media (max-width: 900px) {
       height: 75%;
     }
     a {
       font-size: 96px;
       font-weight: 700;
+      padding: 4px 32px;
       transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+      cursor: pointer;
       @media (max-width: 1200px) {
         font-size: 8vw;
-      }
-      @media (max-width: 900px) {
-        font-size: 9vw;
       }
       @media (max-width: 400px) {
         font-size: 10vw;
@@ -122,7 +120,6 @@ section {
         font-family: Overpass;
         font-weight: 300;
         margin-top: 8px;
-        text-decoration: none;
         color: white;
         font-size: 1.2vw;
         @media (max-width: 1200px) {

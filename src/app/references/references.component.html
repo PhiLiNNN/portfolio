@@ -12,7 +12,7 @@
     [liveLink]="ref.liveLink"
     [refNum]="$index + 1"
     [refAll]="references.length"
-    [description]="ref.description"
+    [description]="ref.description | translate"
     [imageUrl]="ref.img"
   ></app-referenceLeft>
   } @else if ($index % 2 !== 0) {
@@ -24,7 +24,7 @@
     [liveLink]="ref.liveLink"
     [refNum]="$index + 1"
     [refAll]="references.length"
-    [description]="ref.description"
+    [description]="ref.description | translate"
     [imageUrl]="ref.img"
   ></app-referenceRight>
   } }

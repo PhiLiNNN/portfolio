@@ -1,0 +1,139 @@
+@import "./../../../../mixin.scss";
+@import "./../../../../var.scss";
+
+section {
+  width: 100vw;
+  max-width: 100%;
+  background: black;
+  @include dflex();
+  padding: 0px 100px 0px 100px;
+  @include dflex($fd: column);
+  @media (max-width: 1200px) {
+    padding: 0px 50px 0px 50px;
+  }
+  @media (max-width: 700px) {
+    padding: 0px 25px 0px 25px;
+  }
+}
+
+.bottom {
+  margin: 48px 0 48px 0;
+  width: 100%;
+  @include dflex($jc: space-between);
+  @media (max-width: 900px) {
+    margin: 48px 0 100px;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    gap: 26px;
+  }
+  .content {
+    width: 200px;
+    height: 69px;
+    color: white;
+    @include dflex($fd: column, $ai: start, $jc: space-around, $g: 20px);
+    @media (max-width: 900px) {
+      order: 2;
+      gap: 56px;
+      align-items: center;
+    }
+    .email {
+      @include dflex($g: 5px);
+      @media (min-width: 901px) {
+        display: none;
+      }
+      > a {
+        font-size: 23px;
+        color: white;
+        cursor: pointer;
+        font-family: "Overpass";
+        &:active {
+          color: $color-highlight;
+        }
+        @media (max-width: 500px) {
+          font-size: 19px;
+        }
+      }
+    }
+    .tag {
+      @include dflex($g: 5px);
+      @media (max-width: 900px) {
+        display: none;
+      }
+    }
+    .initials {
+      position: relative;
+      font-weight: 800;
+      font-size: 24px;
+      width: 105px;
+      > span {
+        position: absolute;
+      }
+      > span:nth-child(1) {
+        left: 0;
+      }
+      > span:nth-child(2) {
+        top: -3px;
+        left: 15px;
+      }
+      > span:nth-child(3) {
+        top: 5px;
+        color: black;
+        transform: rotate(20deg);
+        font-size: 30px;
+        line-height: 40px;
+        left: 49px;
+        z-index: 1;
+      }
+      > span:nth-child(4) {
+        top: 5px;
+        left: 46px;
+      }
+      > span:nth-child(5) {
+        right: 0;
+      }
+    }
+  }
+  .menu-icons {
+    position: relative;
+    width: 204px;
+    height: 40px;
+    @include dflex($jc: space-between);
+    @media (max-width: 900px) {
+      position: static;
+      justify-content: center;
+      gap: 47px;
+    }
+    @media (max-width: 750px) {
+      gap: 24px;
+    }
+    a svg {
+      path {
+        transition: fill 0.2s ease;
+      }
+      &:hover path {
+        fill: $color-highlight;
+      }
+    }
+    .legal-notice {
+      cursor: pointer;
+      position: absolute;
+      color: white;
+      bottom: -20px;
+      right: 0;
+      transition: color 0.2s ease;
+      @media (max-width: 900px) {
+        width: 100px;
+        bottom: -45px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      @media (max-width: 500px) {
+        font-size: 12px;
+      }
+      &:hover {
+        color: $color-highlight;
+      }
+    }
+  }
+}

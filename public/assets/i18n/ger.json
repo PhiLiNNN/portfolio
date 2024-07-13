@@ -10,6 +10,7 @@
     "sayHello": "Sag Hallo!"
   },
   "aot": {
+    "headline": "Frontend Entwickler",
     "scroll": "Scrolle",
     "down": "Nach Unten",
     "sendMsg": "Nachricht senden",
@@ -17,7 +18,7 @@
   },
   "aboutMe": {
     "aboutMe": "Über mich",
-    "description": "Aufgaben-Manager inspiriert vom Kanban-System. Erstelle und organisiere Aufgaben mit Drag-and-Drop-Funktionen, weise Benutzer und Kategorien zu.",
+    "description": "Ich bin ein Front-End-Entwickler mit Sitz in Leipzig, Deutschland. Nach einem Jahrzehnt in der Logistik habe ich den Wechsel in die Bildung vollzogen und einen Master in Medizinischer Physik erworben. Meine Programmierreise begann während meines Masterstudiums, wo ich grundlegende Kenntnisse in Python für Datenanalyse erlangte. Nach Abschluss meiner Ausbildung im Front-End-Entwicklungsbereich erweitere ich nun meine Expertise in der Back-End-Entwicklung, um ein Full-Stack-Entwickler zu werden. Ich bin leidenschaftlich beim Codieren und strebe eine professionelle Karriere als versierter Programmierer an.",
     "contactMe": "Wenn Sie denken, dass ich gut zu Ihren Projekten passen würde, kontaktieren Sie mich!",
     "letsTalk": "Lass uns reden"
   },
@@ -28,7 +29,7 @@
     {
       "name": "Join",
       "skills": ["JavaScript", "HTML", "CSS", "Firebase", "Git"],
-      "description": "Ein Unterwasser-Abenteuerspiel mit objektorientiertem Ansatz. Führe Sharkie, sammle Gift und besiege den Riesenhai.",
+      "description": "Aufgabenmanager inspiriert vom Kanban-System. Erstelle und organisiere Aufgaben mit Drag-and-Drop-Funktionen, weise Benutzer und Kategorien zu.",
       "githubLink": "https://github.com/PhiLiNNN/Join",
       "liveLink": "https://philipp-wendschuch.developerakademie.net/join/",
       "img": "./assets/img/references/join.png"

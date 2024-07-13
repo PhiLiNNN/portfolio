@@ -10,6 +10,7 @@
     "sayHello": "Say Hi!"
   },
   "aot": {
+    "headline": "Frontend Developer",
     "scroll": "Scroll",
     "down": "Down",
     "sendMsg": "Send me a message",
