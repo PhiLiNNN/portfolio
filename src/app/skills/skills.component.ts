@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -23,7 +23,7 @@ export class SkillsComponent {
     { src: 'material', name: 'Material Design' },
   ];
   showIcons = false;
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private el: ElementRef) {}
 
   @HostListener('window:scroll', ['$event'])
   checkScroll() {
@@ -32,16 +32,5 @@ export class SkillsComponent {
   }
   private isElementInViewport(el: HTMLElement): boolean {
     return el.getBoundingClientRect().top <= 200;
-  }
-
-  onMouseEnterArrow() {
-    const toSkillsArrow = this.el.nativeElement.querySelector(
-      '.to-portfolio-arrow'
-    );
-    this.renderer.addClass(toSkillsArrow, 'hovered');
-  }
-  scrollToRefs() {
-    const element = document.getElementById('ref-section');
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
   }
 }

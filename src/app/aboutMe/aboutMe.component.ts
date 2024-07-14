@@ -1,30 +1,17 @@
-import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { ArrowComponent } from '../shared/arrow/arrow.component';
 
 @Component({
   selector: 'app-aboutMe',
   standalone: true,
-  imports: [NgOptimizedImage, TranslateModule, ArrowComponent],
+  imports: [NgOptimizedImage, TranslateModule],
   templateUrl: './aboutMe.component.html',
   styleUrl: './aboutMe.component.scss',
 })
 export class AboutMeComponent {
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor() {}
 
-  onMouseEnter() {
-    const toSkillsArrow =
-      this.el.nativeElement.querySelector('.to-skills-arrow');
-    this.renderer.addClass(toSkillsArrow, 'hovered');
-  }
-
-  scrollToSkills() {
-    const element = document.getElementById('skills-section');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
   scrollToFooter() {
     const element = document.getElementById('footer-section');
     if (element) {

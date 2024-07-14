@@ -46,4 +46,10 @@ export class MainContentComponent implements OnInit {
       }
     }, 100);
   }
+  scrollTo(section: string) {
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

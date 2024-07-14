@@ -1,8 +1,8 @@
 <app-aot id="aot-section"></app-aot>
 <app-aboutMe id="aboutMe-section"></app-aboutMe>
-<app-arrow alignment="right" />
+<app-arrow alignment="right" (click)="scrollTo('skills-section')" />
 <app-skills id="skills-section"></app-skills>
-<app-arrow alignment="left" />
+<app-arrow alignment="left" (click)="scrollTo('ref-section')" />
 <app-references id="ref-section"></app-references>
-<app-arrow alignment="right" />
+<app-arrow alignment="right" (click)="scrollTo('footer-section')" />
 <app-contact id="footer-section"></app-contact>

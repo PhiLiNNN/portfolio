@@ -3,7 +3,9 @@
   width: 100%;
   padding: 0 calc(clamp(2rem, 13.333vw + -6rem, 6rem) - 1.25rem);
   transition: filter 0.675s ease-out;
-
+  svg {
+    cursor: pointer;
+  }
   @media (width <= 428px) {
     transform: scale(0.66666);
     margin: -7.5rem 0 -5rem 0;

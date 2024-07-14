@@ -60,9 +60,3 @@ export class ArrowComponent {
     return `section_${Math.random().toString(36).substr(2, 9)}`;
   }
 }
-
-// onMouseEnter() {
-//   const toSkillsArrow =
-//     this.elementRef.nativeElement.querySelector('.index-arrow');
-//   this.renderer.addClass(toSkillsArrow, 'hovered');
-// }

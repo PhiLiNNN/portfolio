@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReferenceLeftComponent } from '../shared/referenceLeft/referenceLeft.component';
 import { ReferenceRightComponent } from '../shared/referenceRight/referenceRight.component';
 import {
@@ -24,11 +24,7 @@ interface Reference {
 })
 export class ReferencesComponent implements OnInit {
   references: any[] = [];
-  constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
-    private translate: TranslateService
-  ) {
+  constructor(private translate: TranslateService) {
     this.translate.get('references').subscribe((translations: any) => {
       this.references = translations;
     });
@@ -38,17 +34,5 @@ export class ReferencesComponent implements OnInit {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.references = event.translations.references;
     });
-  }
-
-  onMouseEnter() {
-    const toSkillsArrow =
-      this.el.nativeElement.querySelector('.to-footer-arrow');
-    this.renderer.addClass(toSkillsArrow, 'hovered');
-  }
-  scrollToFooter() {
-    const element = document.getElementById('footer-section');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
   }
 }
