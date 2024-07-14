@@ -99,7 +99,6 @@
         }
       }
       img {
-        border-radius: 10px;
         max-width: 620px;
         height: auto;
         width: 620px;
@@ -122,7 +121,6 @@
         right: 0;
         bottom: 0;
         border: 2px solid transparent;
-        border-radius: 10px;
         transition: transform 0.175s, border-color 0.175s;
         height: calc(100% - 12px);
         z-index: 1;
