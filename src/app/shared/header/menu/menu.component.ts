@@ -29,11 +29,6 @@ export class MenuComponent {
 
   async navigateToSection(section: string) {
     this.closeMenu();
-    // setTimeout(() => {
-    //   const element = document.getElementById(section);
-    //   if (element) element.scrollIntoView();
-    // }, 10);
-
     if (this.router.url !== '/') {
       await this.router.navigate(['/']);
       await new Promise((resolve) => setTimeout(resolve, 100));
