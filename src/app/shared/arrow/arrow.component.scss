@@ -1,0 +1,31 @@
+.index-arrow {
+  display: flex;
+  width: 100%;
+  padding: 0 calc(clamp(2rem, 13.333vw + -6rem, 6rem) - 1.25rem);
+  transition: filter 0.675s ease-out;
+
+  @media (width <= 428px) {
+    transform: scale(0.66666);
+    margin: -7.5rem 0 -5rem 0;
+  }
+
+  &.indexLeft {
+    justify-content: flex-start;
+
+    @media (width <= 428px) {
+      margin-left: -3.75rem;
+    }
+
+    svg {
+      transform: rotate(-90deg);
+    }
+  }
+
+  &.indexRight {
+    justify-content: flex-end;
+
+    @media (width <= 428px) {
+      margin-left: 3.25rem;
+    }
+  }
+}

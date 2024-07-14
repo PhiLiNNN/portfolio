@@ -6,6 +6,7 @@ import { SkillsComponent } from './../skills/skills.component';
 import { ReferencesComponent } from './../references/references.component';
 import { ContactComponent } from '../contact/contact.component';
 import { ActivatedRoute } from '@angular/router';
+import { ArrowComponent } from '../shared/arrow/arrow.component';
 
 @Component({
   selector: 'app-main-content',
@@ -17,6 +18,7 @@ import { ActivatedRoute } from '@angular/router';
     SkillsComponent,
     ReferencesComponent,
     ContactComponent,
+    ArrowComponent,
   ],
   templateUrl: './main-content.component.html',
   styleUrl: './main-content.component.scss',

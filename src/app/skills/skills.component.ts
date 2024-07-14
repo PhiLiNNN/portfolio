@@ -30,11 +30,11 @@ export class SkillsComponent {
     const sectionElement = this.el.nativeElement.querySelector('section');
     if (this.isElementInViewport(sectionElement)) this.showIcons = true;
   }
-  private isElementInViewport(el: HTMLElement) {
+  private isElementInViewport(el: HTMLElement): boolean {
     return el.getBoundingClientRect().top <= 200;
   }
 
-  onMouseEnter() {
+  onMouseEnterArrow() {
     const toSkillsArrow = this.el.nativeElement.querySelector(
       '.to-portfolio-arrow'
     );
@@ -42,8 +42,6 @@ export class SkillsComponent {
   }
   scrollToRefs() {
     const element = document.getElementById('ref-section');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   }
 }

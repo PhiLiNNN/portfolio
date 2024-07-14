@@ -1,11 +1,12 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { ArrowComponent } from '../shared/arrow/arrow.component';
 
 @Component({
   selector: 'app-aboutMe',
   standalone: true,
-  imports: [NgOptimizedImage, TranslateModule],
+  imports: [NgOptimizedImage, TranslateModule, ArrowComponent],
   templateUrl: './aboutMe.component.html',
   styleUrl: './aboutMe.component.scss',
 })

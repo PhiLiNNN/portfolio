@@ -15,6 +15,9 @@ section {
   max-width: 100%;
   padding-top: 138px;
   @include dflex();
+  @media (max-width: 428px) {
+    margin-top: 50px;
+  }
   .wrapper {
     position: relative;
     color: white;
@@ -320,7 +323,6 @@ textarea {
       width: 100px;
     }
   }
-
   .arrow {
     cursor: pointer;
     overflow: visible;

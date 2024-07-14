@@ -1,0 +1,49 @@
+<div
+  class="index-arrow"
+  [ngClass]="{
+    indexLeft: alignment === 'left',
+    indexRight: alignment === 'right'
+  }"
+>
+  <svg
+    width="300"
+    height="300"
+    viewBox="0 0 300 300"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <filter id="drop-shadow">
+        <feDropShadow
+          dx="0"
+          dy="0"
+          flood-color="#f0dbc7"
+          flood-opacity="1"
+          stdDeviation="0"
+        />
+      </filter>
+    </defs>
+    <g stroke="black" stroke-width="4" filter="url(#drop-shadow)">
+      <path d="M125 175m0 -75v75h75 M125 175l150 -150">
+        <animate
+          [attr.id]="sectionId"
+          attributeName="d"
+          values="M125 175m0 -75v75h75 M125 175l150 -150; M25 275m0 -75v75h75 M25 275l250 -250; M25 275m0 -75v75h75 M25 275l150 -150"
+          dur="0.325s"
+          repeatCount="1"
+          fill="freeze"
+          begin="indefinite"
+        />
+        <animate
+          [attr.id]="sectionId + 'return'"
+          attributeName="d"
+          values="M25 275m0 -75v75h75 M25 275l150 -150; M25 275m0 -75v75h75 M25 275l250 -250; M125 175m0 -75v75h75 M125 175l150 -150"
+          dur="0.325s"
+          repeatCount="1"
+          fill="freeze"
+          begin="indefinite"
+        />
+      </path>
+    </g>
+  </svg>
+</div>
