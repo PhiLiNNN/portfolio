@@ -67,7 +67,7 @@ section {
     width: 76px;
     opacity: 0;
     &.show-icons {
-      animation: test 1s forwards;
+      animation: showIcons 1s forwards;
     }
     @media (max-width: 900px) {
       width: 70px;
@@ -110,7 +110,7 @@ section {
   }
 }
 
-@keyframes test {
+@keyframes showIcons {
   0% {
     opacity: 0;
   }

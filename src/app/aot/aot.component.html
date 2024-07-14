@@ -5,7 +5,12 @@
     (mouseleave)="onMouseLeave()"
   >
     <h1>{{ "aot.headline" | translate }}</h1>
-    <h1 class="underneath">Coding with Heart</h1>
+    @if(desktopModus) {
+    <h1 class="underneath" style="mask-size: 0">Coding with Heart</h1>
+    }@else {
+    <h1 class="underneath" style="display: none">Coding with Heart</h1>
+    }
+
     <div class="underline-name">
       <div class="underline"></div>
       <span>Philipp Wendschuch</span>

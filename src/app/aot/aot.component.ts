@@ -8,10 +8,13 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./aot.component.scss'],
 })
 export class AotComponent {
+  desktopModus = false;
   maskSize: number = 200;
   offsetX: number = 100;
   offsetY: number = 175;
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+    this.desktopModus = window.innerWidth > 900;
+  }
 
   onMouseEnter() {
     const underneathEl = this.el.nativeElement.querySelector('.underneath');
