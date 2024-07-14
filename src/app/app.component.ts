@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from './shared/header/header.component';
 import { MainContentComponent } from './main-content/main-content.component';
 import { RouterOutlet } from '@angular/router';
-import { MenuComponent } from './shared/footer/menu/menu.component';
+import { MenuComponent } from './shared/footer/menu.component';
 @Component({
   selector: 'app-root',
   standalone: true,

@@ -27,12 +27,22 @@ export class MenuComponent {
     this.menuToggle.emit();
   }
 
-  navigateToSection(section: string) {
+  async navigateToSection(section: string) {
     this.closeMenu();
-    setTimeout(() => {
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate([], { fragment: section });
-      });
-    }, 10);
+    // setTimeout(() => {
+    //   const element = document.getElementById(section);
+    //   if (element) element.scrollIntoView();
+    // }, 10);
+
+    if (this.router.url !== '/') {
+      await this.router.navigate(['/']);
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+    this.scrollToSection(section);
+  }
+
+  scrollToSection(section: string): void {
+    const element = document.getElementById(section);
+    if (element) element.scrollIntoView();
   }
 }

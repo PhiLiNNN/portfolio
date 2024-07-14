@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu/menu.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -23,7 +24,8 @@ export class HeaderComponent {
 
   constructor(
     private renderer: Renderer2,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) {
     this.translate.setDefaultLang('en');
   }
@@ -40,5 +42,11 @@ export class HeaderComponent {
     if (this.menuOpen)
       this.renderer.setStyle(document.body, 'overflow', 'hidden');
     else this.renderer.removeStyle(document.body, 'overflow');
+  }
+
+  backToHome() {
+    setTimeout(() => {
+      this.router.navigateByUrl('/');
+    }, 10);
   }
 }

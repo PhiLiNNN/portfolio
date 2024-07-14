@@ -5,7 +5,6 @@ import { AboutMeComponent } from './../aboutMe/aboutMe.component';
 import { SkillsComponent } from './../skills/skills.component';
 import { ReferencesComponent } from './../references/references.component';
 import { ContactComponent } from '../contact/contact.component';
-import { ActivatedRoute } from '@angular/router';
 import { ArrowComponent } from '../shared/arrow/arrow.component';
 
 @Component({
@@ -23,33 +22,11 @@ import { ArrowComponent } from '../shared/arrow/arrow.component';
   templateUrl: './main-content.component.html',
   styleUrl: './main-content.component.scss',
 })
-export class MainContentComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+export class MainContentComponent {
+  constructor() {}
 
-  ngOnInit() {
-    this.route.fragment.subscribe((fragment) => {
-      if (fragment) {
-        this.scrollToFragment(fragment);
-      }
-    });
-  }
-
-  private scrollToFragment(fragment: string): void {
-    setTimeout(() => {
-      const element = document.getElementById(fragment);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest',
-        });
-      }
-    }, 100);
-  }
   scrollTo(section: string) {
     const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView();
   }
 }

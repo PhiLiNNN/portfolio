@@ -12,10 +12,8 @@ import { TranslateModule } from '@ngx-translate/core';
 export class AboutMeComponent {
   constructor() {}
 
-  scrollToFooter() {
+  scrollToContact() {
     const element = document.getElementById('footer-section');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView();
   }
 }

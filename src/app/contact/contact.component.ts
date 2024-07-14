@@ -19,15 +19,12 @@ export class ContactComponent {
   };
   constructor(private el: ElementRef, private renderer: Renderer2) {}
   onSubmit(ngForm: NgForm) {
-    if (ngForm.valid && ngForm.submitted) {
-      console.log('Test :>> ');
-    } else console.log('Form is invalid or privacy policy not accepted.');
+    if (ngForm.valid && ngForm.submitted) console.log('Test :>> ');
+    else console.log('Form is invalid or privacy policy not accepted.');
   }
 
   scrollToAot() {
     const element = document.getElementById('aot-section');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView();
   }
 }

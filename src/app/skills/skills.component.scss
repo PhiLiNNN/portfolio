@@ -74,7 +74,7 @@ section {
         color: $color-highlight;
       }
       img {
-        transform: rotateY(360deg) scaleX(-1) scale(1.15);
+        transform: rotateY(360deg) scale(1.2);
       }
     }
     span {
@@ -88,7 +88,7 @@ section {
     img {
       width: clamp(60px, 5vw, 100px);
       height: clamp(60px, 5vw, 100px);
-      transition: transform 0.175s ease-in-out;
+      transition: transform 0.5s ease-in-out;
     }
   }
 }

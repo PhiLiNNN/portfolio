@@ -47,14 +47,10 @@ export class AotComponent {
   }
   scrollToAboutMe() {
     const element = document.getElementById('aboutMe-section');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView();
   }
-  scrollToFooter() {
+  scrollToContact() {
     const element = document.getElementById('footer-section');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView();
   }
 }

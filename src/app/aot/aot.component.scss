@@ -181,10 +181,16 @@ section {
 }
 
 @keyframes animateAotArrow {
-  from {
+  0% {
     top: -80px;
   }
-  to {
+  40% {
+    top: 70px;
+  }
+  60% {
+    top: 70px;
+  }
+  100% {
     top: 200px;
   }
 }
