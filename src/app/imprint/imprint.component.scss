@@ -1,0 +1,51 @@
+@import "./../../mixin.scss";
+@import "./../../var.scss";
+
+.content-wrapper {
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+section {
+  width: 100%;
+  max-width: 1980px;
+  overflow: hidden;
+  padding: 100px;
+  @media (max-width: 1200px) {
+    padding-inline: 50px;
+  }
+  @media (max-width: 700px) {
+    padding-inline: 25px;
+  }
+  .arrow-wrapper {
+    position: relative;
+    width: 54px;
+    height: 52px;
+    cursor: pointer;
+    margin-left: auto;
+    @include dflex($fd: column);
+    transform: rotate(90deg) scale(1.2);
+    .arrow {
+      cursor: pointer;
+      overflow: visible;
+      rotate: 180deg;
+      .arrow-shaft {
+        transition: transform 0.175s;
+        transform-origin: bottom;
+      }
+      .arrow-head {
+        transition: transform 0.175s;
+      }
+      &:hover .arrow-shaft {
+        transform: scaleY(1.1);
+      }
+      &:hover .arrow-head {
+        transform: translateY(-8px);
+      }
+    }
+  }
+}

@@ -4,7 +4,6 @@ import { AotComponent } from './../aot/aot.component';
 import { AboutMeComponent } from './../aboutMe/aboutMe.component';
 import { SkillsComponent } from './../skills/skills.component';
 import { ReferencesComponent } from './../references/references.component';
-import { ContactComponent } from '../contact/contact.component';
 import { ArrowComponent } from '../shared/arrow/arrow.component';
 
 @Component({
@@ -16,7 +15,6 @@ import { ArrowComponent } from '../shared/arrow/arrow.component';
     AboutMeComponent,
     SkillsComponent,
     ReferencesComponent,
-    ContactComponent,
     ArrowComponent,
   ],
   templateUrl: './main-content.component.html',

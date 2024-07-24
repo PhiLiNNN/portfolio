@@ -1,1 +1,57 @@
-<p>imprint works!</p>
+<div class="content-wrapper">
+  <section>
+    <div class="arrow-wrapper" [routerLink]="['']">
+      <svg
+        class="arrow"
+        width="30"
+        height="56"
+        viewBox="0 0 40 56"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          class="arrow-head"
+          d="M37.8525 17.1265L19.9263 3.00025L2.00011 17.1265"
+          stroke="black"
+          stroke-width="4"
+        />
+        <path
+          class="arrow-shaft"
+          d="M19.9263 55.0439L19.9263 3"
+          stroke="black"
+          stroke-width="4"
+        />
+      </svg>
+    </div>
+    <h1 appTextShadowOffset>{{ "imprint.title" | translate }}</h1>
+    <address>
+      <strong>{{ "imprint.name" | translate }} </strong>
+      <br />
+      <strong>{{ "imprint.address" | translate }} </strong>
+      <br />
+      <strong>{{ "imprint.city" | translate }} </strong>
+      <br />
+      <br />
+
+      {{ "imprint.phone" | translate }}:
+      <span><a href="tel:+491627849412">0162 78 49 41 2</a></span> <br />
+      {{ "imprint.email" | translate }}:
+      <span
+        ><a
+          href="mailto:ph.wendschuch@web.de?subject=Hi Philipp 👋🏼, I've got a project to talk about!"
+          >ph.wendschuch&#64;web.de</a
+        ></span
+      >
+    </address>
+
+    <!-- <article>
+        <h2>{{ "imprint.disclaimer.title" | translate }}</h2>
+    
+        <p>{{ "imprint.disclaimer.paragraph1" | translate }}</p>
+    
+        <p>{{ "imprint.disclaimer.paragraph2" | translate }}</p>
+    
+        <p>{{ "imprint.disclaimer.paragraph3" | translate }}</p>
+      </article> -->
+  </section>
+</div>

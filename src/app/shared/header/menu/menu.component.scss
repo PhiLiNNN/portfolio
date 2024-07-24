@@ -36,10 +36,10 @@ section {
     position: relative;
     z-index: 2;
     height: 70%;
-    @include dflex($fd: column, $g: 106px);
+    @include dflex($fd: column, $g: 40px);
     text-align: center;
     @media (max-width: 900px) {
-      height: 75%;
+      height: 62%;
     }
     a {
       font-size: 96px;

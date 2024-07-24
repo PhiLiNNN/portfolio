@@ -50,7 +50,7 @@ export class AotComponent {
     if (element) element.scrollIntoView();
   }
   scrollToContact() {
-    const element = document.getElementById('footer-section');
+    const element = document.getElementById('contact-section');
     if (element) element.scrollIntoView();
   }
 }

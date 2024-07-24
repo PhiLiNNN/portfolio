@@ -7,6 +7,7 @@
     "aboutMe": "About me",
     "mySkills": "My Skills",
     "portfolio": "Portfolio",
+    "contact": "Contact",
     "sayHello": "Say Hi!"
   },
   "aot": {
@@ -75,5 +76,13 @@
     "sendMessage": "Send message",
     "sendMessageMobile": "Say hello :)",
     "legalNotice": "Legal notice"
+  },
+  "imprint": {
+    "title": "Impressum",
+    "name": "Philipp Wendschuch",
+    "address": "Friedrich-Bosse-Straße 49 ",
+    "city": "04159 Leipzig",
+    "phone": "Phone",
+    "email": "Email"
   }
 }

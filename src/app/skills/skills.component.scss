@@ -20,11 +20,10 @@ section {
   position: relative;
   border: 4px solid black;
   padding-block: 100px;
-  @include dflex($g: 20px);
+  @include dflex();
   flex-wrap: wrap;
   @media (max-width: 900px) {
-    padding-block: 60px;
-    gap: 42px;
+    padding-block: 40px;
   }
   .skills-header {
     position: absolute;
@@ -83,7 +82,7 @@ section {
       font-weight: 700;
       text-align: center;
       text-wrap: wrap;
-      width: clamp(60px, 5vw, 100px);
+      width: clamp(77px, 5vw, 100px);
     }
     img {
       width: clamp(60px, 5vw, 100px);

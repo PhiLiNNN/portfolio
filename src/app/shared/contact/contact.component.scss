@@ -1,5 +1,5 @@
-@import "./../../mixin.scss";
-@import "./../../var.scss";
+@import "./../../../mixin.scss";
+@import "./../../../var.scss";
 
 @keyframes pulse {
   0%,
@@ -42,7 +42,7 @@ section {
       width: 100%;
       height: 148px;
       max-width: 1920px;
-      background-image: url("./../../../public/assets/img/rectangle.svg");
+      background-image: url("./../../../../public/assets/img/rectangle.svg");
       background-repeat: no-repeat;
       background-size: cover;
     }

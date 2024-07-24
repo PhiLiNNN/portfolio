@@ -13,7 +13,7 @@ export class AboutMeComponent {
   constructor() {}
 
   scrollToContact() {
-    const element = document.getElementById('footer-section');
+    const element = document.getElementById('contact-section');
     if (element) element.scrollIntoView();
   }
 }
