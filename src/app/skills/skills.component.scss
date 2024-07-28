@@ -22,7 +22,7 @@ section {
   padding-block: 100px;
   @include dflex();
   flex-wrap: wrap;
-  @media (max-width: 900px) {
+  @media (max-width: 1397px) {
     padding-block: 40px;
   }
   .skills-header {
@@ -65,6 +65,9 @@ section {
     @include dflex($fd: column, $g: 10px);
     opacity: 0;
     padding: clamp(20px, 5vw, 60px);
+    @media (max-width: 1397px) {
+      padding: clamp(20px, 4vw, 60px);
+    }
     &.show-icons {
       animation: showIcons 1s forwards;
     }

@@ -23,35 +23,31 @@
         />
       </svg>
     </div>
-    <h1 appTextShadowOffset>{{ "imprint.title" | translate }}</h1>
-    <address>
-      <strong>{{ "imprint.name" | translate }} </strong>
+    <h1>{{ "imprint.title" | translate }}</h1>
+    <div>
+      <strong class="font-op">{{ "imprint.name" | translate }} </strong>
       <br />
-      <strong>{{ "imprint.address" | translate }} </strong>
+      <strong class="font-op">{{ "imprint.address" | translate }} </strong>
       <br />
-      <strong>{{ "imprint.city" | translate }} </strong>
+      <strong class="font-op">{{ "imprint.city" | translate }} </strong>
       <br />
       <br />
-
-      {{ "imprint.phone" | translate }}:
-      <span><a href="tel:+491627849412">0162 78 49 41 2</a></span> <br />
-      {{ "imprint.email" | translate }}:
+      <h1>{{ "imprint.contact" | translate }}</h1>
+      <span class="bold font-op">{{ "imprint.phone" | translate }}: </span>
       <span
-        ><a
-          href="mailto:ph.wendschuch@web.de?subject=Hi Philipp 👋🏼, I've got a project to talk about!"
-          >ph.wendschuch&#64;web.de</a
-        ></span
+        ><a class="font-op" href="tel:+491627849412">0162 78 49 41 2</a></span
       >
-    </address>
+      <br />
+      <span class="bold font-op">{{ "imprint.email" | translate }}: </span>
 
-    <!-- <article>
-        <h2>{{ "imprint.disclaimer.title" | translate }}</h2>
-    
-        <p>{{ "imprint.disclaimer.paragraph1" | translate }}</p>
-    
-        <p>{{ "imprint.disclaimer.paragraph2" | translate }}</p>
-    
-        <p>{{ "imprint.disclaimer.paragraph3" | translate }}</p>
-      </article> -->
+      <span>
+        <a
+          class="font-op"
+          href="mailto:ph.wendschuch@web.de?subject=Hi Philipp 👋🏼, I've got a project to talk about!"
+        >
+          ph.wendschuch&#64;web.de
+        </a>
+      </span>
+    </div>
   </section>
 </div>

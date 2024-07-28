@@ -129,7 +129,12 @@
         >
         }
       </div>
-      <div class="btn-center">
+      <div
+        class="btn-center"
+        [ngStyle]="{
+          'justify-content': isImprintActive ? 'center' : 'space-between'
+        }"
+      >
         <div></div>
         <button
           class="btn-desk"
@@ -148,6 +153,9 @@
           {{ "footer.sendMessageMobile" | translate }}
         </button>
         <svg
+          [ngStyle]="{
+            display: isImprintActive ? 'none' : 'inline'
+          }"
           (click)="scrollToAot()"
           class="arrow"
           width="40"
