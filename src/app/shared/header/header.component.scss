@@ -21,39 +21,8 @@ nav {
     width: 100%;
     max-width: 1920px;
     @include dflex($jc: space-between);
-    .initials {
-      position: relative;
-      top: -14px;
-      cursor: pointer;
-      font-weight: 800;
-      font-size: 24px;
-      width: 105px;
-      > span {
-        position: absolute;
-      }
-      > span:nth-child(1) {
-        left: 0;
-      }
-      > span:nth-child(2) {
-        top: -3px;
-        left: 15px;
-      }
-      > span:nth-child(3) {
-        top: 5px;
-        color: $bg-color;
-        transform: rotate(20deg);
-        font-size: 30px;
-        line-height: 40px;
-        left: 49px;
-        z-index: 1;
-      }
-      > span:nth-child(4) {
-        top: 5px;
-        left: 46px;
-      }
-      > span:nth-child(5) {
-        right: 0;
-      }
+    > img {
+      width: 120px;
     }
     .burger-menu {
       cursor: pointer;

@@ -37,6 +37,10 @@ section {
       gap: 56px;
       align-items: center;
     }
+    > img {
+      width: 140px;
+      height: 55px;
+    }
     .email {
       @include dflex($g: 5px);
       @media (min-width: 901px) {
@@ -59,38 +63,6 @@ section {
       @include dflex($g: 5px);
       @media (max-width: 900px) {
         display: none;
-      }
-    }
-    .initials {
-      position: relative;
-      font-weight: 800;
-      font-size: 24px;
-      width: 105px;
-      > span {
-        position: absolute;
-      }
-      > span:nth-child(1) {
-        left: 0;
-      }
-      > span:nth-child(2) {
-        top: -3px;
-        left: 15px;
-      }
-      > span:nth-child(3) {
-        top: 5px;
-        color: black;
-        transform: rotate(20deg);
-        font-size: 30px;
-        line-height: 40px;
-        left: 49px;
-        z-index: 1;
-      }
-      > span:nth-child(4) {
-        top: 5px;
-        left: 46px;
-      }
-      > span:nth-child(5) {
-        right: 0;
       }
     }
   }
