@@ -8,6 +8,7 @@ nav {
   z-index: 999;
   width: 100vw;
   @include dflex();
+  @include dflex();
   height: $navHeight;
   background: $bg-color;
   @media (max-width: 1200px) {

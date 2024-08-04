@@ -9,17 +9,22 @@
     </div>
     <div class="menu-ri">
       <div class="lang">
-        <input id="menu" type="checkbox" />
+        <input
+          id="menu"
+          type="checkbox"
+          [checked]="isLenMenuOpen"
+          (change)="toggleLenMenu()"
+        />
         <label for="menu"><div></div></label>
         <ul class="menu">
           <li>
-            <button (click)="switchLanguage('en')" href="#0">
+            <button (click)="switchLanguage('en'); closeLenMenu()" href="#0">
               <span>{{ "header.english" | translate }}</span>
               <i class="fas fa-address-card" aria-hidden="true"></i>
             </button>
           </li>
           <li>
-            <button (click)="switchLanguage('ger')" href="#0">
+            <button (click)="switchLanguage('ger'); closeLenMenu()" href="#0">
               <span>{{ "header.german" | translate }}</span>
               <i class="fas fa-tasks" aria-hidden="true"></i>
             </button>
@@ -27,7 +32,7 @@
         </ul>
       </div>
       <div
-        (click)="toggleMenu()"
+        (click)="toggleMenu(); closeLenMenu()"
         class="burger-menu"
         [ngClass]="{
           openMenuAnimation: menuOpen === true,

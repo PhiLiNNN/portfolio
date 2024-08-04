@@ -114,9 +114,13 @@
         @if(!ngForm.submitted && checkBox.invalid) {
         <span class="conf-msg"
           >{{ "footer.privacyPolicyTextBefore" | translate }}
-          <a href="privacy" class="highlight" style="color: #e61c40">{{
-            "footer.privacyPolicy" | translate
-          }}</a>
+          <a
+            [routerLink]="['/privacyPolicy']"
+            href="privacy"
+            class="highlight"
+            style="color: #e61c40"
+            >{{ "footer.privacyPolicy" | translate }}</a
+          >
           {{ "footer.privacyPolicyTextAfter" | translate }}</span
         >
         } @else {
@@ -132,7 +136,8 @@
       <div
         class="btn-center"
         [ngStyle]="{
-          'justify-content': isImprintActive ? 'center' : 'space-between'
+          'justify-content':
+            isImprintActive || isPpActive ? 'center' : 'space-between'
         }"
       >
         <div></div>
@@ -154,7 +159,7 @@
         </button>
         <svg
           [ngStyle]="{
-            display: isImprintActive ? 'none' : 'inline'
+            display: isImprintActive || isPpActive ? 'none' : 'inline'
           }"
           (click)="scrollToAot()"
           class="arrow"

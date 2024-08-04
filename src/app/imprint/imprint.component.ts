@@ -15,10 +15,6 @@ export class ImprintComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.imprintActiveService.setBool(true);
-    console.log(
-      'this.imprintActiveService.setBool :>> ',
-      this.imprintActiveService.getBool()
-    );
   }
   ngOnDestroy(): void {
     this.imprintActiveService.setBool(false);

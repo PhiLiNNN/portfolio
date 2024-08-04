@@ -1,0 +1,66 @@
+.title {
+  position: relative;
+  text-wrap: wrap;
+  max-width: 1920px;
+  text-align: center;
+  cursor: default;
+  @include dflex($fd: column);
+  h1 {
+    font-weight: 800;
+    font-size: 128px;
+    @media (max-width: 1200px) {
+      font-size: 100px;
+    }
+    @media (max-width: 900px) {
+      font-size: 11vw;
+    }
+  }
+  .underneath {
+    position: absolute;
+    top: 0px;
+    font-size: 134px;
+    cursor: default;
+    mask-image: url("./../../../public/assets/img/mask.svg");
+    background: $bg-color;
+    mask-repeat: no-repeat;
+    color: $color-highlight;
+    transition: mask-size 0.3s ease-in-out;
+    @media (max-width: 2040px) {
+      font-size: 128px;
+    }
+    @media (max-width: 1200px) {
+      font-size: 100px;
+    }
+    @media (max-width: 900px) {
+      font-size: 11vw;
+    }
+  }
+  .underline-name {
+    @include dflex($g: 8px);
+    .underline {
+      height: 3px;
+      // width: 26vw;
+      width: 480px;
+      background: black;
+      @media (max-width: 1200px) {
+        width: 26vw;
+      }
+      @media (max-width: 900px) {
+        width: 36vw;
+      }
+    }
+    span {
+      cursor: default;
+      color: $color-highlight;
+      font-size: 48px;
+      font-weight: 700;
+      font-family: Overpass;
+      @media (max-width: 1200px) {
+        font-size: 36px;
+      }
+      @media (max-width: 900px) {
+        font-size: 4vw;
+      }
+    }
+  }
+}
