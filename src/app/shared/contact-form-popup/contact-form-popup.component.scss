@@ -1,0 +1,21 @@
+@import "./../../../mixin.scss";
+@import "./../../../var.scss";
+
+.ok-button {
+  background-color: $color-highlight;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 0px;
+  transition: background-color 0.175s;
+}
+
+.ok-button:hover {
+  background-color: #019270;
+  color: #e0e0e0;
+}
+
+.ok-button:focus {
+  outline: none;
+}

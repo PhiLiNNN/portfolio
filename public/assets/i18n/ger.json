@@ -32,7 +32,7 @@
       "skills": ["JavaScript", "HTML", "CSS", "Firebase", "Git"],
       "description": "Aufgabenmanager inspiriert vom Kanban-System. Erstelle und organisiere Aufgaben mit Drag-and-Drop-Funktionen, weise Benutzer und Kategorien zu.",
       "githubLink": "https://github.com/PhiLiNNN/Join",
-      "liveLink": "https://philipp-wendschuch.developerakademie.net/join/",
+      "liveLink": "https://join.philipp-wendschuch.dev/",
       "img": "./assets/img/references/join.png"
     },
     {
@@ -40,7 +40,7 @@
       "skills": ["JavaScript", "HTML", "CSS", "Git"],
       "description": "Ein Unterwasser-Abenteuerspiel mit objektorientiertem Ansatz. Führe Sharkie, sammle Gift und besiege den Riesenhai.",
       "githubLink": "https://github.com/PhiLiNNN/Sharkie",
-      "liveLink": "https://philipp-wendschuch.developerakademie.net/sharkie/",
+      "liveLink": "https://sharkie.philipp-wendschuch.dev/",
       "img": "./assets/img/references/sharkie.png"
     },
     {
@@ -48,7 +48,7 @@
       "skills": ["JavaScript", "Rest-Api", "HTML", "CSS", "Git"],
       "description": "Eine Web-App, welche die PokeAPI verwendet, um Pokémon der ersten Generation auf interaktiven, drehbaren Würfeln anzuzeigen. Klicke auf ein Pokémon für weitere Infos.",
       "githubLink": "https://github.com/PhiLiNNN/Pokedex",
-      "liveLink": "https://philipp-wendschuch.developerakademie.net/pokecube/",
+      "liveLink": "https://pokecubes.philipp-wendschuch.dev/",
       "img": "./assets/img/references/pokecubes.png"
     }
   ],
@@ -63,7 +63,7 @@
     },
     "sayHello": "Sag Hallo!",
     "discussProject": "Möchten Sie ein neues Projekt besprechen?",
-    "contactRequest": "Sag hallo! Lass uns deine Ideen besprechen und umsetzen.",
+    "contactRequest": "Sag Hallo! Lass uns deine Ideen besprechen und umsetzen.",
     "formName": "Dein Name",
     "formEmail": "Deine E-Mail",
     "formMessage": "Deine Nachricht",
@@ -82,5 +82,9 @@
     "city": "04159 Leipzig",
     "phone": "Telefon",
     "email": "E-Mail"
+  },
+  "popup": {
+    "header": "E-Mail gesendet",
+    "content": "E-Mail wurde erfolgreich gesendet."
   }
 }

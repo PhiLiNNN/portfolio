@@ -4,14 +4,12 @@ import {
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-
 import { HttpClient, provideHttpClient } from '@angular/common/http';
-
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const provideTranslation = () => ({
   defaultLanguage: 'en',
@@ -33,5 +31,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(),
     importProvidersFrom([TranslateModule.forRoot(provideTranslation())]),
+    provideAnimationsAsync(),
   ],
 };

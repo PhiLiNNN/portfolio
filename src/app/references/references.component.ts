@@ -23,7 +23,7 @@ interface Reference {
   styleUrl: './references.component.scss',
 })
 export class ReferencesComponent implements OnInit {
-  references: any[] = [];
+  references: Reference[] = [];
   constructor(private translate: TranslateService) {
     this.translate.get('references').subscribe((translations: any) => {
       this.references = translations;

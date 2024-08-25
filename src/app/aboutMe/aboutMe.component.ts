@@ -12,6 +12,12 @@ import { TranslateModule } from '@ngx-translate/core';
 export class AboutMeComponent {
   constructor() {}
 
+  /**
+   * Scrolls the page to the contact section when called.
+   * It locates the HTML element with the ID 'contact-section' and triggers the scrollIntoView() method.
+   *
+   * @returns {void}
+   */
   scrollToContact() {
     const element = document.getElementById('contact-section');
     if (element) element.scrollIntoView();

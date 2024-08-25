@@ -23,6 +23,12 @@ import { ArrowComponent } from '../shared/arrow/arrow.component';
 export class MainContentComponent {
   constructor() {}
 
+  /**
+   * Scrolls the page smoothly to the specified section.
+   * The section is identified by its HTML element ID.
+   *
+   * @param {string} section - The ID of the section to scroll to.
+   */
   scrollTo(section: string) {
     const element = document.getElementById(section);
     if (element) element.scrollIntoView();

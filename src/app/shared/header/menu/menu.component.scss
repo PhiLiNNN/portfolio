@@ -33,6 +33,7 @@ section {
   width: 100vw;
   max-width: 1920px;
   .menu-links {
+    caret-color: transparent;
     position: relative;
     z-index: 2;
     height: 70%;
