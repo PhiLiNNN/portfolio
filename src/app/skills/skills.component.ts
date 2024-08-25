@@ -25,6 +25,7 @@ export class SkillsComponent {
     { src: 'scrum', name: 'Scrum' },
     { src: 'api', name: 'Rest Api' },
     { src: 'material', name: 'Material Design' },
+    { src: 'plsql', name: 'PL/SQL' },
   ];
 
   /**
