@@ -32,23 +32,75 @@ import { ContactFormPopupComponent } from '../contact-form-popup/contact-form-po
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent implements OnInit {
+  /**
+   * MatDialog instance for opening dialog windows.
+   * @private
+   * @readonly
+   * @type {MatDialog}
+   */
   readonly dialog = inject(MatDialog);
+
+  /**
+   * HttpClient instance for making HTTP requests.
+   * @private
+   * @readonly
+   * @type {HttpClient}
+   */
   http = inject(HttpClient);
+
+  /**
+   * Flag indicating whether the privacy policy checkbox is checked.
+   * @type {boolean}
+   */
   privacyPolicyChecked: boolean = false;
+
+  /**
+   * Indicates if the imprint page is currently active.
+   * @type {boolean}
+   */
   isImprintActive: boolean = false;
+
+  /**
+   * Indicates if the privacy policy page is currently active.
+   * @type {boolean}
+   */
   isPpActive: boolean = false;
-  mailTest = false;
+
+  /**
+   * Holds subscriptions for cleanup on component destruction.
+   * @private
+   * @type {Subscription}
+   */
   private subscriptions: Subscription = new Subscription();
+
+  /**
+   * Data object for storing contact form inputs.
+   * @type {{ name: string, email: string, message: string }}
+   */
   contactData = {
     name: '',
     email: '',
     message: '',
   };
+
   constructor(
     private imprintActiveService: imprintActiveService,
     private ppActiveService: ppActiveService
   ) {}
 
+  /**
+   * Configuration for the HTTP POST request to send contact form data.
+   * @type {{
+   *   endPoint: string,
+   *   body: (payload: any) => string,
+   *   options: {
+   *     headers: {
+   *       'Content-Type': string,
+   *       responseType: string
+   *     }
+   *   }
+   * }}
+   */
   post = {
     endPoint: 'https://philipp-wendschuch.dev/sendMail.php',
     body: (payload: any) => JSON.stringify(payload),
@@ -60,6 +112,12 @@ export class ContactComponent implements OnInit {
     },
   };
 
+  /**
+   * Handles the form submission by posting contact data to the server.
+   * If the form is valid and submitted, it sends a POST request and opens a dialog on success.
+   *
+   * @param {NgForm} ngForm - The Angular form object containing form data and state.
+   */
   onSubmit(ngForm: NgForm) {
     if (ngForm.submitted && ngForm.form.valid) {
       this.http
@@ -75,17 +133,20 @@ export class ContactComponent implements OnInit {
           complete: () => console.info('send post complete'),
         });
     }
-    //  else if (ngForm.submitted && ngForm.form.valid && this.mailTest) {
-    //   ngForm.resetForm();
-    //   this.openDialog();
-    // }
   }
 
+  /**
+   * Scrolls the window to the AOT section by its ID.
+   */
   scrollToAot() {
     const element = document.getElementById('aot-section');
     if (element) element.scrollIntoView();
   }
 
+  /**
+   * Lifecycle hook that is called after data-bound properties are initialized.
+   * Subscribes to the imprint and privacy policy services to update component state.
+   */
   ngOnInit(): void {
     this.subscriptions.add(
       this.imprintActiveService.currentState.subscribe(
@@ -100,10 +161,17 @@ export class ContactComponent implements OnInit {
     );
   }
 
+  /**
+   * Lifecycle hook that is called when the component is destroyed.
+   * Unsubscribes from all subscriptions to prevent memory leaks.
+   */
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
+  /**
+   * Opens a dialog window with the contact form popup component.
+   */
   openDialog() {
     const dialogRef = this.dialog.open(ContactFormPopupComponent);
 

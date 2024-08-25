@@ -11,6 +11,13 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+/**
+ * Factory function for creating a TranslateHttpLoader instance.
+ * Configures the loader to fetch translation files from a specific directory.
+ *
+ * @param {HttpClient} http - The HttpClient instance to be used by the loader.
+ * @returns {TranslateHttpLoader} - An instance of TranslateHttpLoader.
+ */
 export const provideTranslation = () => ({
   defaultLanguage: 'en',
   loader: {
@@ -20,6 +27,12 @@ export const provideTranslation = () => ({
   },
 });
 
+/**
+ * Provides configuration for translation services.
+ * Sets the default language and provides a loader for translation files.
+ *
+ * @returns {Object} - Configuration object for translation services.
+ */
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

@@ -4,11 +4,10 @@
 section {
   width: 100vw;
   max-width: 100%;
-  background: black;
   @include dflex();
-  padding: 0px 100px 0px 100px;
   @include dflex($fd: column);
   @media (max-width: 1200px) {
+    background: black;
     padding: 0px 50px 0px 50px;
   }
   @media (max-width: 700px) {
@@ -17,8 +16,10 @@ section {
 }
 
 .bottom {
-  margin: 48px 0 48px 0;
+  background: black;
+  padding: 48px 100px 48px 100px;
   width: 100%;
+  max-width: 1920px;
   @include dflex($jc: space-between);
   @media (max-width: 900px) {
     margin: 48px 0 100px;
@@ -95,8 +96,9 @@ section {
       right: 0;
       transition: color 0.2s ease;
       @media (max-width: 900px) {
+        text-align: center;
         width: 100px;
-        bottom: -45px;
+        bottom: -35px;
         left: 50%;
         transform: translateX(-50%);
       }
