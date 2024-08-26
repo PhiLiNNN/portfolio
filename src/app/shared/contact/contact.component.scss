@@ -159,6 +159,7 @@ section {
     transition: 0.175s ease-in-out;
     color: white;
     padding-inline: 8px;
+    z-index: -1;
   }
   .form__field:hover {
     border: 4px solid rgb(230, 201, 201);
@@ -167,6 +168,7 @@ section {
     cursor: text;
     border: 4px solid $color-highlight;
     ~ .form__label {
+      z-index: 0;
       position: absolute;
       font-family: "Overpass";
       top: 6px;
