@@ -1,16 +1,8 @@
-import {
-  Component,
-  inject,
-  OnInit,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { imprintActiveService } from '../../services/imprintActive.service';
-import { ppActiveService } from '../../services/ppActive.service';
 import { HttpClient } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -31,7 +23,7 @@ import { ContactFormPopupComponent } from '../contact-form-popup/contact-form-po
   styleUrl: './contact.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent {
   /**
    * MatDialog instance for opening dialog windows.
    * @private
@@ -49,31 +41,6 @@ export class ContactComponent implements OnInit {
   http = inject(HttpClient);
 
   /**
-   * Flag indicating whether the privacy policy checkbox is checked.
-   * @type {boolean}
-   */
-  privacyPolicyChecked: boolean = false;
-
-  /**
-   * Indicates if the imprint page is currently active.
-   * @type {boolean}
-   */
-  isImprintActive: boolean = false;
-
-  /**
-   * Indicates if the privacy policy page is currently active.
-   * @type {boolean}
-   */
-  isPpActive: boolean = false;
-
-  /**
-   * Holds subscriptions for cleanup on component destruction.
-   * @private
-   * @type {Subscription}
-   */
-  private subscriptions: Subscription = new Subscription();
-
-  /**
    * Data object for storing contact form inputs.
    * @type {{ name: string, email: string, message: string }}
    */
@@ -83,10 +50,7 @@ export class ContactComponent implements OnInit {
     message: '',
   };
 
-  constructor(
-    private imprintActiveService: imprintActiveService,
-    private ppActiveService: ppActiveService
-  ) {}
+  constructor() {}
 
   /**
    * Configuration for the HTTP POST request to send contact form data.
@@ -143,36 +107,10 @@ export class ContactComponent implements OnInit {
   }
 
   /**
-   * Lifecycle hook that is called after data-bound properties are initialized.
-   * Subscribes to the imprint and privacy policy services to update component state.
-   */
-  ngOnInit(): void {
-    this.subscriptions.add(
-      this.imprintActiveService.currentState.subscribe(
-        (value: boolean) => (this.isImprintActive = value)
-      )
-    );
-    this.subscriptions.add(
-      this.ppActiveService.currentState.subscribe(
-        (value: boolean) => (this.isPpActive = value)
-      )
-    );
-  }
-
-  /**
-   * Lifecycle hook that is called when the component is destroyed.
-   * Unsubscribes from all subscriptions to prevent memory leaks.
-   */
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
-
-  /**
    * Opens a dialog window with the contact form popup component.
    */
   openDialog() {
     const dialogRef = this.dialog.open(ContactFormPopupComponent);
-
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });

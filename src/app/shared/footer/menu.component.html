@@ -54,12 +54,9 @@
             />
           </svg>
         </a>
-        <a
-          [routerLink]="['/imprint']"
-          class="legal-notice"
-          [ngStyle]="{ display: isImprintActive ? 'none' : 'inline' }"
-          >{{ "footer.legalNotice" | translate }}</a
-        >
+        <a [routerLink]="['/imprint']" class="legal-notice">{{
+          "footer.legalNotice" | translate
+        }}</a>
       </div>
     </div>
   </div>
