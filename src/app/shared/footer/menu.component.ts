@@ -52,4 +52,11 @@ export class MenuComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
   }
+
+  /**
+   * Navigates back to the top.
+   */
+  backToTop() {
+    window.scrollTo(0, 0);
+  }
 }

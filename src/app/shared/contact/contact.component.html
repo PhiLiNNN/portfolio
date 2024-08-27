@@ -1,9 +1,12 @@
 <section>
   <div class="wrapper">
     <div class="rectangle"></div>
-    <div class="sayHello autoShow">
-      <span>{{ "footer.sayHello" | translate }}</span>
+    <div class="sayHello-wrapper">
+      <div class="sayHello autoShow">
+        <span>{{ "footer.sayHello" | translate }}</span>
+      </div>
     </div>
+
     <h4 class="autoShow">{{ "footer.discussProject" | translate }}</h4>
     <span class="autoShow">{{ "footer.contactRequest" | translate }}</span>
     <form
@@ -126,62 +129,59 @@
         } @else {
         <span class="conf-msg"
           >{{ "footer.privacyPolicyTextBefore" | translate }}
-          <span class="highlight" style="color: #00bc8f">{{
-            "footer.privacyPolicy" | translate
-          }}</span>
+          <a
+            [routerLink]="['/privacyPolicy']"
+            href="privacy"
+            class="highlight"
+            style="color: #00bc8f"
+            >{{ "footer.privacyPolicy" | translate }}</a
+          >
+
           {{ "footer.privacyPolicyTextAfter" | translate }}</span
         >
         }
       </div>
-      <div
-        class="btn-center"
-        [ngStyle]="{
-          'justify-content':
-            isImprintActive || isPpActive ? 'center' : 'space-between'
-        }"
-      >
-        <div></div>
-        <button
-          class="btn-desk"
-          type="submit"
-          value="submit"
-          [disabled]="!contactForm.form.valid"
-        >
-          {{ "footer.sendMessage" | translate }}
-        </button>
-        <button
-          class="btn-mob"
-          type="submit"
-          value="submit"
-          [disabled]="!contactForm.form.valid"
-        >
-          {{ "footer.sendMessageMobile" | translate }}
-        </button>
-        <svg
-          [ngStyle]="{
-            display: isImprintActive || isPpActive ? 'none' : 'inline'
-          }"
-          (click)="scrollToAot()"
-          class="arrow"
-          width="40"
-          height="56"
-          viewBox="0 0 40 56"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            class="arrow-head"
-            d="M37.8525 17.1265L19.9263 3.00025L2.00011 17.1265"
-            stroke="#FFFCF3"
-            stroke-width="4"
-          />
-          <path
-            class="arrow-shaft"
-            d="M19.9263 55.0439L19.9263 3"
-            stroke="#FFFCF3"
-            stroke-width="4"
-          />
-        </svg>
+      <div class="snedMsgBtn-wrapper">
+        <div class="btn-center">
+          <button
+            class="btn-desk"
+            type="submit"
+            value="submit"
+            [disabled]="!contactForm.form.valid"
+          >
+            {{ "footer.sendMessage" | translate }}
+          </button>
+          <button
+            class="btn-mob"
+            type="submit"
+            value="submit"
+            [disabled]="!contactForm.form.valid"
+          >
+            {{ "footer.sendMessageMobile" | translate }}
+          </button>
+          <svg
+            (click)="scrollToTop()"
+            class="arrow"
+            width="40"
+            height="56"
+            viewBox="0 0 40 56"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              class="arrow-head"
+              d="M37.8525 17.1265L19.9263 3.00025L2.00011 17.1265"
+              stroke="#FFFCF3"
+              stroke-width="4"
+            />
+            <path
+              class="arrow-shaft"
+              d="M19.9263 55.0439L19.9263 3"
+              stroke="#FFFCF3"
+              stroke-width="4"
+            />
+          </svg>
+        </div>
       </div>
     </form>
   </div>

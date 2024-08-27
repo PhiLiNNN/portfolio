@@ -136,11 +136,10 @@ export class ContactComponent implements OnInit {
   }
 
   /**
-   * Scrolls the window to the AOT section by its ID.
+   * Scrolls the window to the top.
    */
-  scrollToAot() {
-    const element = document.getElementById('aot-section');
-    if (element) element.scrollIntoView();
+  scrollToTop() {
+    window.scrollTo(0, 0);
   }
 
   /**
@@ -153,7 +152,6 @@ export class ContactComponent implements OnInit {
         (value: boolean) => (this.isImprintActive = value)
       )
     );
-
     this.subscriptions.add(
       this.ppActiveService.currentState.subscribe(
         (value: boolean) => (this.isPpActive = value)

@@ -24,8 +24,11 @@ section {
     padding: 100px 100px 0px 100px;
     background: black;
     width: 100%;
-    max-width: 1920px;
     @include dflex($fd: column);
+    @media (min-width: 1921px) {
+      width: 100vw;
+      max-width: 100%;
+    }
     @media (max-width: 1200px) {
       padding: 100px 50px 0px 50px;
     }
@@ -45,41 +48,42 @@ section {
       background-image: url("./../../../../public/assets/img/rectangle.svg");
       background-repeat: no-repeat;
       background-size: cover;
+      @media (min-width: 1921px) {
+        top: -251px;
+        height: 252px;
+        max-width: none;
+      }
     }
-    .sayHello {
-      position: absolute;
-      background: black;
-      color: white;
-      top: -45px;
-      left: 100px;
-      cursor: default;
-      @include dflex($fd: column, $ai: start, $jc: start);
-      @media (max-width: 1200px) {
-        left: 50px;
-      }
+    .sayHello-wrapper {
+      width: 100%;
+      max-width: 1920px;
+      padding-bottom: 100px;
       @media (max-width: 900px) {
-        top: -100px;
+        @include dflex();
       }
-      @media (max-width: 700px) {
-        left: 25px;
-      }
-      span {
-        font-weight: 800;
-        font-size: 4.063vw;
-        @media (min-width: 1921px) {
-          font-size: 78px;
-        }
-        @media (max-width: 1200px) {
-          font-size: 45px;
-        }
-        @media (max-width: 500px) {
-          font-size: 40px;
-        }
-        @media (max-width: 400px) {
-          font-size: 34px;
-        }
-        &:hover {
-          color: $color-highlight;
+      .sayHello {
+        background: black;
+        color: white;
+        cursor: default;
+        @include dflex($fd: column, $ai: start, $jc: start);
+        span {
+          font-weight: 800;
+          font-size: 4.063vw;
+          @media (min-width: 1921px) {
+            font-size: 78px;
+          }
+          @media (max-width: 1200px) {
+            font-size: 45px;
+          }
+          @media (max-width: 500px) {
+            font-size: 40px;
+          }
+          @media (max-width: 400px) {
+            font-size: 34px;
+          }
+          &:hover {
+            color: $color-highlight;
+          }
         }
       }
     }
@@ -288,72 +292,82 @@ textarea {
     }
   }
 }
-.btn-center {
-  width: 102%;
-  margin-top: 42px;
-  height: 60px;
-  @include dflex($jc: space-between);
-  @media (max-width: 900px) {
-    justify-content: center;
-  }
-  .btn-desk {
-    @include button(
-      $width: 213px,
-      $hoverWidth: 256px,
-      $mt: 0px,
-      $co: white,
-      $bgCo: white,
-      $coAc: black
-    );
-    display: block;
-
+.snedMsgBtn-wrapper {
+  width: 100vw;
+  max-width: 100%;
+  @include dflex();
+  .btn-center {
+    position: relative;
+    max-width: 1920px;
+    width: 102%;
+    margin-top: 42px;
+    height: 60px;
+    @include dflex();
     @media (max-width: 900px) {
-      display: none;
+      justify-content: center;
     }
-    &:disabled {
-      border-color: gray;
-      color: gray;
-      cursor: not-allowed;
-    }
-  }
-
-  .btn-mob {
-    @include button($width: 213px, $hoverWidth: 256px, $mt: 0px, $co: white);
-    display: none;
-
-    @media (max-width: 900px) {
+    .btn-desk {
+      @include button(
+        $width: 213px,
+        $hoverWidth: 256px,
+        $mt: 0px,
+        $co: white,
+        $bgCo: white,
+        $coAc: black
+      );
       display: block;
+
+      @media (max-width: 900px) {
+        display: none;
+      }
+      &:disabled {
+        border-color: gray;
+        color: gray;
+        cursor: not-allowed;
+      }
     }
-    &:disabled {
-      border-color: gray;
-      color: gray;
-      cursor: not-allowed;
-    }
-    .disabled-hover:hover {
-      width: 100px;
-    }
-  }
-  .arrow {
-    cursor: pointer;
-    overflow: visible;
-    @media (max-width: 900px) {
+
+    .btn-mob {
+      @include button($width: 213px, $hoverWidth: 256px, $mt: 0px, $co: white);
       display: none;
+
+      @media (max-width: 900px) {
+        display: block;
+      }
+      &:disabled {
+        border-color: gray;
+        color: gray;
+        cursor: not-allowed;
+      }
+      .disabled-hover:hover {
+        width: 100px;
+      }
     }
-    .arrow-shaft {
-      transition: transform 0.175s;
-      transform-origin: bottom;
-    }
-    .arrow-head {
-      transition: transform 0.175s;
-    }
-    &:hover .arrow-shaft {
-      transform: scaleY(1.5);
-    }
-    &:hover .arrow-head {
-      transform: translateY(-25px);
+    .arrow {
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+      overflow: visible;
+      @media (max-width: 900px) {
+        display: none;
+      }
+      .arrow-shaft {
+        transition: transform 0.175s;
+        transform-origin: bottom;
+      }
+      .arrow-head {
+        transition: transform 0.175s;
+      }
+      &:hover .arrow-shaft {
+        transform: scaleY(1.5);
+      }
+      &:hover .arrow-head {
+        transform: translateY(-25px);
+      }
     }
   }
 }
+
 .err-msg,
 .err-msg-text {
   position: absolute;

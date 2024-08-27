@@ -12,10 +12,10 @@ nav {
   height: $navHeight;
   background: $bg-color;
   @media (max-width: 1200px) {
-    padding: 31px 50px;
+    padding-inline: 50px;
   }
   @media (max-width: 700px) {
-    padding: 31px 25px;
+    padding-inline: 25px;
   }
   .flex {
     width: 100%;

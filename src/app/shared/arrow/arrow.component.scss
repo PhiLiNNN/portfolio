@@ -1,6 +1,14 @@
+@import "./../../../mixin.scss";
+@import "./../../../var.scss";
+section {
+  width: 100vw;
+  max-width: 100%;
+  @include dflex();
+}
 .index-arrow {
   display: flex;
   width: 100%;
+  max-width: 1920px;
   padding: 0 calc(clamp(2rem, 13.333vw + -6rem, 6rem) - 1.25rem);
   transition: filter 0.675s ease-out;
   svg {

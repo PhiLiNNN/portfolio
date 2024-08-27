@@ -89,9 +89,12 @@ export class HeaderComponent {
   }
 
   /**
-   * Navigates back to the home route after a short delay.
+   * Navigates back to the home route after a short delay or back  to the top of the page if user is on mainpage.
+   *
+   * @param {string} home - identifies that user is on the mainpage.
    */
-  backToHome() {
+  backToHome(home: string) {
+    if (home) window.scrollTo(0, 0);
     setTimeout(() => {
       this.router.navigateByUrl('/');
     }, 10);
