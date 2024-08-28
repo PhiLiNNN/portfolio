@@ -17,39 +17,29 @@
   @media (max-width: 700px) {
     width: calc(100vw - 50px);
   }
-  &:hover {
-    .ref-animate .ref-content {
-      opacity: 1;
-      left: 0;
-      @media (max-width: 900px) {
-        transform: translateY(0);
+  @media (min-width: 901px) {
+    &:hover {
+      .ref-animate .ref-content {
+        opacity: 1;
+        left: 0;
       }
-    }
-    .ref-animate .img-container::before {
-      z-index: 1;
-      border-color: black;
-      transform: translateY(20px) translateX(-20px);
-      @media (max-width: 500px) {
-        transform: translateY(10px) translateX(10px);
+      .ref-animate .img-container::before {
+        z-index: 1;
+        border-color: black;
+        transform: translateY(20px) translateX(-20px);
       }
-    }
-    .ref-animate .img-container img {
-      filter: grayscale(0);
-    }
-    .ref-animate .img-container .ref-arrow {
-      transform: rotate(135deg) scale(1.9);
-      opacity: 1;
-      @media (max-width: 1300px) {
-        transform: rotate(135deg) scale(1.15);
+      .ref-animate .img-container img {
+        filter: grayscale(0);
       }
-      @media (max-width: 950px) {
-        transform: rotate(135deg) scale(0.8);
-      }
-      @media (max-width: 900px) {
-        transform: rotate(135deg) scale(1.2);
-      }
-      @media (max-width: 550px) {
-        transform: rotate(135deg) scale(0.8);
+      .ref-animate .img-container .ref-arrow {
+        transform: rotate(135deg) scale(1.9);
+        opacity: 1;
+        @media (max-width: 1300px) {
+          transform: rotate(135deg) scale(1.15);
+        }
+        @media (max-width: 950px) {
+          transform: rotate(135deg) scale(0.8);
+        }
       }
     }
   }
@@ -72,14 +62,16 @@
     }
   }
   .ref-animate {
+    @media (max-width: 900px) {
+      @include dflex($fd: column, $ai: end);
+    }
     .img-container {
       position: absolute;
-      display: inline-block;
+      display: flex;
+      justify-content: end;
       right: 0;
       @media (max-width: 900px) {
         position: relative;
-        display: flex;
-        justify-content: end;
       }
       .ref-arrow {
         position: absolute;
@@ -91,12 +83,15 @@
         transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
         @media (max-width: 900px) {
           left: auto;
-          right: 89.5%;
+          right: 88.5%;
+          transform: rotate(135deg) scale(0.8);
+          opacity: 1;
         }
         @media (max-width: 500px) {
           top: 40%;
           width: 55px;
           right: 82.5%;
+          transform: rotate(135deg) scale(0.8);
         }
         @media (max-width: 430px) {
           right: 82%;
@@ -123,6 +118,7 @@
         @media (max-width: 900px) {
           max-width: none;
           width: 90%;
+          filter: grayscale(0);
         }
       }
 
@@ -136,8 +132,13 @@
         border: 4px solid transparent;
         transition: transform 0.175s, border-color 0.175s;
         @media (max-width: 900px) {
-          left: auto;
-          width: 90%;
+          z-index: 1;
+          border-color: black;
+          left: 10%;
+          transform: translateY(20px) translateX(-20px);
+        }
+        @media (max-width: 500px) {
+          transform: translateY(10px) translateX(10px);
         }
       }
     }
@@ -153,13 +154,17 @@
       }
       @media (max-width: 900px) {
         position: static;
-        transform: translateY(-100%);
         margin: 50px 0 100px 0;
+        transform: translateY(0);
+        opacity: 1;
       }
       .ref-info {
         @include dflex($fd: column, $g: 15px, $ai: start);
         @media (max-width: 1050px) {
           gap: 10px;
+        }
+        @media (max-width: 500px) {
+          align-items: center;
         }
         > h2 {
           font-weight: 800;
@@ -170,6 +175,9 @@
           @media (max-width: 900px) {
             width: 100%;
             font-size: 4vw;
+          }
+          @media (max-width: 500px) {
+            text-align: center;
           }
         }
         > span {
@@ -191,6 +199,7 @@
           }
           @media (max-width: 500px) {
             font-size: 16px;
+            text-align: center;
           }
         }
         > p {
@@ -214,6 +223,7 @@
             max-width: 500px;
           }
           @media (max-width: 900px) {
+            max-width: 500px;
             padding-right: 0px;
             font-size: 20px;
           }
@@ -224,6 +234,7 @@
           @media (max-width: 500px) {
             font-size: 14px;
             width: 290px;
+            text-align: center;
           }
         }
         .ref-btns {
@@ -278,4 +289,8 @@
 
 .right-aligned {
   @include dflex($jc: right);
+  @media (max-width: 500px) {
+    width: 100%;
+    justify-content: center;
+  }
 }
