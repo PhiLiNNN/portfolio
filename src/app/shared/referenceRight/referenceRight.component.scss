@@ -91,7 +91,6 @@
           top: 40%;
           width: 55px;
           right: 81.5%;
-          transform: rotate(135deg) scale(0.8);
         }
         @media (max-width: 460px) {
           right: 80%;
@@ -138,7 +137,7 @@
           transform: translateY(20px) translateX(-20px);
         }
         @media (max-width: 500px) {
-          transform: translateY(10px) translateX(10px);
+          transform: translateY(10px) translateX(-10px);
         }
       }
     }
