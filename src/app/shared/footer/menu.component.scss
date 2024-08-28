@@ -6,20 +6,21 @@ section {
   max-width: 100%;
   background: black;
   padding: 48px 100px 48px 100px;
-  @include dflex();
   @include dflex($fd: column);
   @media (max-width: 1200px) {
-    background: black;
-    padding: 0px 50px 0px 50px;
+    padding-inline: 50px;
+  }
+  @media (max-width: 900px) {
+    justify-content: start;
+    height: 300px;
   }
   @media (max-width: 700px) {
-    padding: 0px 25px 0px 25px;
+    padding-inline: 25px;
   }
 }
 .bottom-wrapper {
   width: 100%;
   max-width: 1920px;
-  margin: 48px 0 100px;
   .bottom {
     @include dflex($jc: space-between);
     @media (max-width: 900px) {
@@ -77,9 +78,6 @@ section {
         position: static;
         justify-content: center;
         gap: 47px;
-      }
-      @media (max-width: 750px) {
-        gap: 24px;
       }
       a svg {
         path {
