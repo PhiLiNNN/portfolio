@@ -59,7 +59,7 @@
       "emailEmpty": "Deine E-Mail-Adresse wird benötigt.",
       "emailNotValid": "Bitte gib eine gültige E-Mail-Adresse ein (z.B. user&#64;example.com)!",
       "textFieldEmpty": "Deine Nachricht ist leer.",
-      "textFieldTooShort": "Bitte gib mindestens 4 Zeichen ein!"
+      "textFieldTooShort": "Bitte gib mindestens 10 Zeichen ein!"
     },
     "sayHello": "Sag Hallo!",
     "discussProject": "Möchten Sie ein neues Projekt besprechen?",

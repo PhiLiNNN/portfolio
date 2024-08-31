@@ -17,6 +17,7 @@ export class FaviconService {
       'link[rel*="icon"]',
       true
     );
+    console.log('Test :>> ', isDarkMode);
 
     if (!link) {
       link = this.renderer.createElement('link');

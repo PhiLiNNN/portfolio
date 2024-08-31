@@ -62,7 +62,7 @@
       "emailEmpty": "Your email is required.",
       "emailNotValid": "Please enter a valid email (e.g., user&#64;example.com)!",
       "textFieldEmpty": "Your message is empty.",
-      "textFieldTooShort": "Please enter at least 4 characters!"
+      "textFieldTooShort": "Please enter at least 10 characters!"
     },
     "sayHello": "Say Hi!",
     "discussProject": "Want to discuss a new project?",
