@@ -1,5 +1,4 @@
-@import "./../../mixin.scss";
-@import "./../../var.scss";
+@use '../../styles/index' as *;
 
 .content-wrapper {
   width: 100vw;

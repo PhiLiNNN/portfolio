@@ -1,5 +1,4 @@
-@import "./../../../mixin.scss";
-@import "./../../../var.scss";
+@use "../../../styles/index" as *;
 .ref-flex {
   max-width: 1920px;
   width: calc(100vw - 200px);

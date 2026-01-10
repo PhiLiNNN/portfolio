@@ -1,5 +1,4 @@
-@import "./../../../mixin.scss";
-@import "./../../../var.scss";
+@use '../../../styles/index' as *;
 
 nav {
   padding: 31px 100px;

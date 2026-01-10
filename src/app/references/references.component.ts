@@ -17,6 +17,7 @@ interface Reference {
 }
 @Component({
     selector: 'app-references',
+    standalone: true,
     imports: [ReferenceLeftComponent, ReferenceRightComponent, TranslateModule],
     templateUrl: './references.component.html',
     styleUrl: './references.component.scss'

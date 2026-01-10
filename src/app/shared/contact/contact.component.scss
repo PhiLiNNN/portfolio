@@ -1,5 +1,4 @@
-@import "./../../../mixin.scss";
-@import "./../../../var.scss";
+@use '../../../styles/index' as *;
 
 @keyframes pulse {
   0%,

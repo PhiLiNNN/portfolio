@@ -1,4 +1,11 @@
-import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import {
+  Injectable,
+  Renderer2,
+  RendererFactory2,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -6,18 +13,22 @@ import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 export class FaviconService {
   private renderer: Renderer2;
 
-  constructor(rendererFactory: RendererFactory2) {
+  constructor(
+    rendererFactory: RendererFactory2,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     this.renderer = rendererFactory.createRenderer(null, null);
   }
 
   setFavicon(isDarkMode: boolean): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const favicon = isDarkMode ? 'white.ico' : 'black.ico';
+
     const head = this.renderer.selectRootElement('head', true);
-    let link: HTMLLinkElement | null = this.renderer.selectRootElement(
-      'link[rel*="icon"]',
-      true
-    );
-    console.log('Test :>> ', isDarkMode);
+
+    let link: HTMLLinkElement | null =
+      document.querySelector('link[rel*="icon"]');
 
     if (!link) {
       link = this.renderer.createElement('link');

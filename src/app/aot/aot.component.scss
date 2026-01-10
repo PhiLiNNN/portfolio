@@ -1,7 +1,6 @@
-@import "./../../mixin.scss";
-@import "./../../var.scss";
-@import "./aot-title.scss";
-@import "./aot-bottom.scss";
+@use "../../styles/index" as *;
+@use "./aot-title";
+@use "./aot-bottom";
 
 section {
   height: 100vh;

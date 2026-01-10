@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-contact-form-popup',
+    standalone: true,
     imports: [MatButtonModule, MatDialogModule, TranslateModule],
     templateUrl: './contact-form-popup.component.html',
     styleUrl: './contact-form-popup.component.scss',

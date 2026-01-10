@@ -1,42 +1,41 @@
-import { Component, Input } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
+
 @Component({
-    selector: 'app-referenceRight',
-    imports: [NgOptimizedImage],
-    templateUrl: './referenceRight.component.html',
-    styleUrl: './referenceRight.component.scss'
+  selector: 'app-referenceRight',
+  standalone: true,
+  imports: [NgOptimizedImage],
+  templateUrl: './referenceRight.component.html',
+  styleUrl: './referenceRight.component.scss',
 })
 export class ReferenceRightComponent {
-  @Input() skills: string = '';
-  @Input() name: string = '';
-  @Input() gitHub: string = '';
-  @Input() liveLink: string = '';
-  @Input() refNum: number = 0;
-  @Input() refAll: number = 0;
-  @Input() description: string = '';
-  @Input() imageUrl: string = '';
+  @Input() skills = '';
+  @Input() name = '';
+  @Input() gitHub = '';
+  @Input() liveLink = '';
+  @Input() refNum = 0;
+  @Input() refAll = 0;
+  @Input() description = '';
+  @Input() imageUrl = '';
 
-  /**
-   * Opens the GitHub link in a new tab.
-   *
-   * @param {string} gitHubLink - The URL to open in a new tab.
-   */
-  openGitHub(gitHubLink: string) {
-    window.umami?.track('open_reference_github', {
-      project: this.name,
-    });
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  openGitHub(gitHubLink: string): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    const slug = this.name.toLowerCase().replace(/\s+/g, '_');
+
+    window.umami?.track(`open_github_${slug}`);
+
     window.open(gitHubLink, '_blank');
   }
 
-  /**
-   * Opens the live link in a new tab.
-   *
-   * @param {string} liveLink - The URL to open in a new tab.
-   */
-  openLiveLink(liveLink: string) {
-    window.umami?.track('open_reference_live', {
-      project: this.name,
-    });
+  openLiveLink(liveLink: string): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const slug = this.name.toLowerCase().replace(/\s+/g, '_');
+
+    window.umami?.track(`open_live_${slug}`);
+
     window.open(liveLink, '_blank');
   }
 }

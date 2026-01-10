@@ -1,4 +1,11 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  inject,
+  ChangeDetectionStrategy,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,60 +16,31 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ContactFormPopupComponent } from '../contact-form-popup/contact-form-popup.component';
 
 @Component({
-    selector: 'app-contact',
-    imports: [
+  selector: 'app-contact',
+  standalone: true,
+  imports: [
     FormsModule,
     TranslateModule,
     RouterModule,
     MatButtonModule,
-    MatDialogModule
-],
-    templateUrl: './contact.component.html',
-    styleUrl: './contact.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    MatDialogModule,
+  ],
+  templateUrl: './contact.component.html',
+  styleUrl: './contact.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
-  /**
-   * MatDialog instance for opening dialog windows.
-   * @private
-   * @readonly
-   * @type {MatDialog}
-   */
   readonly dialog = inject(MatDialog);
+  private readonly http = inject(HttpClient);
 
-  /**
-   * HttpClient instance for making HTTP requests.
-   * @private
-   * @readonly
-   * @type {HttpClient}
-   */
-  http = inject(HttpClient);
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  /**
-   * Data object for storing contact form inputs.
-   * @type {{ name: string, email: string, message: string }}
-   */
   contactData = {
     name: '',
     email: '',
     message: '',
   };
 
-  constructor() {}
-
-  /**
-   * Configuration for the HTTP POST request to send contact form data.
-   * @type {{
-   *   endPoint: string,
-   *   body: (payload: any) => string,
-   *   options: {
-   *     headers: {
-   *       'Content-Type': string,
-   *       responseType: string
-   *     }
-   *   }
-   * }}
-   */
   post = {
     endPoint: 'https://philipp-wendschuch.dev/sendMail.php',
     body: (payload: any) => JSON.stringify(payload),
@@ -74,43 +52,28 @@ export class ContactComponent {
     },
   };
 
-  /**
-   * Handles the form submission by posting contact data to the server.
-   * If the form is valid and submitted, it sends a POST request and opens a dialog on success.
-   *
-   * @param {NgForm} ngForm - The Angular form object containing form data and state.
-   */
-  onSubmit(ngForm: NgForm) {
-    if (ngForm.submitted && ngForm.form.valid) {
-      this.http
-        .post(this.post.endPoint, this.post.body(this.contactData))
-        .subscribe({
-          next: (response) => {
-            ngForm.resetForm();
-            this.openDialog();
-          },
-          error: (error) => {
-            console.error(error);
-          },
-          complete: () => console.info('send post complete'),
-        });
-    }
+  onSubmit(ngForm: NgForm): void {
+    if (!ngForm.submitted || !ngForm.form.valid) return;
+
+    this.http
+      .post(this.post.endPoint, this.post.body(this.contactData))
+      .subscribe({
+        next: () => {
+          ngForm.resetForm();
+          this.openDialog();
+        },
+        error: (error) => console.error(error),
+      });
   }
 
-  /**
-   * Scrolls the window to the top.
-   */
-  scrollToTop() {
-    window.scrollTo(0, 0);
+  scrollToTop(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /**
-   * Opens a dialog window with the contact form popup component.
-   */
-  openDialog() {
+  openDialog(): void {
     const dialogRef = this.dialog.open(ContactFormPopupComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+
+    dialogRef.afterClosed().subscribe();
   }
 }

@@ -1,19 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+
 @Component({
-    selector: 'app-menu',
-    imports: [TranslateModule, RouterModule],
-    templateUrl: './menu.component.html',
-    styleUrl: './menu.component.scss'
+  selector: 'app-menu',
+  standalone: true,
+  imports: [TranslateModule, RouterModule],
+  templateUrl: './menu.component.html',
+  styleUrl: './menu.component.scss',
 })
 export class MenuComponent {
-  constructor() {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  /**
-   * Navigates back to the top.
-   */
-  backToTop() {
-    window.scrollTo(0, 0);
+  backToTop(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
