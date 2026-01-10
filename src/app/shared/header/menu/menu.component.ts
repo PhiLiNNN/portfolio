@@ -54,6 +54,10 @@ export class MenuComponent {
    * @param {string} section - The ID of the section to scroll to.
    */
   async navigateToSection(section: string) {
+    window.umami?.track('open_reference_github', {
+      section: section,
+    });
+
     this.closeMenu();
     if (this.router.url !== '/') {
       await this.router.navigate(['/']);

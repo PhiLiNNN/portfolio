@@ -23,6 +23,9 @@ export class ReferenceRightComponent {
    * @param {string} gitHubLink - The URL to open in a new tab.
    */
   openGitHub(gitHubLink: string) {
+    window.umami?.track('open_reference_github', {
+      project: this.name,
+    });
     window.open(gitHubLink, '_blank');
   }
 
@@ -32,6 +35,9 @@ export class ReferenceRightComponent {
    * @param {string} liveLink - The URL to open in a new tab.
    */
   openLiveLink(liveLink: string) {
+    window.umami?.track('open_reference_live', {
+      project: this.name,
+    });
     window.open(liveLink, '_blank');
   }
 }
