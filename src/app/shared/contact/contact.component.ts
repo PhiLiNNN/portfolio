@@ -1,6 +1,6 @@
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -11,13 +11,12 @@ import { ContactFormPopupComponent } from '../contact-form-popup/contact-form-po
 @Component({
     selector: 'app-contact',
     imports: [
-        FormsModule,
-        CommonModule,
-        TranslateModule,
-        RouterModule,
-        MatButtonModule,
-        MatDialogModule,
-    ],
+    FormsModule,
+    TranslateModule,
+    RouterModule,
+    MatButtonModule,
+    MatDialogModule
+],
     templateUrl: './contact.component.html',
     styleUrl: './contact.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
