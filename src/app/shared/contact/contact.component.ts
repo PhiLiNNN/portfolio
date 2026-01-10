@@ -9,19 +9,18 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ContactFormPopupComponent } from '../contact-form-popup/contact-form-popup.component';
 
 @Component({
-  selector: 'app-contact',
-  standalone: true,
-  imports: [
-    FormsModule,
-    CommonModule,
-    TranslateModule,
-    RouterModule,
-    MatButtonModule,
-    MatDialogModule,
-  ],
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-contact',
+    imports: [
+        FormsModule,
+        CommonModule,
+        TranslateModule,
+        RouterModule,
+        MatButtonModule,
+        MatDialogModule,
+    ],
+    templateUrl: './contact.component.html',
+    styleUrl: './contact.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactComponent {
   /**

@@ -8,17 +8,16 @@ import { FaviconService } from './services/favicon.service';
 import { AnalyticsService } from './analytics.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    HeaderComponent,
-    MenuComponent,
-    MainContentComponent,
-    ContactComponent,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'app-root',
+    imports: [
+        RouterOutlet,
+        HeaderComponent,
+        MenuComponent,
+        MainContentComponent,
+        ContactComponent,
+    ],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   private readonly analytics = inject(AnalyticsService);

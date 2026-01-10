@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 @Component({
-  selector: 'app-referenceRight',
-  standalone: true,
-  imports: [NgOptimizedImage],
-  templateUrl: './referenceRight.component.html',
-  styleUrl: './referenceRight.component.scss',
+    selector: 'app-referenceRight',
+    imports: [NgOptimizedImage],
+    templateUrl: './referenceRight.component.html',
+    styleUrl: './referenceRight.component.scss'
 })
 export class ReferenceRightComponent {
   @Input() skills: string = '';

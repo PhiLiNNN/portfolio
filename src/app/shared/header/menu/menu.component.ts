@@ -9,11 +9,10 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-menu',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss',
+    selector: 'app-menu',
+    imports: [CommonModule, TranslateModule],
+    templateUrl: './menu.component.html',
+    styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
   /**

@@ -1,11 +1,10 @@
 import { Component, HostListener, ElementRef, Renderer2 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-  selector: 'app-aot',
-  standalone: true,
-  imports: [TranslateModule],
-  templateUrl: './aot.component.html',
-  styleUrls: ['./aot.component.scss'],
+    selector: 'app-aot',
+    imports: [TranslateModule],
+    templateUrl: './aot.component.html',
+    styleUrls: ['./aot.component.scss']
 })
 export class AotComponent {
   desktopModus = false;

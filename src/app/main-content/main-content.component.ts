@@ -7,18 +7,17 @@ import { ReferencesComponent } from './../references/references.component';
 import { ArrowComponent } from '../shared/arrow/arrow.component';
 
 @Component({
-  selector: 'app-main-content',
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    AotComponent,
-    AboutMeComponent,
-    SkillsComponent,
-    ReferencesComponent,
-    ArrowComponent,
-  ],
-  templateUrl: './main-content.component.html',
-  styleUrl: './main-content.component.scss',
+    selector: 'app-main-content',
+    imports: [
+        HeaderComponent,
+        AotComponent,
+        AboutMeComponent,
+        SkillsComponent,
+        ReferencesComponent,
+        ArrowComponent,
+    ],
+    templateUrl: './main-content.component.html',
+    styleUrl: './main-content.component.scss'
 })
 export class MainContentComponent {
   constructor() {}

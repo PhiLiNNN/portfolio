@@ -2,11 +2,10 @@ import { Component, HostListener, Input, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-arrow',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './arrow.component.html',
-  styleUrl: './arrow.component.scss',
+    selector: 'app-arrow',
+    imports: [CommonModule],
+    templateUrl: './arrow.component.html',
+    styleUrl: './arrow.component.scss'
 })
 export class ArrowComponent {
   /**

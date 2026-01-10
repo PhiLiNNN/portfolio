@@ -2,11 +2,10 @@ import { Component, ElementRef, HostListener } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 @Component({
-  selector: 'app-skills',
-  standalone: true,
-  imports: [TranslateModule, CommonModule],
-  templateUrl: './skills.component.html',
-  styleUrl: './skills.component.scss',
+    selector: 'app-skills',
+    imports: [TranslateModule, CommonModule],
+    templateUrl: './skills.component.html',
+    styleUrl: './skills.component.scss'
 })
 export class SkillsComponent {
   /**

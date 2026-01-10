@@ -12,11 +12,10 @@ import { MenuComponent } from './menu/menu.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule, MenuComponent, TranslateModule, FormsModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+    selector: 'app-header',
+    imports: [CommonModule, MenuComponent, TranslateModule, FormsModule],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   /**
