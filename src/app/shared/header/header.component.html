@@ -1,6 +1,15 @@
 <nav>
   <div class="flex">
-    <img (click)="backToHome('home')" src="./assets/img/logo/logo2.png" />
+    <img
+      src="./assets/img/logo/logo2.png"
+      alt=""
+      role="button"
+      tabindex="0"
+      [attr.aria-label]="'a11y.backToHome' | translate"
+      (click)="backToHome('home')"
+      (keydown.enter)="backToHome('home')"
+      (keydown.space)="backToHome('home')"
+    />
     <div class="menu-ri">
       <div class="lang">
         <input
@@ -8,17 +17,18 @@
           type="checkbox"
           [checked]="isLenMenuOpen"
           (change)="toggleLenMenu()"
+          aria-label="Sprache wählen / Select language"
         />
-        <label for="menu"><div></div></label>
+        <label for="menu" aria-hidden="true"><div></div></label>
         <ul class="menu">
           <li>
-            <button (click)="switchLanguage('en'); closeLenMenu()" href="#0">
+            <button type="button" (click)="switchLanguage('en'); closeLenMenu()">
               <span>{{ "header.english" | translate }}</span>
               <i class="fas fa-address-card" aria-hidden="true"></i>
             </button>
           </li>
           <li>
-            <button (click)="switchLanguage('ger'); closeLenMenu()" href="#0">
+            <button type="button" (click)="switchLanguage('ger'); closeLenMenu()">
               <span>{{ "header.german" | translate }}</span>
               <i class="fas fa-tasks" aria-hidden="true"></i>
             </button>
@@ -27,7 +37,15 @@
       </div>
       <div
         (click)="toggleMenu(); closeLenMenu()"
+        (keydown.enter)="toggleMenu(); closeLenMenu()"
+        (keydown.space)="toggleMenu(); closeLenMenu()"
         class="burger-menu"
+        role="button"
+        tabindex="0"
+        [attr.aria-expanded]="menuOpen === true"
+        [attr.aria-label]="
+          (menuOpen ? 'a11y.closeMenu' : 'a11y.openMenu') | translate
+        "
         [ngClass]="{
           openMenuAnimation: menuOpen === true,
           closeMenuAnimation: menuOpen === false

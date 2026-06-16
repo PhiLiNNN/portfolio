@@ -1,20 +1,22 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Input,
-  Output,
-  Renderer2,
   HostListener,
   Inject,
+  Input,
+  Output,
   PLATFORM_ID,
+  Renderer2,
 } from '@angular/core';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { isPlatformBrowser, CommonModule, DOCUMENT } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-header',
   standalone: true,
   imports: [CommonModule, MenuComponent, TranslateModule, FormsModule],
@@ -34,13 +36,24 @@ export class HeaderComponent {
     private renderer: Renderer2,
     private translate: TranslateService,
     private router: Router,
+    @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    this.translate.setDefaultLang('en');
+    // Keep <html lang> in sync with the active UI language (a11y / SEO).
+    this.setDocumentLang(this.translate.currentLang || 'en');
   }
 
   switchLanguage(language: string): void {
     this.translate.use(language);
+    this.setDocumentLang(language);
+  }
+
+  private setDocumentLang(language: string): void {
+    this.renderer.setAttribute(
+      this.document.documentElement,
+      'lang',
+      language
+    );
   }
 
   toggleMenu(): void {

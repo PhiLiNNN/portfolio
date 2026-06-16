@@ -6,9 +6,13 @@
   >
     <h1>{{ "aot.headline" | translate }}</h1>
     @if(desktopModus) {
-    <h1 class="underneath" style="mask-size: 0">Coding with Heart</h1>
+    <h1 class="underneath" style="mask-size: 0" aria-hidden="true">
+      Coding with Heart
+    </h1>
     }@else {
-    <h1 class="underneath" style="display: none">Coding with Heart</h1>
+    <h1 class="underneath" style="display: none" aria-hidden="true">
+      Coding with Heart
+    </h1>
     }
 
     <div class="underline-name">
@@ -26,8 +30,15 @@
         </button>
       </div>
       <a href="mailto:contact@philipp-wendschuch.dev">contact&#64;philipp-wendschuch.dev</a>
-      <div (click)="scrollToAboutMe()" class="aot-arrow">
-        <img src="./assets/img/arrows/aot_arrow.svg" />
+      <div
+        (click)="scrollToAboutMe()"
+        (keydown.enter)="scrollToAboutMe()"
+        (keydown.space)="scrollToAboutMe()"
+        role="button"
+        tabindex="0"
+        class="aot-arrow"
+      >
+        <img src="./assets/img/arrows/aot_arrow.svg" alt="" aria-hidden="true" />
         <div class="scroll-down">
           <span
             >{{ "aot.scroll" | translate }} <br />

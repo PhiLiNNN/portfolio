@@ -86,7 +86,7 @@ section {
         }
       }
     }
-    h4 {
+    .discuss-heading {
       font-family: "Overpass";
       font-size: 32px;
       font-weight: 700;
@@ -218,6 +218,10 @@ textarea {
       padding-inline: 4px;
       font-size: 16px;
       transition: transform 0.175s;
+      color: $color-highlight;
+    }
+    &.invalid .highlight {
+      color: $err-color;
     }
   }
   .rem-mar {

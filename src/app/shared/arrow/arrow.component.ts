@@ -1,14 +1,16 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  HostListener,
-  Input,
   ElementRef,
+  HostListener,
   Inject,
+  Input,
   PLATFORM_ID,
 } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-arrow',
   standalone: true,
   imports: [CommonModule],

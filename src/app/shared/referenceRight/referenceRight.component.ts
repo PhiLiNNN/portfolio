@@ -1,7 +1,14 @@
-import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Input,
+  PLATFORM_ID,
+} from '@angular/core';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-referenceRight',
   standalone: true,
   imports: [NgOptimizedImage],

@@ -15,6 +15,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ContactFormPopupComponent } from '../contact-form-popup/contact-form-popup.component';
 
+interface ContactData {
+  name: string;
+  email: string;
+  message: string;
+}
+
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -35,28 +41,27 @@ export class ContactComponent {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  contactData = {
+  contactData: ContactData = {
     name: '',
     email: '',
     message: '',
   };
 
-  post = {
-    endPoint: 'https://philipp-wendschuch.dev/sendMail.php',
-    body: (payload: any) => JSON.stringify(payload),
-    options: {
-      headers: {
-        'Content-Type': 'text/plain',
-        responseType: 'text',
-      },
-    },
-  };
+  /** Honeypot field — must stay empty for real users; bots tend to fill it. */
+  honeypot = '';
+
+  private readonly endPoint = 'https://philipp-wendschuch.dev/sendMail.php';
 
   onSubmit(ngForm: NgForm): void {
     if (!ngForm.submitted || !ngForm.form.valid) return;
 
+    const payload = { ...this.contactData, website: this.honeypot };
+
     this.http
-      .post(this.post.endPoint, this.post.body(this.contactData))
+      .post(this.endPoint, JSON.stringify(payload), {
+        headers: { 'Content-Type': 'text/plain' },
+        responseType: 'text',
+      })
       .subscribe({
         next: () => {
           ngForm.resetForm();
@@ -72,8 +77,6 @@ export class ContactComponent {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(ContactFormPopupComponent);
-
-    dialogRef.afterClosed().subscribe();
+    this.dialog.open(ContactFormPopupComponent);
   }
 }

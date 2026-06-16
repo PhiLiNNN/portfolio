@@ -4,8 +4,18 @@
   </div>
   <div class="ref-animate">
     <div class="img-container">
-      <img ngSrc="{{ imageUrl }}" width="438" height="246" priority />
-      <img class="ref-arrow" src="./assets/img/arrows/ref_arrow.svg" />
+      <img
+        ngSrc="{{ imageUrl }}"
+        width="438"
+        height="246"
+        [alt]="name + ' – project screenshot'"
+      />
+      <img
+        class="ref-arrow"
+        src="./assets/img/arrows/ref_arrow.svg"
+        alt=""
+        aria-hidden="true"
+      />
     </div>
     <div class="right-aligned">
       <div class="ref-content">

@@ -1,19 +1,39 @@
 <section [ngClass]="{ open: menuOpen, close: !menuOpen }">
   <div class="menu-content">
-    <div class="menu-links">
-      <a (click)="navigateToSection('aboutMe-section')">{{
-        "menu.aboutMe" | translate
-      }}</a>
-      <a (click)="navigateToSection('skills-section')">{{
-        "menu.mySkills" | translate
-      }}</a>
-      <a (click)="navigateToSection('portfolio-section')">{{
-        "menu.portfolio" | translate
-      }}</a>
-      <a (click)="navigateToSection('contact-section')">{{
-        "menu.contact" | translate
-      }}</a>
-    </div>
+    <nav class="menu-links" [attr.inert]="menuOpen ? null : ''">
+      <a
+        role="button"
+        tabindex="0"
+        (click)="navigateToSection('aboutMe-section')"
+        (keydown.enter)="navigateToSection('aboutMe-section')"
+        (keydown.space)="navigateToSection('aboutMe-section')"
+        >{{ "menu.aboutMe" | translate }}</a
+      >
+      <a
+        role="button"
+        tabindex="0"
+        (click)="navigateToSection('skills-section')"
+        (keydown.enter)="navigateToSection('skills-section')"
+        (keydown.space)="navigateToSection('skills-section')"
+        >{{ "menu.mySkills" | translate }}</a
+      >
+      <a
+        role="button"
+        tabindex="0"
+        (click)="navigateToSection('portfolio-section')"
+        (keydown.enter)="navigateToSection('portfolio-section')"
+        (keydown.space)="navigateToSection('portfolio-section')"
+        >{{ "menu.portfolio" | translate }}</a
+      >
+      <a
+        role="button"
+        tabindex="0"
+        (click)="navigateToSection('contact-section')"
+        (keydown.enter)="navigateToSection('contact-section')"
+        (keydown.space)="navigateToSection('contact-section')"
+        >{{ "menu.contact" | translate }}</a
+      >
+    </nav>
     <div class="bottom-menu">
       <div class="rectangle">
         <div class="sayHello">
@@ -24,8 +44,14 @@
             >contact&#64;philipp-wendschuch.dev</a
           >
           <div class="menu-icons">
-            <a target="_blank" href="https://github.com/PhiLiNNN"
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/PhiLiNNN"
+              [attr.aria-label]="'a11y.github' | translate"
               ><svg
+                aria-hidden="true"
+                focusable="false"
                 width="30"
                 height="30"
                 viewBox="0 0 30 30"
@@ -38,8 +64,14 @@
                 />
               </svg>
             </a>
-            <a target="_blank" href="mailto:contact@philipp-wendschuch.dev"
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="mailto:contact@philipp-wendschuch.dev"
+              [attr.aria-label]="'a11y.email' | translate"
               ><svg
+                aria-hidden="true"
+                focusable="false"
                 width="30"
                 height="27"
                 viewBox="0 0 30 27"
@@ -52,8 +84,14 @@
                 />
               </svg>
             </a>
-            <a target="_blank" href="https://www.linkedin.com/feed/"
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/feed/"
+              [attr.aria-label]="'a11y.linkedin' | translate"
               ><svg
+                aria-hidden="true"
+                focusable="false"
                 width="30"
                 height="30"
                 viewBox="0 0 30 30"

@@ -1,27 +1,44 @@
-# Portfolio
+# Portfolio — Philipp Wendschuch
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.1.
+Personal portfolio site built with **Angular 21** (standalone components) and
+**Angular SSR** (server-side rendering + hydration).
 
-## Development server
+## Stack
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Angular 21 + Angular Material 21
+- SSR via `@angular/ssr` + Express (`server.ts`)
+- i18n with `@ngx-translate` (DE/EN, files in `public/assets/i18n/`)
+- Self-hosted fonts (Syne, Overpass) — no Google Fonts CDN
+- Privacy-friendly, self-hosted [Umami](https://umami.is) analytics
+- Contact form posts to a PHP `mail()` endpoint (`src/app/sendMail.php`)
 
-## Code scaffolding
+## Development
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install
+npm start          # ng serve → http://localhost:4200/
+```
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm run build      # production build into dist/
+```
 
-## Running unit tests
+## SSR
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+npm run serve:ssr:portfolio   # serves the SSR build from dist/
+```
 
-## Running end-to-end tests
+## Tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm test           # Karma + Jasmine
+```
 
-## Further help
+## Notes
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- The contact form sends mail via `src/app/sendMail.php` on the production host.
+  It must be deployed alongside the static build and validated/hardened
+  server-side (see project notes on input validation and spam protection).

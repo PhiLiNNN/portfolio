@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ReferenceLeftComponent } from '../shared/referenceLeft/referenceLeft.component';
 import { ReferenceRightComponent } from '../shared/referenceRight/referenceRight.component';
 import {
@@ -16,6 +20,7 @@ interface Reference {
   img: string;
 }
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-references',
     standalone: true,
     imports: [ReferenceLeftComponent, ReferenceRightComponent, TranslateModule],

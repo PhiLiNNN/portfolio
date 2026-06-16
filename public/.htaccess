@@ -1,0 +1,22 @@
+# Security headers + SPA routing for the static (LiteSpeed/Apache) deployment
+# on Hostinger. The headers in server.ts only apply to the Node SSR server,
+# which Hostinger does not run — so they are set here instead.
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://c.kunisch.tech; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://philipp-wendschuch.dev https://c.kunisch.tech; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+</IfModule>
+
+# Angular client-side routing: serve index.html for paths that are not real
+# files/dirs (so deep links like /privacy-policy work on reload).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
