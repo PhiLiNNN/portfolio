@@ -1,4 +1,4 @@
-<section [ngClass]="{ open: menuOpen, close: !menuOpen }">
+<section [ngClass]="{ open: menuOpen === true, close: menuOpen === false }">
   <div class="menu-content">
     <nav class="menu-links" [attr.inert]="menuOpen ? null : ''">
       <a

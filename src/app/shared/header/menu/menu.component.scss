@@ -6,7 +6,9 @@ section {
   position: fixed;
   width: 100vw;
   max-width: 100%;
-  height: $menu-overlay-height;
+  // Hidden by default (initial menuOpen === null) with NO animation, so the
+  // close animation does not run on page load (was causing a large CLS).
+  height: 0;
   background: $bg-color;
   z-index: 998;
   bottom: 0;
