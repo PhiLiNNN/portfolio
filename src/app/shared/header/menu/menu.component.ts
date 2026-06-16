@@ -1,17 +1,19 @@
 import {
+  ChangeDetectionStrategy,
   Component,
+  EventEmitter,
+  Inject,
   Input,
   Output,
-  EventEmitter,
-  Renderer2,
-  Inject,
   PLATFORM_ID,
+  Renderer2,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-menu',
   standalone: true,
   imports: [CommonModule, TranslateModule],

@@ -16,6 +16,34 @@ export function app(): express.Express {
 
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
+  server.disable('x-powered-by');
+
+  // Security headers (defense-in-depth). If a reverse proxy already sets these,
+  // configure them there instead to avoid duplication.
+  server.use((_req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader(
+      'Strict-Transport-Security',
+      'max-age=31536000; includeSubDomains'
+    );
+    res.setHeader(
+      'Content-Security-Policy',
+      [
+        "default-src 'self'",
+        "script-src 'self' https://c.kunisch.tech",
+        "style-src 'self' 'unsafe-inline'",
+        "font-src 'self'",
+        "img-src 'self' data:",
+        "connect-src 'self' https://philipp-wendschuch.dev https://c.kunisch.tech",
+        "frame-ancestors 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+      ].join('; ')
+    );
+    next();
+  });
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });

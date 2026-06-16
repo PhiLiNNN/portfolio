@@ -1,9 +1,15 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-menu',
   standalone: true,
   imports: [TranslateModule, RouterModule],
@@ -11,6 +17,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent {
+  readonly currentYear = new Date().getFullYear();
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   backToTop(): void {

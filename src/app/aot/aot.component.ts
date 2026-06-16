@@ -1,16 +1,18 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  HostListener,
   ElementRef,
-  Renderer2,
+  HostListener,
   Inject,
-  PLATFORM_ID,
   OnInit,
+  PLATFORM_ID,
+  Renderer2,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-aot',
   standalone: true,
   imports: [TranslateModule],

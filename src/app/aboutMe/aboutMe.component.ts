@@ -1,8 +1,14 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-aboutMe',
   standalone: true,
   imports: [NgOptimizedImage, TranslateModule],

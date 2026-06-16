@@ -1,4 +1,14 @@
 {
+  "a11y": {
+    "scrollToTop": "Nach oben scrollen",
+    "scrollDown": "Zum nächsten Abschnitt scrollen",
+    "backToHome": "Zurück zur Startseite",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "github": "GitHub-Profil (öffnet in neuem Tab)",
+    "email": "E-Mail senden",
+    "linkedin": "LinkedIn-Profil (öffnet in neuem Tab)"
+  },
   "header": {
     "german": "Deutsch",
     "english": "Englisch"

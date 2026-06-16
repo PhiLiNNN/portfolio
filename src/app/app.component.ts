@@ -1,4 +1,8 @@
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+} from '@angular/core';
 import { HeaderComponent } from './shared/header/header.component';
 import { RouterOutlet } from '@angular/router';
 import { MenuComponent } from './shared/footer/menu.component';
@@ -6,6 +10,7 @@ import { ContactComponent } from './shared/contact/contact.component';
 import { AnalyticsService } from './analytics.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, MenuComponent, ContactComponent],

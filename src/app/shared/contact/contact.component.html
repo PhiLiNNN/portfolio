@@ -7,7 +7,9 @@
       </div>
     </div>
 
-    <h4 class="autoShow">{{ "footer.discussProject" | translate }}</h4>
+    <h2 class="discuss-heading autoShow">
+      {{ "footer.discussProject" | translate }}
+    </h2>
     <span class="autoShow">{{ "footer.contactRequest" | translate }}</span>
     <form
       class="autoShow"
@@ -15,131 +17,179 @@
       (ngSubmit)="onSubmit(contactForm)"
       #contactForm="ngForm"
     >
+      <!-- Honeypot: hidden from users, bots tend to fill it. Server rejects if set. -->
+      <div class="sr-only" aria-hidden="true">
+        <label for="contact-website">Leave this field empty</label>
+        <input
+          id="contact-website"
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+          [(ngModel)]="honeypot"
+        />
+      </div>
+
       <div class="form__group">
         <input
+          id="contact-name"
           minlength="2"
           #nameInput="ngModel"
           [(ngModel)]="contactData.name"
-          type="input"
+          type="text"
           class="form__field"
           placeholder="Your name"
           name="name"
           required
+          aria-required="true"
+          [attr.aria-invalid]="nameInput.touched && !nameInput.valid"
+          [attr.aria-describedby]="
+            nameInput.touched && !nameInput.valid ? 'name-err' : null
+          "
         />
         @if(!nameInput.valid && nameInput.touched) {
-        <img class="feedback-icon-input" src="./assets/img/icons/wrong.svg" />
+        <img
+          class="feedback-icon-input"
+          src="./assets/img/icons/wrong.svg"
+          alt=""
+          aria-hidden="true"
+        />
         } @else if (nameInput.valid && nameInput.touched) {<img
           class="feedback-icon-input"
           src="./assets/img/icons/right.svg"
+          alt=""
+          aria-hidden="true"
         />}
-        <label class="form__label">{{ "footer.formName" | translate }}</label>
+        <label class="form__label" for="contact-name">{{
+          "footer.formName" | translate
+        }}</label>
         @if (nameInput.touched && (!nameInput.value || nameInput.value.length
         === 0)) {
-        <span class="err-msg">{{ "footer.error.nameEmpty" | translate }}</span>
+        <span id="name-err" class="err-msg" role="alert">{{
+          "footer.error.nameEmpty" | translate
+        }}</span>
         } @else if (nameInput.touched && nameInput.value &&
         nameInput.value.length > 0 && nameInput.value.length < 2) {
-        <span class="err-msg">{{
+        <span id="name-err" class="err-msg" role="alert">{{
           "footer.error.nameTooShort" | translate
         }}</span>
         }
       </div>
       <div class="form__group">
         <input
+          id="contact-email"
           [(ngModel)]="contactData.email"
-          type="input"
+          type="email"
           class="form__field"
           placeholder="Your email"
-          name="Your email"
+          name="email"
           required
+          aria-required="true"
           #emailInput="ngModel"
           pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+          [attr.aria-invalid]="emailInput.touched && !emailInput.valid"
+          [attr.aria-describedby]="
+            emailInput.touched && !emailInput.valid ? 'email-err' : null
+          "
         />
         @if(!emailInput.valid && emailInput.touched) {
-        <img class="feedback-icon-input" src="./assets/img/icons/wrong.svg" />
+        <img
+          class="feedback-icon-input"
+          src="./assets/img/icons/wrong.svg"
+          alt=""
+          aria-hidden="true"
+        />
         } @else if (emailInput.valid && emailInput.touched) {
-        <img class="feedback-icon-input" src="./assets/img/icons/right.svg" />}
-        <label class="form__label">{{ "footer.formEmail" | translate }}</label>
+        <img
+          class="feedback-icon-input"
+          src="./assets/img/icons/right.svg"
+          alt=""
+          aria-hidden="true"
+        />}
+        <label class="form__label" for="contact-email">{{
+          "footer.formEmail" | translate
+        }}</label>
         @if (emailInput.touched && (!emailInput.value || emailInput.value.length
         === 0)) {
-        <span class="err-msg">{{ "footer.error.emailEmpty" | translate }}</span>
+        <span id="email-err" class="err-msg" role="alert">{{
+          "footer.error.emailEmpty" | translate
+        }}</span>
         } @else if (!emailInput.valid && emailInput.touched) {
-        <span class="err-msg">{{
+        <span id="email-err" class="err-msg" role="alert">{{
           "footer.error.emailNotValid" | translate
         }}</span>
         }
       </div>
       <div class="form__group textarea-height" style="height: 202px">
         <textarea
+          id="contact-message"
           minlength="10"
           #textMessage="ngModel"
           [(ngModel)]="contactData.message"
           style="height: 202px"
-          type="input"
           class="form__field"
           placeholder="Your message"
-          name="Your message"
+          name="message"
           required
+          aria-required="true"
+          [attr.aria-invalid]="textMessage.touched && !textMessage.valid"
+          [attr.aria-describedby]="
+            textMessage.touched && !textMessage.valid ? 'message-err' : null
+          "
         ></textarea>
         @if(!textMessage.valid && textMessage.touched) {
-        <img class="feedback-icon-txt" src="./assets/img/icons/wrong.svg" />
+        <img
+          class="feedback-icon-txt"
+          src="./assets/img/icons/wrong.svg"
+          alt=""
+          aria-hidden="true"
+        />
         } @else if (textMessage.valid && textMessage.touched) {<img
           class="feedback-icon-txt"
           src="./assets/img/icons/right.svg"
+          alt=""
+          aria-hidden="true"
         />}
 
-        <label class="form__label">{{
+        <label class="form__label" for="contact-message">{{
           "footer.formMessage" | translate
         }}</label>
         @if (textMessage.touched && (!textMessage.value ||
         textMessage.value.length === 0)) {
-        <span class="err-msg-text">{{
+        <span id="message-err" class="err-msg-text" role="alert">{{
           "footer.error.textFieldEmpty" | translate
         }}</span>
         } @else if (textMessage.touched && textMessage.value &&
         textMessage.value.length > 0 && textMessage.value.length < 10) {
-        <span class="err-msg-text">{{
+        <span id="message-err" class="err-msg-text" role="alert">{{
           "footer.error.textFieldTooShort" | translate
         }}</span>
         }
       </div>
       <div class="confimation">
         <label class="checkbox-btn">
-          <label for="checkbox"></label>
           <input
             type="checkbox"
+            id="privacy-consent"
             ngModel
             name="privacyPolicy"
             required
+            aria-required="true"
+            aria-labelledby="privacy-consent-label"
             #checkBox="ngModel"
           />
           <span class="checkmark"> </span>
         </label>
-        @if(!ngForm.submitted && checkBox.invalid) {
-        <span class="conf-msg"
+        <span
+          id="privacy-consent-label"
+          class="conf-msg"
+          [class.invalid]="!ngForm.submitted && checkBox.invalid"
           >{{ "footer.privacyPolicyTextBefore" | translate }}
-          <a
-            [routerLink]="['/privacyPolicy']"
-            href="privacy"
-            class="highlight"
-            style="color: #e61c40"
-            >{{ "footer.privacyPolicy" | translate }}</a
-          >
+          <a [routerLink]="['/privacy-policy']" class="highlight">{{
+            "footer.privacyPolicy" | translate
+          }}</a>
           {{ "footer.privacyPolicyTextAfter" | translate }}</span
         >
-        } @else {
-        <span class="conf-msg"
-          >{{ "footer.privacyPolicyTextBefore" | translate }}
-          <a
-            [routerLink]="['/privacyPolicy']"
-            href="privacy"
-            class="highlight"
-            style="color: #00bc8f"
-            >{{ "footer.privacyPolicy" | translate }}</a
-          >
-
-          {{ "footer.privacyPolicyTextAfter" | translate }}</span
-        >
-        }
       </div>
       <div class="snedMsgBtn-wrapper">
         <div class="btn-center">
@@ -161,6 +211,11 @@
           </button>
           <svg
             (click)="scrollToTop()"
+            (keydown.enter)="scrollToTop()"
+            (keydown.space)="scrollToTop()"
+            role="button"
+            tabindex="0"
+            [attr.aria-label]="'a11y.scrollToTop' | translate"
             class="arrow"
             width="40"
             height="56"

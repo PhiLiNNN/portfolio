@@ -1,7 +1,8 @@
 $color-highlight: #00bc8f;
 $bg-color: #fffcf3;
 $navHeight: 70px;
-$err-color: #e61c40;
+// Brightened from #e61c40 to meet WCAG AA 4.5:1 against the dark form background.
+$err-color: #ff5c77;
 
 .autoShow {
   animation: autoShowAnimation both;
