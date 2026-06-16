@@ -33,23 +33,20 @@ section {
   position: relative;
   width: 100vw;
   max-width: 1920px;
-  // Flow layout so the nav links never overlap the bottom block; scroll as a
-  // safety net on very short viewports.
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
   .menu-links {
     caret-color: transparent;
     position: relative;
     z-index: 2;
-    flex: 1 0 auto;
-    padding-block: 24px;
+    // Fill the space above the bottom block (so links never overlap it) and
+    // center within it. Scroll vertically only if it still doesn't fit.
+    height: calc(100% - 348px);
+    overflow-y: auto;
+    overflow-x: hidden;
     @include dflex($fd: column, $g: 40px);
     text-align: center;
     // Shrink spacing on short viewports so all links stay visible.
     @media (max-height: 760px) {
       gap: 3vh;
-      padding-block: 12px;
     }
     a {
       font-size: 96px;
@@ -77,8 +74,8 @@ section {
 
 .bottom-menu {
   width: 100vw;
-  position: relative;
-  flex: 0 0 auto;
+  position: absolute;
+  bottom: 0;
   color: white;
   z-index: 1;
   max-width: 1920px;
