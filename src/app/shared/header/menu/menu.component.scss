@@ -44,8 +44,10 @@ section {
     overflow-x: hidden;
     @include dflex($fd: column, $g: 40px);
     text-align: center;
-    // Shrink spacing on short viewports so all links stay visible.
+    // Short viewports: the bottom block shrinks (see .rectangle), so give the
+    // links that room back and tighten spacing so they fit and stay centered.
     @media (max-height: 760px) {
+      height: calc(100% - 250px);
       gap: 3vh;
     }
     a {
@@ -86,6 +88,10 @@ section {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    // Shrink the decorative block on short viewports to free room for the links.
+    @media (max-height: 760px) {
+      height: 250px;
+    }
     .sayHello {
       position: absolute;
       margin-left: 100px;
@@ -101,6 +107,9 @@ section {
       }
       @media (max-width: 700px) {
         margin-left: 25px;
+      }
+      @media (max-height: 760px) {
+        top: 70px;
       }
       span {
         font-weight: 800;
@@ -125,6 +134,9 @@ section {
       }
       @media (max-width: 700px) {
         padding-left: 25px;
+      }
+      @media (max-height: 760px) {
+        bottom: 28px;
       }
       a {
         cursor: pointer;
