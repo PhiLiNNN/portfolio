@@ -2,23 +2,21 @@
 
 $menu-overlay-height: calc(100vh - $navHeight);
 
+// Full-screen overlay. Laid out as a flex column so the parts size themselves
+// to whatever height is available — no fixed pixel heights, no absolute
+// positioning. Hidden by default (height:0, no animation) to avoid a CLS on
+// load; open/close animations only run on an actual toggle.
 section {
   position: fixed;
-  width: 100vw;
-  max-width: 100%;
-  height: $menu-overlay-height;
-  background: $bg-color;
-  z-index: 998;
   bottom: 0;
+  width: 100%;
+  height: 0;
   overflow: hidden;
-  padding: 0px 100px 0px 100px;
-  @include dflex($fd: column);
-  @media (max-width: 1200px) {
-    padding: 0px 50px 0px 50px;
-  }
-  @media (max-width: 700px) {
-    padding: 0px 25px 0px 25px;
-  }
+  z-index: 998;
+  background: $bg-color;
+  display: flex;
+  flex-direction: column;
+
   &.open {
     animation: slideInFromTop 0.5s forwards;
   }
@@ -26,124 +24,100 @@ section {
     animation: slideOutToTop 0.5s forwards;
   }
 }
+
 .menu-content {
-  height: $menu-overlay-height;
-  position: relative;
-  width: 100vw;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
   max-width: 1920px;
-  .menu-links {
-    caret-color: transparent;
-    position: relative;
-    z-index: 2;
-    height: 70%;
-    @include dflex($fd: column, $g: 40px);
-    text-align: center;
-    @media (max-width: 900px) {
-      height: 62%;
-    }
-    a {
-      font-size: 96px;
-      font-weight: 700;
-      padding: 4px 32px;
-      transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-      cursor: pointer;
-      @media (max-width: 1200px) {
-        font-size: 8vw;
-      }
-      @media (max-width: 400px) {
-        font-size: 10vw;
-      }
-      &:hover {
-        color: #fff;
-        box-shadow: inset 1200px 0 0 0 black;
-      }
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+// Nav links take all the room above the bottom block and center within it.
+// If a very short viewport still can't fit them, this area scrolls.
+.menu-links {
+  flex: 1;
+  min-height: 0;
+  // Size container: link font scales with the actual height of this area (cqh),
+  // so the four links always fit and stay centered at any viewport height.
+  container-type: size;
+  overflow-y: auto;
+  overflow-x: hidden;
+  caret-color: transparent;
+  padding: clamp(12px, 3vh, 24px) clamp(25px, 5vw, 100px);
+  @include dflex($fd: column, $jc: center, $g: clamp(8px, 3vh, 40px));
+  text-align: center;
+
+  a {
+    font-size: clamp(24px, 12cqh, 90px);
+    font-weight: 700;
+    padding: 4px 32px;
+    cursor: pointer;
+    transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+
+    &:hover {
+      color: #fff;
+      box-shadow: inset 1200px 0 0 0 black;
     }
   }
 }
 
+// Bottom block: black, full-width, with a diagonal top edge via clip-path
+// (resolution-independent, scales with the box). Its height comes from its
+// content + padding, so it never crowds out the links.
 .bottom-menu {
-  width: 100vw;
-  position: absolute;
-  bottom: 0;
-  color: white;
-  z-index: 1;
+  flex: 0 0 auto;
+  width: 100%;
   max-width: 1920px;
+  margin-inline: auto;
+
   .rectangle {
-    position: relative;
-    height: 348px;
-    background-image: url("./../../../../../public/assets/img/rectangle.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background: black;
+    color: white;
+    clip-path: polygon(0 0, 100% 40px, 100% 100%, 0 100%);
+    padding: clamp(48px, 8vh, 96px) clamp(25px, 5vw, 100px)
+      clamp(24px, 4vh, 50px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 4vh, 40px);
+
     .sayHello {
-      position: absolute;
-      margin-left: 100px;
-      background: black;
-      top: 150px;
       cursor: default;
-      @include dflex($fd: column, $ai: start, $jc: start);
-      @media (max-width: 1200px) {
-        margin-left: 50px;
-      }
-      @media (max-width: 900px) {
-        top: 220px;
-      }
-      @media (max-width: 700px) {
-        margin-left: 25px;
-      }
       span {
         font-weight: 800;
-        font-size: 4.063vw;
-        @media (max-width: 900px) {
-          font-size: 32px;
-        }
+        font-size: clamp(28px, 4.063vw, 56px);
         &:hover {
           color: $color-highlight;
         }
       }
     }
+
     .menu-email {
-      padding-inline: 100px;
-      position: absolute;
-      color: $color-highlight;
-      bottom: 50px;
-      width: 100%;
       @include dflex($ai: center, $jc: space-between);
-      @media (max-width: 1200px) {
-        padding-left: 50px;
-      }
-      @media (max-width: 700px) {
-        padding-left: 25px;
-      }
+
       a {
         cursor: pointer;
         font-family: Overpass;
         font-weight: 300;
-        margin-top: 8px;
         color: white;
-        font-size: 1.2vw;
-        @media (max-width: 1200px) {
-          font-size: 19px;
-        }
+        font-size: clamp(16px, 1.2vw, 19px);
         &:hover {
           color: $color-highlight;
         }
-        @media (max-width: 600px) {
-          font-size: 16px;
-        }
       }
+
       .menu-icons {
         @include dflex($g: 2.7vw);
         @media (max-width: 900px) {
           display: none;
         }
-        a svg {
-          path {
-            transition: fill 0.2s ease;
-          }
-          &:hover path {
-            fill: $color-highlight;
-          }
+        a svg path {
+          transition: fill 0.2s ease;
+        }
+        a svg:hover path {
+          fill: $color-highlight;
         }
       }
     }

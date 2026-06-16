@@ -41,7 +41,7 @@ section {
       > img {
         cursor: pointer;
         width: 140px;
-        height: 55px;
+        height: auto;
       }
       .email {
         @include dflex($g: 5px);
