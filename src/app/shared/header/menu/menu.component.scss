@@ -40,15 +40,18 @@ section {
 .menu-links {
   flex: 1;
   min-height: 0;
+  // Size container: link font scales with the actual height of this area (cqh),
+  // so the four links always fit and stay centered at any viewport height.
+  container-type: size;
   overflow-y: auto;
   overflow-x: hidden;
   caret-color: transparent;
-  padding: 24px clamp(25px, 5vw, 100px);
-  @include dflex($fd: column, $jc: center, $g: clamp(12px, 4vh, 40px));
+  padding: clamp(12px, 3vh, 24px) clamp(25px, 5vw, 100px);
+  @include dflex($fd: column, $jc: center, $g: clamp(8px, 3vh, 40px));
   text-align: center;
 
   a {
-    font-size: clamp(28px, min(8vw, 9vh), 96px);
+    font-size: clamp(24px, 12cqh, 90px);
     font-weight: 700;
     padding: 4px 32px;
     cursor: pointer;
@@ -73,7 +76,7 @@ section {
   .rectangle {
     background: black;
     color: white;
-    clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 40px, 100% 100%, 0 100%);
     padding: clamp(48px, 8vh, 96px) clamp(25px, 5vw, 100px)
       clamp(24px, 4vh, 50px);
     display: flex;
