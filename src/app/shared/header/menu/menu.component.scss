@@ -13,7 +13,7 @@ section {
   height: 0;
   overflow: hidden;
   z-index: 998;
-  background: $bg-color;
+  background: var(--bg);
   display: flex;
   flex-direction: column;
 
@@ -50,10 +50,18 @@ section {
   @include dflex($fd: column, $jc: center, $g: clamp(8px, 3vh, 40px));
   text-align: center;
 
-  a {
-    font-size: clamp(24px, 12cqh, 90px);
+  button {
+    // Reset native button chrome; keep it a real <button> for semantics/keyboard.
+    border: 0;
+    background: transparent;
+    appearance: none;
+    font-family: inherit;
+    color: inherit;
+    // Size by container height (cqh) but also cap by viewport width (vw) so the
+    // links never get huge / overflow on narrow phones.
+    font-size: clamp(20px, min(11cqh, 11vw), 80px);
     font-weight: 700;
-    padding: 4px 32px;
+    padding: 4px clamp(12px, 5vw, 32px);
     cursor: pointer;
     transition: color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 

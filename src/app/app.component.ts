@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { HeaderComponent } from './shared/header/header.component';
 import { RouterOutlet } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { MenuComponent } from './shared/footer/menu.component';
 import { ContactComponent } from './shared/contact/contact.component';
 import { AnalyticsService } from './analytics.service';
@@ -13,7 +14,13 @@ import { AnalyticsService } from './analytics.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, MenuComponent, ContactComponent],
+  imports: [
+    RouterOutlet,
+    TranslateModule,
+    HeaderComponent,
+    MenuComponent,
+    ContactComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

@@ -77,6 +77,8 @@ export class ContactComponent {
   }
 
   openDialog(): void {
-    this.dialog.open(ContactFormPopupComponent);
+    this.dialog.open(ContactFormPopupComponent, {
+      ariaLabelledBy: 'email-sent-title',
+    });
   }
 }

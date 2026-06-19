@@ -38,16 +38,22 @@ section {
         gap: 56px;
         align-items: center;
       }
-      > img {
+      > .logo-btn {
         cursor: pointer;
-        width: 140px;
-        height: auto;
+        border: 0;
+        padding: 0;
+        background: transparent;
+        line-height: 0;
+        img {
+          display: block;
+          width: 140px;
+          height: auto;
+        }
       }
       .email {
-        @include dflex($g: 5px);
-        @media (min-width: 901px) {
-          display: none;
-        }
+        // Redundant with the email icon link above; hidden everywhere. The
+        // copyright (.tag) shows instead, on mobile and desktop alike.
+        display: none;
         > a {
           font-size: 23px;
           color: white;
@@ -63,9 +69,6 @@ section {
       }
       .tag {
         @include dflex($g: 5px);
-        @media (max-width: 900px) {
-          display: none;
-        }
       }
     }
     .menu-icons {
@@ -92,6 +95,9 @@ section {
         color: white;
         bottom: -20px;
         right: 0;
+        // Padding lifts the tap target toward the 24px minimum (WCAG 2.5.8).
+        display: inline-block;
+        padding: 6px 4px;
         transition: color 0.2s ease;
         @media (max-width: 900px) {
           text-align: center;

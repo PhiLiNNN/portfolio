@@ -1,0 +1,17 @@
+<section [attr.aria-labelledby]="'services-heading'">
+  <div class="services autoShow">
+    <div class="services-header">
+      <h2 id="services-heading">{{ "services.title" | translate }}</h2>
+    </div>
+    <p class="services-intro">{{ "services.intro" | translate }}</p>
+    <ul class="services-grid">
+      @for (card of cards; track card) {
+      <li class="service-card">
+        <h3>{{ "services." + card + ".title" | translate }}</h3>
+        <p>{{ "services." + card + ".text" | translate }}</p>
+        <p class="service-tags">{{ "services." + card + ".tags" | translate }}</p>
+      </li>
+      }
+    </ul>
+  </div>
+</section>

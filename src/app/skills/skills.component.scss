@@ -15,14 +15,14 @@ section {
 }
 
 .skills {
+  width: 100%;
   max-width: 1920px;
   position: relative;
-  border: 4px solid black;
-  padding-block: 100px;
-  @include dflex();
-  flex-wrap: wrap;
+  border: 4px solid var(--text);
+  padding: 90px clamp(20px, 4vw, 60px) 70px;
+  @include dflex($fd: column, $g: 55px);
   @media (max-width: 1397px) {
-    padding-block: 40px;
+    padding: 60px clamp(20px, 4vw, 60px) 40px;
   }
   .skills-header {
     position: absolute;
@@ -30,7 +30,7 @@ section {
     transform: translateX(-50%);
     top: -50px;
     padding-inline: 23px;
-    background: $bg-color;
+    background: var(--bg);
     @media (max-width: 900px) {
       top: -5vw;
       padding-inline: 16px;
@@ -60,38 +60,59 @@ section {
       }
     }
   }
-  .icon-box {
-    @include dflex($fd: column, $g: 10px);
-    opacity: 0;
-    padding: clamp(20px, 5vw, 60px);
-    @media (max-width: 1397px) {
-      padding: clamp(20px, 4vw, 60px);
-    }
-    &.show-icons {
-      animation: showIcons 1s forwards;
-    }
-    &:hover {
-      span {
-        color: $color-highlight;
-      }
-      img {
-        transform: rotateY(360deg) scale(1.2);
-      }
-    }
+}
+
+.skill-group {
+  width: 100%;
+  @include dflex($fd: column, $g: 22px);
+}
+
+.group-title {
+  font-family: "Overpass";
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-text);
+  text-align: center;
+  margin: 0;
+}
+
+.icon-row {
+  @include dflex();
+  flex-wrap: wrap;
+}
+
+.icon-box {
+  @include dflex($fd: column, $g: 10px);
+  opacity: 0;
+  padding: clamp(14px, 2.5vw, 40px);
+  &.show-icons {
+    animation: showIcons 1s forwards;
+  }
+  &:hover {
     span {
-      transition: color 0.175s ease-in-out;
-      font-family: "Overpass";
-      font-weight: 700;
-      text-align: center;
-      text-wrap: wrap;
-      width: clamp(77px, 5vw, 100px);
-      height: 40px;
+      color: $color-highlight;
     }
     img {
-      width: clamp(60px, 5vw, 100px);
-      height: clamp(60px, 5vw, 100px);
-      transition: transform 0.5s ease-in-out;
+      transform: rotateY(360deg) scale(1.2);
     }
+  }
+  span {
+    transition: color 0.175s ease-in-out;
+    font-family: "Overpass";
+    font-weight: 700;
+    text-align: center;
+    text-wrap: wrap;
+    width: clamp(77px, 5vw, 100px);
+    height: 40px;
+  }
+  img {
+    width: clamp(60px, 5vw, 100px);
+    height: clamp(60px, 5vw, 100px);
+    transition: transform 0.5s ease-in-out;
+    // Black silhouette icons invert to light in dark mode.
+    filter: var(--img-invert);
   }
 }
 

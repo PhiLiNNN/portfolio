@@ -2,18 +2,14 @@
   <div class="bottom-wrapper">
     <div class="bottom">
       <div class="content">
-        <img
-          src="./assets/img/logo/logo3.png"
-          alt=""
-          width="611"
-          height="306"
-          role="button"
-          tabindex="0"
+        <button
+          class="logo-btn"
+          type="button"
           [attr.aria-label]="'a11y.scrollToTop' | translate"
           (click)="backToTop()"
-          (keydown.enter)="backToTop()"
-          (keydown.space)="backToTop()"
-        />
+        >
+          <img src="./assets/img/logo/logo3.png" alt="" width="611" height="306" />
+        </button>
         <div class="tag">
           <span>&copy;</span>
           <span class="padding"> Philipp Wendschuch {{ currentYear }}</span>
@@ -65,7 +61,7 @@
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://www.linkedin.com/feed/"
+          href="https://www.linkedin.com/in/philipp-wendschuch-53228129a/"
           [attr.aria-label]="'a11y.linkedin' | translate"
         >
           <svg

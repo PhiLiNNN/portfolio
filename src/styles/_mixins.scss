@@ -13,9 +13,9 @@
   $mb: 0px,
   $hmr: -21.5px,
   $hml: -21.5px,
-  $co: black,
-  $bgCo: black,
-  $coAc: white
+  $co: var(--text),
+  $bgCo: var(--text),
+  $coAc: var(--bg)
 ) {
   cursor: pointer;
   height: 68px;

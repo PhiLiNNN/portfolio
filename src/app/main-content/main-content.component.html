@@ -2,30 +2,24 @@
 <app-aboutMe id="aboutMe-section"></app-aboutMe>
 <app-arrow
   alignment="right"
-  role="button"
-  tabindex="0"
-  [attr.aria-label]="'a11y.scrollDown' | translate"
-  (click)="scrollTo('skills-section')"
-  (keydown.enter)="scrollTo('skills-section')"
-  (keydown.space)="scrollTo('skills-section')"
+  [ariaLabel]="'a11y.scrollDown' | translate"
+  (activate)="scrollTo('skills-section')"
 />
 <app-skills id="skills-section"></app-skills>
 <app-arrow
   alignment="left"
-  role="button"
-  tabindex="0"
-  [attr.aria-label]="'a11y.scrollDown' | translate"
-  (click)="scrollTo('ref-section')"
-  (keydown.enter)="scrollTo('ref-section')"
-  (keydown.space)="scrollTo('ref-section')"
+  [ariaLabel]="'a11y.scrollDown' | translate"
+  (activate)="scrollTo('services-section')"
+/>
+<app-services-offer id="services-section"></app-services-offer>
+<app-arrow
+  alignment="right"
+  [ariaLabel]="'a11y.scrollDown' | translate"
+  (activate)="scrollTo('ref-section')"
 />
 <app-references id="ref-section"></app-references>
 <app-arrow
   alignment="right"
-  role="button"
-  tabindex="0"
-  [attr.aria-label]="'a11y.scrollDown' | translate"
-  (click)="scrollTo('contact-section')"
-  (keydown.enter)="scrollTo('contact-section')"
-  (keydown.space)="scrollTo('contact-section')"
+  [ariaLabel]="'a11y.scrollDown' | translate"
+  (activate)="scrollTo('contact-section')"
 />

@@ -1,5 +1,8 @@
 {
   "a11y": {
+    "skipToContent": "Skip to content",
+    "themeDark": "Switch to dark mode",
+    "themeLight": "Switch to light mode",
     "scrollToTop": "Scroll to top",
     "scrollDown": "Scroll to next section",
     "backToHome": "Back to home",
@@ -29,12 +32,34 @@
   },
   "aboutMe": {
     "aboutMe": "About me",
-    "description": "I am a Front-End Developer based in Leipzig, Germany. After a decade in logistics, I transitioned to education, earning a Master's in Medical Physics. My journey into programming began during my master's studies, where I gained foundational knowledge in Python for data analysis. Having completed my front-end development training, I am now expanding my expertise into back-end development to become a full-stack developer. I am passionate about coding and aim to pursue a professional career as a skilled programmer.",
-    "contactMe": "If you think I'd be good match for your Projects, contact me!",
+    "description": "I am a Full-Stack Developer based in Leipzig, Germany. After a decade in logistics, I transitioned to education, earning a Master's in Medical Physics, where I first got into programming with Python for data analysis. For the past two years I have been working professionally as a developer, and alongside that I run my own freelance business building websites end to end — from front-end to back-end. I am passionate about coding and committed to growing as a skilled, well-rounded programmer.",
+    "contactMe": "If you think I'd be a good match for your projects, get in touch!",
     "letsTalk": "Let's talk"
   },
   "mySkills": {
-    "mySkills": "My Skills"
+    "mySkills": "My Skills",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "devops": "DevOps & Tools"
+  },
+  "services": {
+    "title": "What I offer",
+    "intro": "From a polished landing page to a full-blown web app — I build the whole thing, and I build it right.",
+    "card1": {
+      "title": "Modern websites",
+      "text": "Fast, responsive websites that are GDPR-compliant, accessible (WCAG) and meet today's web standards — looking sharp on every device.",
+      "tags": "GDPR-compliant | Accessible | Responsive | SEO-ready"
+    },
+    "card2": {
+      "title": "Full-stack web apps",
+      "text": "Custom software built end to end: Angular or React on the front, solid APIs and databases on the back — whatever your product needs.",
+      "tags": "Angular | React | REST APIs | Databases"
+    },
+    "card3": {
+      "title": "Code & consulting",
+      "text": "Reviews for performance, accessibility and code quality, plus ongoing maintenance to keep your existing site fast, secure and up to date.",
+      "tags": "Performance | Accessibility | Maintenance | Code review"
+    }
   },
   "portfolio": {
     "headerDescription": "Explore a selection of my work here - Interact with projects to see my skills in action."
@@ -76,7 +101,7 @@
     },
     "sayHello": "Say Hi!",
     "discussProject": "Want to discuss a new project?",
-    "contactRequest": "Say hello! let's discuss your ideas and make it happen",
+    "contactRequest": "Say hello! Let's discuss your ideas and make them happen.",
     "formName": "Your name",
     "formEmail": "Your email",
     "formMessage": "Your message",
@@ -84,7 +109,7 @@
     "privacyPolicy": "privacy policy",
     "privacyPolicyTextAfter": "and agree to the processing of my data as outlined",
     "sendMessage": "Send message",
-    "sendMessageMobile": "Say hello :)",
+    "sendMessageMobile": "Say hi",
     "legalNotice": "Legal notice"
   },
   "imprint": {

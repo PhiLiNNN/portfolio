@@ -39,6 +39,7 @@ export class AotComponent implements OnInit {
 
   onMouseEnter(): void {
     if (!isPlatformBrowser(this.platformId)) return;
+    if (window.innerWidth <= 900) return;
 
     const underneathEl = this.el.nativeElement.querySelector('.underneath');
     if (!underneathEl) return;
@@ -48,6 +49,7 @@ export class AotComponent implements OnInit {
 
   onMouseLeave(): void {
     if (!isPlatformBrowser(this.platformId)) return;
+    if (window.innerWidth <= 900) return;
 
     const underneathEl = this.el.nativeElement.querySelector('.underneath');
     if (!underneathEl) return;

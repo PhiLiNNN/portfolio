@@ -24,7 +24,7 @@
       }
       .ref-animate .img-container::before {
         z-index: 1;
-        border-color: black;
+        border-color: var(--text);
         transform: translateY(20px) translateX(-20px);
       }
       .ref-animate .img-container img {
@@ -131,7 +131,7 @@
         transition: transform 0.175s, border-color 0.175s;
         @media (max-width: 900px) {
           z-index: 1;
-          border-color: black;
+          border-color: var(--text);
           left: 10%;
           transform: translateY(20px) translateX(-20px);
         }
@@ -164,7 +164,7 @@
         @media (max-width: 500px) {
           align-items: center;
         }
-        > h2 {
+        > h3 {
           font-weight: 800;
           font-size: 45px;
           @media (min-width: 901px) and (max-width: 1400px) {

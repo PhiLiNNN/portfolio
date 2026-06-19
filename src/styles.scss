@@ -39,10 +39,28 @@ $portfolio-theme: mat.define-theme(
 // Comment out the line below if you want to use the deprecated `color` inputs.
 // @include mat.color-variants-backwards-compatibility($portfolio-theme);
 
+// Theme tokens. Light values equal the original hard-coded colors, so light
+// mode is unchanged; [data-theme="dark"] (set by the header toggle / the
+// no-flash script in index.html) overrides them. The black panels (contact,
+// footer, menu bottom block) intentionally stay black in both themes.
+:root {
+  --bg: #{$bg-color};
+  --text: #000000;
+  --img-invert: none;
+  // Green for small text: darker on cream (readable), bright brand green on dark.
+  --accent-text: #00795c;
+}
+:root[data-theme="dark"] {
+  --bg: #16130d;
+  --text: #f4ecdb;
+  --img-invert: invert(1);
+  --accent-text: #{$color-highlight};
+}
+
 body {
   margin: 0;
-  background-color: $bg-color;
-  color: black;
+  background-color: var(--bg);
+  color: var(--text);
   font-family: "Syne";
 }
 
@@ -57,6 +75,24 @@ body {
 :focus-visible {
   outline: 3px solid $color-highlight;
   outline-offset: 2px;
+}
+
+// Skip link: off-screen until focused, then pinned to the top-left (WCAG 2.4.1).
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -60px;
+  z-index: 1000;
+  padding: 10px 16px;
+  background: #000;
+  color: $bg-color;
+  font-family: "Overpass";
+  font-weight: 700;
+  border-radius: 0;
+  transition: top 0.15s ease-in-out;
+  &:focus-visible {
+    top: 8px;
+  }
 }
 
 // Screen-reader-only utility: hidden visually, available to assistive tech.
