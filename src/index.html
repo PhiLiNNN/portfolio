@@ -9,6 +9,9 @@
     />
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Set the theme before first paint to avoid a light/dark flash (FOUC).
+         External (not inline) so it passes the strict CSP. -->
+    <script src="theme-init.js"></script>
     <meta property="og:title" content="Philipp Wendschuch – Frontend Developer" />
     <meta
       property="og:description"

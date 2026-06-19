@@ -15,6 +15,7 @@
   color: #e0e0e0;
 }
 
-.ok-button:focus {
-  outline: none;
+.ok-button:focus-visible {
+  outline: 3px solid #00795c;
+  outline-offset: 2px;
 }

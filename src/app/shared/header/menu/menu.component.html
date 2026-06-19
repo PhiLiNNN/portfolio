@@ -1,38 +1,34 @@
 <section [ngClass]="{ open: menuOpen === true, close: menuOpen === false }">
-  <div class="menu-content">
+  <div
+    class="menu-content"
+    [cdkTrapFocus]="menuOpen === true"
+    [cdkTrapFocusAutoCapture]="menuOpen === true"
+  >
     <nav class="menu-links" [attr.inert]="menuOpen ? null : ''">
-      <a
-        role="button"
-        tabindex="0"
+      <button
+        type="button"
         (click)="navigateToSection('aboutMe-section')"
-        (keydown.enter)="navigateToSection('aboutMe-section')"
-        (keydown.space)="navigateToSection('aboutMe-section')"
-        >{{ "menu.aboutMe" | translate }}</a
       >
-      <a
-        role="button"
-        tabindex="0"
+        {{ "menu.aboutMe" | translate }}
+      </button>
+      <button
+        type="button"
         (click)="navigateToSection('skills-section')"
-        (keydown.enter)="navigateToSection('skills-section')"
-        (keydown.space)="navigateToSection('skills-section')"
-        >{{ "menu.mySkills" | translate }}</a
       >
-      <a
-        role="button"
-        tabindex="0"
+        {{ "menu.mySkills" | translate }}
+      </button>
+      <button
+        type="button"
         (click)="navigateToSection('portfolio-section')"
-        (keydown.enter)="navigateToSection('portfolio-section')"
-        (keydown.space)="navigateToSection('portfolio-section')"
-        >{{ "menu.portfolio" | translate }}</a
       >
-      <a
-        role="button"
-        tabindex="0"
+        {{ "menu.portfolio" | translate }}
+      </button>
+      <button
+        type="button"
         (click)="navigateToSection('contact-section')"
-        (keydown.enter)="navigateToSection('contact-section')"
-        (keydown.space)="navigateToSection('contact-section')"
-        >{{ "menu.contact" | translate }}</a
       >
+        {{ "menu.contact" | translate }}
+      </button>
     </nav>
     <div class="bottom-menu">
       <div class="rectangle">
@@ -87,7 +83,7 @@
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://www.linkedin.com/feed/"
+              href="https://www.linkedin.com/in/philipp-wendschuch-53228129a/"
               [attr.aria-label]="'a11y.linkedin' | translate"
               ><svg
                 aria-hidden="true"

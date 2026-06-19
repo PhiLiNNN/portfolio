@@ -22,7 +22,7 @@
     font-size: 134px;
     cursor: default;
     mask-image: url("./../../../public/assets/img/mask.svg");
-    background: $bg-color;
+    background: var(--bg);
     mask-repeat: no-repeat;
     color: $color-highlight;
     transition: mask-size 0.3s ease-in-out;
@@ -36,13 +36,23 @@
       font-size: 11vw;
     }
   }
+  // Mobile has no hover, so the magnifier can't work there. Instead the title
+  // periodically cross-fades to the hidden "Coding with Heart" and back — a
+  // clean swap (the green layer is opaque, so it covers the headline). Disabled
+  // for prefers-reduced-motion users by the global reduced-motion rule.
+  .underneath--auto {
+    mask: none;
+    -webkit-mask: none;
+    opacity: 0;
+    animation: titleSwap 6s ease-in-out infinite;
+  }
   .underline-name {
     @include dflex($g: 8px);
     .underline {
       height: 3px;
       // width: 26vw;
       width: 480px;
-      background: black;
+      background: var(--text);
       @media (max-width: 1200px) {
         width: 26vw;
       }
@@ -63,5 +73,20 @@
         font-size: 4vw;
       }
     }
+  }
+}
+
+@keyframes titleSwap {
+  0%,
+  6% {
+    opacity: 0;
+  }
+  22%,
+  47% {
+    opacity: 1;
+  }
+  63%,
+  100% {
+    opacity: 0;
   }
 }

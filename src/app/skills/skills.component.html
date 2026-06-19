@@ -1,19 +1,26 @@
-<section>
+<section [attr.aria-labelledby]="'skills-heading'">
   <div class="skills autoShow">
     <div class="skills-header">
-      <h2>{{ "mySkills.mySkills" | translate }}</h2>
+      <h2 id="skills-heading">{{ "mySkills.mySkills" | translate }}</h2>
     </div>
-    @for (icon of iconArr; track icon; let idx = $index) {
-    <div
-      class="icon-box"
-      [style.animation-delay]="idx * 0.125 + 's'"
-      [ngClass]="{ 'show-icons': showIcons }"
-    >
-      <img
-        [src]="'./assets/img/icons/' + icon.src + '.svg'"
-        [alt]="icon.name"
-      />
-      <span>{{ icon.name }}</span>
+    @for (group of skillGroups; track group.titleKey) {
+    <div class="skill-group">
+      <h3 class="group-title">{{ group.titleKey | translate }}</h3>
+      <div class="icon-row">
+        @for (icon of group.icons; track icon.src; let idx = $index) {
+        <div
+          class="icon-box"
+          [style.animation-delay]="idx * 0.1 + 's'"
+          [ngClass]="{ 'show-icons': showIcons }"
+        >
+          <img
+            [src]="'./assets/img/icons/' + icon.src + '.svg'"
+            [alt]="icon.name"
+          />
+          <span>{{ icon.name }}</span>
+        </div>
+        }
+      </div>
     </div>
     }
   </div>

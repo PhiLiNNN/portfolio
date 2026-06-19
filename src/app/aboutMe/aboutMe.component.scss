@@ -88,7 +88,7 @@ section {
       }
     }
     &:hover::before {
-      border-color: black;
+      border-color: var(--text);
       transform: translateY(20px) translateX(20px);
       @media (max-width: 450px) {
         transform: translateY(10px) translateX(10px);

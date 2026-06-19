@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AotComponent } from './../aot/aot.component';
 import { AboutMeComponent } from './../aboutMe/aboutMe.component';
 import { SkillsComponent } from './../skills/skills.component';
+import { ServicesOfferComponent } from './../services-offer/services-offer.component';
 import { ReferencesComponent } from './../references/references.component';
 import { ArrowComponent } from '../shared/arrow/arrow.component';
 
@@ -21,6 +22,7 @@ import { ArrowComponent } from '../shared/arrow/arrow.component';
     AotComponent,
     AboutMeComponent,
     SkillsComponent,
+    ServicesOfferComponent,
     ReferencesComponent,
     ArrowComponent,
     TranslateModule,

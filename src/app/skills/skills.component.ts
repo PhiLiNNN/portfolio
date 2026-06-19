@@ -18,19 +18,39 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './skills.component.scss',
 })
 export class SkillsComponent {
-  iconArr = [
-    { src: 'angular', name: 'Angular' },
-    { src: 'typescript', name: 'TypeScript' },
-    { src: 'javascript', name: 'JavaScript' },
-    { src: 'python', name: 'Python' },
-    { src: 'html', name: 'HTML' },
-    { src: 'css', name: 'CSS' },
-    { src: 'firebase', name: 'Firebase' },
-    { src: 'git', name: 'Git' },
-    { src: 'scrum', name: 'Scrum' },
-    { src: 'api', name: 'Rest Api' },
-    { src: 'material', name: 'Material Design' },
-    { src: 'plsql', name: 'PL/SQL' },
+  skillGroups = [
+    {
+      titleKey: 'mySkills.frontend',
+      icons: [
+        { src: 'angular', name: 'Angular' },
+        { src: 'typescript', name: 'TypeScript' },
+        { src: 'javascript', name: 'JavaScript' },
+        { src: 'html', name: 'HTML' },
+        { src: 'css', name: 'CSS' },
+        { src: 'material', name: 'Material Design' },
+      ],
+    },
+    {
+      titleKey: 'mySkills.backend',
+      icons: [
+        { src: 'python', name: 'Python' },
+        { src: 'flask', name: 'Flask' },
+        { src: 'django', name: 'Django' },
+        { src: 'fastapi', name: 'FastAPI' },
+        { src: 'firebase', name: 'Firebase' },
+        { src: 'api', name: 'Rest Api' },
+        { src: 'plsql', name: 'PL/SQL' },
+      ],
+    },
+    {
+      titleKey: 'mySkills.devops',
+      icons: [
+        { src: 'docker', name: 'Docker' },
+        { src: 'cicd', name: 'CI/CD' },
+        { src: 'git', name: 'Git' },
+        { src: 'scrum', name: 'Scrum' },
+      ],
+    },
   ];
 
   showIcons = false;

@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostListener,
   Inject,
   Input,
   Output,
@@ -9,6 +10,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { A11yModule } from '@angular/cdk/a11y';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 
@@ -16,13 +18,19 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, A11yModule, TranslateModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent {
   @Input() menuOpen: boolean | null = null;
   @Output() menuToggle = new EventEmitter<void>();
+
+  /** Close the overlay menu with Escape (WCAG 2.1.2 / 2.1.1). */
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.menuOpen) this.closeMenu();
+  }
 
   constructor(
     private renderer: Renderer2,

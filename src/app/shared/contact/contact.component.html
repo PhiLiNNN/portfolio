@@ -209,33 +209,36 @@
           >
             {{ "footer.sendMessageMobile" | translate }}
           </button>
-          <svg
+          <button
+            type="button"
+            class="scroll-top-btn"
             (click)="scrollToTop()"
-            (keydown.enter)="scrollToTop()"
-            (keydown.space)="scrollToTop()"
-            role="button"
-            tabindex="0"
             [attr.aria-label]="'a11y.scrollToTop' | translate"
-            class="arrow"
-            width="40"
-            height="56"
-            viewBox="0 0 40 56"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              class="arrow-head"
-              d="M37.8525 17.1265L19.9263 3.00025L2.00011 17.1265"
-              stroke="#FFFCF3"
-              stroke-width="4"
-            />
-            <path
-              class="arrow-shaft"
-              d="M19.9263 55.0439L19.9263 3"
-              stroke="#FFFCF3"
-              stroke-width="4"
-            />
-          </svg>
+            <svg
+              class="arrow"
+              aria-hidden="true"
+              focusable="false"
+              width="40"
+              height="56"
+              viewBox="0 0 40 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="arrow-head"
+                d="M37.8525 17.1265L19.9263 3.00025L2.00011 17.1265"
+                stroke="#FFFCF3"
+                stroke-width="4"
+              />
+              <path
+                class="arrow-shaft"
+                d="M19.9263 55.0439L19.9263 3"
+                stroke="#FFFCF3"
+                stroke-width="4"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </form>

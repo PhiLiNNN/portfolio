@@ -2,9 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
   Inject,
   Input,
+  Output,
   PLATFORM_ID,
 } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
@@ -23,6 +25,8 @@ export class ArrowComponent {
   @Input() alignment: 'left' | 'right' = 'left';
   @Input() sectionId: string = this.generateUniqueId();
   @Input() maxOffset = 4;
+  @Input() ariaLabel = '';
+  @Output() activate = new EventEmitter<void>();
 
   constructor(
     private el: ElementRef,
@@ -52,6 +56,9 @@ export class ArrowComponent {
 
   triggerAnimation(direction: 'forward'): void {
     if (!isPlatformBrowser(this.platformId)) return;
+
+    // Respect reduced-motion: SMIL <animate> isn't covered by the CSS media query.
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
 
     const animElement = document.getElementById(
       this.sectionId

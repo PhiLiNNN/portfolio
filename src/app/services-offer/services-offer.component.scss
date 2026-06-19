@@ -1,0 +1,118 @@
+@use '../../styles/index' as *;
+
+section {
+  width: 100vw;
+  max-width: 100%;
+  padding-inline: 100px;
+  padding-top: 140px;
+  @include dflex($fd: column);
+  @media (max-width: 1200px) {
+    padding-inline: 50px;
+  }
+  @media (max-width: 700px) {
+    padding-inline: 25px;
+  }
+}
+
+.services {
+  width: 100%;
+  max-width: 1920px;
+  position: relative;
+  border: 4px solid var(--text);
+  padding: 90px clamp(20px, 5vw, 70px) 70px;
+  @include dflex($fd: column, $g: 50px);
+  @media (max-width: 1397px) {
+    padding: 70px clamp(20px, 5vw, 70px) 40px;
+  }
+}
+
+.services-header {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -50px;
+  padding-inline: 23px;
+  background: var(--bg);
+  @media (max-width: 900px) {
+    top: -5vw;
+    padding-inline: 16px;
+  }
+  @media (max-width: 500px) {
+    padding-inline: 8px;
+  }
+  h2 {
+    white-space: nowrap;
+    font-size: 78px;
+    font-weight: 800;
+    cursor: default;
+    &:hover {
+      color: $color-highlight;
+    }
+    @media (max-width: 900px) {
+      font-size: 58px;
+    }
+    @media (max-width: 700px) {
+      font-size: 45px;
+    }
+    @media (max-width: 550px) {
+      font-size: 32px;
+    }
+    @media (max-width: 390px) {
+      font-size: 24px;
+    }
+  }
+}
+
+.services-intro {
+  font-family: "Overpass";
+  font-size: 23px;
+  text-align: center;
+  text-wrap: balance;
+  max-width: 720px;
+  margin: 0;
+  @media (max-width: 500px) {
+    font-size: 16px;
+  }
+}
+
+.services-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+}
+
+.service-card {
+  border: 2px solid var(--text);
+  padding: clamp(22px, 3vw, 36px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  &:hover,
+  &:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 8px 8px 0 black;
+  }
+  h3 {
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 800;
+    margin: 0;
+  }
+  p {
+    font-family: "Overpass";
+    font-size: clamp(15px, 1.3vw, 17px);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .service-tags {
+    margin-top: auto;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--accent-text);
+  }
+}

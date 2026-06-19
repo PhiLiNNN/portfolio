@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   EventEmitter,
   HostListener,
   Inject,
@@ -8,6 +9,7 @@ import {
   Output,
   PLATFORM_ID,
   Renderer2,
+  ViewChild,
 } from '@angular/core';
 import { isPlatformBrowser, CommonModule, DOCUMENT } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -28,9 +30,12 @@ export class HeaderComponent {
 
   isLenMenuOpen = false;
   menuOpen: boolean | null = null;
+  theme: 'light' | 'dark' = 'light';
 
   @Input() scrollToBottomBool: boolean | undefined;
   @Input() testVariable: boolean | undefined;
+
+  @ViewChild('burgerBtn') private burgerBtn?: ElementRef<HTMLElement>;
 
   constructor(
     private renderer: Renderer2,
@@ -41,6 +46,27 @@ export class HeaderComponent {
   ) {
     // Keep <html lang> in sync with the active UI language (a11y / SEO).
     this.setDocumentLang(this.translate.currentLang || 'en');
+
+    // Read the theme the no-flash script in index.html already applied.
+    if (isPlatformBrowser(this.platformId)) {
+      const current = this.document.documentElement.getAttribute('data-theme');
+      this.theme = current === 'dark' ? 'dark' : 'light';
+    }
+  }
+
+  toggleTheme(): void {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    this.renderer.setAttribute(
+      this.document.documentElement,
+      'data-theme',
+      this.theme
+    );
+
+    if (isPlatformBrowser(this.platformId)) {
+      try {
+        localStorage.setItem('theme', this.theme);
+      } catch {}
+    }
   }
 
   switchLanguage(language: string): void {
@@ -67,6 +93,8 @@ export class HeaderComponent {
       this.renderer.setStyle(document.body, 'overflow', 'hidden');
     } else {
       this.renderer.removeStyle(document.body, 'overflow');
+      // Return focus to the trigger when the overlay closes (WCAG 2.4.3).
+      this.burgerBtn?.nativeElement.focus();
     }
   }
 

@@ -10,7 +10,7 @@
       Coding with Heart
     </h1>
     }@else {
-    <h1 class="underneath" style="display: none" aria-hidden="true">
+    <h1 class="underneath underneath--auto" aria-hidden="true">
       Coding with Heart
     </h1>
     }
@@ -30,14 +30,7 @@
         </button>
       </div>
       <a href="mailto:contact@philipp-wendschuch.dev">contact&#64;philipp-wendschuch.dev</a>
-      <div
-        (click)="scrollToAboutMe()"
-        (keydown.enter)="scrollToAboutMe()"
-        (keydown.space)="scrollToAboutMe()"
-        role="button"
-        tabindex="0"
-        class="aot-arrow"
-      >
+      <button type="button" (click)="scrollToAboutMe()" class="aot-arrow">
         <img src="./assets/img/arrows/aot_arrow.svg" alt="" aria-hidden="true" />
         <div class="scroll-down">
           <span
@@ -45,7 +38,7 @@
             {{ "aot.down" | translate }}</span
           >
         </div>
-      </div>
+      </button>
     </div>
     <div class="invisibleBg"></div>
   </div>
