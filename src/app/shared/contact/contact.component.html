@@ -198,16 +198,28 @@
             type="submit"
             value="submit"
             [disabled]="!contactForm.form.valid || isSubmitting()"
+            [attr.aria-busy]="isSubmitting()"
           >
+            @if (isSubmitting()) {
+            <span class="btn-spinner" aria-hidden="true"></span>
+            <span class="sr-only">{{ "footer.sending" | translate }}</span>
+            } @else {
             {{ "footer.sendMessage" | translate }}
+            }
           </button>
           <button
             class="btn-mob"
             type="submit"
             value="submit"
             [disabled]="!contactForm.form.valid || isSubmitting()"
+            [attr.aria-busy]="isSubmitting()"
           >
+            @if (isSubmitting()) {
+            <span class="btn-spinner" aria-hidden="true"></span>
+            <span class="sr-only">{{ "footer.sending" | translate }}</span>
+            } @else {
             {{ "footer.sendMessageMobile" | translate }}
+            }
           </button>
           <button
             type="button"
