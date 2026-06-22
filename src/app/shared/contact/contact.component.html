@@ -197,7 +197,7 @@
             class="btn-desk"
             type="submit"
             value="submit"
-            [disabled]="!contactForm.form.valid"
+            [disabled]="!contactForm.form.valid || isSubmitting()"
           >
             {{ "footer.sendMessage" | translate }}
           </button>
@@ -205,7 +205,7 @@
             class="btn-mob"
             type="submit"
             value="submit"
-            [disabled]="!contactForm.form.valid"
+            [disabled]="!contactForm.form.valid || isSubmitting()"
           >
             {{ "footer.sendMessageMobile" | translate }}
           </button>
