@@ -8,9 +8,16 @@
 // Credentials live in mail-config.php (NOT in git). Create it on the server
 // next to this file, based on mail-config.example.php.
 
-const ALLOWED_ORIGIN = 'https://philipp-wendschuch.dev';
-
-header('Access-Control-Allow-Origin: ' . ALLOWED_ORIGIN);
+// Reflect the request origin if it's the production site or a localhost dev
+// origin (any port), so the browser lets the SPA read the response. Other
+// origins get no CORS header -> their JS can't read it (the form still works
+// only from the allowed origins).
+$allowedOrigins = ['https://philipp-wendschuch.dev'];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$isLocalhostDev = (bool) preg_match('#^https?://(localhost|127\.0\.0\.1)(:\d+)?$#', $origin);
+if (in_array($origin, $allowedOrigins, true) || $isLocalhostDev) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+}
 header('Vary: Origin');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {

@@ -1,6 +1,7 @@
 import {
   Component,
   inject,
+  signal,
   ChangeDetectionStrategy,
   Inject,
   PLATFORM_ID,
@@ -8,6 +9,7 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 
+import { finalize } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -50,11 +52,20 @@ export class ContactComponent {
   /** Honeypot field — must stay empty for real users; bots tend to fill it. */
   honeypot = '';
 
+  /** True while a submit request is in flight — blocks duplicate sends. */
+  readonly isSubmitting = signal(false);
+
+  /** True when the last submit failed — shows a visible error to the user. */
+  readonly submitFailed = signal(false);
+
   private readonly endPoint = 'https://philipp-wendschuch.dev/sendMail.php';
 
   onSubmit(ngForm: NgForm): void {
-    if (!ngForm.submitted || !ngForm.form.valid) return;
+    // Guard against double-submits (rapid clicks while the request is pending).
+    if (!ngForm.submitted || !ngForm.form.valid || this.isSubmitting()) return;
 
+    this.submitFailed.set(false);
+    this.isSubmitting.set(true);
     const payload = { ...this.contactData, website: this.honeypot };
 
     this.http
@@ -62,12 +73,16 @@ export class ContactComponent {
         headers: { 'Content-Type': 'text/plain' },
         responseType: 'text',
       })
+      .pipe(finalize(() => this.isSubmitting.set(false)))
       .subscribe({
         next: () => {
           ngForm.resetForm();
           this.openDialog();
         },
-        error: (error) => console.error(error),
+        error: (error) => {
+          console.error(error);
+          this.submitFailed.set(true);
+        },
       });
   }
 
