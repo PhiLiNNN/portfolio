@@ -111,6 +111,7 @@
     "sendMessage": "Send message",
     "sendMessageMobile": "Say hi",
     "sending": "Sending…",
+    "sendError": "Couldn't send your message. Please try again.",
     "legalNotice": "Legal notice"
   },
   "imprint": {

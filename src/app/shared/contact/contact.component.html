@@ -252,6 +252,9 @@
             </svg>
           </button>
         </div>
+        @if (submitFailed()) {
+        <p class="send-error" role="alert">{{ "footer.sendError" | translate }}</p>
+        }
       </div>
     </form>
   </div>

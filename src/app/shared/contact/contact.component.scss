@@ -415,3 +415,11 @@ textarea {
     transform: rotate(360deg);
   }
 }
+
+.send-error {
+  margin-top: 16px;
+  text-align: center;
+  font-family: "Overpass";
+  font-weight: 700;
+  color: $err-color;
+}

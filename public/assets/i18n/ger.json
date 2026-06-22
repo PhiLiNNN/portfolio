@@ -111,6 +111,7 @@
     "sendMessage": "Nachricht senden",
     "sendMessageMobile": "Sag Hallo",
     "sending": "Wird gesendet…",
+    "sendError": "Nachricht konnte nicht gesendet werden. Bitte erneut versuchen.",
     "legalNotice": "Impressum"
   },
   "imprint": {

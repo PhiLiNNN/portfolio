@@ -55,12 +55,16 @@ export class ContactComponent {
   /** True while a submit request is in flight — blocks duplicate sends. */
   readonly isSubmitting = signal(false);
 
+  /** True when the last submit failed — shows a visible error to the user. */
+  readonly submitFailed = signal(false);
+
   private readonly endPoint = 'https://philipp-wendschuch.dev/sendMail.php';
 
   onSubmit(ngForm: NgForm): void {
     // Guard against double-submits (rapid clicks while the request is pending).
     if (!ngForm.submitted || !ngForm.form.valid || this.isSubmitting()) return;
 
+    this.submitFailed.set(false);
     this.isSubmitting.set(true);
     const payload = { ...this.contactData, website: this.honeypot };
 
@@ -75,7 +79,10 @@ export class ContactComponent {
           ngForm.resetForm();
           this.openDialog();
         },
-        error: (error) => console.error(error),
+        error: (error) => {
+          console.error(error);
+          this.submitFailed.set(true);
+        },
       });
   }
 
