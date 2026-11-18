@@ -44,20 +44,21 @@ export class ThemeService {
     this.theme.set(theme);
     this.doc.documentElement.setAttribute('data-theme', theme);
     this.write(THEME_KEY, theme);
-    this.syncColorScheme(theme);
+    this.syncThemeColor(theme);
   }
 
   /**
-   * Safari picks its light or dark toolbar material from the colour scheme and
-   * only notices a freshly inserted meta element, so the element is replaced.
+   * Phone browser toolbars follow this meta. iOS Safari ignores a changed
+   * `content` attribute on the existing element, so the element is replaced.
    */
-  private syncColorScheme(theme: Theme): void {
-    this.doc.querySelectorAll('meta[name="color-scheme"]').forEach((m) => m.remove());
+  private syncThemeColor(theme: Theme): void {
+    const colour = theme === 'light' ? '#dfe6ef' : '#1e2530';
+    this.doc.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.remove());
     const meta = this.doc.createElement('meta');
-    meta.name = 'color-scheme';
-    meta.content = theme;
+    meta.name = 'theme-color';
+    meta.content = colour;
     this.doc.head.appendChild(meta);
-    this.doc.documentElement.style.colorScheme = theme;
+    this.doc.documentElement.style.backgroundColor = colour;
   }
 
   setHue(hue: number): void {
