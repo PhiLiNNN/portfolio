@@ -115,7 +115,7 @@
   }
 }
 .overlay-controls {
-  @include dflex($g: 12px);
+  @include dflex($g: 24px);
   flex-wrap: wrap;
   margin-top: 20px;
 }

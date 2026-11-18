@@ -82,7 +82,7 @@
 }
 
 .cta-row {
-  @include dflex($g: 16px);
+  @include dflex($g: 24px);
   flex-wrap: wrap;
   margin-top: 36px;
 }

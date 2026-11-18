@@ -83,13 +83,13 @@ img { max-width: 100%; display: block; }
   appearance: none; border: 0; cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   padding: 16px 28px; border-radius: var(--r-pill);
-  background: var(--convex); box-shadow: var(--raise);
+  background: var(--convex); box-shadow: var(--raise-md);
   font-weight: 600; font-size: 16px; line-height: 1.2; text-decoration: none; color: var(--text);
   transition: box-shadow 0.18s, transform 0.18s, color 0.18s, filter 0.18s;
   &:hover {
     transform: translateY(-2px);
     color: var(--accent);
-    box-shadow: var(--raise-hi), 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
+    box-shadow: var(--raise), 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
   }
   &:active, &.is-pressed { box-shadow: var(--sink); transform: translateY(1px); background: var(--well-bg); color: var(--text); }
   &:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: var(--raise-sm); }
@@ -97,18 +97,18 @@ img { max-width: 100%; display: block; }
 }
 .btn-primary {
   background: var(--accent); color: var(--on-accent);
-  box-shadow: var(--raise), var(--accent-glow);
+  box-shadow: var(--raise-md), var(--accent-glow);
   &:hover {
     color: var(--on-accent);
     filter: brightness(1.1) saturate(1.1);
-    box-shadow: var(--raise-hi), 0 0 36px color-mix(in srgb, var(--accent) 60%, transparent), 0 0 0 2px color-mix(in srgb, var(--accent) 70%, transparent);
+    box-shadow: var(--raise), 0 0 36px color-mix(in srgb, var(--accent) 60%, transparent), 0 0 0 2px color-mix(in srgb, var(--accent) 70%, transparent);
   }
   &:active { filter: none; }
   &:active { background: var(--accent); color: var(--on-accent); box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.35), inset -4px -4px 8px rgba(255, 255, 255, 0.25); }
 }
 .btn-ghost {
   background: transparent; box-shadow: none; color: var(--muted); padding-inline: 12px;
-  &:hover { color: var(--accent); background: var(--convex); box-shadow: var(--raise-hi), 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent); }
+  &:hover { color: var(--accent); background: var(--convex); box-shadow: var(--raise), 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent); }
 }
 .btn-icon { width: 56px; height: 56px; padding: 0; border-radius: 50%; }
 
@@ -200,7 +200,7 @@ dialog.panel {
   background: var(--bg); color: var(--text); box-shadow: var(--raise);
   &::backdrop { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); }
   p { color: var(--muted); margin-top: 10px; }
-  .dialog-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px; flex-wrap: wrap; }
+  .dialog-actions { display: flex; gap: 24px; justify-content: flex-end; margin-top: 20px; flex-wrap: wrap; }
 }
 
 /* ---------- Legal pages ---------- */

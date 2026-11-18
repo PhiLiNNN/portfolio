@@ -33,6 +33,7 @@
   // Shadows derived from the tones above.
   --raise: 10px 10px 28px var(--lo), -10px -10px 28px var(--hi);
   --raise-hi: 14px 14px 34px var(--lo), -14px -14px 34px var(--hi);
+  --raise-md: 6px 6px 16px var(--lo), -6px -6px 16px var(--hi);
   --raise-sm: 4px 4px 10px var(--lo), -4px -4px 10px var(--hi);
   --sink: inset 6px 6px 14px var(--lo), inset -6px -6px 14px var(--hi);
   --sink-soft: inset 3px 3px 8px var(--lo), inset -3px -3px 8px var(--hi);
