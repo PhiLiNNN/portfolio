@@ -57,16 +57,25 @@
 
 .controls {
   @include dflex($g: 18px);
-  .burger {
+  .burger,
+  .compact {
     display: none;
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
+  }
+  .lang {
+    font-family: "Syne", "Syne Fallback", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.02em;
   }
   @include md {
+    gap: 12px;
     .switch-row {
       display: none;
     }
-    .burger {
+    .burger,
+    .compact {
       display: inline-flex;
     }
   }
@@ -114,16 +123,6 @@
     }
   }
 }
-.overlay-controls {
-  @include dflex($g: 32px);
-  flex-wrap: wrap;
-  margin-top: 24px;
-  padding: 0 18px;
-  .switch-row {
-    font-size: 15px;
-  }
-}
-
 @include md {
   :host {
     --nav-h: 72px;
