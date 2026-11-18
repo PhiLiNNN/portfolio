@@ -26,6 +26,7 @@ precision highp float; in vec2 v; out vec4 o;
 uniform float t; uniform vec2 res; uniform vec3 colA; uniform vec3 colB; uniform float strength;
 uniform vec2 m; uniform float push; uniform vec2 drift;
 uniform vec4 boxes[12]; uniform int nBoxes; uniform float sp;
+uniform vec4 clears[8]; uniform int nClears;
 float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float n(vec2 p){ vec2 i = floor(p), f = fract(p); f = f*f*(3.-2.*f);
   return mix(mix(h(i), h(i+vec2(1,0)), f.x), mix(h(i+vec2(0,1)), h(i+vec2(1,1)), f.x), f.y); }
@@ -60,6 +61,14 @@ void main(){
     q -= normalize(outward * .6 + mv * .4) * bi * .22 * ahead;
     densMul *= 1. - bi * .35 * ahead - bi * .7 * (1. - ahead);
   }
+  // Clearings: the haze thins out under text that sits directly on the nebula
+  // (section intros, hero lede), so it stays readable without halos or boxes.
+  for (int i = 0; i < 8; i++) {
+    if (i >= nClears) break;
+    vec2 cd = abs(v * asp - clears[i].xy * asp) - clears[i].zw * asp;
+    float cr = length(max(cd, 0.));
+    densMul *= 1. - .72 * exp(-cr * cr * 110.);
+  }
   // Domain-warped noise: the warp gives the wispy, nebula-like filaments.
   vec2 w = vec2(fbm(q + drift), fbm(q + 7.3 + drift * .6));
   float f = fbm(q + drift + 1.6 * w);
@@ -70,7 +79,10 @@ void main(){
   float core = smoothstep(.58, .9, f);
   c = mix(c, vec3(1.), core * .4);
   dens *= (1. - infl * .9) * max(densMul, 0.);
-  o = vec4(c, dens * strength);
+  float a = clamp(dens * strength, 0., 1.);
+  // Premultiplied output: every browser composites this the same way (iOS Safari
+  // treats non-premultiplied canvases differently and the haze came out far too strong).
+  o = vec4(c * a, a);
 }`;
 
 /**
@@ -84,7 +96,8 @@ void main(){
   template: `<canvas #c class="fog" aria-hidden="true"></canvas>`,
   styles: `
     :host { display: contents; }
-    .fog { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    /* Cover the large viewport, so nothing shows when the phone browser bar collapses. */
+    .fog { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100lvh; z-index: 0; pointer-events: none; }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -94,16 +107,18 @@ export class FogComponent implements AfterViewInit, OnDestroy {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   private gl: WebGL2RenderingContext | null = null;
-  private uniforms: Record<'t' | 'res' | 'colA' | 'colB' | 'strength' | 'm' | 'push' | 'drift' | 'boxes' | 'nBoxes' | 'sp', WebGLUniformLocation | null> | null = null;
+  private uniforms: Record<'t' | 'res' | 'colA' | 'colB' | 'strength' | 'm' | 'push' | 'drift' | 'boxes' | 'nBoxes' | 'sp' | 'clears' | 'nClears', WebGLUniformLocation | null> | null = null;
   private readonly aim = { x: -1, y: -1 };
   private readonly mouse = { x: -1, y: -1 };
   private push = 0;
   /** Accumulated wind travel; the wind slowly veers, so this is integrated per frame. */
-  private readonly drift = { x: 1.7, y: 0.3 };
+  private readonly drift = { x: 2.6, y: 0.55 };
   /** Smoothed scroll speed (viewport heights per second, signed) and the plate rects passed to the shader. */
   private scrollPush = 0;
   private lastScrollY = 0;
   private readonly boxData = new Float32Array(12 * 4);
+  private readonly clearData = new Float32Array(8 * 4);
+  private clearEls: Element[] = [];
   private plates: Element[] = [];
   private platesStamp = 0;
   private lastFrame = 0;
@@ -122,7 +137,7 @@ export class FogComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (!this.isBrowser) return;
     const el = this.canvas().nativeElement;
-    const gl = el.getContext('webgl2', { alpha: true, antialias: false, premultipliedAlpha: false });
+    const gl = el.getContext('webgl2', { alpha: true, antialias: false, premultipliedAlpha: true });
     if (!gl) return;
 
     const compile = (type: number, src: string) => {
@@ -146,8 +161,8 @@ export class FogComponent implements AfterViewInit, OnDestroy {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
     gl.enableVertexAttribArray(0);
     gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
-    // Single full-screen pass over a cleared buffer: no GL blending, the page
-    // compositor applies the alpha (premultipliedAlpha is off).
+    // Single full-screen pass over a cleared buffer; the shader writes
+    // premultiplied colour, the page compositor does the rest.
 
     this.gl = gl;
     this.uniforms = {
@@ -162,6 +177,8 @@ export class FogComponent implements AfterViewInit, OnDestroy {
       boxes: gl.getUniformLocation(prog, 'boxes'),
       nBoxes: gl.getUniformLocation(prog, 'nBoxes'),
       sp: gl.getUniformLocation(prog, 'sp'),
+      clears: gl.getUniformLocation(prog, 'clears'),
+      nClears: gl.getUniformLocation(prog, 'nClears'),
     };
 
     this.readTheme();
@@ -201,8 +218,9 @@ export class FogComponent implements AfterViewInit, OnDestroy {
 
   private resize(): void {
     const el = this.canvas().nativeElement;
-    el.width = Math.max(1, Math.round(window.innerWidth * SCALE));
-    el.height = Math.max(1, Math.round(window.innerHeight * SCALE));
+    const rect = el.getBoundingClientRect();
+    el.width = Math.max(1, Math.round((rect.width || window.innerWidth) * SCALE));
+    el.height = Math.max(1, Math.round((rect.height || window.innerHeight) * SCALE));
     if (this.reduced) this.frame(performance.now());
   }
 
@@ -256,6 +274,8 @@ export class FogComponent implements AfterViewInit, OnDestroy {
     gl.uniform1f(u.sp, this.scrollPush);
     gl.uniform1i(u.nBoxes, Math.abs(this.scrollPush) > 0.01 ? this.collectBoxes(now) : 0);
     gl.uniform4fv(u.boxes, this.boxData);
+    gl.uniform1i(u.nClears, this.collectClearings(now));
+    gl.uniform4fv(u.clears, this.clearData);
     gl.uniform2f(u.m, this.mouse.x, this.mouse.y);
     gl.uniform1f(u.push, this.push);
     gl.uniform1f(u.t, (now - this.t0) / 1000);
@@ -288,22 +308,37 @@ export class FogComponent implements AfterViewInit, OnDestroy {
 
   /** Visible plates and the dial as UV boxes (centre, half size); the element list is refreshed every 2 s. */
   private collectBoxes(now: number): number {
-    if (now - this.platesStamp > 2000) {
-      this.plates = Array.from(document.querySelectorAll('.plate, .dial, .btn-primary'));
-      this.platesStamp = now;
-    }
+    this.refreshElements(now);
+    return this.rects(this.plates, this.boxData, 12, 0);
+  }
+
+  /** Text blocks lying directly on the nebula; the shader thins the haze under them. */
+  private collectClearings(now: number): number {
+    this.refreshElements(now);
+    return this.rects(this.clearEls, this.clearData, 8, 14);
+  }
+
+  private refreshElements(now: number): void {
+    if (now - this.platesStamp <= 2000) return;
+    this.plates = Array.from(document.querySelectorAll('.plate, .dial, .btn-primary'));
+    this.clearEls = Array.from(document.querySelectorAll('.lede, .section-head, .fog-clear'));
+    this.platesStamp = now;
+  }
+
+  /** Writes the on-screen rects of `els` as UV boxes (centre, half size + `pad` px) into `out`. */
+  private rects(els: Element[], out: Float32Array, max: number, pad: number): number {
     const W = window.innerWidth;
     const H = window.innerHeight;
     let n = 0;
-    for (const el of this.plates) {
-      if (n >= 12) break;
+    for (const el of els) {
+      if (n >= max) break;
       const r = el.getBoundingClientRect();
       if (r.bottom < -80 || r.top > H + 80 || r.width === 0) continue;
       const o = n * 4;
-      this.boxData[o] = (r.left + r.width / 2) / W;
-      this.boxData[o + 1] = 1 - (r.top + r.height / 2) / H;
-      this.boxData[o + 2] = r.width / 2 / W;
-      this.boxData[o + 3] = r.height / 2 / H;
+      out[o] = (r.left + r.width / 2) / W;
+      out[o + 1] = 1 - (r.top + r.height / 2) / H;
+      out[o + 2] = (r.width / 2 + pad) / W;
+      out[o + 3] = (r.height / 2 + pad) / H;
       n++;
     }
     return n;

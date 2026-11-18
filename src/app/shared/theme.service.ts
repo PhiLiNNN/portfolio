@@ -30,7 +30,6 @@ export class ThemeService {
     if (!this.isBrowser) return;
     const root = this.doc.documentElement;
     this.theme.set(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
-    this.syncThemeColor(this.theme());
     const stored = this.read(HUE_KEY);
     if (stored !== null && stored !== '' && !Number.isNaN(Number(stored))) {
       this.hue.set(normalizeHue(Number(stored)));
@@ -45,16 +44,6 @@ export class ThemeService {
     this.theme.set(theme);
     this.doc.documentElement.setAttribute('data-theme', theme);
     this.write(THEME_KEY, theme);
-    this.syncThemeColor(theme);
-  }
-
-  /** Browser chrome (address/tab bars on phones) follows the page background. */
-  private syncThemeColor(theme: Theme): void {
-    const colour = theme === 'dark' ? '#1e2530' : '#dfe6ef';
-    this.doc.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((m) => {
-      m.removeAttribute('media');
-      m.setAttribute('content', colour);
-    });
   }
 
   setHue(hue: number): void {
