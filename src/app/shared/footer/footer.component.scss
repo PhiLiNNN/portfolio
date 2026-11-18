@@ -9,11 +9,12 @@
 // Four columns: brand | focus areas | contact + legal | social buttons.
 .foot {
   display: grid;
-  grid-template-columns: 1.1fr 1.3fr 1fr auto;
+  // The contact column gets a fixed minimum so the e-mail address never wraps.
+  grid-template-columns: minmax(240px, 1fr) 1.2fr minmax(260px, auto) auto;
   gap: 28px 40px;
   padding: 32px;
   @include md {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     .socials {
       grid-column: 1 / -1;
       justify-content: flex-start;
@@ -69,6 +70,7 @@
     color: var(--muted);
     text-decoration: none;
     width: fit-content;
+    white-space: nowrap;
     &:hover {
       color: var(--accent);
     }
