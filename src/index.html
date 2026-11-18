@@ -12,9 +12,9 @@
       content="Philipp Wendschuch, Full-Stack Developer aus Leipzig. Angular und TypeScript im Frontend, Python im Backend. Mitgründer von Webwerk Leipzig und traudel.app."
     />
     <base href="/" />
-    <meta name="color-scheme" content="dark light" />
-    <!-- Browser chrome colour (phone toolbars); theme-init.js and ThemeService keep it in step with the theme. -->
-    <meta name="theme-color" content="#1e2530" />
+    <!-- No theme-color on purpose: Safari then uses its translucent toolbar material.
+         color-scheme picks the light/dark material; theme-init.js and ThemeService keep it in step. -->
+    <meta name="color-scheme" content="dark" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Set theme + accent hue before first paint to avoid a flash (FOUC).
          External (not inline) so it passes the strict CSP. -->
