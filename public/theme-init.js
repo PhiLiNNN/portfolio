@@ -11,6 +11,8 @@
     // switches to light.
     var theme = stored === "light" || stored === "dark" ? stored : prefersLight ? "light" : "dark";
     root.setAttribute("data-theme", theme);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", theme === "light" ? "#dfe6ef" : "#1e2530");
 
     var hue = localStorage.getItem("accent-hue");
     if (hue !== null && hue !== "" && !isNaN(Number(hue))) {

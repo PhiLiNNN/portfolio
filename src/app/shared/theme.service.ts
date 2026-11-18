@@ -44,6 +44,14 @@ export class ThemeService {
     this.theme.set(theme);
     this.doc.documentElement.setAttribute('data-theme', theme);
     this.write(THEME_KEY, theme);
+    this.syncThemeColor(theme);
+  }
+
+  /** Phone browser toolbars follow the page colour; Safari only re-reads this meta, not the body. */
+  private syncThemeColor(theme: Theme): void {
+    this.doc
+      .querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+      ?.setAttribute('content', theme === 'light' ? '#dfe6ef' : '#1e2530');
   }
 
   setHue(hue: number): void {
