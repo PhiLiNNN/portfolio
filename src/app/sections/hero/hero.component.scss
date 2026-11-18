@@ -90,6 +90,22 @@
   @include dflex($g: 24px);
   flex-wrap: wrap;
   margin-top: 36px;
+  // These sit directly on the nebula: no light-side shadow, just a drop shadow.
+  .btn {
+    box-shadow: var(--float);
+    &:hover {
+      box-shadow: var(--float), 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
+    }
+    &:active {
+      box-shadow: var(--sink);
+    }
+  }
+  .btn-primary {
+    box-shadow: var(--float), var(--accent-glow);
+    &:hover {
+      box-shadow: var(--float), 0 0 36px color-mix(in srgb, var(--accent) 60%, transparent), 0 0 0 2px color-mix(in srgb, var(--accent) 70%, transparent);
+    }
+  }
 }
 
 .dial-wrap {
@@ -108,7 +124,7 @@
   height: 120px;
   border-radius: 50%;
   background: var(--convex);
-  box-shadow: var(--raise);
+  box-shadow: var(--float);
   position: relative;
   cursor: grab;
   touch-action: none;
