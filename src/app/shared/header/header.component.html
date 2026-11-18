@@ -76,13 +76,32 @@
       >{{ item.key | translate }}</a
     >
     }
+    <!-- Same switches as in the bar: their width does not depend on the language, so nothing shifts. -->
     <div class="overlay-controls">
-      <button type="button" class="btn" (click)="toggleTheme()">
-        {{ (theme.theme() === 'dark' ? 'a11y.themeLight' : 'a11y.themeDark') | translate }}
-      </button>
-      <button type="button" class="btn" (click)="toggleLang()">
-        {{ lang() === 'en' ? 'Deutsch' : 'English' }}
-      </button>
+      <div class="switch-row">
+        <span aria-hidden="true">☀</span>
+        <button
+          type="button"
+          class="switch"
+          role="switch"
+          [attr.aria-checked]="theme.theme() === 'dark'"
+          [attr.aria-label]="(theme.theme() === 'dark' ? 'a11y.themeLight' : 'a11y.themeDark') | translate"
+          (click)="toggleTheme()"
+        ></button>
+        <span aria-hidden="true">☾</span>
+      </div>
+      <div class="switch-row">
+        <span aria-hidden="true">DE</span>
+        <button
+          type="button"
+          class="switch"
+          role="switch"
+          [attr.aria-checked]="lang() === 'en'"
+          [attr.aria-label]="'a11y.langToggle' | translate"
+          (click)="toggleLang()"
+        ></button>
+        <span aria-hidden="true">EN</span>
+      </div>
     </div>
   </nav>
 </div>

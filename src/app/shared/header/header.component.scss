@@ -115,9 +115,13 @@
   }
 }
 .overlay-controls {
-  @include dflex($g: 24px);
+  @include dflex($g: 32px);
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 24px;
+  padding: 0 18px;
+  .switch-row {
+    font-size: 15px;
+  }
 }
 
 @include md {
