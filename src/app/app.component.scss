@@ -4,13 +4,18 @@
   overflow-x: clip;
 }
 
-// Soft coloured lights behind the glass plates. Fixed, non-interactive.
+// Soft coloured lights behind the glass plates, light theme only. In the dark
+// theme the dust layer is the only thing moving in the background.
 .lights {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   opacity: 0.45;
+  display: none;
+  :host-context([data-theme="light"]) & {
+    display: block;
+  }
   i {
     position: absolute;
     border-radius: 50%;
