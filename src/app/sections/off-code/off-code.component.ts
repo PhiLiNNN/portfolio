@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { VideoDialogService } from '../../shared/video-dialog.service';
+import { RevealDirective } from '../../shared/reveal.directive';
 
 interface OffCodeItem {
   key: string;
@@ -11,7 +12,7 @@ interface OffCodeItem {
 /** "Abseits vom Code": facts that are not in the CV, as modules on the desk. */
 @Component({
   selector: 'app-off-code',
-  imports: [TranslateModule],
+  imports: [RevealDirective, TranslateModule],
   templateUrl: './off-code.component.html',
   styleUrl: './off-code.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

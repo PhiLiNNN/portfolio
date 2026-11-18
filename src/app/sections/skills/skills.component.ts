@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { InViewDirective } from '../../shared/in-view.directive';
+import { RevealDirective } from '../../shared/reveal.directive';
 
 interface Skill {
   icon: string;
@@ -16,7 +16,7 @@ interface SkillGroup {
 
 @Component({
   selector: 'app-skills',
-  imports: [TranslateModule, InViewDirective],
+  imports: [TranslateModule, RevealDirective],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

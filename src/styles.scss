@@ -19,10 +19,10 @@
 html, body { margin: 0; height: 100%; }
 html { scroll-behavior: smooth; scrollbar-color: var(--accent) transparent; }
 body {
-  // Plain colour only. A gradient here would be sized to the viewport and tiled
-  // down the page, which shows as a hard seam every viewport height.
-  // The static stand-in for the nebula lives on the fixed canvas (FogComponent).
-  background: var(--bg);
+  // No document background: iOS Safari tints its bottom toolbar with the page
+  // background colour, which showed as a solid grey/white bar. The fixed nebula
+  // canvas (.fog) carries the page colour instead, so the toolbar stays translucent.
+  background: transparent;
   color: var(--text);
   font-family: "Overpass", "Overpass Fallback", system-ui, sans-serif;
   font-size: 17px;
@@ -68,6 +68,39 @@ img { max-width: 100%; display: block; }
 .grid { display: grid; gap: 22px; }
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+/* ---------- Background layer ---------- */
+// Fixed, viewport-sized (100lvh so nothing shows when the phone browser bar
+// collapses). Carries the page colour and, until the first WebGL frame, a
+// static stand-in for the nebula. Global so it applies before the JS bundle runs.
+.fog {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100lvh;
+  z-index: 0; pointer-events: none;
+  background: var(--bg);
+  transition: background-color 0.3s;
+  &:not(.live) {
+    background:
+      radial-gradient(70% 55% at 72% 18%, var(--light-1), transparent 70%),
+      radial-gradient(60% 60% at 15% 75%, var(--light-2), transparent 70%),
+      radial-gradient(50% 40% at 50% 110%, var(--light-1), transparent 70%)
+      var(--bg);
+  }
+}
+
+/* ---------- Reveal on scroll ---------- */
+// Set at runtime by RevealDirective on heads and plates below the fold. Each
+// plays once per page visit (see RevealState).
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(36px) scale(0.975);
+  transition: opacity 0.55s ease-out, transform 0.95s cubic-bezier(0.16, 0.84, 0.26, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+  &.is-in { opacity: 1; transform: none; }
+}
+.section-head[data-reveal] { transform: translateY(22px); transition-duration: 0.5s, 0.8s; }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+}
 
 /* ---------- Surfaces ---------- */
 .plate {

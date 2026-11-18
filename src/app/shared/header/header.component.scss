@@ -7,7 +7,8 @@
   right: 0;
   z-index: 50;
   height: var(--nav-h);
-  background: var(--bg);
+  // Plate colour: the raised controls derive their shadows from it.
+  background: var(--plate);
   transition: background-color 0.3s;
 }
 .bar-inner {
@@ -86,7 +87,7 @@
   position: fixed;
   inset: var(--nav-h) 0 0 0;
   z-index: 49;
-  background: var(--bg);
+  background: var(--plate);
   display: none;
   overflow-y: auto;
   &.open {

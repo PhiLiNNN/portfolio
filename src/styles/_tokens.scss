@@ -10,6 +10,7 @@
 // overrides the accent with a user-chosen hue (the dial in the hero).
 
 :root {
+  color-scheme: dark;
   --bg: #1e2530;
   // Plates are opaque so controls on them get a flat surface (neumorphism needs
   // one). Shadow tones are derived from the plate colour, not the page.
@@ -63,6 +64,7 @@
 }
 
 :root[data-theme="light"] {
+  color-scheme: light;
   --bg: #dfe6ef;
   --plate: #e8edf4;
   --lo: #c2cbd8;

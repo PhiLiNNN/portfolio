@@ -17,7 +17,7 @@
   }
   padding: 32px;
   @include md {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     .socials {
       grid-column: 1 / -1;
       justify-content: flex-start;
@@ -25,6 +25,7 @@
   }
   @include sm {
     grid-template-columns: 1fr;
+    padding: 24px;
   }
 }
 
@@ -73,7 +74,7 @@
     color: var(--muted);
     text-decoration: none;
     width: fit-content;
-    white-space: nowrap;
+    overflow-wrap: anywhere;
     &:hover {
       color: var(--accent);
     }
@@ -90,27 +91,8 @@
     height: 48px;
   }
 }
-.tape {
-  border: 0;
-  cursor: pointer;
-  width: 44px;
-  height: 28px;
-  border-radius: 6px;
-  background: var(--well-bg);
-  box-shadow: var(--sink-soft);
-  opacity: 0.45;
-  display: grid;
-  place-content: center;
-  transition: opacity 0.2s;
-  svg {
-    width: 28px;
-    height: 18px;
-    fill: none;
-    stroke: var(--muted);
-    stroke-width: 1.6;
-  }
-  &:hover,
-  &:focus-visible {
-    opacity: 1;
-  }
+.tape svg {
+  width: 26px;
+  height: 17px;
+  stroke-width: 1.6;
 }

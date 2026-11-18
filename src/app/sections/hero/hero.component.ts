@@ -7,6 +7,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { RevealState } from '../../shared/reveal.directive';
 import { ScrollService } from '../../shared/scroll.service';
 import { ThemeService } from '../../shared/theme.service';
 
@@ -21,6 +22,8 @@ const DEFAULT_HUE = 196;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroComponent {
+  /** The load animation plays once per page visit; coming back from a subpage shows the hero settled. */
+  readonly settled = !inject(RevealState).claim('hero');
   private readonly theme = inject(ThemeService);
   private readonly scroll = inject(ScrollService);
   private readonly secret = viewChild<ElementRef<HTMLElement>>('secret');

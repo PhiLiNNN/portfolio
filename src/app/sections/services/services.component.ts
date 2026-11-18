@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { RevealDirective } from '../../shared/reveal.directive';
 
 interface ServiceCard {
   title: string;
@@ -10,7 +11,7 @@ interface ServiceCard {
 
 @Component({
   selector: 'app-services',
-  imports: [TranslateModule],
+  imports: [RevealDirective, TranslateModule],
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

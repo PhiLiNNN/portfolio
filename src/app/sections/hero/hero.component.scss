@@ -163,3 +163,27 @@
     outline-offset: 4px;
   }
 }
+
+// Load animation: the lines rise out of the desk, then the lede, the controls
+// and the dial settle in. Plays from the first paint (no JS needed), once per
+// page visit; `.settled` is set when the hero is shown again after in-app navigation.
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(0.5em); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-pop {
+  from { opacity: 0; transform: translateY(26px) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+.hero:not(.settled) {
+  .headline span { animation: hero-rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  .headline span:nth-child(2) { animation-delay: 0.12s; }
+  .headline span:nth-child(3) { animation-delay: 0.24s; }
+  .lede { animation: hero-rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.42s backwards; }
+  .cta-row > .btn { animation: hero-pop 0.7s cubic-bezier(0.16, 0.84, 0.26, 1) 0.55s backwards; }
+  .cta-row > .btn + .btn { animation-delay: 0.65s; }
+  .dial-wrap { animation: hero-pop 0.9s cubic-bezier(0.16, 0.84, 0.26, 1) 0.78s backwards; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero .headline span, .hero .lede, .hero .cta-row > .btn, .hero .dial-wrap { animation: none; }
+}

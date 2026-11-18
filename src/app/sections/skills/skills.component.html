@@ -1,4 +1,4 @@
-<section id="skills" class="section" aria-labelledby="skills-title">
+<section appReveal id="skills" class="section" aria-labelledby="skills-title">
   <div class="wrap">
     <div class="section-head">
       <h2 id="skills-title" class="t-h2">{{ "skills.title" | translate }}</h2>
@@ -6,7 +6,7 @@
     </div>
     <div class="grid groups">
       @for (group of groups; track group.key) {
-      <div class="plate group" appInView>
+      <div class="plate group">
         <h3 class="t-h3">{{ "skills." + group.key | translate }}</h3>
         @if (group.key === 'ai') {
         <p class="note">{{ "skills.aiNote" | translate }}</p>

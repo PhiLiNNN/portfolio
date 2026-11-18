@@ -1,6 +1,7 @@
 <section
   id="home"
   class="hero"
+  [class.settled]="settled"
   aria-labelledby="hero-title"
   (pointermove)="onPointerMove($event)"
   (pointerleave)="onPointerLeave()"

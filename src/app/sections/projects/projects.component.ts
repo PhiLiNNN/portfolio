@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { RevealDirective } from '../../shared/reveal.directive';
 
 interface Project {
   name: string;
@@ -13,7 +14,7 @@ interface Project {
 
 @Component({
   selector: 'app-projects',
-  imports: [TranslateModule],
+  imports: [RevealDirective, TranslateModule],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

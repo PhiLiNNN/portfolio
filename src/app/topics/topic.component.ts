@@ -14,6 +14,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ScrollService } from '../shared/scroll.service';
 import { SeoService } from '../shared/seo.service';
 import { TOPICS, Topic } from './topics';
+import { RevealDirective } from '../shared/reveal.directive';
 
 interface TopicContent {
   title: string;
@@ -26,7 +27,7 @@ interface TopicContent {
 
 @Component({
   selector: 'app-topic',
-  imports: [TranslateModule, RouterModule],
+  imports: [RevealDirective, TranslateModule, RouterModule],
   templateUrl: './topic.component.html',
   styleUrl: './topic.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

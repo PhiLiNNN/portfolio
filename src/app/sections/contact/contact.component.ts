@@ -13,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { finalize } from 'rxjs';
 import { MailEndpointService } from '../../shared/mail-endpoint.service';
 import { PowService } from '../../shared/pow.service';
+import { RevealDirective } from '../../shared/reveal.directive';
 
 interface ContactData {
   name: string;
@@ -22,7 +23,7 @@ interface ContactData {
 
 @Component({
   selector: 'app-contact',
-  imports: [FormsModule, TranslateModule, RouterModule],
+  imports: [RevealDirective, FormsModule, TranslateModule, RouterModule],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
