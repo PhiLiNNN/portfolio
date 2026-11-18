@@ -10,8 +10,11 @@
 .foot {
   display: grid;
   // The contact column gets a fixed minimum so the e-mail address never wraps.
-  grid-template-columns: minmax(240px, 1fr) 1.2fr minmax(260px, auto) auto;
-  gap: 28px 40px;
+  grid-template-columns: minmax(200px, 1fr) minmax(220px, 1.3fr) minmax(250px, auto) minmax(0, auto);
+  gap: 28px 32px;
+  > * {
+    min-width: 0;
+  }
   padding: 32px;
   @include md {
     grid-template-columns: 1fr 1fr 1fr;
@@ -79,6 +82,8 @@
 
 .socials {
   @include dflex($g: 22px);
+  flex-wrap: wrap;
+  justify-content: flex-end;
   align-self: start;
   .btn-icon {
     width: 48px;
