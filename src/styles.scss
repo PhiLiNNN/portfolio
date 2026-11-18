@@ -186,7 +186,8 @@ img { max-width: 100%; display: block; }
 /* ---------- Dialog ---------- */
 dialog.panel {
   border: 0; border-radius: var(--r-card); padding: 28px; max-width: 720px; width: min(92vw, 720px);
-  background: var(--bg); color: var(--text); box-shadow: var(--raise);
+  // A plate like any other: plate colour and drop shadow, no two-tone shadow over the blurred page.
+  background: var(--plate); color: var(--text); box-shadow: var(--plate-shadow);
   &::backdrop { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); }
   p { color: var(--muted); margin-top: 10px; }
   .dialog-actions { display: flex; gap: 24px; justify-content: flex-end; margin-top: 20px; flex-wrap: wrap; }
