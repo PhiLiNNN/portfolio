@@ -52,10 +52,13 @@ void main(){
     vec2 dd = abs(bp) - bh;
     float bd = length(max(dd, 0.));
     float bi = exp(-bd * bd * 160.) * abs(sp);
-    float side = dot(bp / max(length(bp), 1e-4), mv);
+    vec2 outward = bp / max(length(bp), 1e-4);
+    float side = dot(outward, mv);
     float ahead = smoothstep(-.2, .4, side);
-    q += mv * bi * .2 * ahead;
-    densMul *= 1. + bi * .45 * ahead - bi * .7 * (1. - ahead);
+    // Shove the haze away from the plate: sample from closer to the plate, so
+    // the fog in front appears pushed outwards (same sign as the pointer push).
+    q -= normalize(outward * .6 + mv * .4) * bi * .22 * ahead;
+    densMul *= 1. - bi * .35 * ahead - bi * .7 * (1. - ahead);
   }
   // Domain-warped noise: the warp gives the wispy, nebula-like filaments.
   vec2 w = vec2(fbm(q + drift), fbm(q + 7.3 + drift * .6));
