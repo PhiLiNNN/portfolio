@@ -4,16 +4,19 @@
       <h2 id="skills-title" class="t-h2">{{ "skills.title" | translate }}</h2>
       <p>{{ "skills.intro" | translate }}</p>
     </div>
-    <div class="grid grid-3">
+    <div class="grid groups">
       @for (group of groups; track group.key) {
       <div class="plate group" appInView>
         <h3 class="t-h3">{{ "skills." + group.key | translate }}</h3>
+        @if (group.key === 'ai') {
+        <p class="note">{{ "skills.aiNote" | translate }}</p>
+        }
         <ul>
-          @for (skill of group.skills; track skill.name; let i = $index) {
-          <li class="fader" [style.--v]="skill.level + '%'" [style.transition-delay]="i * 60 + 'ms'">
+          @for (skill of group.skills; track skill.icon; let i = $index) {
+          <li class="fader" [style.--v]="skill.level + '%'">
             <img [src]="'./assets/img/icons/' + skill.icon + '.svg'" alt="" width="24" height="24" loading="lazy" />
-            <span>{{ skill.name }}</span>
-            <div class="track" role="img" [attr.aria-label]="skill.name">
+            <span>{{ skill.nameKey ? (skill.nameKey | translate) : skill.name }}</span>
+            <div class="track" role="img" [attr.aria-label]="skill.nameKey ? (skill.nameKey | translate) : skill.name">
               <div class="fill" [style.transition-delay]="i * 60 + 'ms'"></div>
               <div class="knob" [style.transition-delay]="i * 60 + 'ms'"></div>
             </div>

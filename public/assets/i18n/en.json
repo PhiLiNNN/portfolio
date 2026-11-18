@@ -39,7 +39,7 @@
   },
   "about": {
     "title": "About me",
-    "text": "I am a Full-Stack Developer based in Leipzig, Germany. After a decade in logistics I went back to school, earned a Master's in Medical Physics and first got into programming with Python for data analysis. For the past two years I have been working as a developer full time, and alongside that I build websites for businesses end to end, from front-end to back-end.",
+    "text": "I am a Full-Stack Developer based in Leipzig, Germany. After a decade in logistics I went back to school, earned a Master's in Medical Physics and first got into programming with Python for data analysis. For the past two years I have been working as a developer full time, and alongside that I build websites for businesses end to end, from front-end to back-end. Claude Code and agentic workflows are part of my everyday work.",
     "contactMe": "If you think I would be a good match for your project, get in touch.",
     "letsTalk": "Let's talk"
   },
@@ -48,12 +48,36 @@
     "intro": "A few things about me that are not in the CV.",
     "video": "Watch the video",
     "items": {
-      "climbing": { "label": "Climbing & bouldering", "title": "Four years in", "text": "Indoors and on rock. In Leipzig at Bloc, Onyx, No Limit and the Mockauer Turm, outdoors in Löbejün and the Saxon Switzerland. Lead up to 7+ (UIAA), boulders up to 5." },
-      "music": { "label": "Music", "title": "Drums with Empty Handed", "text": "For a few years, not active any more. One video is still around." },
-      "sport": { "label": "Sport", "title": "Climbing is the main sport", "text": "Plus the gym two or three times a week and the occasional padel match. Before that, 19 years of football." },
-      "hours": { "label": "Working hours", "title": "Often late", "text": "Evenings are quiet. That is when I concentrate best, so that is when I work." },
-      "before": { "label": "Before", "title": "Logistics, then medical physics", "text": "Ten years in logistics, then the Master's. I wrote my thesis at Positrigo, a startup building a PET scanner dedicated to brain imaging (NeuroLF). I ran and evaluated the NEMA measurements there." },
-      "drive": { "label": "Path", "title": "Ambitious", "text": "What I start, I finish. The path surprises most people: lower secondary school, later a Master's in Medical Physics, today a full-time software developer. The job I wanted." }
+      "climbing": {
+        "label": "Climbing & bouldering",
+        "title": "Four years in",
+        "text": "Indoors and on rock. In Leipzig at Bloc, Onyx, No Limit and the Mockauer Turm, outdoors in Löbejün and the Saxon Switzerland. Lead up to 7+ (UIAA), boulders up to 5."
+      },
+      "music": {
+        "label": "Music",
+        "title": "Drums with Empty Handed",
+        "text": "For a few years, not active any more. One video is still around."
+      },
+      "sport": {
+        "label": "Sport",
+        "title": "Climbing is the main sport",
+        "text": "Plus the gym two or three times a week and the occasional padel match. Before that, 19 years of football."
+      },
+      "hours": {
+        "label": "Working hours",
+        "title": "Often late",
+        "text": "Evenings are quiet. That is when I concentrate best, so that is when I work."
+      },
+      "before": {
+        "label": "Before",
+        "title": "Logistics, then medical physics",
+        "text": "Ten years in logistics, then the Master's. I wrote my thesis at Positrigo, a startup building a PET scanner dedicated to brain imaging (NeuroLF). I ran and evaluated the NEMA measurements there."
+      },
+      "drive": {
+        "label": "Path",
+        "title": "Ambitious",
+        "text": "What I start, I finish. The path surprises most people: lower secondary school, later a Master's in Medical Physics, today a full-time software developer. The job I wanted."
+      }
     }
   },
   "skills": {
@@ -61,7 +85,12 @@
     "intro": "The position says enough. What I use every day sits at the top.",
     "frontend": "Frontend",
     "backend": "Backend",
-    "devops": "DevOps & Tools"
+    "devops": "DevOps & Tools",
+    "ai": "AI-assisted development",
+    "aiNote": "Part of my daily work: Claude Code in the terminal, breaking tasks into spec and plan, letting agents implement, reviewing the result.",
+    "aiAgents": "Agentic workflows",
+    "aiSpec": "Spec-driven development",
+    "aiReview": "AI-assisted code review"
   },
   "services": {
     "title": "What I offer",
@@ -69,17 +98,32 @@
     "card1": {
       "title": "Modern websites",
       "text": "Fast, responsive websites that are GDPR-compliant, accessible (WCAG) and meet today's web standards. They look sharp on every device.",
-      "tags": ["GDPR-compliant", "Accessible", "Responsive", "SEO-ready"]
+      "tags": [
+        "GDPR-compliant",
+        "Accessible",
+        "Responsive",
+        "SEO-ready"
+      ]
     },
     "card2": {
       "title": "Full-stack web apps",
       "text": "Custom software built end to end: Angular or React on the front, solid APIs and databases on the back. Whatever your product needs.",
-      "tags": ["Angular", "React", "REST APIs", "Databases"]
+      "tags": [
+        "Angular",
+        "React",
+        "REST APIs",
+        "Databases"
+      ]
     },
     "card3": {
       "title": "Code & consulting",
       "text": "Reviews for performance, accessibility and code quality, plus ongoing maintenance to keep your existing site fast, secure and up to date.",
-      "tags": ["Performance", "Accessibility", "Maintenance", "Code review"]
+      "tags": [
+        "Performance",
+        "Accessibility",
+        "Maintenance",
+        "Code review"
+      ]
     }
   },
   "experience": {
@@ -95,7 +139,12 @@
       "label": "Co-founder, in progress",
       "title": "traudel.app",
       "text": "Being neighbours means more than living next to each other. Traudel brings neighbours back together: help, honest recommendations, lending. Runs in the browser and on the phone.",
-      "tags": ["Free", "No ads", "Give and lend", "Built in Leipzig"],
+      "tags": [
+        "Free",
+        "No ads",
+        "Give and lend",
+        "Built in Leipzig"
+      ],
       "status": "Not public yet. More once it launches."
     }
   },
@@ -107,7 +156,13 @@
     "list": [
       {
         "name": "Join",
-        "skills": ["JavaScript", "HTML", "CSS", "Firebase", "Git"],
+        "skills": [
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "Firebase",
+          "Git"
+        ],
         "description": "Task manager inspired by the kanban system. Create and organise tasks with drag and drop, assign users and categories.",
         "githubLink": "https://github.com/PhiLiNNN/Join",
         "liveLink": "https://join.philipp-wendschuch.dev/",
@@ -115,7 +170,12 @@
       },
       {
         "name": "Sharkie",
-        "skills": ["JavaScript", "HTML", "CSS", "Git"],
+        "skills": [
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "Git"
+        ],
         "description": "An underwater adventure game with an object-oriented approach. Guide Sharkie, collect poison and defeat the giant shark.",
         "githubLink": "https://github.com/PhiLiNNN/Sharkie",
         "liveLink": "https://sharkie.philipp-wendschuch.dev/",
@@ -123,7 +183,13 @@
       },
       {
         "name": "PokéCubes",
-        "skills": ["JavaScript", "REST API", "HTML", "CSS", "Git"],
+        "skills": [
+          "JavaScript",
+          "REST API",
+          "HTML",
+          "CSS",
+          "Git"
+        ],
         "description": "A web app using the PokeAPI to show first-generation Pokémon on interactive, rotatable cubes. Click a Pokémon for details.",
         "githubLink": "https://github.com/PhiLiNNN/Pokedex",
         "liveLink": "https://pokecubes.philipp-wendschuch.dev/",
@@ -155,7 +221,13 @@
       "textFieldTooShort": "Please enter at least 10 characters."
     },
     "sentTitle": "Message sent",
-    "sentText": "Thanks. I will get back to you soon."
+    "sentText": "Thanks. I will get back to you soon.",
+    "antispam": {
+      "idle": "Spam check ready",
+      "solving": "Spam check running …",
+      "ready": "Spam check passed",
+      "failed": "Spam check unavailable"
+    }
   },
   "video": {
     "title": "Empty Handed",

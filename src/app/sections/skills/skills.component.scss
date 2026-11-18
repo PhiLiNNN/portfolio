@@ -1,8 +1,18 @@
+// Four groups: two columns on desktop, one on narrow screens.
+.groups {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+}
 .group {
   padding: 24px;
   h3 {
     font-size: 20px;
     margin-bottom: 10px;
+  }
+  .note {
+    color: var(--muted);
+    font-size: 14.5px;
+    margin: -4px 0 12px;
+    max-width: 48ch;
   }
   // Icons are dark line art; brighten them on the dark theme.
   img {

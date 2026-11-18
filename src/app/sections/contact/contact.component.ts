@@ -11,12 +11,15 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { finalize } from 'rxjs';
+import { PowService } from '../../shared/pow.service';
 
 interface ContactData {
   name: string;
   email: string;
   message: string;
 }
+
+const ENDPOINT = 'https://philipp-wendschuch.dev/sendMail.php';
 
 @Component({
   selector: 'app-contact',
@@ -27,8 +30,8 @@ interface ContactData {
 })
 export class ContactComponent {
   private readonly http = inject(HttpClient);
+  readonly pow = inject(PowService);
   private readonly sentDialog = viewChild<ElementRef<HTMLDialogElement>>('sent');
-  private readonly endPoint = 'https://philipp-wendschuch.dev/sendMail.php';
 
   contactData: ContactData = { name: '', email: '', message: '' };
 
@@ -40,15 +43,23 @@ export class ContactComponent {
   /** True when the last submit failed (shows a visible error). */
   readonly submitFailed = signal(false);
 
-  onSubmit(ngForm: NgForm): void {
+  /** First interaction with the form starts the invisible spam check. */
+  onInteract(): void {
+    void this.pow.prepare(ENDPOINT);
+  }
+
+  async onSubmit(ngForm: NgForm): Promise<void> {
     if (!ngForm.submitted || !ngForm.form.valid || this.isSubmitting()) return;
 
     this.submitFailed.set(false);
     this.isSubmitting.set(true);
-    const payload = { ...this.contactData, website: this.honeypot };
+
+    // Make sure the proof of work is done (normally finished long before).
+    const altcha = await this.pow.prepare(ENDPOINT);
+    const payload = { ...this.contactData, website: this.honeypot, altcha };
 
     this.http
-      .post(this.endPoint, JSON.stringify(payload), {
+      .post(ENDPOINT, JSON.stringify(payload), {
         headers: { 'Content-Type': 'text/plain' },
         responseType: 'text',
       })
@@ -56,11 +67,13 @@ export class ContactComponent {
       .subscribe({
         next: () => {
           ngForm.resetForm();
+          this.pow.reset();
           this.sentDialog()?.nativeElement.showModal();
           window.umami?.track('contact_sent');
         },
         error: (error) => {
           console.error(error);
+          this.pow.reset();
           this.submitFailed.set(true);
         },
       });

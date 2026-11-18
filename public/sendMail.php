@@ -1,17 +1,29 @@
 <?php
 
 // Contact form mail handler.
-// Receives JSON { name, email, message, website? } from the Angular contact
-// form and sends it via authenticated SMTP (so SPF/DKIM pass -> inbox, not spam).
-// No data is stored.
+//
+//   GET  ?challenge=1   -> issues a proof-of-work challenge (ALTCHA-compatible)
+//   POST JSON {name, email, message, website?, altcha?}
+//                       -> verifies honeypot + proof of work + timing, then
+//                          sends the mail via authenticated SMTP.
+//
+// Bot protection, all self-hosted, no third party:
+//   1. Honeypot: hidden field "website"; bots fill it -> silent 204.
+//   2. Proof of work: the browser must solve a SHA-256 puzzle issued here.
+//      Cheap for one visitor, expensive for mass submission; needs JS.
+//   3. Timing: the challenge carries its issue time; submits faster than
+//      MIN_SECONDS after issue are rejected. Challenges expire after TTL.
+//   4. Replay: each solved challenge is accepted once (marker file in tmp).
 //
 // Credentials live in mail-config.php (NOT in git). Create it on the server
 // next to this file, based on mail-config.example.php.
 
+const POW_MAX_NUMBER = 60000;   // search space; ~0.3–1 s in a browser
+const POW_TTL        = 600;     // seconds a challenge stays valid
+const POW_MIN_SECONDS = 3;      // fastest plausible human submit after load
+
 // Reflect the request origin if it's the production site or a localhost dev
-// origin (any port), so the browser lets the SPA read the response. Other
-// origins get no CORS header -> their JS can't read it (the form still works
-// only from the allowed origins).
+// origin (any port), so the browser lets the SPA read the response.
 $allowedOrigins = ['https://philipp-wendschuch.dev'];
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 $isLocalhostDev = (bool) preg_match('#^https?://(localhost|127\.0\.0\.1)(:\d+)?$#', $origin);
@@ -21,20 +33,15 @@ if (in_array($origin, $allowedOrigins, true) || $isLocalhostDev) {
 header('Vary: Origin');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    header('Access-Control-Allow-Methods: POST, OPTIONS');
+    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
     header('Access-Control-Allow-Headers: content-type');
     header('Access-Control-Max-Age: 86400');
     http_response_code(204);
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Allow: POST, OPTIONS');
-    http_response_code(405);
-    exit;
-}
-
 header('Content-Type: application/json; charset=utf-8');
+header('Cache-Control: no-store');
 
 function fail(int $code, string $msg): void {
     http_response_code($code);
@@ -47,6 +54,35 @@ if (!is_array($config) || empty($config['host']) || empty($config['user'])) {
     fail(500, 'Mail not configured');
 }
 
+// HMAC key for challenges: explicit 'pow_secret' or derived from the mailbox
+// password so an unconfigured install still works.
+$powSecret = (string) ($config['pow_secret'] ?? hash('sha256', 'pow|' . ($config['pass'] ?? '') . '|' . $config['user']));
+
+// --- Proof of work ----------------------------------------------------------
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (!isset($_GET['challenge'])) {
+        fail(404, 'Not found');
+    }
+    $salt      = time() . '.' . bin2hex(random_bytes(8));
+    $number    = random_int(0, POW_MAX_NUMBER);
+    $challenge = hash('sha256', $salt . $number);
+    $signature = hash_hmac('sha256', $challenge, $powSecret);
+    echo json_encode([
+        'algorithm' => 'SHA-256',
+        'challenge' => $challenge,
+        'salt'      => $salt,
+        'maxnumber' => POW_MAX_NUMBER,
+        'signature' => $signature,
+    ]);
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Allow: GET, POST, OPTIONS');
+    http_response_code(405);
+    exit;
+}
+
 $params = json_decode(file_get_contents('php://input'));
 if (!is_object($params)) {
     fail(400, 'Invalid payload');
@@ -56,6 +92,66 @@ if (!is_object($params)) {
 if (!empty($params->website)) {
     http_response_code(204);
     exit;
+}
+
+/** Verify the solved challenge; returns null on success or an error string. */
+function verifyPow($sol, string $secret): ?string {
+    if (!is_object($sol)) {
+        return 'missing';
+    }
+    $salt      = (string) ($sol->salt ?? '');
+    $challenge = (string) ($sol->challenge ?? '');
+    $signature = (string) ($sol->signature ?? '');
+    $number    = $sol->number ?? null;
+
+    if (!preg_match('/^(\d{9,11})\.[0-9a-f]{16}$/', $salt, $m)) {
+        return 'bad salt';
+    }
+    $issued = (int) $m[1];
+    $age    = time() - $issued;
+    if ($age > POW_TTL) {
+        return 'expired';
+    }
+    if ($age < POW_MIN_SECONDS) {
+        return 'too fast';
+    }
+    if (!is_int($number) && !(is_float($number) && floor($number) == $number)) {
+        return 'bad number';
+    }
+    $number = (int) $number;
+    if ($number < 0 || $number > POW_MAX_NUMBER) {
+        return 'bad number';
+    }
+    if (!hash_equals(hash_hmac('sha256', $challenge, $secret), $signature)) {
+        return 'bad signature';
+    }
+    if (!hash_equals($challenge, hash('sha256', $salt . $number))) {
+        return 'wrong solution';
+    }
+    // One-time use: remember solved challenges until they expire anyway.
+    $dir = sys_get_temp_dir() . '/pw-pow';
+    if (!is_dir($dir)) {
+        @mkdir($dir, 0700, true);
+    }
+    $marker = $dir . '/' . hash('sha256', $challenge);
+    if (file_exists($marker)) {
+        return 'replay';
+    }
+    @file_put_contents($marker, '1');
+    // Occasional cleanup of old markers.
+    if (random_int(0, 20) === 0) {
+        foreach (glob($dir . '/*') ?: [] as $f) {
+            if (@filemtime($f) < time() - POW_TTL) {
+                @unlink($f);
+            }
+        }
+    }
+    return null;
+}
+
+$powError = verifyPow($params->altcha ?? null, $powSecret);
+if ($powError !== null) {
+    fail(422, 'Challenge failed: ' . $powError);
 }
 
 $name    = trim((string) ($params->name ?? ''));

@@ -12,13 +12,16 @@
 //
 // "from" MUST equal the authenticated mailbox so SPF/DKIM align (-> inbox).
 // "to" is where the contact form messages are delivered.
+// "pow_secret": any long random string; signs the anti-bot challenges.
+//   Optional: if missing it is derived from user + pass.
 
 return [
-    'host'   => 'smtp.hostinger.com',
-    'port'   => 465,
-    'secure' => 'ssl',
-    'user'   => 'contact@philipp-wendschuch.dev',
-    'pass'   => 'PUT-MAILBOX-PASSWORD-HERE',
-    'from'   => 'contact@philipp-wendschuch.dev',
-    'to'     => 'contact@philipp-wendschuch.dev',
+    'host'       => 'smtp.hostinger.com',
+    'port'       => 465,
+    'secure'     => 'ssl',
+    'user'       => 'contact@philipp-wendschuch.dev',
+    'pass'       => 'PUT-MAILBOX-PASSWORD-HERE',
+    'from'       => 'contact@philipp-wendschuch.dev',
+    'to'         => 'contact@philipp-wendschuch.dev',
+    'pow_secret' => 'PUT-A-LONG-RANDOM-STRING-HERE',
 ];

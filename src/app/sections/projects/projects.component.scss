@@ -1,7 +1,7 @@
 .project {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 14px;
-  align-content: start;
   padding: 20px;
   h3 {
     font-size: clamp(20px, 2vw, 24px);
@@ -13,11 +13,13 @@
   .chips {
     gap: 8px;
   }
+  // Buttons sit on one line at the bottom of every card, whatever the text length.
   .actions {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-top: 6px;
+    margin-top: auto;
+    padding-top: 6px;
   }
 }
 .shot {

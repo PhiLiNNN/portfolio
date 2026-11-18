@@ -7,7 +7,7 @@
         <a class="mail" href="mailto:contact@philipp-wendschuch.dev">contact&#64;philipp-wendschuch.dev</a>
       </div>
 
-      <form class="form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
+      <form class="form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" (focusin)="onInteract()" (pointerdown)="onInteract()" novalidate>
         <!-- Honeypot: hidden from users, bots tend to fill it. Server rejects if set. -->
         <div class="sr-only" aria-hidden="true">
           <label for="contact-website">Leave this field empty</label>
@@ -91,6 +91,10 @@
         </label>
 
         <div class="actions">
+          <span class="led antispam" [class.warm]="pow.state() === 'solving'" [class.off]="pow.state() === 'idle' || pow.state() === 'failed'" aria-live="polite">
+            <i></i>
+            {{ ('contact.antispam.' + pow.state()) | translate }}
+          </span>
           <button
             type="submit"
             class="btn btn-primary"

@@ -39,7 +39,7 @@
   },
   "about": {
     "title": "Über mich",
-    "text": "Ich bin Full-Stack-Entwickler aus Leipzig. Nach einem Jahrzehnt in der Logistik habe ich noch einmal studiert, einen Master in Medizinischer Physik gemacht und bin dort über Python für die Datenanalyse zum Programmieren gekommen. Seit zwei Jahren arbeite ich hauptberuflich als Entwickler und baue nebenbei Webseiten für Unternehmen, vom Frontend bis zum Backend.",
+    "text": "Ich bin Full-Stack-Entwickler aus Leipzig. Nach einem Jahrzehnt in der Logistik habe ich noch einmal studiert, einen Master in Medizinischer Physik gemacht und bin dort über Python für die Datenanalyse zum Programmieren gekommen. Seit zwei Jahren arbeite ich hauptberuflich als Entwickler und baue nebenbei Webseiten für Unternehmen, vom Frontend bis zum Backend. Claude Code und agentische Workflows gehören dabei zu meinem Arbeitsalltag.",
     "contactMe": "Wenn du denkst, dass ich zu deinem Projekt passe, melde dich.",
     "letsTalk": "Lass uns reden"
   },
@@ -48,12 +48,36 @@
     "intro": "Ein paar Dinge über mich, die nicht im Lebenslauf stehen.",
     "video": "Video ansehen",
     "items": {
-      "climbing": { "label": "Klettern & Bouldern", "title": "Seit vier Jahren", "text": "In der Halle und am Fels. In Leipzig im Bloc, Onyx, No Limit und am Mockauer Turm, draußen in Löbejün und in der Sächsischen Schweiz. Vorstieg bis 7+ (UIAA), Boulder bis 5." },
-      "music": { "label": "Musik", "title": "Schlagzeug bei Empty Handed", "text": "Ein paar Jahre lang, heute nicht mehr aktiv. Ein Video gibt es noch." },
-      "sport": { "label": "Sport", "title": "Klettern ist der Hauptsport", "text": "Dazu zwei- bis dreimal die Woche Gym, gelegentlich Padel. Davor 19 Jahre Fußball." },
-      "hours": { "label": "Arbeitszeit", "title": "Oft bis spät", "text": "Abends ist es ruhig. Da kann ich mich am besten konzentrieren, also arbeite ich dann." },
-      "before": { "label": "Vorher", "title": "Logistik, dann Medizinphysik", "text": "Zehn Jahre Logistik, danach der Master. Die Abschlussarbeit habe ich bei Positrigo geschrieben, einem Startup mit einem PET-Scanner speziell für Hirnaufnahmen (NeuroLF). Dort habe ich die NEMA-Messungen durchgeführt und ausgewertet." },
-      "drive": { "label": "Werdegang", "title": "Ehrgeizig", "text": "Was ich anfange, ziehe ich durch. Der Weg dahin überrascht die meisten: Hauptschulabschluss, später der Master in Medizinphysik, heute hauptberuflich Softwareentwickler. Mein Traumberuf." }
+      "climbing": {
+        "label": "Klettern & Bouldern",
+        "title": "Seit vier Jahren",
+        "text": "In der Halle und am Fels. In Leipzig im Bloc, Onyx, No Limit und am Mockauer Turm, draußen in Löbejün und in der Sächsischen Schweiz. Vorstieg bis 7+ (UIAA), Boulder bis 5."
+      },
+      "music": {
+        "label": "Musik",
+        "title": "Schlagzeug bei Empty Handed",
+        "text": "Ein paar Jahre lang, heute nicht mehr aktiv. Ein Video gibt es noch."
+      },
+      "sport": {
+        "label": "Sport",
+        "title": "Klettern ist der Hauptsport",
+        "text": "Dazu zwei- bis dreimal die Woche Gym, gelegentlich Padel. Davor 19 Jahre Fußball."
+      },
+      "hours": {
+        "label": "Arbeitszeit",
+        "title": "Oft bis spät",
+        "text": "Abends ist es ruhig. Da kann ich mich am besten konzentrieren, also arbeite ich dann."
+      },
+      "before": {
+        "label": "Vorher",
+        "title": "Logistik, dann Medizinphysik",
+        "text": "Zehn Jahre Logistik, danach der Master. Die Abschlussarbeit habe ich bei Positrigo geschrieben, einem Startup mit einem PET-Scanner speziell für Hirnaufnahmen (NeuroLF). Dort habe ich die NEMA-Messungen durchgeführt und ausgewertet."
+      },
+      "drive": {
+        "label": "Werdegang",
+        "title": "Ehrgeizig",
+        "text": "Was ich anfange, ziehe ich durch. Der Weg dahin überrascht die meisten: Hauptschulabschluss, später der Master in Medizinphysik, heute hauptberuflich Softwareentwickler. Mein Traumberuf."
+      }
     }
   },
   "skills": {
@@ -61,7 +85,12 @@
     "intro": "Die Position sagt genug. Was ich täglich benutze, steht oben.",
     "frontend": "Frontend",
     "backend": "Backend",
-    "devops": "DevOps & Tools"
+    "devops": "DevOps & Tools",
+    "ai": "KI-gestützte Entwicklung",
+    "aiNote": "Gehört zu meinem Arbeitsalltag: Claude Code im Terminal, Aufgaben in Spezifikation und Plan zerlegen, Agenten umsetzen lassen, Ergebnis prüfen.",
+    "aiAgents": "Agentische Workflows",
+    "aiSpec": "Spec-getriebene Entwicklung",
+    "aiReview": "KI-gestütztes Code-Review"
   },
   "services": {
     "title": "Was ich anbiete",
@@ -69,17 +98,32 @@
     "card1": {
       "title": "Moderne Websites",
       "text": "Schnelle, responsive Websites, DSGVO-konform, barrierefrei (WCAG) und nach aktuellen Web-Standards. Sehen auf jedem Gerät gut aus.",
-      "tags": ["DSGVO-konform", "Barrierefrei", "Responsive", "SEO-ready"]
+      "tags": [
+        "DSGVO-konform",
+        "Barrierefrei",
+        "Responsive",
+        "SEO-ready"
+      ]
     },
     "card2": {
       "title": "Full-Stack Web-Apps",
       "text": "Individuelle Software, von vorn bis hinten gebaut: Angular oder React im Frontend, solide APIs und Datenbanken im Backend. Ganz wie dein Produkt es braucht.",
-      "tags": ["Angular", "React", "REST-APIs", "Datenbanken"]
+      "tags": [
+        "Angular",
+        "React",
+        "REST-APIs",
+        "Datenbanken"
+      ]
     },
     "card3": {
       "title": "Code & Beratung",
       "text": "Reviews zu Performance, Barrierefreiheit und Code-Qualität, plus laufende Wartung, damit deine bestehende Seite schnell, sicher und aktuell bleibt.",
-      "tags": ["Performance", "Barrierefreiheit", "Wartung", "Code-Review"]
+      "tags": [
+        "Performance",
+        "Barrierefreiheit",
+        "Wartung",
+        "Code-Review"
+      ]
     }
   },
   "experience": {
@@ -95,7 +139,12 @@
       "label": "Mitgründer, im Aufbau",
       "title": "traudel.app",
       "text": "Nachbarschaft heißt mehr als nebeneinander wohnen. Traudel bringt Nachbarn wieder zusammen: Hilfe, ehrliche Empfehlungen, Verleihen. Läuft im Browser und auf dem Handy.",
-      "tags": ["Kostenlos", "Keine Werbung", "Geben & Leihen", "Gebaut in Leipzig"],
+      "tags": [
+        "Kostenlos",
+        "Keine Werbung",
+        "Geben & Leihen",
+        "Gebaut in Leipzig"
+      ],
       "status": "Noch nicht öffentlich. Mehr, sobald es losgeht."
     }
   },
@@ -107,7 +156,13 @@
     "list": [
       {
         "name": "Join",
-        "skills": ["JavaScript", "HTML", "CSS", "Firebase", "Git"],
+        "skills": [
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "Firebase",
+          "Git"
+        ],
         "description": "Aufgabenmanager nach dem Kanban-Prinzip. Aufgaben per Drag-and-Drop anlegen und sortieren, Nutzer und Kategorien zuweisen.",
         "githubLink": "https://github.com/PhiLiNNN/Join",
         "liveLink": "https://join.philipp-wendschuch.dev/",
@@ -115,7 +170,12 @@
       },
       {
         "name": "Sharkie",
-        "skills": ["JavaScript", "HTML", "CSS", "Git"],
+        "skills": [
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "Git"
+        ],
         "description": "Ein Unterwasser-Abenteuerspiel, objektorientiert gebaut. Führe Sharkie, sammle Gift und besiege den Riesenhai.",
         "githubLink": "https://github.com/PhiLiNNN/Sharkie",
         "liveLink": "https://sharkie.philipp-wendschuch.dev/",
@@ -123,7 +183,13 @@
       },
       {
         "name": "PokéCubes",
-        "skills": ["JavaScript", "REST-API", "HTML", "CSS", "Git"],
+        "skills": [
+          "JavaScript",
+          "REST-API",
+          "HTML",
+          "CSS",
+          "Git"
+        ],
         "description": "Eine Web-App, die über die PokeAPI Pokémon der ersten Generation auf drehbaren Würfeln zeigt. Klick auf ein Pokémon für Details.",
         "githubLink": "https://github.com/PhiLiNNN/Pokedex",
         "liveLink": "https://pokecubes.philipp-wendschuch.dev/",
@@ -155,7 +221,13 @@
       "textFieldTooShort": "Bitte gib mindestens 10 Zeichen ein."
     },
     "sentTitle": "Nachricht gesendet",
-    "sentText": "Danke. Ich melde mich bald."
+    "sentText": "Danke. Ich melde mich bald.",
+    "antispam": {
+      "idle": "Spamschutz bereit",
+      "solving": "Spamschutz prüft …",
+      "ready": "Spamschutz bestanden",
+      "failed": "Spamschutz nicht erreichbar"
+    }
   },
   "video": {
     "title": "Empty Handed",

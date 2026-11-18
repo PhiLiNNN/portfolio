@@ -40,6 +40,13 @@ public/humans.txt            humanstxt.org file, linked via <link rel="author">
   (`shared/night-shift.ts`).
 - **Video**: the Empty-Handed video (footer cassette, "Abseits vom Code") uses
   youtube-nocookie and loads only after an explicit click (`frame-src` in CSP).
+- **Spam protection** (no third party): honeypot field `website`, a
+  proof-of-work challenge issued by `sendMail.php?challenge=1` and solved in
+  the browser (`shared/pow.service.ts`, ALTCHA-compatible scheme), a minimum
+  time between challenge and submit, and one-time use of each challenge.
+  Set `pow_secret` in `mail-config.php` on the server.
+- **Favicon**: `public/favicon.svg` is the source; the PNGs (32, 180, 192, 512)
+  are rendered from it.
 
 ## Development
 

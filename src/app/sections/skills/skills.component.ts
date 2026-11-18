@@ -4,7 +4,8 @@ import { InViewDirective } from '../../shared/in-view.directive';
 
 interface Skill {
   icon: string;
-  name: string;
+  nameKey?: string;
+  name?: string;
   /** Fader position in percent. */
   level: number;
 }
@@ -43,6 +44,15 @@ export class SkillsComponent {
         { icon: 'flask', name: 'Flask', level: 60 },
         { icon: 'firebase', name: 'Firebase', level: 62 },
         { icon: 'plsql', name: 'PL/SQL', level: 50 },
+      ],
+    },
+    {
+      key: 'ai',
+      skills: [
+        { icon: 'claude-code', name: 'Claude Code', level: 90 },
+        { icon: 'agents', nameKey: 'skills.aiAgents', level: 80 },
+        { icon: 'spec', nameKey: 'skills.aiSpec', level: 78 },
+        { icon: 'review', nameKey: 'skills.aiReview', level: 72 },
       ],
     },
     {

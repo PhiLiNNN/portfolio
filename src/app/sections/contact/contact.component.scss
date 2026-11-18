@@ -36,6 +36,15 @@
   gap: 12px;
   justify-items: start;
 }
+.antispam {
+  font-size: 13px;
+  &.off i {
+    background: var(--muted);
+    box-shadow: none;
+    animation: none;
+    opacity: 0.5;
+  }
+}
 .send-error {
   color: var(--err);
   font-size: 14px;
