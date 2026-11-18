@@ -24,7 +24,7 @@ void main(){ v = p * .5 + .5; gl_Position = vec4(p, 0., 1.); }`;
 const FS = `#version 300 es
 precision highp float; in vec2 v; out vec4 o;
 uniform float t; uniform vec2 res; uniform vec3 colA; uniform vec3 colB; uniform float strength;
-uniform vec2 m; uniform float push;
+uniform vec2 m; uniform float push; uniform vec2 drift;
 float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float n(vec2 p){ vec2 i = floor(p), f = fract(p); f = f*f*(3.-2.*f);
   return mix(mix(h(i), h(i+vec2(1,0)), f.x), mix(h(i+vec2(0,1)), h(i+vec2(1,1)), f.x), f.y); }
@@ -38,7 +38,6 @@ void main(){
   float r = length(d);
   float infl = exp(-r * r * 22.) * push;
   q -= (d / max(r, 1e-4)) * infl * 0.28;
-  vec2 drift = vec2(t * .035, t * .005);
   // Domain-warped noise: the warp gives the wispy, nebula-like filaments.
   vec2 w = vec2(fbm(q + drift), fbm(q + 7.3 + drift * .6));
   float f = fbm(q + drift + 1.6 * w);
@@ -73,10 +72,12 @@ export class FogComponent implements AfterViewInit, OnDestroy {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   private gl: WebGL2RenderingContext | null = null;
-  private uniforms: Record<'t' | 'res' | 'colA' | 'colB' | 'strength' | 'm' | 'push', WebGLUniformLocation | null> | null = null;
+  private uniforms: Record<'t' | 'res' | 'colA' | 'colB' | 'strength' | 'm' | 'push' | 'drift', WebGLUniformLocation | null> | null = null;
   private readonly aim = { x: -1, y: -1 };
   private readonly mouse = { x: -1, y: -1 };
   private push = 0;
+  /** Accumulated wind travel; the wind slowly veers, so this is integrated per frame. */
+  private readonly drift = { x: 0, y: 0 };
   private lastFrame = 0;
   private readonly onPointer = (e: PointerEvent) => {
     this.aim.x = e.clientX / window.innerWidth;
@@ -129,6 +130,7 @@ export class FogComponent implements AfterViewInit, OnDestroy {
       strength: gl.getUniformLocation(prog, 'strength'),
       m: gl.getUniformLocation(prog, 'm'),
       push: gl.getUniformLocation(prog, 'push'),
+      drift: gl.getUniformLocation(prog, 'drift'),
     };
 
     this.readTheme();
@@ -144,7 +146,9 @@ export class FogComponent implements AfterViewInit, OnDestroy {
 
     this.t0 = performance.now();
     if (this.reduced) {
-      this.frame(this.t0 + 40000);
+      this.drift.x = 1.7;
+      this.drift.y = 0.3;
+      this.frame(this.t0);
       return;
     }
     this.start();
@@ -208,6 +212,15 @@ export class FogComponent implements AfterViewInit, OnDestroy {
     // Speed (screen fractions per second) feeds the push; it settles back to 0 at rest.
     const speed = Math.hypot(dx, dy) / Math.max(dt, 1e-3);
     this.push = Math.min(1, this.push * Math.pow(0.08, dt) + speed * 0.9 * dt);
+    // Wind: mostly from the right, but the direction veers slowly and the
+    // speed breathes, so the haze never runs on a straight rail.
+    const tt = (now - this.t0) / 1000;
+    const angle = Math.PI + 0.9 * Math.sin(tt * 0.06) + 0.45 * Math.sin(tt * 0.021 + 1.3);
+    const windSpeed = 0.04 * (1 + 0.35 * Math.sin(tt * 0.045 + 0.7));
+    // Shader coordinates grow to the left when drift.x grows, so negate the x component.
+    this.drift.x += -Math.cos(angle) * windSpeed * dt;
+    this.drift.y += Math.sin(angle) * windSpeed * dt;
+    gl.uniform2f(u.drift, this.drift.x, this.drift.y);
     gl.uniform2f(u.m, this.mouse.x, this.mouse.y);
     gl.uniform1f(u.push, this.push);
     gl.uniform1f(u.t, (now - this.t0) / 1000);
@@ -218,9 +231,9 @@ export class FogComponent implements AfterViewInit, OnDestroy {
       gl.uniform3f(u.colB, 0.5, 0.36, 0.95);
       gl.uniform1f(u.strength, 0.42);
     } else {
-      gl.uniform3f(u.colA, 0.12, 0.33, 0.62);
-      gl.uniform3f(u.colB, 0.3, 0.24, 0.58);
-      gl.uniform1f(u.strength, 0.26);
+      gl.uniform3f(u.colA, 0.08, 0.28, 0.58);
+      gl.uniform3f(u.colB, 0.26, 0.18, 0.52);
+      gl.uniform1f(u.strength, 0.42);
     }
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }

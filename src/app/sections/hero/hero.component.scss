@@ -10,10 +10,15 @@
 }
 
 .headline {
-  font-size: clamp(40px, 8.4vw, 118px);
+  // Sized so the longest line ("from Leipzig.") stays on one line down to tablets.
+  font-size: clamp(38px, 7.4vw, 112px);
   margin-top: 8px;
   span {
     display: block;
+    white-space: nowrap;
+    @include sm {
+      white-space: normal;
+    }
   }
   // Pressed-in word. The fill is a mid tone (≥ 3:1 against the background and
   // the shadow tones, WCAG 1.4.3 for large text) so the word stays readable.
