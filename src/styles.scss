@@ -121,7 +121,7 @@ img { max-width: 100%; display: block; }
     background: color-mix(in srgb, var(--text) 32%, var(--bg)); box-shadow: var(--raise-sm), inset 0 1px 0 color-mix(in srgb, var(--text) 25%, transparent);
     transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
   }
-  :root[data-theme="light"] &::after { background: var(--convex); box-shadow: var(--raise-sm); }
+  :root[data-theme="light"] &::after { background: linear-gradient(145deg, #f3f6fa, #b4c0cf); box-shadow: var(--raise-sm); }
   &[aria-checked="true"]::after { transform: translateX(30px); background: var(--accent); box-shadow: var(--raise-sm), 0 0 10px var(--accent); }
 }
 .switch-row { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; }

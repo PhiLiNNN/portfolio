@@ -57,8 +57,9 @@
   --bg: #dfe6ef;
   --lo: #bac2cc;
   --hi: #ffffff;
-  --hi-soft: #e7edf4;
-  --lo-soft: #d7dfe9;
+  // Controls: white light top-left fading into grey, so they stand off the pale surface.
+  --hi-soft: #f4f7fb;
+  --lo-soft: #c3cdda;
   --text: #1b2230;
   --muted: #4e5970;
   --accent: #0a64a0;
