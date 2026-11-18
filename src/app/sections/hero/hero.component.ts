@@ -15,8 +15,8 @@ import { isNightShift } from '../../shared/night-shift';
 import { ScrollService } from '../../shared/scroll.service';
 import { ThemeService } from '../../shared/theme.service';
 
-/** Default accent (violet) sits at this hue; the dial starts there. */
-const DEFAULT_HUE = 262;
+/** Default accent (ice blue) sits at this hue; the dial starts there. */
+const DEFAULT_HUE = 196;
 
 @Component({
   selector: 'app-hero',

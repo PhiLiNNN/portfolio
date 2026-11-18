@@ -36,18 +36,6 @@
     background: var(--brand);
     box-shadow: 0 0 10px var(--brand), 0 0 22px color-mix(in srgb, var(--brand) 60%, transparent);
   }
-  // Soft brand light in the top-right corner of the plate.
-  &::before {
-    content: "";
-    position: absolute;
-    top: -120px;
-    right: -120px;
-    width: 320px;
-    height: 320px;
-    border-radius: 50%;
-    background: radial-gradient(circle, color-mix(in srgb, var(--brand) 32%, transparent) 0%, transparent 65%);
-    pointer-events: none;
-  }
   > * {
     position: relative;
   }

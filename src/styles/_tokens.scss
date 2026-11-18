@@ -6,20 +6,20 @@
 // large blur and no border. Glass is reserved for large surfaces (plates),
 // controls stay matt so it is obvious what can be pressed.
 //
-// Dark is the default. [data-theme="light"] swaps the tones, [data-hue]
+// Default accent is ice blue on a cool graphite base. Dark is the default. [data-theme="light"] swaps the tones, [data-hue]
 // overrides the accent with a user-chosen hue (the dial in the hero).
 
 :root {
-  --bg: #26232e;
-  --lo: #1b1921;
-  --hi: #312d3b;
-  --hi-soft: #292631;
-  --lo-soft: #23202a;
+  --bg: #1e2530;
+  --lo: #151a22;
+  --hi: #27303e;
+  --hi-soft: #202835;
+  --lo-soft: #1c2230;
   --text: #edf0f3;
   --muted: #9aa4b0;
-  --accent: #b48cff;
-  --on-accent: #1b0f33;
-  --accent-2: #2ee6a6;
+  --accent: #4fd1ff;
+  --on-accent: #06202c;
+  --accent-2: #ff8a5c;
   --err: #ff6b7a;
 
   // Glass surfaces (plates) and wells (sunken areas).
@@ -27,8 +27,8 @@
   --plate-edge: rgba(255, 255, 255, 0.1);
   --well-bg: rgba(0, 0, 0, 0.14);
   --rule: rgba(255, 255, 255, 0.07);
-  --light-1: rgba(180, 140, 255, 0.18);
-  --light-2: rgba(255, 120, 200, 0.1);
+  --light-1: rgba(79, 209, 255, 0.18);
+  --light-2: rgba(120, 90, 255, 0.12);
 
   // Shadows derived from the tones above.
   --raise: 10px 10px 28px var(--lo), -10px -10px 28px var(--hi);
@@ -49,24 +49,24 @@
 }
 
 :root[data-theme="light"] {
-  --bg: #e6e2f0;
-  --lo: #c1bccf;
+  --bg: #dfe6ef;
+  --lo: #bac2cc;
   --hi: #ffffff;
-  --hi-soft: #ede9f5;
-  --lo-soft: #dfdaea;
-  --text: #1e1b27;
-  --muted: #5e5970;
-  --accent: #7a4df5;
-  --on-accent: #f6f2ff;
-  --accent-2: #0a9a6c;
+  --hi-soft: #e7edf4;
+  --lo-soft: #d7dfe9;
+  --text: #1b2230;
+  --muted: #4e5970;
+  --accent: #0a6cab;
+  --on-accent: #f2faff;
+  --accent-2: #d9472c;
   --err: #c0283a;
 
   --plate-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.3));
   --plate-edge: #ffffff;
-  --well-bg: rgba(30, 27, 39, 0.05);
-  --rule: rgba(30, 27, 39, 0.1);
-  --light-1: rgba(140, 90, 255, 0.12);
-  --light-2: rgba(255, 120, 200, 0.08);
+  --well-bg: rgba(27, 34, 48, 0.05);
+  --rule: rgba(27, 34, 48, 0.1);
+  --light-1: rgba(10, 108, 171, 0.12);
+  --light-2: rgba(120, 90, 255, 0.08);
   --raise: 10px 10px 30px var(--lo), -10px -10px 30px var(--hi);
   --raise-hi: 14px 14px 36px var(--lo), -14px -14px 36px var(--hi);
 }

@@ -27,7 +27,7 @@ export class AppComponent {
       // For the people who open the dev tools.
       console.log(
         '%c PW ',
-        'background:#b48cff;color:#1b0f33;font-weight:800;padding:4px 8px;border-radius:6px',
+        'background:#4fd1ff;color:#06202c;font-weight:800;padding:4px 8px;border-radius:6px',
         'Angular 21 mit SSR, keine Tracker, Fonts selbst gehostet.\nFragen zum Code oder ein Projekt: contact@philipp-wendschuch.dev'
       );
     }
