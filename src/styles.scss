@@ -19,7 +19,12 @@
 html, body { margin: 0; height: 100%; }
 html { scroll-behavior: smooth; scrollbar-color: var(--accent) transparent; }
 body {
-  background: var(--bg);
+  // Static stand-in for the nebula until the WebGL layer runs (and for reduced motion).
+  background:
+    radial-gradient(70vw 55vh at 72% 18%, var(--light-1), transparent 70%),
+    radial-gradient(60vw 60vh at 15% 75%, var(--light-2), transparent 70%),
+    radial-gradient(50vw 40vh at 50% 110%, var(--light-1), transparent 70%)
+    var(--bg);
   color: var(--text);
   font-family: "Overpass", "Overpass Fallback", system-ui, sans-serif;
   font-size: 17px;

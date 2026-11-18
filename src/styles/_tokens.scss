@@ -31,8 +31,8 @@
   --plate-edge: rgba(255, 255, 255, 0.1);
   --well-bg: rgba(0, 0, 0, 0.18);
   --rule: rgba(255, 255, 255, 0.07);
-  --light-1: rgba(79, 209, 255, 0.18);
-  --light-2: rgba(120, 90, 255, 0.12);
+  --light-1: rgba(60, 140, 255, 0.26);
+  --light-2: rgba(110, 80, 230, 0.22);
 
   // Shadows derived from the tones above.
   // Raised controls sit on translucent plates, so the light side cannot be a
@@ -79,8 +79,8 @@
   --plate-edge: #ffffff;
   --well-bg: rgba(27, 34, 48, 0.06);
   --rule: rgba(27, 34, 48, 0.1);
-  --light-1: rgba(10, 100, 160, 0.12);
-  --light-2: rgba(120, 90, 255, 0.08);
+  --light-1: rgba(20, 80, 160, 0.16);
+  --light-2: rgba(90, 70, 190, 0.14);
   --raise: 9px 9px 22px var(--lo), -9px -9px 22px var(--hi);
   --raise-hi: 12px 12px 28px var(--lo), -12px -12px 28px var(--hi);
   --raise-md: 6px 6px 14px var(--lo), -6px -6px 14px var(--hi);

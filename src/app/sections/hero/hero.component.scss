@@ -82,7 +82,9 @@
 .lede {
   max-width: 52ch;
   font-size: clamp(17px, 1.4vw, 20px);
-  color: var(--muted);
+  // Sits directly on the nebula: brighter than the usual muted text, with a soft halo in the page colour.
+  color: color-mix(in srgb, var(--text) 86%, var(--bg));
+  text-shadow: 0 1px 14px var(--bg), 0 0 2px var(--bg);
   margin-top: 28px;
 }
 

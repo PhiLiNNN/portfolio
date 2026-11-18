@@ -99,7 +99,7 @@ export class FogComponent implements AfterViewInit, OnDestroy {
   private readonly mouse = { x: -1, y: -1 };
   private push = 0;
   /** Accumulated wind travel; the wind slowly veers, so this is integrated per frame. */
-  private readonly drift = { x: 0, y: 0 };
+  private readonly drift = { x: 1.7, y: 0.3 };
   /** Smoothed scroll speed (viewport heights per second, signed) and the plate rects passed to the shader. */
   private scrollPush = 0;
   private lastScrollY = 0;
@@ -260,15 +260,17 @@ export class FogComponent implements AfterViewInit, OnDestroy {
     gl.uniform1f(u.push, this.push);
     gl.uniform1f(u.t, (now - this.t0) / 1000);
     gl.uniform2f(u.res, el.width, el.height);
+    // Phones show a narrow slice of the pattern; keep it calmer there so text stays readable.
+    const phone = window.innerWidth < 700 ? 0.7 : 1;
     if (this.dark) {
       // Cold cyan-blue and deep violet, like a nebula seen from far away.
       gl.uniform3f(u.colA, 0.25, 0.62, 1.0);
       gl.uniform3f(u.colB, 0.5, 0.36, 0.95);
-      gl.uniform1f(u.strength, 0.42);
+      gl.uniform1f(u.strength, 0.42 * phone);
     } else {
       gl.uniform3f(u.colA, 0.08, 0.28, 0.58);
       gl.uniform3f(u.colB, 0.26, 0.18, 0.52);
-      gl.uniform1f(u.strength, 0.42);
+      gl.uniform1f(u.strength, 0.42 * phone);
     }
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
