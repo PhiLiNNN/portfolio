@@ -25,6 +25,7 @@ const FS = `#version 300 es
 precision highp float; in vec2 v; out vec4 o;
 uniform float t; uniform vec2 res; uniform vec3 colA; uniform vec3 colB; uniform float strength;
 uniform vec2 m; uniform float push; uniform vec2 drift;
+uniform vec4 boxes[12]; uniform int nBoxes; uniform float sp;
 float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float n(vec2 p){ vec2 i = floor(p), f = fract(p); f = f*f*(3.-2.*f);
   return mix(mix(h(i), h(i+vec2(1,0)), f.x), mix(h(i+vec2(0,1)), h(i+vec2(1,1)), f.x), f.y); }
@@ -38,6 +39,24 @@ void main(){
   float r = length(d);
   float infl = exp(-r * r * 22.) * push;
   q -= (d / max(r, 1e-4)) * infl * 0.28;
+  // Plates moving with the scroll: the haze is shoved ahead of each plate
+  // (compressed) and thins out in the wake behind it. sp is the smoothed
+  // scroll speed, positive while the page content moves up.
+  float densMul = 1.;
+  vec2 mv = vec2(0., sign(sp));
+  for (int i = 0; i < 12; i++) {
+    if (i >= nBoxes) break;
+    vec2 bc = boxes[i].xy * asp;
+    vec2 bh = boxes[i].zw * asp;
+    vec2 bp = v * asp - bc;
+    vec2 dd = abs(bp) - bh;
+    float bd = length(max(dd, 0.));
+    float bi = exp(-bd * bd * 160.) * abs(sp);
+    float side = dot(bp / max(length(bp), 1e-4), mv);
+    float ahead = smoothstep(-.2, .4, side);
+    q += mv * bi * .2 * ahead;
+    densMul *= 1. + bi * .45 * ahead - bi * .7 * (1. - ahead);
+  }
   // Domain-warped noise: the warp gives the wispy, nebula-like filaments.
   vec2 w = vec2(fbm(q + drift), fbm(q + 7.3 + drift * .6));
   float f = fbm(q + drift + 1.6 * w);
@@ -47,7 +66,7 @@ void main(){
   float dens = smoothstep(.28, .72, f) * .9 + smoothstep(.38, .8, g) * .6;
   float core = smoothstep(.58, .9, f);
   c = mix(c, vec3(1.), core * .4);
-  dens *= 1. - infl * .9;
+  dens *= (1. - infl * .9) * max(densMul, 0.);
   o = vec4(c, dens * strength);
 }`;
 
@@ -72,12 +91,18 @@ export class FogComponent implements AfterViewInit, OnDestroy {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   private gl: WebGL2RenderingContext | null = null;
-  private uniforms: Record<'t' | 'res' | 'colA' | 'colB' | 'strength' | 'm' | 'push' | 'drift', WebGLUniformLocation | null> | null = null;
+  private uniforms: Record<'t' | 'res' | 'colA' | 'colB' | 'strength' | 'm' | 'push' | 'drift' | 'boxes' | 'nBoxes' | 'sp', WebGLUniformLocation | null> | null = null;
   private readonly aim = { x: -1, y: -1 };
   private readonly mouse = { x: -1, y: -1 };
   private push = 0;
   /** Accumulated wind travel; the wind slowly veers, so this is integrated per frame. */
   private readonly drift = { x: 0, y: 0 };
+  /** Smoothed scroll speed (viewport heights per second, signed) and the plate rects passed to the shader. */
+  private scrollPush = 0;
+  private lastScrollY = 0;
+  private readonly boxData = new Float32Array(12 * 4);
+  private plates: Element[] = [];
+  private platesStamp = 0;
   private lastFrame = 0;
   private readonly onPointer = (e: PointerEvent) => {
     this.aim.x = e.clientX / window.innerWidth;
@@ -131,6 +156,9 @@ export class FogComponent implements AfterViewInit, OnDestroy {
       m: gl.getUniformLocation(prog, 'm'),
       push: gl.getUniformLocation(prog, 'push'),
       drift: gl.getUniformLocation(prog, 'drift'),
+      boxes: gl.getUniformLocation(prog, 'boxes'),
+      nBoxes: gl.getUniformLocation(prog, 'nBoxes'),
+      sp: gl.getUniformLocation(prog, 'sp'),
     };
 
     this.readTheme();
@@ -221,6 +249,10 @@ export class FogComponent implements AfterViewInit, OnDestroy {
     this.drift.x += -Math.cos(angle) * windSpeed * dt;
     this.drift.y += Math.sin(angle) * windSpeed * dt;
     gl.uniform2f(u.drift, this.drift.x, this.drift.y);
+    this.updateScrollPush(dt);
+    gl.uniform1f(u.sp, this.scrollPush);
+    gl.uniform1i(u.nBoxes, Math.abs(this.scrollPush) > 0.01 ? this.collectBoxes(now) : 0);
+    gl.uniform4fv(u.boxes, this.boxData);
     gl.uniform2f(u.m, this.mouse.x, this.mouse.y);
     gl.uniform1f(u.push, this.push);
     gl.uniform1f(u.t, (now - this.t0) / 1000);
@@ -236,5 +268,39 @@ export class FogComponent implements AfterViewInit, OnDestroy {
       gl.uniform1f(u.strength, 0.42);
     }
     gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+
+  /** Scroll speed drives the plate push; it decays quickly once scrolling stops. */
+  private updateScrollPush(dt: number): void {
+    const y = window.scrollY;
+    const v = (y - this.lastScrollY) / Math.max(dt, 1e-3) / window.innerHeight;
+    this.lastScrollY = y;
+    const target = Math.max(-1, Math.min(1, v * 0.5));
+    const k = 1 - Math.pow(0.02, dt);
+    this.scrollPush += (target - this.scrollPush) * k;
+    if (Math.abs(this.scrollPush) < 0.004) this.scrollPush = 0;
+  }
+
+  /** Visible plates and the dial as UV boxes (centre, half size); the element list is refreshed every 2 s. */
+  private collectBoxes(now: number): number {
+    if (now - this.platesStamp > 2000) {
+      this.plates = Array.from(document.querySelectorAll('.plate, .dial, .btn-primary'));
+      this.platesStamp = now;
+    }
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    let n = 0;
+    for (const el of this.plates) {
+      if (n >= 12) break;
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -80 || r.top > H + 80 || r.width === 0) continue;
+      const o = n * 4;
+      this.boxData[o] = (r.left + r.width / 2) / W;
+      this.boxData[o + 1] = 1 - (r.top + r.height / 2) / H;
+      this.boxData[o + 2] = r.width / 2 / W;
+      this.boxData[o + 3] = r.height / 2 / H;
+      n++;
+    }
+    return n;
   }
 }
