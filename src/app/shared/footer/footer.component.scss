@@ -1,0 +1,121 @@
+@use "../../../styles/index" as *;
+
+.footer {
+  position: relative;
+  z-index: 1;
+  padding: 24px 0 48px;
+}
+
+// Named areas, so every width has a deliberate arrangement:
+//   wide      brand | focus | contact | socials (one row of four)
+//   900-1120  same, socials stacked as a column (no lone button wrapping)
+//   600-900   brand + socials (2x2, right)  /  focus + contact
+//   <600      one column, socials as a row at the end
+.foot {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(210px, 1.2fr) minmax(240px, 1fr) auto;
+  grid-template-areas: "brand focus contact socials";
+  gap: 28px 32px;
+  padding: 32px;
+  > * {
+    min-width: 0;
+  }
+  @media (max-width: 1120px) {
+    .socials {
+      grid-auto-flow: row;
+    }
+  }
+  @include md {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "brand socials"
+      "focus contact";
+    .socials {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(2, 48px);
+    }
+  }
+  @include sm {
+    grid-template-columns: 1fr;
+    grid-template-areas: "brand" "focus" "contact" "socials";
+    padding: 24px;
+    .socials {
+      grid-auto-flow: column;
+      grid-template-columns: none;
+      justify-self: start;
+    }
+  }
+}
+.brand { grid-area: brand; }
+.focus { grid-area: focus; }
+.contact { grid-area: contact; }
+.socials { grid-area: socials; }
+
+.brand {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  justify-items: start;
+  .copy {
+    font-size: 14px;
+    color: var(--muted);
+  }
+}
+.logo {
+  border: 0;
+  cursor: pointer;
+  font-family: "Syne", "Syne Fallback", sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--convex);
+  box-shadow: var(--raise-sm);
+  &:active {
+    box-shadow: var(--sink-soft);
+  }
+}
+
+.col {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  font-size: 14px;
+  .col-title {
+    font-family: "Syne", "Syne Fallback", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .legal-title {
+    margin-top: 12px;
+  }
+  a {
+    color: var(--muted);
+    text-decoration: none;
+    width: fit-content;
+    overflow-wrap: anywhere;
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}
+
+.socials {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 16px;
+  align-self: start;
+  justify-self: end;
+  .btn-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
+.tape svg {
+  width: 26px;
+  height: 17px;
+  stroke-width: 1.6;
+}

@@ -36,6 +36,7 @@ export function app(): express.Express {
         "style-src 'self' 'unsafe-inline'",
         "font-src 'self'",
         "img-src 'self' data:",
+        "frame-src https://www.youtube-nocookie.com",
         "connect-src 'self' https://philipp-wendschuch.dev https://c.kunisch.tech",
         "frame-ancestors 'none'",
         "base-uri 'self'",

@@ -1,0 +1,37 @@
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  h3 {
+    font-size: clamp(20px, 2vw, 24px);
+  }
+  p {
+    color: var(--muted);
+    font-size: 15.5px;
+  }
+  .chips {
+    gap: 8px;
+  }
+  // Buttons sit on one line at the bottom of every card, whatever the text length.
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+}
+.shot {
+  border-radius: calc(var(--r-card) - 6px);
+  background: var(--well-bg);
+  box-shadow: var(--sink);
+  padding: 10px;
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--r-card) - 12px);
+    aspect-ratio: 620 / 349;
+    object-fit: cover;
+  }
+}

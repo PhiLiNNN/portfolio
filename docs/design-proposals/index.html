@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portfolio – drei Design-Richtungen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* Syne + Overpass: lokale Fonts aus dem Repo (Richtung 1 = Marken-Kontinuität) */
+@font-face{font-family:"Syne";font-weight:400;src:url("/public/assets/fonts/syne/syne-v22-latin-regular.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Syne";font-weight:600;src:url("/public/assets/fonts/syne/syne-v22-latin-600.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Syne";font-weight:800;src:url("/public/assets/fonts/syne/syne-v22-latin-800.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Overpass";font-weight:300;src:url("/public/assets/fonts/overpass/overpass-v13-latin-300.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Overpass";font-weight:400;src:url("/public/assets/fonts/overpass/overpass-v13-latin-regular.woff2") format("woff2");font-display:swap}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#111;color:#eee;font-family:system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,textarea{font:inherit;color:inherit}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+
+/* ---------- Auswahlleiste ---------- */
+.chooser{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 16px;background:#0e0e10;color:#f3f3f3;border-bottom:1px solid #26262a;font-family:system-ui,sans-serif;font-size:14px}
+.chooser strong{margin-right:6px;font-weight:600}
+.chooser .tabs{display:flex;gap:6px}
+.chooser .tab{border:1px solid #333;background:#18181b;color:#ddd;padding:8px 14px;border-radius:8px;cursor:pointer;line-height:1}
+.chooser .tab[aria-selected="true"]{background:#f3f3f3;color:#111;border-color:#f3f3f3}
+.chooser .tab:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.chooser .hint{margin-left:auto;opacity:.7}
+@media (max-width:640px){.chooser .hint{display:none}}
+
+/* ---------- Gemeinsame Struktur ---------- */
+.design{display:none;background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;transition:background .3s,color .3s;overflow-x:clip}
+.design[data-active="true"]{display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.d-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}
+.d-nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px;max-width:100%}
+@media (max-width:760px){.d-nav{order:3;width:100%;justify-content:center}.d-nav a{padding:8px 12px;font-size:14px}}
+.d-nav a{text-decoration:none;padding:10px 16px;border-radius:var(--r-pill);font-weight:500;font-size:15px;color:var(--muted)}
+.d-nav a[aria-current]{color:var(--text);box-shadow:var(--sink)}
+.d-hero{padding:64px 0 72px}
+.d-hero h1{font-family:var(--font-display);line-height:.98;letter-spacing:-.02em}
+.d-hero .lede{max-width:52ch;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--muted);margin-top:28px}
+.cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:36px;align-items:center}
+
+.spec{padding:48px 0;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
+.spec-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px;margin-bottom:28px}
+.spec-title h2{font-family:var(--font-display);font-size:clamp(26px,3vw,34px);letter-spacing:-.01em}
+.spec-title p{color:var(--muted);font-size:15px;max-width:60ch}
+.grid{display:grid;gap:22px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+
+/* Neumorphe Grundkörper */
+.plate{background:var(--surface);border-radius:var(--r-card);box-shadow:var(--raise);padding:28px}
+.well{background:var(--surface);border-radius:var(--r-card);box-shadow:var(--sink);padding:28px}
+
+/* Farbfelder */
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px}
+.swatch{border-radius:var(--r-card);box-shadow:var(--raise);background:var(--surface);padding:12px}
+.swatch .chip-color{height:84px;border-radius:calc(var(--r-card) - 6px);box-shadow:var(--sink-soft)}
+.swatch .name{font-weight:600;margin-top:10px;font-size:14px}
+.swatch .hex{color:var(--muted);font-size:13px}
+
+/* Typo-Specimen */
+.type-sample{display:grid;gap:18px}
+.type-sample .display{font-family:var(--font-display);font-size:clamp(40px,6vw,76px);line-height:1;letter-spacing:-.02em}
+.type-sample .h2{font-family:var(--font-display);font-size:clamp(26px,3vw,38px);line-height:1.1}
+.type-sample .body{font-size:17px;line-height:1.6;max-width:62ch}
+.type-sample .small{font-size:14px;color:var(--muted)}
+.type-meta{color:var(--muted);font-size:13px;margin-top:6px}
+
+/* Buttons */
+.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:var(--r-pill);background:var(--surface);box-shadow:var(--raise);font-weight:600;font-size:16px;text-decoration:none;transition:box-shadow .18s,transform .18s,color .18s}
+.btn:hover{box-shadow:var(--raise-hi)}
+.btn:active,.btn.is-pressed{box-shadow:var(--sink);transform:translateY(1px)}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.btn-primary{background:var(--accent);color:var(--on-accent);box-shadow:var(--raise),var(--accent-glow)}
+.btn-primary:active{box-shadow:var(--sink-accent)}
+.btn-ghost{box-shadow:none;color:var(--muted);padding-left:12px;padding-right:12px}
+.btn-ghost:hover{color:var(--text);box-shadow:var(--raise)}
+.btn-icon{width:56px;height:56px;padding:0;justify-content:center;border-radius:50%}
+.btn-row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+.btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Schalter (Theme-Toggle) */
+.switch{position:relative;width:64px;height:34px;border-radius:999px;background:var(--surface);box-shadow:var(--sink);border:0;cursor:pointer;padding:0}
+.switch::after{content:"";position:absolute;top:4px;left:4px;width:26px;height:26px;border-radius:50%;background:var(--surface);box-shadow:var(--raise-sm);transition:transform .2s,background .2s}
+.switch[aria-checked="true"]::after{transform:translateX(30px);background:var(--accent)}
+.switch:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.toggle-row{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14px}
+
+/* Formular */
+.field{display:grid;gap:8px}
+.field label{font-size:14px;font-weight:500;color:var(--muted)}
+.field input,.field textarea{border:0;background:var(--surface);border-radius:var(--r-input);box-shadow:var(--sink);padding:16px 18px;font-size:16px;color:var(--text);width:100%}
+.field textarea{min-height:140px;resize:vertical}
+.field input:focus-visible,.field textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.field input::placeholder,.field textarea::placeholder{color:color-mix(in srgb,var(--muted) 70%,transparent)}
+.check{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--muted);line-height:1.5;cursor:pointer}
+.check input{appearance:none;flex:0 0 auto;width:24px;height:24px;border-radius:7px;background:var(--surface);box-shadow:var(--sink);margin-top:1px;cursor:pointer;display:grid;place-content:center}
+.check input::before{content:"";width:12px;height:12px;border-radius:3px;background:var(--accent);transform:scale(0);transition:transform .15s}
+.check input:checked::before{transform:scale(1)}
+.check input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.form{display:grid;gap:20px}
+
+/* Karten */
+.role{display:inline-block;font-size:13px;color:var(--muted);margin-bottom:10px}
+.card h3{font-family:var(--font-display);font-size:clamp(22px,2.2vw,28px);line-height:1.15;letter-spacing:-.01em}
+.card p{line-height:1.55;margin-top:12px;color:var(--muted);font-size:15.5px}
+.card .link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-weight:600;text-decoration:none;color:var(--accent-ink)}
+.card .link svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{font-size:13px;padding:6px 12px;border-radius:999px;box-shadow:var(--sink-soft);color:var(--text)}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:13px;color:var(--muted)}
+.status .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+.chips{display:flex;flex-wrap:wrap;gap:12px}
+.chip{padding:12px 18px;border-radius:var(--r-pill);background:var(--surface);box-shadow:var(--raise);font-weight:500;font-size:15px}
+.chip.is-on{box-shadow:var(--sink);color:var(--accent-ink)}
+.proj{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:start}
+.proj .thumb{aspect-ratio:1;border-radius:calc(var(--r-card) - 8px);box-shadow:var(--sink);background:var(--surface);display:grid;place-content:center;overflow:hidden}
+.proj .thumb img{width:100%;height:100%;object-fit:cover;opacity:.9}
+
+/* Signatur */
+.sig{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+.sig p{line-height:1.6;color:var(--muted)}
+.sig p strong{color:var(--text)}
+@media (max-width:760px){.sig{grid-template-columns:1fr}.proj{grid-template-columns:1fr}}
+
+.d-foot{padding:36px 0 60px;color:var(--muted);font-size:14px;line-height:1.6}
+.d-foot b{color:var(--text)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* =====================================================================
+   RICHTUNG 1 · „Konsole"  – dunkle Soft-UI, Grün als LED, Syne bleibt
+   ===================================================================== */
+.d1{
+  --font-display:"Syne",sans-serif;--font-body:"Overpass",sans-serif;
+  --r-card:18px;--r-pill:14px;--r-input:14px;
+}
+.d1[data-mode="dark"]{
+  --bg:#262a31;--surface:#2a2f37;--hi:rgba(255,255,255,.055);--lo:rgba(8,10,14,.65);
+  --text:#edf0f3;--muted:#9aa4b0;--accent:#2ee6a6;--accent-ink:#5cf0bf;--on-accent:#10261f;
+  --raise:9px 9px 20px var(--lo),-7px -7px 16px var(--hi);
+  --raise-hi:12px 12px 26px var(--lo),-9px -9px 20px rgba(255,255,255,.075);
+  --raise-sm:3px 3px 8px var(--lo),-3px -3px 6px var(--hi);
+  --sink:inset 6px 6px 12px rgba(8,10,14,.7),inset -5px -5px 10px rgba(255,255,255,.05);
+  --sink-soft:inset 3px 3px 6px rgba(8,10,14,.55),inset -3px -3px 6px rgba(255,255,255,.04);
+  --sink-accent:inset 5px 5px 10px rgba(0,60,40,.6),inset -4px -4px 8px rgba(255,255,255,.25);
+  --accent-glow:0 0 0 1px rgba(46,230,166,.25),0 0 28px rgba(46,230,166,.22);
+}
+.d1[data-mode="light"]{
+  --bg:#d7dce3;--surface:#dbe0e7;--hi:rgba(255,255,255,.9);--lo:rgba(120,132,150,.55);
+  --text:#1d2229;--muted:#5a6471;--accent:#0a9a6c;--accent-ink:#08765a;--on-accent:#f1fff9;
+  --raise:9px 9px 20px var(--lo),-8px -8px 18px var(--hi);
+  --raise-hi:12px 12px 26px var(--lo),-10px -10px 22px #fff;
+  --raise-sm:3px 3px 8px var(--lo),-3px -3px 6px var(--hi);
+  --sink:inset 6px 6px 12px rgba(120,132,150,.6),inset -5px -5px 10px rgba(255,255,255,.95);
+  --sink-soft:inset 3px 3px 6px rgba(120,132,150,.45),inset -3px -3px 6px rgba(255,255,255,.9);
+  --sink-accent:inset 5px 5px 10px rgba(0,70,45,.5),inset -4px -4px 8px rgba(255,255,255,.3);
+  --accent-glow:0 0 0 1px rgba(10,154,108,.25),0 0 24px rgba(10,154,108,.18);
+}
+.d1 .d-hero h1{font-size:clamp(40px,8.4vw,118px);font-weight:800}
+.d1 .d-hero h1 .carve{display:block;color:var(--bg);text-shadow:2px 2px 1px rgba(255,255,255,.14),-2px -2px 2px rgba(0,0,0,.75)}
+.d1[data-mode="light"] .d-hero h1 .carve{text-shadow:2px 2px 1px #fff,-2px -2px 2px rgba(90,100,118,.7)}
+.d1 .d-hero h1 .lit{display:block}
+.d1 .led{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);padding:10px 16px;border-radius:999px;box-shadow:var(--sink)}
+.d1 .led i{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent),0 0 22px color-mix(in srgb,var(--accent) 60%,transparent);animation:d1blink 2.6s ease-in-out infinite}
+@keyframes d1blink{0%,100%{opacity:1}50%{opacity:.55}}
+.d1 .logo{font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:-.02em;padding:10px 14px;border-radius:12px;box-shadow:var(--raise)}
+/* Fader: Skills als Mischpult */
+.d1 .fader{display:grid;grid-template-columns:110px 1fr 44px;align-items:center;gap:14px;margin:10px 0}
+.d1 .fader .track{height:12px;border-radius:999px;box-shadow:var(--sink);position:relative}
+.d1 .fader .knob{position:absolute;top:50%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:var(--surface);box-shadow:var(--raise-sm)}
+.d1 .fader .knob::after{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.d1 .fader .fill{position:absolute;left:4px;top:4px;bottom:4px;border-radius:999px;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 40%,transparent),var(--accent))}
+.d1 .fader span{font-size:14px}
+.d1 .fader .val{text-align:right;color:var(--muted);font-size:13px}
+/* Drehknopf als Scroll-Indikator */
+.d1 .knob-big{width:120px;height:120px;border-radius:50%;background:var(--surface);box-shadow:var(--raise);position:relative;display:grid;place-content:center}
+.d1 .knob-big::before{content:"";position:absolute;inset:14px;border-radius:50%;box-shadow:var(--sink)}
+.d1 .knob-big::after{content:"";position:absolute;top:22px;left:50%;width:4px;height:18px;margin-left:-2px;border-radius:2px;background:var(--accent);box-shadow:0 0 8px var(--accent);transform-origin:50% 38px;animation:d1spin 6s linear infinite}
+@keyframes d1spin{to{transform:rotate(360deg)}}
+
+/* =====================================================================
+   RICHTUNG 2 · „Porzellan" – helles kühles Grau-Blau, Kobalt, breite Groteske
+   ===================================================================== */
+.d2{
+  --font-display:"Unbounded",sans-serif;--font-body:"Instrument Sans",sans-serif;
+  --r-card:28px;--r-pill:999px;--r-input:20px;
+}
+.d2[data-mode="light"]{
+  --bg:#e1e5ed;--surface:#e4e8ef;--hi:#ffffff;--lo:rgba(140,152,175,.55);
+  --text:#161b28;--muted:#5b6479;--accent:#2a44e8;--accent-ink:#1f35c4;--on-accent:#f6f7ff;
+  --raise:10px 10px 24px var(--lo),-10px -10px 22px var(--hi);
+  --raise-hi:14px 14px 30px var(--lo),-12px -12px 26px #fff;
+  --raise-sm:4px 4px 10px var(--lo),-4px -4px 8px var(--hi);
+  --sink:inset 7px 7px 14px rgba(140,152,175,.6),inset -6px -6px 12px #fff;
+  --sink-soft:inset 3px 3px 7px rgba(140,152,175,.45),inset -3px -3px 6px #fff;
+  --sink-accent:inset 5px 5px 10px rgba(10,20,110,.55),inset -4px -4px 8px rgba(255,255,255,.3);
+  --accent-glow:0 10px 24px rgba(42,68,232,.28);
+}
+.d2[data-mode="dark"]{
+  --bg:#1c2130;--surface:#202637;--hi:rgba(255,255,255,.06);--lo:rgba(0,0,0,.6);
+  --text:#eef0f7;--muted:#9aa3bd;--accent:#7f8fff;--accent-ink:#a7b2ff;--on-accent:#0d1240;
+  --raise:10px 10px 24px var(--lo),-8px -8px 18px var(--hi);
+  --raise-hi:14px 14px 30px var(--lo),-10px -10px 22px rgba(255,255,255,.08);
+  --raise-sm:4px 4px 10px var(--lo),-4px -4px 8px var(--hi);
+  --sink:inset 7px 7px 14px rgba(0,0,0,.65),inset -6px -6px 12px rgba(255,255,255,.06);
+  --sink-soft:inset 3px 3px 7px rgba(0,0,0,.5),inset -3px -3px 6px rgba(255,255,255,.05);
+  --sink-accent:inset 5px 5px 10px rgba(10,20,110,.55),inset -4px -4px 8px rgba(255,255,255,.25);
+  --accent-glow:0 10px 24px rgba(127,143,255,.25);
+}
+.d2 .d-hero h1{font-size:clamp(34px,5.6vw,80px);font-weight:800;line-height:1.02}
+/* Eingeprägte Überschrift: Schrift sitzt IN der Oberfläche */
+.d2 .pressed-text{color:var(--surface);text-shadow:2px 2px 2px var(--hi),-2px -2px 3px var(--lo)}
+.d2[data-mode="dark"] .pressed-text{text-shadow:1px 1px 1px rgba(255,255,255,.08),-2px -2px 3px rgba(0,0,0,.7)}
+.d2 .d-hero .plate{padding:clamp(28px,5vw,64px)}
+.d2 .logo{width:48px;height:48px;border-radius:50%;box-shadow:var(--raise);display:grid;place-content:center;font-family:var(--font-display);font-weight:800;font-size:15px}
+.d2 .d-nav{padding:6px;border-radius:999px;box-shadow:var(--sink)}
+.d2 .d-nav a[aria-current]{box-shadow:var(--raise-sm);background:var(--surface)}
+.d2 .stack{position:relative}
+.d2 .stack::before,.d2 .stack::after{content:"";position:absolute;inset:12px -8px -8px 12px;border-radius:var(--r-card);box-shadow:var(--raise);background:var(--surface);z-index:-1;opacity:.7}
+.d2 .stack::after{inset:24px -16px -16px 24px;opacity:.4}
+.d2 .pressbtn{display:grid;gap:10px;justify-items:center;font-size:13px;color:var(--muted)}
+.d2 .socials{display:flex;gap:18px}
+
+/* =====================================================================
+   RICHTUNG 3 · „Tiefsee" – monochrome Petrol-Neumorphie, Pfirsich, Serif kursiv
+   ===================================================================== */
+.d3{
+  --font-display:"Instrument Serif",serif;--font-body:"Archivo",sans-serif;
+  --r-card:26px;--r-pill:999px;--r-input:18px;
+}
+.d3[data-mode="dark"]{
+  --bg:#0f3a46;--surface:#11404d;--hi:rgba(150,225,235,.11);--lo:rgba(0,14,20,.6);
+  --text:#eaf4f5;--muted:#9fc2c8;--accent:#ffb27d;--accent-ink:#ffc69c;--on-accent:#1a2b30;
+  --raise:10px 10px 22px var(--lo),-8px -8px 18px var(--hi);
+  --raise-hi:14px 14px 28px var(--lo),-10px -10px 22px rgba(150,225,235,.15);
+  --raise-sm:4px 4px 9px var(--lo),-4px -4px 8px var(--hi);
+  --sink:inset 7px 7px 14px rgba(0,14,20,.65),inset -6px -6px 12px rgba(150,225,235,.1);
+  --sink-soft:inset 3px 3px 7px rgba(0,14,20,.5),inset -3px -3px 6px rgba(150,225,235,.08);
+  --sink-accent:inset 5px 5px 10px rgba(120,60,20,.55),inset -4px -4px 8px rgba(255,255,255,.3);
+  --accent-glow:0 0 0 1px rgba(255,178,125,.2),0 12px 28px rgba(255,178,125,.18);
+}
+.d3[data-mode="light"]{
+  --bg:#cfe1e4;--surface:#d4e5e8;--hi:#ffffff;--lo:rgba(90,140,150,.5);
+  --text:#0f3a46;--muted:#3f6a73;--accent:#ffa066;--accent-ink:#b4521c;--on-accent:#1a2b30;
+  --raise:10px 10px 22px var(--lo),-9px -9px 20px var(--hi);
+  --raise-hi:14px 14px 28px var(--lo),-11px -11px 24px #fff;
+  --raise-sm:4px 4px 9px var(--lo),-4px -4px 8px var(--hi);
+  --sink:inset 7px 7px 14px rgba(90,140,150,.55),inset -6px -6px 12px #fff;
+  --sink-soft:inset 3px 3px 7px rgba(90,140,150,.4),inset -3px -3px 6px #fff;
+  --sink-accent:inset 5px 5px 10px rgba(120,60,20,.45),inset -4px -4px 8px rgba(255,255,255,.35);
+  --accent-glow:0 12px 28px rgba(255,160,102,.3);
+}
+.d3 .d-hero h1{font-size:clamp(52px,9vw,132px);font-weight:400;font-style:italic;letter-spacing:-.01em;line-height:.95}
+/* Ausgestanzt: Schrift ist ein Loch in der Oberfläche, darunter leuchtet es */
+.d3 .knockout{color:var(--accent);text-shadow:0 0 22px color-mix(in srgb,var(--accent) 45%,transparent)}
+.d3 .knockout-wrap{position:relative;display:inline-block}
+/* Schattierung nur INNERHALB der Buchstaben: oben links dunkler Rand (Schatten fällt hinein), unten rechts Licht */
+.d3 .knockout-wrap::after{content:attr(data-text);position:absolute;inset:0;color:transparent;pointer-events:none;background:linear-gradient(135deg,rgba(0,14,20,.55) 0%,rgba(0,14,20,.18) 22%,transparent 45%,transparent 70%,rgba(255,255,255,.28) 100%);-webkit-background-clip:text;background-clip:text}
+.d3[data-mode="light"] .knockout-wrap::after{background:linear-gradient(135deg,rgba(60,30,10,.45) 0%,rgba(60,30,10,.15) 22%,transparent 45%,transparent 70%,rgba(255,255,255,.5) 100%);-webkit-background-clip:text;background-clip:text}
+.d3 .d-hero .roman{font-style:normal;display:block;color:var(--text)}
+.d3 .logo{font-family:var(--font-display);font-style:italic;font-size:26px;width:54px;height:54px;border-radius:50%;display:grid;place-content:center;box-shadow:var(--raise)}
+.d3 .d-nav a{font-size:15px}
+.d3 .coin{width:64px;height:64px;border-radius:50%;padding:0;justify-content:center}
+.d3 .coin.btn-primary{position:relative}
+.d3 .coin.btn-primary::before{content:"";position:absolute;inset:7px;border-radius:50%;box-shadow:inset 2px 2px 4px rgba(120,60,20,.35),inset -2px -2px 4px rgba(255,255,255,.4)}
+.d3 .spine{position:relative;padding-left:40px}
+.d3 .spine::before{content:"";position:absolute;left:14px;top:8px;bottom:8px;width:6px;border-radius:3px;box-shadow:var(--sink)}
+.d3 .spine .card{position:relative;margin-bottom:22px}
+.d3 .spine .card::before{content:"";position:absolute;left:-33px;top:30px;width:16px;height:16px;border-radius:50%;background:var(--surface);box-shadow:var(--raise-sm)}
+.d3 .spine .card.now::before{background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent),var(--raise-sm)}
+.d3 .porthole{aspect-ratio:1;border-radius:50%;box-shadow:var(--sink);overflow:hidden;display:grid;place-content:center}
+.d3 .porthole img{width:100%;height:100%;object-fit:cover}
+.d3 .card h3{font-style:italic;font-size:clamp(26px,2.6vw,34px)}
+.d3 .type-sample .h2,.d3 .spec-title h2{font-style:italic;font-weight:400}
+.d3 .btn{font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="chooser" role="tablist" aria-label="Design-Richtung wählen">
+  <strong>Portfolio · 3 Richtungen</strong>
+  <div class="tabs">
+    <button class="tab" role="tab" aria-selected="true" aria-controls="d1" id="tab-d1">1 · Konsole</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="d2" id="tab-d2">2 · Porzellan</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="d3" id="tab-d3">3 · Tiefsee</button>
+  </div>
+  <span class="hint">Jede Richtung hat Hell/Dunkel · Buttons sind klickbar (drücken!) · Tasten 1, 2, 3 wechseln</span>
+</div>
+
+<!-- ================================================================ -->
+<section class="design d1" id="d1" data-mode="dark" data-active="true" role="tabpanel" aria-labelledby="tab-d1">
+  <div class="wrap">
+    <header class="d-head">
+      <span class="logo">PW</span>
+      <nav class="d-nav" aria-label="Beispiel-Navigation">
+        <a href="#" aria-current="page">Start</a><a href="#">Projekte</a><a href="#">Werdegang</a><a href="#">Kontakt</a>
+      </nav>
+      <div class="toggle-row"><span>Hell</span><button class="switch" role="switch" aria-checked="true" data-theme-toggle aria-label="Dunkelmodus"></button><span>Dunkel</span></div>
+    </header>
+
+    <div class="d-hero">
+      <span class="led"><i></i> Verfügbar für neue Projekte</span>
+      <h1 style="margin-top:28px">
+        <span class="lit">Full-Stack</span>
+        <span class="carve">Developer</span>
+        <span class="lit">aus Leipzig.</span>
+      </h1>
+      <p class="lede">Angular vorn, Python hinten, Docker drumherum. Ich baue Web-Apps und Webseiten komplett – vom ersten Entwurf bis zum laufenden Server.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#">Projekt besprechen
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn" href="#">Meine Arbeit ansehen</a>
+        <div class="knob-big" aria-hidden="true" style="margin-left:auto"></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Farben</h2><p>Graphit statt Schwarz, kühles Grau statt Creme. Das Grün aus dem bestehenden Logo bleibt – aber als leuchtende LED, nicht als Fläche.</p></div>
+      <div class="swatches">
+        <div class="swatch"><div class="chip-color" style="background:#262a31"></div><div class="name">Graphit</div><div class="hex">#262A31 · Hintergrund (dunkel)</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#2a2f37"></div><div class="name">Oberfläche</div><div class="hex">#2A2F37 · Karten, Buttons</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#2ee6a6"></div><div class="name">LED-Mint</div><div class="hex">#2EE6A6 · Akzent, Glow</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#edf0f3"></div><div class="name">Licht</div><div class="hex">#EDF0F3 · Text</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#d7dce3"></div><div class="name">Stahlgrau</div><div class="hex">#D7DCE3 · Hintergrund (hell)</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#0a9a6c"></div><div class="name">Tiefgrün</div><div class="hex">#0A9A6C · Akzent (hell)</div></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Schrift</h2><p>Syne (fett, 800) bleibt als Markenstimme, Overpass für Fließtext. Beide liegen schon selbst gehostet im Repo – DSGVO-sicher und ohne neue Dateien.</p></div>
+      <div class="type-sample">
+        <div><div class="display">Syne 800 – Headline</div><div class="type-meta">Display · Syne 800 · −2% Laufweite · 1.0 Zeilenhöhe</div></div>
+        <div><div class="h2">Was ich anbiete</div><div class="type-meta">Abschnittstitel · Syne 800</div></div>
+        <div><p class="body">Nach einem Jahrzehnt in der Logistik und einem Master in Medizinphysik bin ich über Python zum Programmieren gekommen. Seit zwei Jahren entwickle ich hauptberuflich, nebenher baue ich Webseiten für Unternehmen – Frontend bis Backend.</p><div class="type-meta">Fließtext · Overpass 400 · 17px / 1.6</div></div>
+        <div><div class="small">Kleintext, Labels, Meta · Overpass 400 · 14px</div></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Buttons &amp; Bedienelemente</h2><p>Alles wie Hardware: erhaben in Ruhe, eingedrückt beim Klick. Der Primär-Button leuchtet wie eine LED.</p></div>
+      <div class="grid grid-2">
+        <div class="plate">
+          <div class="btn-row">
+            <button class="btn btn-primary">Nachricht senden</button>
+            <button class="btn">Sekundär</button>
+            <button class="btn is-pressed">Gedrückt</button>
+            <button class="btn btn-ghost">Leise</button>
+            <button class="btn btn-icon" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.6 16 2.5a13.4 13.4 0 0 0-7 0C6.3.6 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></button>
+          </div>
+          <div class="toggle-row" style="margin-top:24px"><span>DE</span><button class="switch" role="switch" aria-checked="false" aria-label="Sprache" onclick="this.setAttribute('aria-checked',this.getAttribute('aria-checked')!=='true')"></button><span>EN</span></div>
+        </div>
+        <div class="plate">
+          <div class="fader"><span>Angular</span><div class="track"><div class="fill" style="width:90%"></div><div class="knob" style="left:90%"></div></div><span class="val">90</span></div>
+          <div class="fader"><span>TypeScript</span><div class="track"><div class="fill" style="width:85%"></div><div class="knob" style="left:85%"></div></div><span class="val">85</span></div>
+          <div class="fader"><span>Python</span><div class="track"><div class="fill" style="width:75%"></div><div class="knob" style="left:75%"></div></div><span class="val">75</span></div>
+          <div class="fader"><span>Docker</span><div class="track"><div class="fill" style="width:60%"></div><div class="knob" style="left:60%"></div></div><span class="val">60</span></div>
+          <p class="type-meta" style="margin-top:14px">Skills als Mischpult-Fader statt Icon-Raster.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Formular</h2><p>Felder sind in die Oberfläche eingelassen. Fokus = grüner Ring.</p></div>
+      <div class="plate" style="max-width:640px">
+        <form class="form" onsubmit="return false">
+          <div class="field"><label for="d1n">Dein Name</label><input id="d1n" placeholder="Max Mustermann"></div>
+          <div class="field"><label for="d1e">Deine E-Mail</label><input id="d1e" type="email" placeholder="max@beispiel.de"></div>
+          <div class="field"><label for="d1m">Deine Nachricht</label><textarea id="d1m" placeholder="Worum geht's?"></textarea></div>
+          <label class="check"><input type="checkbox"> Ich habe die Datenschutzerklärung gelesen und bin mit der Verarbeitung meiner Daten einverstanden.</label>
+          <div><button class="btn btn-primary">Nachricht senden</button></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Karten · Werdegang &amp; Projekte</h2><p>So würden die beiden Mitgründer-Einträge und ein Projekt aussehen.</p></div>
+      <div class="grid grid-3">
+        <article class="plate card">
+          <span class="role">Mitgründer</span>
+          <h3>Webwerk Leipzig</h3>
+          <p>Zu zweit bauen wir schnelle, handgemachte Webseiten für Betriebe in Leipzig – persönlich und lokal.</p>
+          <a class="link" href="https://webwerk-leipzig.de">webwerk-leipzig.de <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </article>
+        <article class="plate card">
+          <span class="role">Mitgründer · im Aufbau</span>
+          <h3>traudel.app</h3>
+          <p>Nachbarschaft heißt mehr als nebeneinander wohnen. Traudel bringt Nachbarn wieder zusammen: Hilfe, ehrliche Empfehlungen, Verleihen – im Browser und auf dem Handy.</p>
+          <div class="tags"><span class="tag">Kostenlos</span><span class="tag">Keine Werbung</span><span class="tag">Gebaut in Leipzig</span></div>
+          <span class="status"><span class="dot"></span> Noch nicht öffentlich</span>
+        </article>
+        <article class="plate card proj">
+          <div class="thumb"><img src="/public/assets/img/references/join.png" alt=""></div>
+          <div><span class="role">Projekt 1 / 3</span><h3>Join</h3><p>Kanban-Taskmanager mit Drag &amp; Drop, Nutzern und Kategorien.</p><div class="tags"><span class="tag">JavaScript</span><span class="tag">Firebase</span></div></div>
+        </article>
+      </div>
+      <div class="chips" style="margin-top:28px">
+        <span class="chip is-on">Angular</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Django</span><span class="chip">Docker</span><span class="chip">CI/CD</span>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Signatur-Moment</h2></div>
+      <div class="sig">
+        <p><strong>Die Seite ist ein Pult.</strong> Beim Laden „fahren" die Fader der Skills auf ihre Werte, die LED „Verfügbar" blinkt einmal an. Der Drehknopf rechts im Hero dreht sich mit dem Scroll-Fortschritt (statt Pfeilen). Der Theme-Schalter ist ein echter Kippschalter mit Klick-Gefühl. Sonst: Ruhe. Keine Fade-ins auf jedem Abschnitt.</p>
+        <div class="well"><div class="fader"><span>Scroll</span><div class="track"><div class="fill" style="width:35%"></div><div class="knob" style="left:35%"></div></div><span class="val">35%</span></div></div>
+      </div>
+    </div>
+
+    <p class="d-foot"><b>Für wen:</b> Wenn du die Marke (Syne + Grün) behalten, aber komplett neu inszenieren willst. Wirkt technisch, präzise, ein bisschen „Studio-Hardware".</p>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<section class="design d2" id="d2" data-mode="light" role="tabpanel" aria-labelledby="tab-d2">
+  <div class="wrap">
+    <header class="d-head">
+      <span class="logo">PW</span>
+      <nav class="d-nav" aria-label="Beispiel-Navigation">
+        <a href="#" aria-current="page">Start</a><a href="#">Projekte</a><a href="#">Werdegang</a><a href="#">Kontakt</a>
+      </nav>
+      <div class="toggle-row"><span>Hell</span><button class="switch" role="switch" aria-checked="false" data-theme-toggle aria-label="Dunkelmodus"></button><span>Dunkel</span></div>
+    </header>
+
+    <div class="d-hero">
+      <div class="plate stack">
+        <h1><span class="pressed-text">Philipp Wendschuch</span><br>baut Web-Apps, die man gern anfasst.</h1>
+        <p class="lede">Full-Stack Developer in Leipzig. Angular und TypeScript im Frontend, Python im Backend, Docker und CI/CD für den Rest. Mitgründer von Webwerk Leipzig und traudel.app.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#">Projekt anfragen</a>
+          <a class="btn" href="#">Werdegang</a>
+          <div class="socials" style="margin-left:auto">
+            <button class="btn btn-icon" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.6 16 2.5a13.4 13.4 0 0 0-7 0C6.3.6 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></button>
+            <button class="btn btn-icon" aria-label="E-Mail"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Farben</h2><p>Kühles Porzellan-Grau mit Blaustich, nicht Creme. Ein einziger Akzent: Kobalt. Dunkelmodus in Tinte-Navy.</p></div>
+      <div class="swatches">
+        <div class="swatch"><div class="chip-color" style="background:#e1e5ed"></div><div class="name">Porzellan</div><div class="hex">#E1E5ED · Hintergrund</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#e4e8ef"></div><div class="name">Teller</div><div class="hex">#E4E8EF · Oberfläche</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#2a44e8"></div><div class="name">Kobalt</div><div class="hex">#2A44E8 · Akzent</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#161b28"></div><div class="name">Tinte</div><div class="hex">#161B28 · Text</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#1c2130"></div><div class="name">Nacht</div><div class="hex">#1C2130 · Hintergrund (dunkel)</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#7f8fff"></div><div class="name">Periwinkle</div><div class="hex">#7F8FFF · Akzent (dunkel)</div></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Schrift</h2><p>Unbounded – breit, geometrisch, laut – nur für Überschriften. Instrument Sans für alles andere. Beide würden selbst gehostet (Google Fonts nur hier in der Vorschau).</p></div>
+      <div class="type-sample">
+        <div><div class="display">Unbounded 800</div><div class="type-meta">Display · Unbounded 800 · −2% Laufweite</div></div>
+        <div><div class="h2 pressed-text">Eingeprägt in die Oberfläche</div><div class="type-meta">Abschnittstitel · Unbounded 800 · geprägt</div></div>
+        <div><p class="body">Nach einem Jahrzehnt in der Logistik und einem Master in Medizinphysik bin ich über Python zum Programmieren gekommen. Seit zwei Jahren entwickle ich hauptberuflich, nebenher baue ich Webseiten für Unternehmen – Frontend bis Backend.</p><div class="type-meta">Fließtext · Instrument Sans 400 · 17px / 1.6</div></div>
+        <div><div class="small">Kleintext, Labels, Meta · Instrument Sans 500 · 14px</div></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Buttons &amp; Bedienelemente</h2><p>Pillen, die sich wirklich eindrücken lassen. Die aktive Nav-Position ist eine Pille, die in die Rinne gedrückt ist.</p></div>
+      <div class="grid grid-2">
+        <div class="plate">
+          <div class="btn-row">
+            <button class="btn btn-primary">Projekt anfragen</button>
+            <button class="btn">Sekundär</button>
+            <button class="btn is-pressed">Gedrückt</button>
+            <button class="btn btn-ghost">Leise</button>
+          </div>
+          <div class="btn-row" style="margin-top:24px">
+            <div class="pressbtn"><button class="btn btn-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></button><span>Erhaben</span></div>
+            <div class="pressbtn"><button class="btn btn-icon is-pressed" aria-label="LinkedIn gedrückt"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg></button><span>Gedrückt</span></div>
+            <div class="toggle-row"><span>DE</span><button class="switch" role="switch" aria-checked="false" aria-label="Sprache" onclick="this.setAttribute('aria-checked',this.getAttribute('aria-checked')!=='true')"></button><span>EN</span></div>
+          </div>
+        </div>
+        <div class="well">
+          <nav class="d-nav" aria-label="Nav-Beispiel" style="display:inline-flex"><a href="#">Start</a><a href="#" aria-current="page">Projekte</a><a href="#">Kontakt</a></nav>
+          <p class="type-meta" style="margin-top:18px">Nav als Rinne, aktive Seite als erhabene Pille – gleitet beim Wechsel.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Formular</h2></div>
+      <div class="plate" style="max-width:640px">
+        <form class="form" onsubmit="return false">
+          <div class="field"><label for="d2n">Dein Name</label><input id="d2n" placeholder="Max Mustermann"></div>
+          <div class="field"><label for="d2e">Deine E-Mail</label><input id="d2e" type="email" placeholder="max@beispiel.de"></div>
+          <div class="field"><label for="d2m">Deine Nachricht</label><textarea id="d2m" placeholder="Worum geht's?"></textarea></div>
+          <label class="check"><input type="checkbox"> Ich habe die Datenschutzerklärung gelesen und bin mit der Verarbeitung meiner Daten einverstanden.</label>
+          <div><button class="btn btn-primary">Nachricht senden</button></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Karten · Werdegang &amp; Projekte</h2></div>
+      <div class="grid grid-3">
+        <article class="plate card">
+          <span class="role">Mitgründer</span>
+          <h3>Webwerk Leipzig</h3>
+          <p>Zu zweit bauen wir schnelle, handgemachte Webseiten für Betriebe in Leipzig – persönlich und lokal.</p>
+          <a class="link" href="https://webwerk-leipzig.de">webwerk-leipzig.de <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </article>
+        <article class="plate card">
+          <span class="role">Mitgründer · im Aufbau</span>
+          <h3>traudel.app</h3>
+          <p>Nachbarschaft heißt mehr als nebeneinander wohnen. Traudel bringt Nachbarn wieder zusammen: Hilfe, ehrliche Empfehlungen, Verleihen – im Browser und auf dem Handy.</p>
+          <div class="tags"><span class="tag">Kostenlos</span><span class="tag">Keine Werbung</span><span class="tag">Gebaut in Leipzig</span></div>
+          <span class="status"><span class="dot"></span> Noch nicht öffentlich</span>
+        </article>
+        <article class="plate card proj">
+          <div class="thumb"><img src="/public/assets/img/references/sharkie.png" alt=""></div>
+          <div><span class="role">Projekt 2 / 3</span><h3>Sharkie</h3><p>Unterwasser-Jump'n'Run, objektorientiert in Vanilla JS.</p><div class="tags"><span class="tag">JavaScript</span><span class="tag">Canvas</span></div></div>
+        </article>
+      </div>
+      <div class="chips" style="margin-top:28px">
+        <span class="chip is-on">Angular</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Django</span><span class="chip">Docker</span><span class="chip">CI/CD</span>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Signatur-Moment</h2></div>
+      <div class="sig">
+        <p><strong>Alles ist aus einem Stück Porzellan.</strong> Beim Laden ist der Name erst eingeprägt und „hebt" sich dann sanft heraus – ein einziger Reveal, sonst nichts. Jede Sektion ist ein gestapelter Teller, der sich beim Scrollen leicht versetzt. Buttons geben ein spürbares „Klick" (Eindrück-Animation 120 ms). Cursor wird über Buttons zu einem weichen Kreis.</p>
+        <div class="plate stack" style="padding:36px"><div class="h2 pressed-text" style="font-family:var(--font-display);font-size:30px;font-weight:800">Werdegang</div></div>
+      </div>
+    </div>
+
+    <p class="d-foot"><b>Für wen:</b> Wenn du den reinsten Neumorphismus willst – hell, ruhig, hochwertig – und die Marke mit einer neuen, mutigeren Schrift neu aufsetzen magst. Am nächsten an klassischen Awwwards-Soft-UI-Seiten, aber mit eigener Farbe und Typo.</p>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<section class="design d3" id="d3" data-mode="dark" role="tabpanel" aria-labelledby="tab-d3">
+  <div class="wrap">
+    <header class="d-head">
+      <span class="logo">P</span>
+      <nav class="d-nav" aria-label="Beispiel-Navigation">
+        <a href="#" aria-current="page">Start</a><a href="#">Projekte</a><a href="#">Werdegang</a><a href="#">Kontakt</a>
+      </nav>
+      <div class="toggle-row"><span>Hell</span><button class="switch" role="switch" aria-checked="true" data-theme-toggle aria-label="Dunkelmodus"></button><span>Dunkel</span></div>
+    </header>
+
+    <div class="d-hero">
+      <h1>
+        <span class="knockout-wrap" data-text="Software"><span class="knockout">Software</span></span><br>
+        <span class="roman">mit Tiefgang.</span>
+      </h1>
+      <p class="lede">Philipp Wendschuch, Full-Stack Developer in Leipzig. Ich baue Webseiten und Apps komplett, vom Angular-Frontend bis zur Python-API – und gründe nebenbei mit: Webwerk Leipzig und traudel.app.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#">Schreib mir</a>
+        <a class="btn" href="#">Projekte</a>
+        <button class="btn coin" aria-label="Nach unten"><svg viewBox="0 0 24 24"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></button>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Farben</h2><p>Eine einzige Farbe – Petrol – in Licht und Schatten. Pfirsich als warmer Gegenpol, nur für Aktionen. Hellmodus in blassem Aqua.</p></div>
+      <div class="swatches">
+        <div class="swatch"><div class="chip-color" style="background:#0f3a46"></div><div class="name">Tiefsee</div><div class="hex">#0F3A46 · Hintergrund</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#11404d"></div><div class="name">Strömung</div><div class="hex">#11404D · Oberfläche</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#ffb27d"></div><div class="name">Pfirsich</div><div class="hex">#FFB27D · Akzent</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#eaf4f5"></div><div class="name">Gischt</div><div class="hex">#EAF4F5 · Text</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#cfe1e4"></div><div class="name">Aqua</div><div class="hex">#CFE1E4 · Hintergrund (hell)</div></div>
+        <div class="swatch"><div class="chip-color" style="background:#b4521c"></div><div class="name">Kupfer</div><div class="hex">#B4521C · Akzent-Text (hell)</div></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Schrift</h2><p>Instrument Serif kursiv – eine Serife, ungewöhnlich für Developer-Portfolios – trägt die Stimme. Archivo als nüchterner Gegenpart für Fließtext.</p></div>
+      <div class="type-sample">
+        <div><div class="display" style="font-style:italic">Instrument Serif</div><div class="type-meta">Display · Instrument Serif Italic 400</div></div>
+        <div><div class="h2">Was ich anbiete</div><div class="type-meta">Abschnittstitel · Instrument Serif Italic</div></div>
+        <div><p class="body">Nach einem Jahrzehnt in der Logistik und einem Master in Medizinphysik bin ich über Python zum Programmieren gekommen. Seit zwei Jahren entwickle ich hauptberuflich, nebenher baue ich Webseiten für Unternehmen – Frontend bis Backend.</p><div class="type-meta">Fließtext · Archivo 400 · 17px / 1.6</div></div>
+        <div><div class="small">Kleintext, Labels, Meta · Archivo 500 · 14px</div></div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Buttons &amp; Bedienelemente</h2><p>Runde „Münzen" für Icons und Richtungsaktionen, Pillen für Text. Pfirsich nur dort, wo etwas passiert.</p></div>
+      <div class="grid grid-2">
+        <div class="plate">
+          <div class="btn-row">
+            <button class="btn btn-primary">Schreib mir</button>
+            <button class="btn">Sekundär</button>
+            <button class="btn is-pressed">Gedrückt</button>
+            <button class="btn btn-ghost">Leise</button>
+          </div>
+          <div class="btn-row" style="margin-top:24px">
+            <button class="btn coin btn-primary" aria-label="Weiter"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <button class="btn coin" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.6 16 2.5a13.4 13.4 0 0 0-7 0C6.3.6 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></button>
+            <button class="btn coin is-pressed" aria-label="E-Mail"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></button>
+            <div class="toggle-row"><span>DE</span><button class="switch" role="switch" aria-checked="false" aria-label="Sprache" onclick="this.setAttribute('aria-checked',this.getAttribute('aria-checked')!=='true')"></button><span>EN</span></div>
+          </div>
+        </div>
+        <div class="well">
+          <div class="porthole" style="width:150px"><img src="/public/assets/img/application.jpg" alt=""></div>
+          <p class="type-meta" style="margin-top:18px">Portrait und Projektbilder als Bullauge – rund, in die Fläche eingelassen.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Formular</h2></div>
+      <div class="plate" style="max-width:640px">
+        <form class="form" onsubmit="return false">
+          <div class="field"><label for="d3n">Dein Name</label><input id="d3n" placeholder="Max Mustermann"></div>
+          <div class="field"><label for="d3e">Deine E-Mail</label><input id="d3e" type="email" placeholder="max@beispiel.de"></div>
+          <div class="field"><label for="d3m">Deine Nachricht</label><textarea id="d3m" placeholder="Worum geht's?"></textarea></div>
+          <label class="check"><input type="checkbox"> Ich habe die Datenschutzerklärung gelesen und bin mit der Verarbeitung meiner Daten einverstanden.</label>
+          <div><button class="btn btn-primary">Nachricht senden</button></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Werdegang als Rückgrat</h2><p>Statt Karten nebeneinander: eine eingelassene Rinne, an der die Stationen hängen. Der aktuelle Eintrag leuchtet.</p></div>
+      <div class="grid grid-2">
+        <div class="spine">
+          <article class="plate card now">
+            <span class="role">Mitgründer · im Aufbau · 2026</span>
+            <h3>traudel.app</h3>
+            <p>Nachbarschaft heißt mehr als nebeneinander wohnen. Traudel bringt Nachbarn wieder zusammen: Hilfe, ehrliche Empfehlungen, Verleihen – im Browser und auf dem Handy.</p>
+            <div class="tags"><span class="tag">Kostenlos</span><span class="tag">Keine Werbung</span><span class="tag">Gebaut in Leipzig</span></div>
+            <span class="status"><span class="dot"></span> Noch nicht öffentlich</span>
+          </article>
+          <article class="plate card">
+            <span class="role">Mitgründer</span>
+            <h3>Webwerk Leipzig</h3>
+            <p>Zu zweit bauen wir schnelle, handgemachte Webseiten für Betriebe in Leipzig – persönlich und lokal.</p>
+            <a class="link" href="https://webwerk-leipzig.de">webwerk-leipzig.de <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          </article>
+        </div>
+        <div>
+          <article class="plate card proj" style="grid-template-columns:140px 1fr">
+            <div class="porthole"><img src="/public/assets/img/references/pokecubes.png" alt=""></div>
+            <div><span class="role">Projekt 3 / 3</span><h3>PokéCubes</h3><p>Erste Pokémon-Generation auf drehbaren Würfeln, gespeist aus der PokeAPI.</p><div class="tags"><span class="tag">JavaScript</span><span class="tag">REST API</span></div></div>
+          </article>
+          <div class="chips" style="margin-top:22px">
+            <span class="chip is-on">Angular</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Docker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spec">
+      <div class="spec-title"><h2>Signatur-Moment</h2></div>
+      <div class="sig">
+        <p><strong>Licht unter der Oberfläche.</strong> Die Hero-Headline ist aus der Fläche ausgestanzt; darunter liegt warmes Licht, das dem Mauszeiger leicht folgt (ein einziger radialer Lichtfleck, keine Partikel). Beim Scrollen taucht man tiefer: Der Hintergrund wird pro Abschnitt eine Nuance dunkler, der Kontakt ganz unten ist der tiefste Punkt. Münz-Buttons drehen sich beim Drücken um 10°.</p>
+        <div class="well" style="text-align:center"><div style="font-family:var(--font-display);font-style:italic;font-size:48px;line-height:1" class="knockout-wrap" data-text="Tiefgang"><span class="knockout">Tiefgang</span></div></div>
+      </div>
+    </div>
+
+    <p class="d-foot"><b>Für wen:</b> Wenn du am weitesten weg vom Üblichen willst. Eine Farbe, eine Serife, viel Ruhe – wirkt eher wie ein Studio als wie ein Lebenslauf. Das größte Risiko, der größte Wiedererkennungswert.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  const tabs=[...document.querySelectorAll('.chooser .tab')];
+  const panels=[...document.querySelectorAll('.design')];
+  function show(i){
+    tabs.forEach((t,k)=>t.setAttribute('aria-selected',k===i));
+    panels.forEach((p,k)=>p.dataset.active=(k===i));
+    window.scrollTo({top:0});
+    try{localStorage.setItem('design-tab',i)}catch(e){}
+  }
+  tabs.forEach((t,i)=>t.addEventListener('click',()=>show(i)));
+  document.addEventListener('keydown',e=>{
+    if(e.target.matches('input,textarea'))return;
+    if(['1','2','3'].includes(e.key))show(+e.key-1);
+  });
+  let saved=0;try{saved=+localStorage.getItem('design-tab')||0}catch(e){}
+  const q=new URLSearchParams(location.search).get('d');if(q)saved=+q-1;
+  show(saved);
+  document.querySelectorAll('[data-theme-toggle]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const sec=btn.closest('.design');
+      const dark=sec.dataset.mode==='dark';
+      sec.dataset.mode=dark?'light':'dark';
+      btn.setAttribute('aria-checked',!dark);
+    });
+  });
+})();
+</script>
+</body>
+</html>

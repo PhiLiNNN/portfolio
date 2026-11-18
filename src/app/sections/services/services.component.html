@@ -1,0 +1,21 @@
+<section appReveal id="services" class="section" aria-labelledby="services-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="services-title" class="t-h2">{{ "services.title" | translate }}</h2>
+      <p>{{ "services.intro" | translate }}</p>
+    </div>
+    <ul class="grid grid-3">
+      @for (card of list; track card.title) {
+      <li class="plate card">
+        <h3 class="t-h3">{{ card.title }}</h3>
+        <p>{{ card.text }}</p>
+        <div class="chips">
+          @for (tag of card.tags; track tag) {
+          <span class="tag">{{ tag }}</span>
+          }
+        </div>
+      </li>
+      }
+    </ul>
+  </div>
+</section>

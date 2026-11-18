@@ -1,227 +1,131 @@
-@use '../../../styles/index' as *;
+@use "../../../styles/index" as *;
 
-nav {
-  padding: 31px 100px;
+.bar {
   position: fixed;
   top: 0;
-  z-index: 999;
-  width: 100vw;
-  @include dflex();
-  @include dflex();
-  height: $navHeight;
-  background: var(--bg);
-  @media (max-width: 1200px) {
-    padding-inline: 50px;
-  }
-  @media (max-width: 700px) {
-    padding-inline: 25px;
-  }
-  .flex {
-    width: 100%;
-    max-width: 1920px;
-    @include dflex($jc: space-between);
-    > .logo-btn {
-      cursor: pointer;
-      border: 0;
-      padding: 0;
-      background: transparent;
-      line-height: 0;
-      img {
-        display: block;
-        width: 120px;
-        height: auto;
-      }
-    }
-    .burger-menu {
-      cursor: pointer;
-      border: 0;
-      padding: 0;
-      appearance: none;
-      width: 40px;
-      height: 40px;
-      // Dark burger icon inverts to light in dark mode.
-      filter: var(--img-invert);
-      background-color: transparent;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-image: url("./../../../../public/assets/img/burger_menu/1.svg");
-    }
-    .openMenuAnimation {
-      background-image: url("./../../../../public/assets/img/burger_menu/5.svg");
-      animation: openBurgerMenu 0.4s;
-    }
-    .closeMenuAnimation {
-      background-image: url("./../../../../public/assets/img/burger_menu/1.svg");
-      animation: closeBurgerMenu 0.4s;
-    }
-  }
-}
-
-@keyframes openBurgerMenu {
-  0% {
-    background-image: url("./../../../../public/assets/img/burger_menu/1.svg");
-  }
-  25% {
-    background-image: url("./../../../../public/assets/img/burger_menu/2.svg");
-  }
-  50% {
-    background-image: url("./../../../../public/assets/img/burger_menu/3.svg");
-  }
-  75% {
-    background-image: url("./../../../../public/assets/img/burger_menu/4.svg");
-  }
-  100% {
-    background-image: url("./../../../../public/assets/img/burger_menu/5.svg");
-  }
-}
-@keyframes closeBurgerMenu {
-  0% {
-    background-image: url("./../../../../public/assets/img/burger_menu/5.svg");
-  }
-  33% {
-    background-image: url("./../../../../public/assets/img/burger_menu/6.svg");
-  }
-  66% {
-    background-image: url("./../../../../public/assets/img/burger_menu/7.svg");
-  }
-  100% {
-    background-image: url("./../../../../public/assets/img/burger_menu/8.svg");
-  }
-}
-
-.lang {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  max-width: 400px;
-}
-
-.lang [type="checkbox"] {
-  position: absolute;
-  left: -9999px;
-}
-
-.lang [type="checkbox"] + label {
-  width: 50px;
-  height: 50px;
-  position: relative;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 999;
-  box-shadow: 0 0 5px 5px #000 inset, 0 0 5px 2px #000;
-}
-.lang [type="checkbox"] + label:after {
-  position: absolute;
-  content: "";
-  top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
-  box-shadow: -20px -20px 50px 2px #0000009b inset;
-  border-radius: 50%;
+  z-index: 50;
+  height: var(--nav-h);
+  // Plate colour: the raised controls derive their shadows from it.
+  background: var(--plate);
+  transition: background-color 0.3s;
+}
+.bar-inner {
+  height: 100%;
+  @include dflex($jc: space-between, $g: 16px);
 }
 
-.lang [type="checkbox"] + label > div {
-  width: 420%;
-  height: 240%;
-  position: absolute;
-  top: -69px;
-  left: -29px;
-  background: url(./../../../../public/assets/img/icons/earth.svg);
-  background-size: cover;
-}
-
-.lang [type="checkbox"] + label:hover > div {
-  animation: spin 10s linear alternate infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: translateX(-50%);
+.logo {
+  font-family: "Syne", "Syne Fallback", sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--convex);
+  box-shadow: var(--raise-sm);
+  text-decoration: none;
+  user-select: none;
+  &:active {
+    box-shadow: var(--sink-soft);
   }
 }
 
-.menu li {
-  position: absolute;
-  top: 15px;
-  left: 10%;
-  transform: translateX(-18%) translateY(-30%);
-  transition: all 0.4s;
+.nav {
+  @include dflex($g: 6px);
+  a {
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: var(--r-pill);
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--muted);
+    transition: color 0.2s, box-shadow 0.2s;
+    &:hover {
+      color: var(--text);
+    }
+    &[aria-current] {
+      color: var(--text);
+      background: var(--well-bg);
+      box-shadow: var(--sink-soft);
+    }
+  }
+  @include md {
+    display: none;
+  }
 }
 
-.menu li:nth-child(1) {
-  transition-delay: 0.2s;
-}
-
-.menu li:nth-child(2) {
-  transition-delay: 0.15s;
-}
-
-.menu li button {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-  cursor: pointer;
-}
-.menu li:first-child button {
-  background-image: url("./../../../../public/assets/img/icons/en.svg");
-}
-.menu li:nth-child(2) button {
-  background-image: url("./../../../../public/assets/img/icons/ger.svg");
-}
-.menu li button span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateY(calc(-100% - 5px));
-  width: 100%;
-  font-size: 13px;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s;
-  color: var(--text);
-  font-family: "Overpass";
-  font-weight: bold;
-}
-
-.lang input:checked ~ .menu li:nth-child(1) {
-  top: 90px;
-  left: calc(90% - 30px);
-  transition-delay: 0.1s;
-}
-
-.lang input:checked ~ .menu li:nth-child(2) {
-  top: 90px;
-  left: calc(0% - 30px);
-  transition-delay: 0.2s;
-}
-
-.lang input:checked ~ .menu li button span {
-  opacity: 1;
-  transition-delay: 0.9s;
-}
-
-.menu-ri {
-  caret-color: transparent;
+.controls {
   @include dflex($g: 18px);
+  .burger,
+  .compact {
+    display: none;
+    width: 44px;
+    height: 44px;
+  }
+  .lang {
+    font-family: "Syne", "Syne Fallback", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  @include md {
+    gap: 12px;
+    .switch-row {
+      display: none;
+    }
+    .burger,
+    .compact {
+      display: inline-flex;
+    }
+  }
 }
 
-.theme-toggle {
-  border: 0;
-  padding: 0;
-  background: transparent;
-  cursor: pointer;
-  color: var(--text);
-  @include dflex();
-  transition: color 0.2s ease;
-  &:hover {
-    color: $color-highlight;
+// Overlay menu (mobile). Hidden by default; no animation on first paint.
+.overlay {
+  position: fixed;
+  inset: var(--nav-h) 0 0 0;
+  z-index: 49;
+  background: var(--plate);
+  display: none;
+  overflow-y: auto;
+  &.open {
+    display: block;
+    animation: overlay-in 0.25s ease-out;
+  }
+}
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.overlay-nav {
+  @include dflex($fd: column, $ai: stretch, $g: 10px);
+  padding-top: 24px;
+  padding-bottom: 40px;
+  a {
+    text-decoration: none;
+    font-family: "Syne", "Syne Fallback", sans-serif;
+    font-weight: 800;
+    font-size: clamp(24px, 6vw, 34px);
+    padding: 14px 18px;
+    border-radius: var(--r-card);
+    color: var(--text);
+    &[aria-current] {
+      background: var(--well-bg);
+      box-shadow: var(--sink-soft);
+      color: var(--accent);
+    }
+  }
+}
+@include md {
+  :host {
+    --nav-h: 72px;
   }
 }

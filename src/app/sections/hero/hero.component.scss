@@ -1,0 +1,189 @@
+@use "../../../styles/index" as *;
+
+.hero {
+  padding: calc(var(--nav-h) + 48px) 0 72px;
+  min-height: min(100vh, 900px);
+  @include dflex($ai: stretch);
+  .wrap {
+    width: 100%;
+  }
+}
+
+.headline {
+  // Sized so the longest line ("from Leipzig.") stays on one line down to tablets.
+  font-size: clamp(38px, 7.4vw, 112px);
+  margin-top: 8px;
+  span {
+    display: block;
+    white-space: nowrap;
+    @include sm {
+      white-space: normal;
+    }
+  }
+  // Pressed-in word. The fill is a mid tone (≥ 3:1 against the background and
+  // the shadow tones, WCAG 1.4.3 for large text) so the word stays readable.
+  .carve {
+    color: color-mix(in srgb, var(--text) 46%, var(--bg));
+    text-shadow: 2px 2px 2px var(--hi), -2px -2px 2px var(--lo);
+    @at-root :host-context([data-theme="light"]) .carve {
+      color: color-mix(in srgb, var(--text) 54%, var(--bg));
+    }
+    // Small sizes lose the emboss; an outline keeps the word readable.
+    @include md {
+      color: transparent;
+      text-shadow: none;
+      -webkit-text-stroke: 1.5px color-mix(in srgb, var(--text) 55%, transparent);
+    }
+  }
+}
+
+// Flashlight: text is transparent, a radial gradient at the pointer position
+// shows through it. Touch devices get a slow sweeping band instead.
+.secret {
+  font-family: "Syne", "Syne Fallback", sans-serif;
+  font-weight: 800;
+  font-size: clamp(26px, 4.2vw, 58px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-top: 18px;
+  color: transparent;
+  background: radial-gradient(
+    160px circle at var(--mx, -999px) var(--my, -999px),
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 45%, transparent) 45%,
+    transparent 72%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  user-select: none;
+  pointer-events: none;
+}
+@media (hover: none) {
+  .secret {
+    background: linear-gradient(90deg, transparent 0%, var(--accent) 30%, var(--accent) 70%, transparent 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: sweep 5s ease-in-out infinite;
+  }
+}
+@keyframes sweep {
+  0% {
+    background-position: 120% 0;
+  }
+  50% {
+    background-position: -20% 0;
+  }
+  100% {
+    background-position: 120% 0;
+  }
+}
+
+.lede {
+  max-width: 52ch;
+  font-size: clamp(17px, 1.4vw, 20px);
+  // Sits directly on the nebula; the fog clears underneath it (see FogComponent).
+  color: var(--on-fog);
+  margin-top: 28px;
+}
+
+.cta-row {
+  @include dflex($g: 24px);
+  flex-wrap: wrap;
+  margin-top: 36px;
+  // These sit directly on the nebula: no light-side shadow, just a drop shadow.
+  .btn {
+    box-shadow: var(--float);
+    &:hover {
+      box-shadow: var(--float), 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
+    }
+    &:active {
+      box-shadow: var(--sink);
+    }
+  }
+  .btn-primary {
+    box-shadow: var(--float), var(--accent-glow);
+    &:hover {
+      box-shadow: var(--float), 0 0 36px color-mix(in srgb, var(--accent) 60%, transparent), 0 0 0 2px color-mix(in srgb, var(--accent) 70%, transparent);
+    }
+  }
+}
+
+.dial-wrap {
+  margin-left: auto;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  @include md {
+    margin-left: 0;
+    width: 100%;
+    justify-items: start;
+  }
+}
+.dial {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--convex);
+  box-shadow: var(--float);
+  position: relative;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  &:active {
+    cursor: grabbing;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border-radius: 50%;
+    background: var(--well-bg);
+    box-shadow: var(--sink);
+  }
+  .ind {
+    position: absolute;
+    inset: 0;
+    transform: rotate(var(--angle, 196deg));
+    &::after {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      width: 4px;
+      height: 18px;
+      margin-left: -2px;
+      border-radius: 2px;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+  }
+  &:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+  }
+}
+
+// Load animation: the lines rise out of the desk, then the lede, the controls
+// and the dial settle in. Plays from the first paint (no JS needed), once per
+// page visit; `.settled` is set when the hero is shown again after in-app navigation.
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(0.5em); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-pop {
+  from { opacity: 0; transform: translateY(26px) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+.hero:not(.settled) {
+  .headline span { animation: hero-rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+  .headline span:nth-child(2) { animation-delay: 0.12s; }
+  .headline span:nth-child(3) { animation-delay: 0.24s; }
+  .lede { animation: hero-rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.42s backwards; }
+  .cta-row > .btn { animation: hero-pop 0.7s cubic-bezier(0.16, 0.84, 0.26, 1) 0.55s backwards; }
+  .cta-row > .btn + .btn { animation-delay: 0.65s; }
+  .dial-wrap { animation: hero-pop 0.9s cubic-bezier(0.16, 0.84, 0.26, 1) 0.78s backwards; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero .headline span, .hero .lede, .hero .cta-row > .btn, .hero .dial-wrap { animation: none; }
+}

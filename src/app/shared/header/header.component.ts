@@ -1,130 +1,165 @@
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  EventEmitter,
   HostListener,
-  Inject,
-  Input,
-  Output,
   PLATFORM_ID,
   Renderer2,
-  ViewChild,
+  inject,
+  signal,
+  viewChild,
 } from '@angular/core';
-import { isPlatformBrowser, CommonModule, DOCUMENT } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MenuComponent } from './menu/menu.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
+import { ScrollService } from '../scroll.service';
+import { ThemeService } from '../theme.service';
+
+interface NavItem {
+  id: string;
+  key: string;
+}
+
+const LANG_KEY = 'lang';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule, MenuComponent, TranslateModule, FormsModule],
+  imports: [TranslateModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  @Output() menuOpenChange = new EventEmitter<boolean>();
+  readonly theme = inject(ThemeService);
+  private readonly translate = inject(TranslateService);
+  private readonly scroll = inject(ScrollService);
+  private readonly renderer = inject(Renderer2);
+  private readonly doc = inject(DOCUMENT);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly burger = viewChild<ElementRef<HTMLButtonElement>>('burger');
+  private readonly overlay = viewChild<ElementRef<HTMLElement>>('overlay');
 
-  isLenMenuOpen = false;
-  menuOpen: boolean | null = null;
-  theme: 'light' | 'dark' = 'light';
+  /** Pills in the desktop bar. */
+  readonly primary: NavItem[] = [
+    { id: 'home', key: 'nav.home' },
+    { id: 'projects', key: 'nav.projects' },
+    { id: 'experience', key: 'nav.experience' },
+    { id: 'contact', key: 'nav.contact' },
+  ];
+  /** Full list in the overlay. */
+  readonly all: NavItem[] = [
+    { id: 'home', key: 'nav.home' },
+    { id: 'about', key: 'nav.about' },
+    { id: 'offcode', key: 'nav.offcode' },
+    { id: 'skills', key: 'nav.skills' },
+    { id: 'services', key: 'nav.services' },
+    { id: 'experience', key: 'nav.experience' },
+    { id: 'projects', key: 'nav.projects' },
+    { id: 'contact', key: 'nav.contact' },
+  ];
 
-  @Input() scrollToBottomBool: boolean | undefined;
-  @Input() testVariable: boolean | undefined;
+  readonly active = signal('home');
+  readonly menuOpen = signal(false);
+  readonly lang = signal<'ger' | 'en'>('ger');
 
-  @ViewChild('burgerBtn') private burgerBtn?: ElementRef<HTMLElement>;
-
-  constructor(
-    private renderer: Renderer2,
-    private translate: TranslateService,
-    private router: Router,
-    @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    // Keep <html lang> in sync with the active UI language (a11y / SEO).
-    this.setDocumentLang(this.translate.currentLang || 'en');
-
-    // Read the theme the no-flash script in index.html already applied.
-    if (isPlatformBrowser(this.platformId)) {
-      const current = this.document.documentElement.getAttribute('data-theme');
-      this.theme = current === 'dark' ? 'dark' : 'light';
+  constructor() {
+    // German is the default (also for SSR/prerender). English only when the
+    // visitor chose it or the browser is not set to German.
+    let lang: 'ger' | 'en' = 'ger';
+    if (this.isBrowser) {
+      let stored: string | null = null;
+      try {
+        stored = localStorage.getItem(LANG_KEY);
+      } catch {}
+      if (stored === 'ger' || stored === 'en') lang = stored;
+      else if (navigator.language && !navigator.language.toLowerCase().startsWith('de')) lang = 'en';
     }
+    this.useLang(lang, false);
+  }
+
+  go(event: Event, id: string): void {
+    event.preventDefault();
+    this.closeMenu();
+    void this.scroll.to(id);
   }
 
   toggleTheme(): void {
-    this.theme = this.theme === 'dark' ? 'light' : 'dark';
-    this.renderer.setAttribute(
-      this.document.documentElement,
-      'data-theme',
-      this.theme
-    );
-
-    if (isPlatformBrowser(this.platformId)) {
-      try {
-        localStorage.setItem('theme', this.theme);
-      } catch {}
-    }
+    this.theme.toggleTheme();
   }
 
-  switchLanguage(language: string): void {
-    this.translate.use(language);
-    this.setDocumentLang(language);
-  }
-
-  private setDocumentLang(language: string): void {
-    this.renderer.setAttribute(
-      this.document.documentElement,
-      'lang',
-      language
-    );
+  toggleLang(): void {
+    this.useLang(this.lang() === 'en' ? 'ger' : 'en', true);
   }
 
   toggleMenu(): void {
-    if (this.menuOpen === null) this.menuOpen = false;
-    this.menuOpen = !this.menuOpen;
-    this.menuOpenChange.emit(this.menuOpen);
+    this.menuOpen() ? this.closeMenu() : this.openMenu();
+  }
 
-    if (!isPlatformBrowser(this.platformId)) return;
+  openMenu(): void {
+    this.menuOpen.set(true);
+    if (!this.isBrowser) return;
+    this.renderer.setStyle(this.doc.body, 'overflow', 'hidden');
+    setTimeout(() => {
+      this.overlay()?.nativeElement.querySelector<HTMLElement>('a, button')?.focus();
+    });
+  }
 
-    if (this.menuOpen) {
-      this.renderer.setStyle(document.body, 'overflow', 'hidden');
-    } else {
-      this.renderer.removeStyle(document.body, 'overflow');
-      // Return focus to the trigger when the overlay closes (WCAG 2.4.3).
-      this.burgerBtn?.nativeElement.focus();
+  closeMenu(): void {
+    if (!this.menuOpen()) return;
+    this.menuOpen.set(false);
+    if (!this.isBrowser) return;
+    this.renderer.removeStyle(this.doc.body, 'overflow');
+    // Return focus to the trigger when the overlay closes (WCAG 2.4.3).
+    this.burger()?.nativeElement.focus();
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.closeMenu();
+  }
+
+  /** Keep Tab inside the overlay while it is open. */
+  @HostListener('document:keydown', ['$event'])
+  onTab(event: KeyboardEvent): void {
+    if (event.key !== 'Tab' || !this.menuOpen() || !this.isBrowser) return;
+    const root = this.overlay()?.nativeElement;
+    if (!root) return;
+    const focusable = Array.from(
+      root.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
+    );
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const current = this.doc.activeElement;
+    if (event.shiftKey && current === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && current === last) {
+      event.preventDefault();
+      first.focus();
     }
   }
 
-  backToHome(home: string): void {
-    if (isPlatformBrowser(this.platformId) && home) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  /** Scroll-spy: the section whose top is closest above the nav line is active. */
+  @HostListener('window:scroll')
+  onScroll(): void {
+    if (!this.isBrowser) return;
+    const line = 120;
+    let current = 'home';
+    for (const item of this.all) {
+      const el = this.doc.getElementById(item.id);
+      if (el && el.getBoundingClientRect().top <= line) current = item.id;
     }
-
-    this.router.navigateByUrl('/');
+    if (current !== this.active()) this.active.set(current);
   }
 
-  toggleLenMenu(): void {
-    this.isLenMenuOpen = !this.isLenMenuOpen;
-  }
-
-  @HostListener('document:click', ['$event'])
-  clickOutside(event: MouseEvent): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-
-    const clickedElement = event.target as HTMLElement;
-    const menuElement = document.querySelector(
-      '.menu-ri'
-    ) as HTMLElement | null;
-
-    if (menuElement && !menuElement.contains(clickedElement)) {
-      this.isLenMenuOpen = false;
+  private useLang(lang: 'ger' | 'en', persist: boolean): void {
+    this.lang.set(lang);
+    this.translate.use(lang);
+    this.renderer.setAttribute(this.doc.documentElement, 'lang', lang === 'ger' ? 'de' : 'en');
+    if (persist && this.isBrowser) {
+      try {
+        localStorage.setItem(LANG_KEY, lang);
+      } catch {}
     }
-  }
-
-  closeLenMenu(): void {
-    this.isLenMenuOpen = false;
   }
 }

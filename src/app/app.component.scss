@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  position: relative;
+  overflow-x: clip;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  outline: none;
+}

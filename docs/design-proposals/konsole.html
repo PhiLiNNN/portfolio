@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Konsole – Farben, Material, Easter Eggs</title>
+<style>
+@font-face{font-family:"Syne";font-weight:400;src:url("/public/assets/fonts/syne/syne-v22-latin-regular.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Syne";font-weight:600;src:url("/public/assets/fonts/syne/syne-v22-latin-600.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Syne";font-weight:800;src:url("/public/assets/fonts/syne/syne-v22-latin-800.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Overpass";font-weight:300;src:url("/public/assets/fonts/overpass/overpass-v13-latin-300.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Overpass";font-weight:400;src:url("/public/assets/fonts/overpass/overpass-v13-latin-regular.woff2") format("woff2");font-display:swap}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#111;color:#eee;font-family:"Overpass",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,textarea{font:inherit;color:inherit}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+
+/* ---------- Steuerleiste ---------- */
+.bar{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;padding:10px 16px;background:#0c0c0e;color:#f3f3f3;border-bottom:1px solid #26262a;font-family:system-ui,sans-serif;font-size:13px}
+.bar .grp{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.bar .grp>span{opacity:.6;margin-right:4px}
+.bar .opt{border:1px solid #333;background:#18181b;color:#ddd;padding:7px 12px;border-radius:8px;cursor:pointer;line-height:1;display:inline-flex;align-items:center;gap:8px}
+.bar .opt i{width:10px;height:10px;border-radius:50%;background:var(--sw)}
+.bar .opt[aria-pressed="true"]{background:#f3f3f3;color:#111;border-color:#f3f3f3}
+.bar .opt:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.bar a{opacity:.7;margin-left:auto}
+
+/* =====================================================================
+   PALETTEN (alle dunkel). --accent-2 = zweite LED (warm), --hue für Dial
+   ===================================================================== */
+main{
+  --text:#edf0f3;--muted:#9aa4b0;
+  --r-card:22px;--r-pill:16px;--r-input:16px;
+  /* Sauberer Neumorphismus (Malewicz / neumorphism.io): Element hat exakt die Hintergrundfarbe,
+     Schatten sind ein dunklerer und ein hellerer Ton DERSELBEN Farbe (keine Alpha-Schwarz/Weiß),
+     großer Blur, kein Rand. --hi-soft/--lo-soft: dezenter konvexer Verlauf für Bedienelemente. */
+  --surface:var(--bg);
+  --raise:10px 10px 28px var(--lo),-10px -10px 28px var(--hi);
+  --raise-hi:14px 14px 34px var(--lo),-14px -14px 34px var(--hi);
+  --raise-sm:4px 4px 10px var(--lo),-4px -4px 10px var(--hi);
+  --sink:inset 6px 6px 14px var(--lo),inset -6px -6px 14px var(--hi);
+  --sink-soft:inset 3px 3px 8px var(--lo),inset -3px -3px 8px var(--hi);
+  --convex:linear-gradient(145deg,var(--hi-soft),var(--lo-soft));
+  --accent-glow:0 8px 24px color-mix(in srgb,var(--accent) 35%,transparent);
+}
+[data-palette="mint"]{--bg:#262a31;--lo:#1b1e23;--hi:#31363f;--hi-soft:#292d35;--lo-soft:#23272d;--accent:#2ee6a6;--on-accent:#10261f;--accent-2:#ffb020;--blob1:rgba(46,230,166,.18);--blob2:rgba(80,120,255,.12)}
+[data-palette="cyan"]{--bg:#1e2530;--lo:#151a22;--hi:#27303e;--hi-soft:#202835;--lo-soft:#1c2230;--accent:#4fd1ff;--on-accent:#06202c;--accent-2:#ff8a5c;--blob1:rgba(79,209,255,.18);--blob2:rgba(120,90,255,.12)}
+[data-palette="amber"]{--bg:#26241f;--lo:#1b1a16;--hi:#312e28;--hi-soft:#292722;--lo-soft:#23211c;--accent:#ffb020;--on-accent:#2a1d04;--accent-2:#2ee6a6;--blob1:rgba(255,176,32,.16);--blob2:rgba(255,90,60,.1)}
+[data-palette="coral"]{--bg:#24272d;--lo:#191c20;--hi:#2f323a;--hi-soft:#272a30;--lo-soft:#21242a;--accent:#ff6b4a;--on-accent:#2b0f08;--accent-2:#4fd1ff;--blob1:rgba(255,107,74,.16);--blob2:rgba(255,190,80,.1)}
+[data-palette="violet"]{--bg:#26232e;--lo:#1b1921;--hi:#312d3b;--hi-soft:#292631;--lo-soft:#23202a;--accent:#b48cff;--on-accent:#1b0f33;--accent-2:#2ee6a6;--blob1:rgba(180,140,255,.18);--blob2:rgba(255,120,200,.1)}
+[data-palette="custom"]{--bg:#262a31;--lo:#1b1e23;--hi:#31363f;--hi-soft:#292d35;--lo-soft:#23272d;--accent:hsl(var(--hue) 85% 62%);--on-accent:hsl(var(--hue) 60% 10%);--accent-2:hsl(calc(var(--hue) + 160) 85% 62%);--blob1:hsl(var(--hue) 85% 62% / .16);--blob2:hsl(calc(var(--hue) + 60) 85% 62% / .1)}
+
+/* ---------- Hellmodus: gleiche Paletten auf heller Basis, Schalter im Header ---------- */
+[data-mode="light"]{--text:#1e1b27;--muted:#5e5970;--raise:10px 10px 30px var(--lo),-10px -10px 30px var(--hi);--raise-hi:14px 14px 36px var(--lo),-14px -14px 36px var(--hi)}
+[data-mode="light"][data-palette="mint"],[data-mode="light"] [data-palette="mint"]{--bg:#e0e6e6;--lo:#bcc3c4;--hi:#ffffff;--hi-soft:#e8eded;--lo-soft:#d8dfdf;--accent:#0a9a6c;--on-accent:#f1fff9;--accent-2:#c77a00;--blob1:rgba(10,154,108,.12);--blob2:rgba(80,120,255,.08)}
+[data-mode="light"][data-palette="cyan"],[data-mode="light"] [data-palette="cyan"]{--bg:#dfe6ef;--lo:#bac2cc;--hi:#ffffff;--hi-soft:#e7edf4;--lo-soft:#d7dfe9;--accent:#0b7fc2;--on-accent:#f2faff;--accent-2:#e0442a;--blob1:rgba(11,127,194,.12);--blob2:rgba(120,90,255,.08)}
+[data-mode="light"][data-palette="amber"],[data-mode="light"] [data-palette="amber"]{--bg:#ebe6dc;--lo:#c6c1b6;--hi:#ffffff;--hi-soft:#f1ede5;--lo-soft:#e4ded3;--accent:#c77a00;--on-accent:#fff8ec;--accent-2:#0a9a6c;--blob1:rgba(199,122,0,.12);--blob2:rgba(255,90,60,.08)}
+[data-mode="light"][data-palette="coral"],[data-mode="light"] [data-palette="coral"]{--bg:#ece4e2;--lo:#c8bebb;--hi:#ffffff;--hi-soft:#f2ebe9;--lo-soft:#e5dcd9;--accent:#e0442a;--on-accent:#fff4f1;--accent-2:#0b7fc2;--blob1:rgba(224,68,42,.1);--blob2:rgba(255,190,80,.08)}
+[data-mode="light"][data-palette="violet"],[data-mode="light"] [data-palette="violet"]{--bg:#e6e2f0;--lo:#c1bccf;--hi:#ffffff;--hi-soft:#ede9f5;--lo-soft:#dfdaea;--accent:#7a4df5;--on-accent:#f6f2ff;--accent-2:#0a9a6c;--blob1:rgba(140,90,255,.12);--blob2:rgba(255,120,200,.08)}
+[data-mode="light"][data-palette="custom"],[data-mode="light"] [data-palette="custom"]{--bg:#e6e4ee;--lo:#c2bfce;--hi:#ffffff;--hi-soft:#edebf3;--lo-soft:#dfdce8;--accent:hsl(var(--hue) 70% 42%);--on-accent:#fff;--accent-2:hsl(calc(var(--hue) + 160) 70% 40%);--blob1:hsl(var(--hue) 70% 50% / .12);--blob2:rgba(255,120,200,.08)}
+[data-mode="light"] .spec{border-top-color:rgba(30,27,39,.1)}
+[data-mode="light"] .tag{color:var(--text)}
+
+/* =====================================================================
+   MATERIAL. Variablen vererben sich → verschachtelte Vergleiche möglich
+   ===================================================================== */
+[data-material="matt"]{
+  --plate-bg:var(--bg);--plate-shadow:var(--raise);--plate-border:0;--plate-blur:none;
+  --well-bg:var(--bg);--well-shadow:var(--sink);
+  --btn-bg:var(--convex);--btn-shadow:var(--raise);--btn-shadow-hi:var(--raise-hi);--btn-border:0;--btn-blur:none;
+  --blob-opacity:0;
+}
+[data-material="glas"]{
+  --plate-bg:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  --plate-shadow:var(--raise),inset 1px 1px 0 rgba(255,255,255,.1);--plate-border:0;--plate-blur:blur(24px) saturate(1.2);
+  --well-bg:rgba(0,0,0,.14);--well-shadow:var(--sink);
+  --btn-bg:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
+  --btn-shadow:var(--raise),inset 1px 1px 0 rgba(255,255,255,.12);--btn-shadow-hi:var(--raise-hi),inset 1px 1px 0 rgba(255,255,255,.14);
+  --btn-border:0;--btn-blur:blur(16px) saturate(1.2);
+  --blob-opacity:.6;
+}
+[data-material="hybrid"]{
+  --plate-bg:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  --plate-shadow:var(--raise),inset 1px 1px 0 rgba(255,255,255,.1);--plate-border:0;--plate-blur:blur(24px) saturate(1.2);
+  --well-bg:rgba(0,0,0,.14);--well-shadow:var(--sink);
+  --btn-bg:var(--convex);--btn-shadow:var(--raise);--btn-shadow-hi:var(--raise-hi);--btn-border:0;--btn-blur:none;
+  --blob-opacity:.45;
+}
+[data-mode="light"] [data-material="glas"],[data-mode="light"][data-material="glas"],[data-mode="light"] [data-material="hybrid"],[data-mode="light"][data-material="hybrid"]{
+  --plate-bg:linear-gradient(145deg,rgba(255,255,255,.62),rgba(255,255,255,.3));--plate-shadow:var(--raise),inset 1px 1px 0 #fff;
+  --well-bg:rgba(30,27,39,.05);
+}
+[data-mode="light"] [data-material="glas"],[data-mode="light"][data-material="glas"]{
+  --btn-bg:linear-gradient(145deg,rgba(255,255,255,.72),rgba(255,255,255,.4));--btn-shadow:var(--raise),inset 1px 1px 0 #fff;--btn-shadow-hi:var(--raise-hi),inset 1px 1px 0 #fff;
+}
+
+main{position:relative;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:clip;transition:background .3s}
+.lights{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:var(--blob-opacity);transition:opacity .4s}
+.lights i{position:absolute;border-radius:50%;filter:blur(70px)}
+.lights i:nth-child(1){width:52vw;height:52vw;left:-12vw;top:-10vw;background:var(--blob1);animation:drift1 26s ease-in-out infinite alternate}
+.lights i:nth-child(2){width:44vw;height:44vw;right:-14vw;top:30vh;background:var(--blob2);animation:drift2 32s ease-in-out infinite alternate}
+.lights i:nth-child(3){width:38vw;height:38vw;left:30vw;bottom:-20vw;background:var(--blob1);opacity:.6;animation:drift1 38s ease-in-out infinite alternate-reverse}
+@keyframes drift1{to{transform:translate(8vw,10vh)}}
+@keyframes drift2{to{transform:translate(-10vw,-8vh)}}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* ---------- Grundkörper ---------- */
+.plate{background:var(--plate-bg);border:var(--plate-border);border-radius:var(--r-card);box-shadow:var(--plate-shadow);-webkit-backdrop-filter:var(--plate-blur);backdrop-filter:var(--plate-blur);padding:28px}
+.well{background:var(--well-bg);border-radius:var(--r-card);box-shadow:var(--well-shadow);padding:28px}
+
+.d-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}
+.logo{font-family:"Syne";font-weight:800;font-size:20px;letter-spacing:-.02em;padding:10px 14px;border-radius:12px;background:var(--btn-bg);box-shadow:var(--btn-shadow);border:var(--btn-border);-webkit-backdrop-filter:var(--btn-blur);backdrop-filter:var(--btn-blur);cursor:pointer;user-select:none}
+.d-nav{display:flex;flex-wrap:wrap;gap:8px;max-width:100%}
+.d-nav a{text-decoration:none;padding:10px 16px;border-radius:var(--r-pill);font-weight:500;font-size:15px;color:var(--muted)}
+.d-nav a[aria-current]{color:var(--text);box-shadow:var(--well-shadow);background:var(--well-bg)}
+@media (max-width:760px){.d-nav{order:3;width:100%;justify-content:center}.d-nav a{padding:8px 12px;font-size:14px}}
+
+.led{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);padding:10px 16px;border-radius:999px;background:var(--well-bg);box-shadow:var(--well-shadow)}
+.led i{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent),0 0 22px color-mix(in srgb,var(--accent) 60%,transparent);animation:blink 2.6s ease-in-out infinite}
+.led.warm i{background:var(--accent-2);box-shadow:0 0 10px var(--accent-2)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.55}}
+
+/* ---------- Hero mit Taschenlampe ---------- */
+.hero{padding:56px 0 64px;position:relative}
+.hero h1{font-family:"Syne";font-weight:800;font-size:clamp(40px,8.4vw,118px);line-height:.98;letter-spacing:-.02em;margin-top:28px}
+.hero h1 span{display:block}
+.hero h1 .carve{color:var(--bg);text-shadow:2px 2px 2px var(--hi),-2px -2px 2px var(--lo)}
+.secret{font-family:"Syne";font-weight:800;font-size:clamp(26px,4.2vw,58px);letter-spacing:-.02em;line-height:1.1;margin-top:18px;
+  color:transparent;background:radial-gradient(160px circle at var(--mx,-999px) var(--my,-999px),var(--accent) 0%,color-mix(in srgb,var(--accent) 45%,transparent) 45%,transparent 72%);-webkit-background-clip:text;background-clip:text;user-select:none;pointer-events:none}
+@media (hover:none){.secret{background:linear-gradient(90deg,transparent 0%,var(--accent) 30%,var(--accent) 70%,transparent 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;animation:sweep 5s ease-in-out infinite}}
+@keyframes sweep{0%{background-position:120% 0}50%{background-position:-20% 0}100%{background-position:120% 0}}
+.lede{max-width:52ch;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--muted);margin-top:28px}
+.cta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:36px;align-items:center}
+.hint{font-size:13px;color:var(--muted);opacity:.8}
+
+/* ---------- Buttons ---------- */
+.btn{appearance:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:var(--r-pill);background:var(--btn-bg);border:var(--btn-border);box-shadow:var(--btn-shadow);-webkit-backdrop-filter:var(--btn-blur);backdrop-filter:var(--btn-blur);font-weight:600;font-size:16px;text-decoration:none;transition:box-shadow .18s,transform .18s}
+.btn:hover{box-shadow:var(--btn-shadow-hi)}
+.btn:active,.btn.is-pressed{box-shadow:var(--sink);transform:translateY(1px);background:var(--well-bg)}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.btn-primary{background:var(--accent);color:var(--on-accent);border-color:transparent;box-shadow:var(--raise),var(--accent-glow)}
+.btn-primary:hover{box-shadow:var(--raise-hi),var(--accent-glow)}
+.btn-primary:active{background:var(--accent);box-shadow:inset 5px 5px 10px rgba(0,0,0,.35),inset -4px -4px 8px rgba(255,255,255,.25)}
+.btn-ghost{box-shadow:none;border-color:transparent;background:transparent;backdrop-filter:none;color:var(--muted);padding-left:12px;padding-right:12px}
+.btn-ghost:hover{color:var(--text);background:var(--btn-bg);box-shadow:var(--btn-shadow)}
+.btn-icon{width:56px;height:56px;padding:0;justify-content:center;border-radius:50%}
+.btn-row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+.btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.switch{position:relative;width:64px;height:34px;border-radius:999px;background:var(--well-bg);box-shadow:var(--well-shadow);border:0;cursor:pointer;padding:0}
+.switch::after{content:"";position:absolute;top:4px;left:4px;width:26px;height:26px;border-radius:50%;background:var(--convex);box-shadow:var(--raise-sm);transition:transform .2s,background .2s}
+.switch[aria-checked="true"]::after{transform:translateX(30px);background:var(--accent);box-shadow:var(--raise-sm),0 0 10px var(--accent)}
+.switch:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.toggle-row{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:14px}
+
+/* ---------- Drehknopf (Hue-Dial) ---------- */
+.knob-big{width:120px;height:120px;border-radius:50%;background:var(--btn-bg);border:var(--btn-border);box-shadow:var(--btn-shadow);-webkit-backdrop-filter:var(--btn-blur);backdrop-filter:var(--btn-blur);position:relative;cursor:grab;touch-action:none;user-select:none}
+.knob-big:active{cursor:grabbing}
+.knob-big::before{content:"";position:absolute;inset:14px;border-radius:50%;box-shadow:var(--sink);background:var(--well-bg)}
+.knob-big .ind{position:absolute;inset:0;transform:rotate(var(--angle,0deg))}
+.knob-big .ind::after{content:"";position:absolute;top:22px;left:50%;width:4px;height:18px;margin-left:-2px;border-radius:2px;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.knob-big:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.knob-wrap{display:grid;justify-items:center;gap:8px;margin-left:auto}
+
+/* ---------- Fader ---------- */
+.fader{display:grid;grid-template-columns:110px 1fr;align-items:center;gap:14px;margin:12px 0}
+.fader .track{height:12px;border-radius:999px;background:var(--well-bg);box-shadow:var(--well-shadow);position:relative}
+.fader .knob{position:absolute;top:50%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:var(--convex);box-shadow:var(--raise-sm)}
+.fader .knob::after{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.fader .fill{position:absolute;left:4px;top:4px;bottom:4px;border-radius:999px;background:linear-gradient(90deg,color-mix(in srgb,var(--accent) 40%,transparent),var(--accent))}
+.fader span{font-size:14px}
+.fader .val{text-align:right;color:var(--muted);font-size:13px;font-family:"Syne";font-weight:600;cursor:help;position:relative}
+.fader .val:hover::after,.fader .val:focus-visible::after{content:attr(data-tip);position:absolute;right:0;bottom:130%;white-space:nowrap;background:var(--surface);color:var(--text);padding:8px 12px;border-radius:10px;box-shadow:var(--raise);font-family:"Overpass";font-weight:400;font-size:13px;z-index:5}
+
+/* ---------- Formular ---------- */
+.field{display:grid;gap:8px}
+.field label{font-size:14px;font-weight:500;color:var(--muted)}
+.field input,.field textarea{border:0;background:var(--well-bg);border-radius:var(--r-input);box-shadow:var(--well-shadow);padding:16px 18px;font-size:16px;color:var(--text);width:100%}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus-visible,.field textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.field ::placeholder{color:color-mix(in srgb,var(--muted) 70%,transparent)}
+.form{display:grid;gap:20px}
+
+/* ---------- Karten ---------- */
+.role{display:inline-block;font-size:13px;color:var(--muted);margin-bottom:10px}
+.card h3{font-family:"Syne";font-weight:800;font-size:clamp(22px,2.2vw,28px);line-height:1.15;letter-spacing:-.01em}
+.card p{line-height:1.55;margin-top:12px;color:var(--muted);font-size:15.5px}
+.card .link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-weight:600;text-decoration:none;color:var(--accent)}
+.card .link svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{font-size:13px;padding:6px 12px;border-radius:999px;background:var(--well-bg);box-shadow:var(--well-shadow);color:var(--text)}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:13px;color:var(--muted)}
+.status .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 8px var(--accent-2)}
+.chips{display:flex;flex-wrap:wrap;gap:12px}
+.chip{padding:12px 18px;border-radius:var(--r-pill);background:var(--btn-bg);border:var(--btn-border);box-shadow:var(--btn-shadow);-webkit-backdrop-filter:var(--btn-blur);backdrop-filter:var(--btn-blur);font-weight:500;font-size:15px}
+.chip.is-on{box-shadow:var(--well-shadow);background:var(--well-bg);color:var(--accent)}
+
+/* ---------- Abschnitte ---------- */
+.spec{padding:48px 0;border-top:1px solid rgba(255,255,255,.07)}
+.spec-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px;margin-bottom:28px}
+.spec-title h2{font-family:"Syne";font-weight:800;font-size:clamp(26px,3vw,34px);letter-spacing:-.01em}
+.spec-title p{color:var(--muted);font-size:15px;max-width:62ch;line-height:1.5}
+.grid{display:grid;gap:22px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+
+/* Palettenkarten */
+.pal{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
+.pal button{all:unset;cursor:pointer;display:block;border-radius:var(--r-card);padding:14px;background:var(--bg);box-shadow:var(--raise);border:2px solid transparent;transition:border-color .2s}
+.pal button[aria-pressed="true"]{border-color:var(--accent)}
+.pal button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.pal .row{display:flex;gap:6px;height:56px}
+.pal .row i{flex:1;border-radius:10px;box-shadow:var(--sink-soft)}
+.pal .row i:nth-child(1){background:var(--bg)}
+.pal .row i:nth-child(2){background:var(--surface)}
+.pal .row i:nth-child(3){background:var(--accent);box-shadow:0 0 14px var(--accent)}
+.pal .row i:nth-child(4){background:var(--accent-2)}
+.pal .nm{font-family:"Syne";font-weight:600;margin-top:12px;color:var(--text)}
+.pal .desc{font-size:13px;color:var(--muted);line-height:1.45;margin-top:4px}
+
+/* Materialvergleich nebeneinander */
+.matcmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.matcmp>div{display:grid;gap:14px}
+.matcmp .lbl{font-family:"Syne";font-weight:600;font-size:15px}
+.matcmp .lbl small{display:block;font-family:"Overpass";font-weight:400;color:var(--muted);font-size:13px;margin-top:4px;line-height:1.45}
+
+/* Easter-Egg-Liste */
+.eggs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.egg{padding:22px}
+.egg h3{font-family:"Syne";font-weight:600;font-size:17px;display:flex;align-items:center;gap:10px}
+.egg h3 .st{font-family:"Overpass";font-weight:400;font-size:12px;padding:4px 9px;border-radius:999px;background:var(--well-bg);box-shadow:var(--well-shadow);color:var(--muted)}
+.egg h3 .st.on{color:var(--accent)}
+.egg p{color:var(--muted);font-size:14.5px;line-height:1.55;margin-top:10px}
+
+/* Fakten-Streuung */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.facts .plate{padding:22px}
+.facts b{font-family:"Syne";font-weight:600;display:block;margin-bottom:8px}
+.facts p{color:var(--muted);font-size:14.5px;line-height:1.55}
+
+/* Footer-Demo mit Kassette */
+.foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:28px;margin-top:10px}
+.foot .tape{all:unset;cursor:pointer;display:inline-grid;place-content:center;width:44px;height:28px;border-radius:6px;background:var(--well-bg);box-shadow:var(--well-shadow);opacity:.45;transition:opacity .2s}
+.foot .tape:hover,.foot .tape:focus-visible{opacity:1;outline:2px solid var(--accent);outline-offset:3px}
+.foot .tape svg{width:28px;height:18px;fill:none;stroke:var(--muted);stroke-width:1.6}
+.foot small{color:var(--muted);font-size:13px}
+
+/* Toast + Dialog */
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;z-index:60;padding:14px 20px;border-radius:14px;background:var(--surface);box-shadow:var(--raise),var(--accent-glow);font-family:"Syne";font-weight:600;transition:all .25s;pointer-events:none;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+dialog{border:0;border-radius:var(--r-card);background:var(--surface);color:var(--text);box-shadow:var(--raise);padding:28px;max-width:720px;width:92vw}
+dialog::backdrop{background:rgba(0,0,0,.6);backdrop-filter:blur(6px)}
+dialog h3{font-family:"Syne";font-weight:800;font-size:24px}
+dialog p{color:var(--muted);line-height:1.55;margin-top:10px}
+dialog .vid{aspect-ratio:16/9;border-radius:14px;margin-top:18px;background:var(--well-bg);box-shadow:var(--well-shadow);display:grid;place-content:center;overflow:hidden}
+dialog .vid iframe{width:100%;height:100%;border:0}
+dialog .row{display:flex;gap:12px;justify-content:flex-end;margin-top:18px}
+
+
+.d-foot{padding:36px 0 60px;color:var(--muted);font-size:14px;line-height:1.6}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="grp"><span>Palette</span>
+    <button class="opt" data-pal="mint" aria-pressed="true" style="--sw:#2ee6a6"><i></i>Mint</button>
+    <button class="opt" data-pal="cyan" aria-pressed="false" style="--sw:#4fd1ff"><i></i>Eisblau</button>
+    <button class="opt" data-pal="amber" aria-pressed="false" style="--sw:#ffb020"><i></i>Bernstein</button>
+    <button class="opt" data-pal="coral" aria-pressed="false" style="--sw:#ff6b4a"><i></i>Koralle</button>
+    <button class="opt" data-pal="violet" aria-pressed="false" style="--sw:#b48cff"><i></i>Violett</button>
+  </div>
+  <div class="grp"><span>Material</span>
+    <button class="opt" data-mat="matt" aria-pressed="true">Matt (Neumorph)</button>
+    <button class="opt" data-mat="glas" aria-pressed="false">Glas</button>
+    <button class="opt" data-mat="hybrid" aria-pressed="false">Hybrid</button>
+  </div>
+  <a href="./">← alle drei Richtungen</a>
+</div>
+
+<main data-palette="violet" data-material="hybrid" data-mode="dark" style="--hue:262">
+  <div class="lights" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <header class="d-head">
+      <span class="logo" id="logo" tabindex="0" role="button" aria-label="Logo (5× klicken)">PW</span>
+      <nav class="d-nav" aria-label="Beispiel-Navigation">
+        <a href="#" aria-current="page">Start</a><a href="#">Projekte</a><a href="#">Werdegang</a><a href="#">Kontakt</a>
+      </nav>
+      <div style="display:flex;gap:22px;flex-wrap:wrap">
+        <div class="toggle-row"><span>Hell</span><button class="switch" id="themeToggle" role="switch" aria-checked="true" aria-label="Dunkelmodus"></button><span>Dunkel</span></div>
+        <div class="toggle-row"><span>DE</span><button class="switch" role="switch" aria-checked="false" aria-label="Sprache" onclick="this.setAttribute('aria-checked',this.getAttribute('aria-checked')!=='true')"></button><span>EN</span></div>
+      </div>
+    </header>
+
+    <section class="hero" id="hero">
+      <span class="led" id="statusled"><i></i> <span id="ledtext">Verfügbar für neue Projekte</span></span>
+      <h1>
+        <span>Full-Stack</span>
+        <span class="carve">Developer</span>
+        <span>aus Leipzig.</span>
+      </h1>
+      <div class="secret" aria-hidden="true">Coding with Heart</div>
+      <p class="lede">Angular vorn, Python hinten, Docker drumherum. Ich baue Web-Apps und Webseiten komplett – vom ersten Entwurf bis zum laufenden Server.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#">Projekt besprechen
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn" href="#">Meine Arbeit ansehen</a>
+        <div class="knob-wrap">
+          <div class="knob-big" id="dial" tabindex="0" role="slider" aria-label="Akzentfarbe drehen" aria-valuemin="0" aria-valuemax="360" aria-valuenow="160"><div class="ind"></div></div>
+          <span class="hint">Knopf drehen → eigene Akzentfarbe</span>
+        </div>
+      </div>
+      <p class="hint" style="margin-top:28px">Mit der Maus über den Bereich unter der Headline fahren.</p>
+    </section>
+
+    <section class="spec">
+      <div class="spec-title"><h2>Paletten</h2><p>Jede Palette gibt es hell und dunkel (Schalter im Header). Die Akzentfarbe ist die LED, die zweite Farbe eine Status-LED, etwa für „im Aufbau". Klick wählt aus.</p></div>
+      <div class="pal" id="palcards">
+        <div data-palette="mint" data-material="matt"><button data-pal="mint" aria-pressed="true"><div class="row"><i></i><i></i><i></i><i></i></div><div class="nm">Mint auf Graphit</div><div class="desc">Dein bisheriges Grün, kälter und leuchtender. Blaugraue Basis #262A31.</div></button></div>
+        <div data-palette="cyan" data-material="matt"><button data-pal="cyan" aria-pressed="false"><div class="row"><i></i><i></i><i></i><i></i></div><div class="nm">Eisblau auf Tiefblau</div><div class="desc">Basis zieht ins Blau #1E2530, LED eisblau. Wirkt am „technischsten".</div></button></div>
+        <div data-palette="amber" data-material="matt"><button data-pal="amber" aria-pressed="false"><div class="row"><i></i><i></i><i></i><i></i></div><div class="nm">Bernstein auf Anthrazit</div><div class="desc">Warme Basis #26241F, LED wie alte VU-Meter. Ungewöhnlich für Dev-Seiten.</div></button></div>
+        <div data-palette="coral" data-material="matt"><button data-pal="coral" aria-pressed="false"><div class="row"><i></i><i></i><i></i><i></i></div><div class="nm">Koralle auf Schiefer</div><div class="desc">Neutrale Basis #24272D, LED korallrot. Energisch, sportlich.</div></button></div>
+        <div data-palette="violet" data-material="matt"><button data-pal="violet" aria-pressed="false"><div class="row"><i></i><i></i><i></i><i></i></div><div class="nm">Violett auf Pflaume</div><div class="desc">Basis ins Violett #26232E, LED lavendel. Synth-Ästhetik, am weitesten weg vom Üblichen.</div></button></div>
+      </div>
+    </section>
+
+    <section class="spec">
+      <div class="spec-title"><h2>Material: Matt, Glas, Hybrid</h2><p>Gleiche Karte, drei Oberflächen. Alle nach derselben Regel gebaut: Element in Hintergrundfarbe, Schatten als dunklerer und hellerer Ton derselben Farbe, großer Blur, kein Rand (Malewicz, neumorphism.io). Matt ist die reine Form. Glas macht Flächen und Buttons leicht durchscheinend, dahinter liegen weiche Farbflecken. Hybrid: Flächen aus Glas, Bedienelemente matt.</p></div>
+      <div class="matcmp">
+        <div data-material="matt"><div class="lbl">Matt<small>Erhaben und eingelassen durch zwei Schatten. Ruhig, schwer, „aus einem Guss".</small></div>
+          <article class="plate card"><span class="role">Mitgründer</span><h3>Webwerk Leipzig</h3><p>Zu zweit bauen wir schnelle, handgemachte Webseiten für Betriebe in Leipzig.</p><div class="btn-row" style="margin-top:18px"><button class="btn btn-primary">Ansehen</button><button class="btn">Mehr</button></div></article></div>
+        <div data-material="glas"><div class="lbl">Glas<small>Leicht durchscheinend, Blur dahinter, feine Lichtkante oben. Lebendiger durch die Farbflecken.</small></div>
+          <article class="plate card"><span class="role">Mitgründer</span><h3>Webwerk Leipzig</h3><p>Zu zweit bauen wir schnelle, handgemachte Webseiten für Betriebe in Leipzig.</p><div class="btn-row" style="margin-top:18px"><button class="btn btn-primary">Ansehen</button><button class="btn">Mehr</button></div></article></div>
+        <div data-material="hybrid"><div class="lbl">Hybrid<small>Glasflächen, matte Hardware-Buttons. Meine Empfehlung: Tiefe plus Griffigkeit.</small></div>
+          <article class="plate card"><span class="role">Mitgründer</span><h3>Webwerk Leipzig</h3><p>Zu zweit bauen wir schnelle, handgemachte Webseiten für Betriebe in Leipzig.</p><div class="btn-row" style="margin-top:18px"><button class="btn btn-primary">Ansehen</button><button class="btn">Mehr</button></div></article></div>
+      </div>
+    </section>
+
+    <section class="spec">
+      <div class="spec-title"><h2>Bedienelemente &amp; Fader</h2><p>Skills als Fader. Die Position sagt genug, ohne Zahl: Was ich täglich benutze, steht oben.</p></div>
+      <div class="grid grid-2">
+        <div class="plate">
+          <div class="btn-row">
+            <button class="btn btn-primary">Nachricht senden</button>
+            <button class="btn">Sekundär</button>
+            <button class="btn is-pressed">Gedrückt</button>
+            <button class="btn btn-ghost">Leise</button>
+            <button class="btn btn-icon" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.6 16 2.5a13.4 13.4 0 0 0-7 0C6.3.6 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></button>
+          </div>
+          <div class="btn-row" style="margin-top:24px">
+            <span class="led"><i></i> Verfügbar</span>
+            <span class="led warm"><i></i> traudel.app · im Aufbau</span>
+          </div>
+          <form class="form" style="margin-top:28px" onsubmit="return false">
+            <div class="field"><label for="n">Dein Name</label><input id="n" placeholder="Max Mustermann"></div>
+            <div class="field"><label for="m">Deine Nachricht</label><textarea id="m" placeholder="Worum geht's?"></textarea></div>
+          </form>
+        </div>
+        <div class="plate">
+          <div class="fader"><span>Angular</span><div class="track"><div class="fill" style="width:92%"></div><div class="knob" style="left:92%"></div></div></div>
+          <div class="fader"><span>TypeScript</span><div class="track"><div class="fill" style="width:86%"></div><div class="knob" style="left:86%"></div></div></div>
+          <div class="fader"><span>Python</span><div class="track"><div class="fill" style="width:76%"></div><div class="knob" style="left:76%"></div></div></div>
+          <div class="fader"><span>Docker</span><div class="track"><div class="fill" style="width:62%"></div><div class="knob" style="left:62%"></div></div></div>
+          <div class="fader"><span>CI/CD</span><div class="track"><div class="fill" style="width:55%"></div><div class="knob" style="left:55%"></div></div></div>
+          <div class="chips" style="margin-top:24px">
+            <span class="chip is-on">Angular</span><span class="chip">TypeScript</span><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Docker</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="spec">
+      <div class="spec-title"><h2>Easter Eggs</h2><p>Nur noch die, die sich selbst erklären oder auf etwas Sichtbares zeigen. Konami, „Top!", Standby, Boulder-Grade und 404-Sturz sind raus: zu weit hergeholt oder nie zu finden.</p></div>
+      <div class="eggs">
+        <article class="plate egg"><h3>Taschenlampe <span class="st on">probieren</span></h3><p>„Coding with Heart" steht unsichtbar unter der Headline und wird nur im Lichtkegel des Mauszeigers sichtbar. Auf dem Handy wandert stattdessen alle paar Sekunden ein Lichtstreifen darüber.</p></article>
+        <article class="plate egg"><h3>Der Drehknopf <span class="st on">probieren</span></h3><p>Sieht aus wie Deko, ist aber ein Regler: Ziehen ändert die Akzentfarbe der ganzen Seite. Die Einstellung bleibt gespeichert.</p></article>
+        <article class="plate egg"><h3>Nachtschicht <span class="st on">probieren</span></h3><p>Zwischen 0 und 5 Uhr steht in der LED-Zeile im Hero „Noch wach? Ich meistens auch. Abends arbeite ich am besten." <a href="#" id="nightTest" style="color:var(--accent)">Hier testen</a>.</p></article>
+        <article class="plate egg"><h3>Die Kassette <span class="st on">probieren</span></h3><p>Das Musik-Modul in „Abseits vom Code" hat den sichtbaren Video-Button. Im Footer sitzt zusätzlich eine fast unsichtbare Kassette, die dasselbe Video öffnet.</p></article>
+        <article class="plate egg"><h3>Unter der Haube <span class="st on">probieren</span></h3><p>In der Browser-Konsole (F12) steht ein kurzer Hinweis für Entwickler. Dazu eine humans.txt: eine Textdatei unter philipp-wendschuch.dev/humans.txt, die der HTML-Kopf per <code>&lt;link rel="author"&gt;</code> verlinkt. Darin stehen, wer die Seite gebaut hat, wann sie zuletzt aktualisiert wurde und womit sie läuft. Das ist eine alte Konvention (humanstxt.org), Entwickler tippen die Adresse gezielt ein. Webwerk hat auch eine.</p></article>
+      </div>
+    </section>
+
+    <section class="spec">
+      <div class="spec-title"><h2>Abseits vom Code</h2><p>Ein eigener, sichtbarer Abschnitt auf der Seite, zwischen „Über mich" und „Werdegang". Die Überschrift macht sofort klar: Das hier sind Dinge über dich, die nicht im Lebenslauf stehen. Jedes Modul ist ein Baustein auf dem Pult, mit eigener LED.</p></div>
+      <div class="facts">
+        <div class="plate"><span class="led" style="margin-bottom:14px"><i></i> Klettern &amp; Bouldern</span><b>Seit vier Jahren</b><p>In der Halle und am Fels. In Leipzig im Bloc, Onyx, No Limit und am Mockauer Turm, draußen in Löbejün und in der Sächsischen Schweiz. Vorstieg bis 7+ (UIAA), Boulder bis 5.</p></div>
+        <div class="plate"><span class="led warm" style="margin-bottom:14px"><i></i> Musik</span><b>Schlagzeug bei Empty Handed</b><p>Ein paar Jahre lang, heute nicht mehr aktiv. Ein Video gibt es noch.</p><div class="btn-row" style="margin-top:16px"><button class="btn" data-open-amp>Video ansehen</button></div></div>
+        <div class="plate"><span class="led" style="margin-bottom:14px"><i></i> Sport</span><b>Klettern ist der Hauptsport</b><p>Dazu zwei- bis dreimal die Woche Gym, gelegentlich Padel. Davor 19 Jahre Fußball.</p></div>
+        <div class="plate"><span class="led warm" style="margin-bottom:14px"><i></i> Arbeitszeit</span><b>Oft bis spät</b><p>Abends ist es ruhig. Da kann ich mich am besten konzentrieren, also arbeite ich dann.</p></div>
+        <div class="plate"><span class="led" style="margin-bottom:14px"><i></i> Vorher</span><b>Logistik, dann Medizinphysik</b><p>Zehn Jahre Logistik, danach der Master. Die Abschlussarbeit habe ich bei Positrigo geschrieben, einem Startup mit einem PET-Scanner speziell für Hirnaufnahmen (NeuroLF). Dort habe ich die NEMA-Messungen durchgeführt und ausgewertet.</p></div>
+        <div class="plate"><span class="led warm" style="margin-bottom:14px"><i></i> Werdegang</span><b>Ehrgeizig</b><p>Was ich anfange, ziehe ich durch. Der Weg dahin überrascht die meisten: Hauptschulabschluss, später der Master in Medizinphysik, heute hauptberuflich Softwareentwickler. Mein Traumberuf.</p></div>
+      </div>
+      <p class="hint" style="margin-top:22px">Bitte prüfen: Schreibweisen der Hallen (Bloc, Onyx, No Limit, Mockauer Turm, Löbejün) und ob „Zehn Jahre Logistik" so stehen bleiben soll. Die Tätigkeiten (Stapler, Kommissionieren, Lkw) habe ich weggelassen.</p>
+    </section>
+
+    <section class="spec">
+      <div class="spec-title"><h2>Footer-Demo</h2></div>
+      <div class="plate foot">
+        <span class="logo">PW</span>
+        <small>© 2026 Philipp Wendschuch, Leipzig</small>
+        <button class="tape" id="tape" aria-label="Kassette"><svg viewBox="0 0 28 18"><rect x="1" y="1" width="26" height="16" rx="2"/><circle cx="9" cy="9" r="3"/><circle cx="19" cy="9" r="3"/><path d="M9 12h10"/></svg></button>
+      </div>
+    </section>
+
+    <p class="d-foot">Scroll bis ganz nach unten und dann noch dreimal weiter.</p>
+  </div>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<dialog id="amp">
+  <h3>Empty Handed</h3>
+  <p>Schlagzeug, ein paar Jahre lang. Das Video kommt von YouTube (youtube-nocookie.com) und wird erst geladen, wenn du auf den Button klickst.</p>
+  <div class="vid" id="vid"><button class="btn btn-primary" id="loadvid">Video laden</button></div>
+  <div class="row"><button class="btn" id="closeamp">Schließen</button></div>
+</dialog>
+
+<script>
+(function(){
+  const main=document.querySelector('main');
+  const toast=document.getElementById('toast');
+  let tt;function say(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),3200)}
+
+  /* Palette + Material */
+  function setPal(p){main.dataset.palette=p;document.querySelectorAll('[data-pal]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.pal===p));try{localStorage.setItem('k-pal',p)}catch(e){}}
+  function setMat(m){main.dataset.material=m;document.querySelectorAll('[data-mat]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mat===m));try{localStorage.setItem('k-mat',m)}catch(e){}}
+  document.querySelectorAll('[data-pal]').forEach(b=>b.addEventListener('click',()=>setPal(b.dataset.pal)));
+  document.querySelectorAll('[data-mat]').forEach(b=>b.addEventListener('click',()=>setMat(b.dataset.mat)));
+  const q=new URLSearchParams(location.search);
+  let pal='violet',mat='hybrid';try{pal=localStorage.getItem('k-pal')||pal;mat=localStorage.getItem('k-mat')||mat}catch(e){}
+  if(q.get('pal'))pal=q.get('pal');if(q.get('mat'))mat=q.get('mat');
+  setPal(pal);setMat(mat);
+
+  /* Taschenlampe */
+  const hero=document.getElementById('hero');
+  hero.addEventListener('pointermove',e=>{const r=hero.querySelector('.secret').getBoundingClientRect();hero.querySelector('.secret').style.setProperty('--mx',(e.clientX-r.left)+'px');hero.querySelector('.secret').style.setProperty('--my',(e.clientY-r.top)+'px')});
+  hero.addEventListener('pointerleave',()=>{const s=hero.querySelector('.secret');s.style.setProperty('--mx','-999px');s.style.setProperty('--my','-999px')});
+
+  /* Drehknopf = Hue-Dial */
+  const dial=document.getElementById('dial');
+  let hue=160;try{const h=localStorage.getItem('k-hue');if(h&&pal==='custom')hue=+h}catch(e){}
+  function applyHue(h,fromUser){hue=((h%360)+360)%360;main.style.setProperty('--hue',hue);dial.style.setProperty('--angle',hue+'deg');dial.setAttribute('aria-valuenow',Math.round(hue));if(fromUser){setPal('custom');try{localStorage.setItem('k-hue',hue)}catch(e){}}}
+  applyHue(hue,false);
+  let dragging=false;
+  function angleFrom(e){const r=dial.getBoundingClientRect();const cx=r.left+r.width/2,cy=r.top+r.height/2;return Math.atan2(e.clientX-cx,-(e.clientY-cy))*180/Math.PI}
+  dial.addEventListener('pointerdown',e=>{dragging=true;dial.setPointerCapture(e.pointerId);applyHue(angleFrom(e),true)});
+  dial.addEventListener('pointermove',e=>{if(dragging)applyHue(angleFrom(e),true)});
+  dial.addEventListener('pointerup',()=>{dragging=false;say('Eigene Akzentfarbe: hsl('+Math.round(hue)+'°)')});
+  dial.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowUp'){applyHue(hue+6,true);e.preventDefault()}if(e.key==='ArrowLeft'||e.key==='ArrowDown'){applyHue(hue-6,true);e.preventDefault()}});
+
+  /* Kassette */
+  const amp=document.getElementById('amp');
+  document.getElementById('tape').addEventListener('click',()=>amp.showModal());
+  document.getElementById('closeamp').addEventListener('click',()=>amp.close());
+  document.getElementById('loadvid').addEventListener('click',()=>{document.getElementById('vid').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/OoIa7-U1SbE" title="Empty Handed" allow="encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>'});
+
+  document.querySelectorAll('[data-open-amp]').forEach(b=>b.addEventListener('click',()=>amp.showModal()));
+
+  /* Hell / Dunkel */
+  const themeToggle=document.getElementById('themeToggle');
+  function setMode(m){main.dataset.mode=m;themeToggle.setAttribute('aria-checked',m==='dark');try{localStorage.setItem('k-mode',m)}catch(e){}}
+  let mode='dark';try{mode=localStorage.getItem('k-mode')||mode}catch(e){}
+  if(q.get('mode'))mode=q.get('mode');
+  setMode(mode);
+  themeToggle.addEventListener('click',()=>setMode(main.dataset.mode==='dark'?'light':'dark'));
+
+  /* Nachtschicht: 0–5 Uhr andere LED-Zeile */
+  const ledtext=document.getElementById('ledtext');
+  const NIGHT='Noch wach? Ich meistens auch. Abends arbeite ich am besten.';
+  const DAY='Verfügbar für neue Projekte';
+  function night(on){ledtext.textContent=on?NIGHT:DAY;document.getElementById('statusled').classList.toggle('warm',on)}
+  const h=new Date().getHours();night(h>=0&&h<5);
+  document.getElementById('nightTest').addEventListener('click',e=>{e.preventDefault();night(ledtext.textContent===DAY);window.scrollTo({top:0,behavior:'smooth'})});
+
+  /* Konsole */
+  console.log('%c PW ','background:#b48cff;color:#1b0f33;font-weight:800;padding:4px 8px;border-radius:6px','Angular 21 mit SSR, keine Tracker, Fonts selbst gehostet.\nFragen zum Code oder ein Projekt: contact@philipp-wendschuch.dev');
+})();
+</script>
+</body>
+</html>

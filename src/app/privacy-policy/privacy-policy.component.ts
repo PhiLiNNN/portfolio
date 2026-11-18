@@ -1,27 +1,27 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Inject,
   OnInit,
   PLATFORM_ID,
+  inject,
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { SeoService } from '../shared/seo.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-privacy-policy',
-  standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, TranslateModule],
   templateUrl: './privacy-policy.component.html',
-  styleUrl: './privacy-policy.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrivacyPolicyComponent implements OnInit {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly seo = inject(SeoService);
 
   ngOnInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (this.isBrowser) window.scrollTo({ top: 0 });
+    this.seo.set({ titleKey: 'seo.privacy.title', descriptionKey: 'seo.privacy.description' });
   }
 }

@@ -3,128 +3,399 @@
     "skipToContent": "Zum Inhalt springen",
     "themeDark": "Zu dunklem Modus wechseln",
     "themeLight": "Zu hellem Modus wechseln",
-    "scrollToTop": "Nach oben scrollen",
-    "scrollDown": "Zum nächsten Abschnitt scrollen",
-    "backToHome": "Zurück zur Startseite",
+    "langToggle": "Sprache: Deutsch / Language: English",
+    "scrollToTop": "PW – nach oben",
+    "backToHome": "PW – zurück zur Startseite",
     "openMenu": "Menü öffnen",
     "closeMenu": "Menü schließen",
     "github": "GitHub-Profil (öffnet in neuem Tab)",
     "email": "E-Mail senden",
-    "linkedin": "LinkedIn-Profil (öffnet in neuem Tab)"
+    "linkedin": "LinkedIn-Profil (öffnet in neuem Tab)",
+    "dial": "Akzentfarbe (ziehen oder Pfeiltasten)",
+    "cassette": "Empty-Handed-Video",
+    "closeDialog": "Schließen"
   },
-  "header": {
-    "german": "Deutsch",
-    "english": "Englisch"
-  },
-  "menu": {
-    "aboutMe": "Über mich",
-    "mySkills": "Meine Fähigkeiten",
-    "portfolio": "Portfolio",
+  "nav": {
+    "home": "Start",
+    "about": "Über mich",
+    "offcode": "Abseits vom Code",
+    "skills": "Skills",
+    "services": "Angebot",
+    "experience": "Werdegang",
+    "projects": "Projekte",
     "contact": "Kontakt",
-    "sayHello": "Sag Hallo!"
+    "topics": "Schwerpunkte"
   },
-  "aot": {
-    "headline": "Frontend Entwickler",
-    "scroll": "Scrolle",
-    "down": "Nach unten",
-    "sendMsg": "Nachricht senden",
-    "sendMsgMobile": "Sende Nachricht"
+  "hero": {
+    "line1": "Full-Stack",
+    "line2": "Developer",
+    "line3": "aus Leipzig.",
+    "secret": "Coding with Heart",
+    "lede": "Ich entwickle Web-Anwendungen und Webseiten komplett, vom Konzept bis zum laufenden System. Im Frontend mit Angular und TypeScript, im Backend mit Python, dazu Docker und CI/CD.",
+    "ctaPrimary": "Projekt besprechen",
+    "ctaSecondary": "Meine Arbeit ansehen",
+    "statusNight": "Noch wach? Ich meistens auch. Abends arbeite ich am besten."
   },
-  "aboutMe": {
-    "aboutMe": "Über mich",
-    "description": "Ich bin ein Full-Stack-Entwickler mit Sitz in Leipzig, Deutschland. Nach einem Jahrzehnt in der Logistik habe ich den Wechsel in die Bildung vollzogen und einen Master in Medizinischer Physik erworben, wo ich über Python für die Datenanalyse erstmals zum Programmieren kam. Seit zwei Jahren arbeite ich beruflich als Entwickler und bin nebenbei selbstständig: Ich baue Websites von A bis Z – vom Front-End bis zum Back-End. Ich bin leidenschaftlich beim Codieren und arbeite stetig daran, ein versierter und vielseitiger Programmierer zu werden.",
-    "contactMe": "Wenn Sie denken, dass ich gut zu Ihren Projekten passen würde, kontaktieren Sie mich!",
+  "about": {
+    "title": "Über mich",
+    "text": "Ich bin Full-Stack-Entwickler aus Leipzig. Nach einem Jahrzehnt in der Logistik habe ich noch einmal studiert, einen Master in Medizinischer Physik gemacht und bin dort über Python für die Datenanalyse zum Programmieren gekommen. Seit zwei Jahren arbeite ich hauptberuflich als Entwickler und baue nebenbei Webseiten für Unternehmen, vom Frontend bis zum Backend. Claude Code und agentische Workflows gehören dabei zu meinem Arbeitsalltag.",
+    "contactMe": "Wenn du denkst, dass ich zu deinem Projekt passe, melde dich.",
     "letsTalk": "Lass uns reden"
   },
-  "mySkills": {
-    "mySkills": "Meine Fähigkeiten",
+  "offcode": {
+    "title": "Abseits vom Code",
+    "intro": "Ein paar Dinge über mich, die nicht im Lebenslauf stehen.",
+    "video": "Video ansehen",
+    "items": {
+      "climbing": {
+        "label": "Klettern & Bouldern",
+        "title": "Seit vier Jahren",
+        "text": "Seit vier Jahren klettere und bouldere ich, in der Halle und am Fels. In Leipzig bin ich im Bloc, im Onyx, im No Limit und am Mockauer Turm unterwegs, draußen in Löbejün und in der Sächsischen Schweiz. Im Vorstieg klettere ich bis 7+ (UIAA), beim Bouldern bis 5."
+      },
+      "music": {
+        "label": "Musik",
+        "title": "Schlagzeug bei Empty Handed",
+        "text": "Mit Empty Handed habe ich einige Jahre Schlagzeug gespielt. Die Band gibt es nicht mehr, aber das Musikvideo zu „Patience\" ist noch online."
+      },
+      "sport": {
+        "label": "Sport",
+        "title": "Klettern ist der Hauptsport",
+        "text": "Klettern ist mein Hauptsport. Dazu gehe ich zwei- bis dreimal die Woche ins Gym und spiele gelegentlich Padel. Davor habe ich 19 Jahre lang Fußball gespielt."
+      },
+      "hours": {
+        "label": "Arbeitszeit",
+        "title": "Oft bis spät",
+        "text": "Ich arbeite oft bis spät in den Abend. Dann ist es ruhig, nichts unterbricht, und ich kann mich am besten konzentrieren."
+      },
+      "before": {
+        "label": "Vorher",
+        "title": "Logistik, dann Medizinphysik",
+        "text": "Nach zehn Jahren in der Logistik habe ich noch einmal studiert und einen Master in Medizinischer Physik gemacht. Die Abschlussarbeit habe ich bei Positrigo geschrieben, einem Startup, das einen PET-Scanner speziell für Hirnaufnahmen entwickelt (NeuroLF). Dort habe ich die NEMA-Messungen durchgeführt und ausgewertet."
+      },
+      "drive": {
+        "label": "Werdegang",
+        "title": "Ehrgeizig",
+        "text": "Was ich anfange, ziehe ich durch. Der Weg dahin überrascht die meisten: vom Hauptschulabschluss über den Master in Medizinphysik bis zum hauptberuflichen Softwareentwickler, meinem Traumberuf."
+      }
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "intro": "Die Regler zeigen, womit ich am meisten arbeite. Was ich täglich benutze, steht oben.",
     "frontend": "Frontend",
     "backend": "Backend",
-    "devops": "DevOps & Tools"
+    "devops": "DevOps & Tools",
+    "ai": "KI-gestützte Entwicklung",
+    "aiNote": "Claude Code gehört zu meinem Arbeitsalltag. Ich zerlege Aufgaben in Spezifikation und Plan, lasse Agenten die Umsetzung übernehmen und prüfe das Ergebnis, bevor es in den Hauptzweig geht.",
+    "aiAgents": "Agentische Workflows",
+    "aiSpec": "Spec-getriebene Entwicklung",
+    "aiReview": "KI-gestütztes Code-Review"
   },
   "services": {
     "title": "Was ich anbiete",
-    "intro": "Von der sauberen Landingpage bis zur kompletten Web-App – ich baue das Ganze, und ich baue es richtig.",
+    "intro": "Von der Landingpage bis zur kompletten Web-Anwendung: Ich übernehme das ganze Projekt, von der Planung bis zum Betrieb.",
     "card1": {
       "title": "Moderne Websites",
-      "text": "Schnelle, responsive Websites – DSGVO-konform, barrierefrei (WCAG) und nach aktuellen Web-Standards. Sehen auf jedem Gerät gut aus.",
-      "tags": "DSGVO-konform | Barrierefrei | Responsive | SEO-ready"
+      "text": "Schnelle, responsive Websites, DSGVO-konform, barrierefrei (WCAG) und nach aktuellen Web-Standards. Sehen auf jedem Gerät gut aus.",
+      "tags": [
+        "DSGVO-konform",
+        "Barrierefrei",
+        "Responsive",
+        "SEO-ready"
+      ]
     },
     "card2": {
       "title": "Full-Stack Web-Apps",
-      "text": "Individuelle Software, end-to-end gebaut: Angular oder React im Frontend, solide APIs und Datenbanken im Backend – ganz wie dein Produkt es braucht.",
-      "tags": "Angular | React | REST-APIs | Datenbanken"
+      "text": "Individuelle Software, von vorn bis hinten gebaut: Angular oder React im Frontend, solide APIs und Datenbanken im Backend. Ganz wie dein Produkt es braucht.",
+      "tags": [
+        "Angular",
+        "React",
+        "REST-APIs",
+        "Datenbanken"
+      ]
     },
     "card3": {
       "title": "Code & Beratung",
-      "text": "Reviews zu Performance, Barrierefreiheit und Code-Qualität – plus laufende Wartung, damit deine bestehende Seite schnell, sicher und aktuell bleibt.",
-      "tags": "Performance | Barrierefreiheit | Wartung | Code-Review"
+      "text": "Reviews zu Performance, Barrierefreiheit und Code-Qualität, plus laufende Wartung, damit deine bestehende Seite schnell, sicher und aktuell bleibt.",
+      "tags": [
+        "Performance",
+        "Barrierefreiheit",
+        "Wartung",
+        "Code-Review"
+      ]
     }
   },
-  "portfolio": {
-    "headerDescription": "Entdecke hier eine Auswahl meiner Arbeiten - Interagiere mit den Projekten, um meine Fähigkeiten in Aktion zu sehen."
-  },
-  "references": [
-    {
-      "name": "Join",
-      "skills": ["JavaScript", "HTML", "CSS", "Firebase", "Git"],
-      "description": "Aufgabenmanager inspiriert vom Kanban-System. Erstelle und organisiere Aufgaben mit Drag-and-Drop-Funktionen, weise Benutzer und Kategorien zu.",
-      "githubLink": "https://github.com/PhiLiNNN/Join",
-      "liveLink": "https://join.philipp-wendschuch.dev/",
-      "img": "./assets/img/references/join.png"
+  "experience": {
+    "title": "Werdegang",
+    "intro": "Zwei Projekte, die ich neben der Kundenarbeit mit aufbaue.",
+    "webwerk": {
+      "label": "Mitgründer",
+      "title": "Webwerk Leipzig",
+      "text": "Zusammen mit Andreas Kunisch baue ich unter dem Namen Webwerk Leipzig Webseiten für Handwerk, Gastronomie und kleine Betriebe in Leipzig. Handgeschrieben, schnell und mit festen Preisen.",
+      "link": "webwerk-leipzig.de",
+      "shotAlt": "Startseite von webwerk-leipzig.de"
     },
-    {
-      "name": "Sharkie",
-      "skills": ["JavaScript", "HTML", "CSS", "Git"],
-      "description": "Ein Unterwasser-Abenteuerspiel mit objektorientiertem Ansatz. Führe Sharkie, sammle Gift und besiege den Riesenhai.",
-      "githubLink": "https://github.com/PhiLiNNN/Sharkie",
-      "liveLink": "https://sharkie.philipp-wendschuch.dev/",
-      "img": "./assets/img/references/sharkie.png"
-    },
-    {
-      "name": "PokéCubes",
-      "skills": ["JavaScript", "Rest-Api", "HTML", "CSS", "Git"],
-      "description": "Eine Web-App, welche die PokeAPI verwendet, um Pokémon der ersten Generation auf interaktiven, drehbaren Würfeln anzuzeigen. Klicke auf ein Pokémon für weitere Infos.",
-      "githubLink": "https://github.com/PhiLiNNN/Pokedex",
-      "liveLink": "https://pokecubes.philipp-wendschuch.dev/",
-      "img": "./assets/img/references/pokecubes.png"
+    "traudel": {
+      "label": "Mitgründer, im Aufbau",
+      "title": "traudel.app",
+      "text": "Nachbarschaft heißt mehr als nebeneinander wohnen. Traudel zeigt, was in Leipzig gerade passiert: Veranstaltungen und Treffen in der Nähe, Hilfe gesucht und angeboten, ehrliche Tipps, Dinge verschenken und verleihen. Mit Chat, Reaktionen und Sortierung nach Nähe oder Startzeit. Läuft im Browser und als App auf dem Handy.",
+      "tags": [
+        "Kostenlos",
+        "Keine Werbung",
+        "Events & Treffen",
+        "Hilfe & Tipps",
+        "Geben & Leihen",
+        "Gebaut in Leipzig"
+      ],
+      "status": "Noch nicht öffentlich. Mehr, sobald es losgeht.",
+      "shotAlt": "Der Feed von traudel.app mit Beiträgen aus Leipzig"
     }
-  ],
-  "footer": {
-    "error": {
-      "nameEmpty": "Dein Name wird benötigt.",
-      "nameTooShort": "Bitte gib mindestens 2 Zeichen ein!",
-      "emailEmpty": "Deine E-Mail-Adresse wird benötigt.",
-      "emailNotValid": "Bitte gib eine gültige E-Mail-Adresse ein (z.B. user&#64;example.com)!",
-      "textFieldEmpty": "Deine Nachricht ist leer.",
-      "textFieldTooShort": "Bitte gib mindestens 10 Zeichen ein!"
-    },
-    "sayHello": "Sag Hallo!",
-    "discussProject": "Möchten Sie ein neues Projekt besprechen?",
-    "contactRequest": "Sag Hallo! Lass uns deine Ideen besprechen und umsetzen.",
+  },
+  "projects": {
+    "title": "Projekte",
+    "intro": "Eine Auswahl meiner Arbeiten. Öffne ein Projekt, um es auszuprobieren.",
+    "github": "GitHub",
+    "live": "Live",
+    "list": [
+      {
+        "name": "Join",
+        "skills": [
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "Firebase",
+          "Git"
+        ],
+        "description": "Aufgabenmanager nach dem Kanban-Prinzip. Aufgaben per Drag-and-Drop anlegen und sortieren, Nutzer und Kategorien zuweisen.",
+        "githubLink": "https://github.com/PhiLiNNN/Join",
+        "liveLink": "https://join.philipp-wendschuch.dev/",
+        "img": "./assets/img/references/join.webp"
+      },
+      {
+        "name": "Sharkie",
+        "skills": [
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "Git"
+        ],
+        "description": "Ein Unterwasser-Abenteuerspiel, objektorientiert gebaut. Führe Sharkie, sammle Gift und besiege den Riesenhai.",
+        "githubLink": "https://github.com/PhiLiNNN/Sharkie",
+        "liveLink": "https://sharkie.philipp-wendschuch.dev/",
+        "img": "./assets/img/references/sharkie.webp"
+      },
+      {
+        "name": "PokéCubes",
+        "skills": [
+          "JavaScript",
+          "REST-API",
+          "HTML",
+          "CSS",
+          "Git"
+        ],
+        "description": "Eine Web-App, die über die PokeAPI Pokémon der ersten Generation auf drehbaren Würfeln zeigt. Klick auf ein Pokémon für Details.",
+        "githubLink": "https://github.com/PhiLiNNN/Pokedex",
+        "liveLink": "https://pokecubes.philipp-wendschuch.dev/",
+        "img": "./assets/img/references/pokecubes.webp"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "intro": "Wenn du ein Projekt besprechen möchtest, schreib mir ein paar Zeilen. Ich melde mich in der Regel innerhalb eines Werktags.",
     "formName": "Dein Name",
     "formEmail": "Deine E-Mail",
     "formMessage": "Deine Nachricht",
-    "privacyPolicyTextBefore": "Ich habe die ",
+    "placeholderName": "Max Mustermann",
+    "placeholderEmail": "max@beispiel.de",
+    "placeholderMessage": "Worum geht es?",
+    "privacyPolicyTextBefore": "Ich habe die",
     "privacyPolicy": "Datenschutzerklärung",
-    "privacyPolicyTextAfter": " gelesen und stimme der Verarbeitung meiner Daten zu.",
+    "privacyPolicyTextAfter": "gelesen und stimme der Verarbeitung meiner Daten zu.",
     "sendMessage": "Nachricht senden",
-    "sendMessageMobile": "Sag Hallo",
     "sending": "Wird gesendet…",
     "sendError": "Nachricht konnte nicht gesendet werden. Bitte erneut versuchen.",
-    "legalNotice": "Impressum"
+    "error": {
+      "nameEmpty": "Dein Name wird benötigt.",
+      "nameTooShort": "Bitte gib mindestens 2 Zeichen ein.",
+      "emailEmpty": "Deine E-Mail-Adresse wird benötigt.",
+      "emailNotValid": "Bitte gib eine gültige E-Mail-Adresse ein (z. B. max@beispiel.de).",
+      "textFieldEmpty": "Deine Nachricht ist leer.",
+      "textFieldTooShort": "Bitte gib mindestens 10 Zeichen ein."
+    },
+    "sentTitle": "Nachricht gesendet",
+    "sentText": "Danke. Ich melde mich bald.",
+    "antispam": {
+      "idle": "Spamschutz bereit",
+      "solving": "Spamschutz prüft …",
+      "ready": "Spamschutz bestanden",
+      "failed": "Spamschutz nicht erreichbar"
+    }
+  },
+  "video": {
+    "title": "Empty Handed",
+    "text": "Mit Empty Handed habe ich einige Jahre Schlagzeug gespielt. Die Band gibt es nicht mehr, das Musikvideo zu „Patience\" ist aber noch auf YouTube. Wenn du auf „Video laden\" klickst, wird eine Verbindung zu YouTube aufgebaut (youtube-nocookie.com). Vorher wird nichts geladen.",
+    "load": "Video laden"
+  },
+  "footer": {
+    "copyright": "Philipp Wendschuch, Leipzig",
+    "legalNotice": "Impressum",
+    "privacy": "Datenschutz",
+    "night": "Noch wach? Ich meistens auch. Abends arbeite ich am besten.",
+    "focus": "Schwerpunkte",
+    "webwerk": "Webwerk Leipzig",
+    "contact": "Kontakt",
+    "legal": "Rechtliches"
   },
   "imprint": {
     "title": "Impressum",
     "contact": "Kontakt",
     "name": "Philipp Wendschuch",
-    "address": "Friedrich-Bosse-Straße 49 ",
+    "address": "Friedrich-Bosse-Straße 49",
     "city": "04159 Leipzig",
     "phone": "Telefon",
     "email": "E-Mail"
   },
-  "popup": {
-    "header": "E-Mail gesendet",
-    "content": "E-Mail wurde erfolgreich gesendet."
+  "seo": {
+    "home": {
+      "title": "Philipp Wendschuch – Full-Stack Developer aus Leipzig",
+      "description": "Full-Stack Developer aus Leipzig: Angular und TypeScript im Frontend, Python im Backend. Mitgründer von Webwerk Leipzig und traudel.app."
+    },
+    "imprint": {
+      "title": "Impressum – Philipp Wendschuch",
+      "description": "Impressum von Philipp Wendschuch, Full-Stack Developer aus Leipzig."
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung – Philipp Wendschuch",
+      "description": "Datenschutzerklärung für philipp-wendschuch.dev."
+    }
+  },
+  "topics": {
+    "common": {
+      "cta": "Projekt besprechen",
+      "ctaText": "Du hast ein Projekt in diesem Bereich? Schreib mir ein paar Zeilen, ich melde mich innerhalb eines Werktags.",
+      "stack": "Werkzeuge",
+      "more": "Weitere Schwerpunkte",
+      "back": "Zur Startseite",
+      "webwerk": "Webseiten für Betriebe in Leipzig baue ich zusammen mit Andreas Kunisch bei Webwerk Leipzig."
+    },
+    "angular": {
+      "title": "Angular-Entwicklung in Leipzig",
+      "seoTitle": "Angular-Entwicklung Leipzig – Philipp Wendschuch",
+      "description": "Angular-Entwickler aus Leipzig: Web-Anwendungen mit Angular, TypeScript und SSR, von der Komponente bis zum Deployment.",
+      "intro": "Angular ist mein tägliches Werkzeug, beruflich und in eigenen Projekten. Ich baue damit Anwendungen, die auch nach Jahren noch wartbar sind: klare Komponentenstruktur, typisierte Schnittstellen, Tests dort, wo sie etwas fangen.",
+      "sections": [
+        {
+          "h": "Was ich mit Angular baue",
+          "p": "Interne Werkzeuge, Kundenportale, Dashboards und Web-Apps, die im Browser und als App auf dem Handy laufen. Aktuelles Beispiel ist traudel.app, eine Nachbarschafts-App, deren Frontend in Angular entsteht und über Capacitor in die App Stores geht."
+        },
+        {
+          "h": "Wie ich arbeite",
+          "p": "Standalone-Komponenten, Signals, strikte Typisierung und Server-Side Rendering, wenn Ladezeit und Auffindbarkeit zählen. Diese Seite ist selbst ein Beispiel: Angular 21 mit SSR, vorgerendert, ohne Tracker."
+        },
+        {
+          "h": "Bestehende Anwendungen",
+          "p": "Ich übernehme auch gewachsene Angular-Projekte: Upgrade auf aktuelle Versionen, Umstellung auf Standalone und Signals, Performance- und Barrierefreiheits-Review, Testabdeckung dort, wo es weh tut."
+        }
+      ],
+      "stack": [
+        "Angular 21",
+        "TypeScript",
+        "RxJS",
+        "Signals",
+        "Angular SSR",
+        "Capacitor",
+        "Vitest",
+        "Karma"
+      ]
+    },
+    "python": {
+      "title": "Python-Backend-Entwicklung",
+      "seoTitle": "Python-Backend-Entwicklung Leipzig – Philipp Wendschuch",
+      "description": "Backend-Entwicklung mit Python aus Leipzig: REST-APIs mit FastAPI, Django und Flask, Datenbanken, Docker und CI/CD.",
+      "intro": "Mit Python habe ich das Programmieren angefangen, damals für die Datenanalyse im Medizinphysik-Studium. Heute baue ich damit die Schnittstellen und Datenmodelle hinter Web-Anwendungen.",
+      "sections": [
+        {
+          "h": "APIs und Datenmodelle",
+          "p": "REST-APIs mit FastAPI oder Django, sauber dokumentiert, mit Validierung und Tests. Datenbankschemata, die zum Produkt passen, und Migrationen, die man auch nach einem Jahr noch versteht. PL/SQL gehört zu meinem Arbeitsalltag."
+        },
+        {
+          "h": "Betrieb",
+          "p": "Docker-Images, die reproduzierbar bauen, CI/CD-Pipelines, die Tests und Deployment übernehmen, und Logging, das bei einem Fehler weiterhilft. Ich liefere keine Anwendung ab, die nur auf meinem Rechner läuft."
+        },
+        {
+          "h": "Zusammenspiel mit dem Frontend",
+          "p": "Weil ich beide Seiten baue, passen API und Oberfläche zusammen: keine Felder, die niemand braucht, keine Endpunkte, die dreimal abgefragt werden."
+        }
+      ],
+      "stack": [
+        "Python",
+        "FastAPI",
+        "Django",
+        "Flask",
+        "PL/SQL",
+        "PostgreSQL",
+        "Docker",
+        "GitLab CI"
+      ]
+    },
+    "websites": {
+      "title": "Webseiten für Unternehmen in Leipzig",
+      "seoTitle": "Webseiten für Unternehmen Leipzig – Philipp Wendschuch",
+      "description": "Webseiten für Betriebe, Praxen und Dienstleister in Leipzig: schnell, DSGVO-konform, barrierefrei, mit Betreuung. Zusammen mit Webwerk Leipzig.",
+      "intro": "Eine Webseite muss gefunden werden, schnell laden und auf dem Handy funktionieren. Alles andere ist Dekoration. Ich baue Seiten, die diese drei Dinge zuverlässig tun, und kümmere mich danach darum, dass es so bleibt.",
+      "sections": [
+        {
+          "h": "Was dazugehört",
+          "p": "Konzept und Texte gemeinsam mit dir, Gestaltung, Umsetzung ohne schwergewichtige Baukästen, Impressum und Datenschutz, Kontaktformular mit Spamschutz, Anbindung an Google Business. Auf Wunsch Hosting und laufende Pflege."
+        },
+        {
+          "h": "Technik, die hält",
+          "p": "Handgeschriebenes HTML, CSS und JavaScript oder Angular, je nach Bedarf. Selbst gehostete Schriften, keine Tracker ohne Einwilligung, Ladezeiten unter einer Sekunde, Barrierefreiheit nach WCAG."
+        },
+        {
+          "h": "Webwerk Leipzig",
+          "p": "Für Handwerk, Gastronomie und kleine Betriebe arbeite ich mit Andreas Kunisch unter dem Namen Webwerk Leipzig. Dort gibt es feste Pakete mit klaren Preisen, einmalig oder im Betreuungsmodell."
+        }
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Angular",
+        "Vite",
+        "Matomo/Umami",
+        "WCAG 2.2",
+        "DSGVO"
+      ]
+    },
+    "ai": {
+      "title": "KI-gestützte Softwareentwicklung",
+      "seoTitle": "KI-gestützte Softwareentwicklung – Philipp Wendschuch",
+      "description": "Softwareentwicklung mit Claude Code und agentischen Workflows: schneller liefern, ohne die Kontrolle über Qualität und Architektur abzugeben.",
+      "intro": "Ich arbeite seit über einem Jahr täglich mit Claude Code. Nicht als Autovervollständigung, sondern als Werkzeug, das Aufgaben nach Spezifikation umsetzt, während ich Architektur, Review und Entscheidungen behalte.",
+      "sections": [
+        {
+          "h": "So sieht das in der Praxis aus",
+          "p": "Eine Aufgabe wird erst in eine Spezifikation und einen Plan zerlegt. Dann setzen Agenten die Schritte um, mit Tests. Ich prüfe jeden Schritt, bevor er in den Hauptzweig geht. Das Ergebnis ist schneller als Handarbeit und sauberer als Durchwinken."
+        },
+        {
+          "h": "Wo es sich lohnt",
+          "p": "Migrationen und Upgrades, Testabdeckung für bestehenden Code, Prototypen, die in Tagen statt Wochen stehen, wiederkehrende Routinearbeit wie Formulare, Schnittstellen und Dokumentation."
+        },
+        {
+          "h": "Wo ich vorsichtig bin",
+          "p": "Sicherheitsrelevanter Code, Datenschutz und alles, was ein Mensch verantworten muss, wird von mir gelesen und verstanden, bevor es läuft. KI beschleunigt die Arbeit, die Verantwortung bleibt bei mir."
+        }
+      ],
+      "stack": [
+        "Claude Code",
+        "Agentische Workflows",
+        "Spec-getriebene Entwicklung",
+        "Code-Review",
+        "MCP",
+        "Git-Worktrees"
+      ]
+    }
   }
 }

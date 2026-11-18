@@ -1,0 +1,60 @@
+@use "../../styles/index" as *;
+
+.topic {
+  padding: calc(var(--nav-h) + 24px) var(--gutter) 72px;
+  display: grid;
+  gap: 22px;
+}
+.head {
+  padding: clamp(28px, 4vw, 48px);
+  h1 {
+    font-size: clamp(32px, 5vw, 64px);
+  }
+  .head-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .intro {
+    margin-top: 20px;
+    max-width: 62ch;
+    font-size: clamp(17px, 1.4vw, 20px);
+    color: var(--muted);
+  }
+}
+.sections .plate,
+.grid-2 .plate {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  justify-items: start;
+  h2 {
+    font-size: clamp(20px, 2vw, 24px);
+  }
+  p {
+    color: var(--muted);
+  }
+}
+.webwerk a {
+  color: var(--accent);
+  font-weight: 600;
+}
+.cta .btn {
+  margin-top: 6px;
+}
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  padding: 8px 4px;
+  a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

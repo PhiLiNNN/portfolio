@@ -1,0 +1,82 @@
+// Both tiles share one neutral surface, a touch lighter than the other plates,
+// so the two logos carry the colour.
+.entry {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  justify-items: start;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--text) 9%, var(--bg)), color-mix(in srgb, var(--text) 4%, var(--bg)));
+  p {
+    color: var(--muted);
+  }
+  .status {
+    font-size: 14px;
+  }
+  .chips {
+    gap: 8px;
+  }
+  .label {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.01em;
+  }
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    flex: 0 0 auto;
+  }
+  // Webwerk mark: W in two strokes, the right half in the brand rose.
+  .ww-mark {
+    width: 56px;
+    height: 45px;
+    border-radius: 0;
+    color: var(--text);
+  }
+}
+:host-context([data-theme="light"]) .entry {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--accent);
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Screenshot sunk into the plate, pushed to the bottom so both tiles line up.
+.shot {
+  margin-top: auto;
+  width: 100%;
+  border-radius: calc(var(--r-card) - 6px);
+  background: var(--well-bg);
+  box-shadow: var(--sink);
+  padding: 10px;
+  display: block;
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--r-card) - 12px);
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+  }
+}

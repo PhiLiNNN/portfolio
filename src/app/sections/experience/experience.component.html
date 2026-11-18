@@ -1,0 +1,46 @@
+<section appReveal id="experience" class="section" aria-labelledby="experience-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="experience-title" class="t-h2">{{ "experience.title" | translate }}</h2>
+      <p>{{ "experience.intro" | translate }}</p>
+    </div>
+    <div class="grid grid-2">
+      <article class="plate entry">
+        <span class="label">{{ "experience.webwerk.label" | translate }}</span>
+        <div class="title-row">
+          <svg class="logo ww-mark" viewBox="0 0 100 80" width="56" height="45" aria-hidden="true" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="8,12 22,68 38,30 48,58" stroke="currentColor" />
+            <polyline points="38,30 48,58 62,18 76,68 92,12" stroke="#fb7185" />
+          </svg>
+          <h3 class="t-h3">{{ "experience.webwerk.title" | translate }}</h3>
+        </div>
+        <p>{{ "experience.webwerk.text" | translate }}</p>
+        <a class="link" href="https://webwerk-leipzig.de" target="_blank" rel="noopener">
+          {{ "experience.webwerk.link" | translate }}
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+        </a>
+        <a class="shot" href="https://webwerk-leipzig.de" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img src="./assets/img/experience/webwerk.webp" width="1200" height="750" [alt]="'experience.webwerk.shotAlt' | translate" loading="lazy" decoding="async" />
+        </a>
+      </article>
+
+      <article class="plate entry">
+        <span class="label">{{ "experience.traudel.label" | translate }}</span>
+        <div class="title-row">
+          <img class="logo" src="./assets/img/experience/traudel-logo.svg" width="48" height="48" alt="" />
+          <h3 class="t-h3">{{ "experience.traudel.title" | translate }}</h3>
+        </div>
+        <p>{{ "experience.traudel.text" | translate }}</p>
+        <div class="chips">
+          @for (tag of tags; track tag) {
+          <span class="tag">{{ tag }}</span>
+          }
+        </div>
+        <p class="status">{{ "experience.traudel.status" | translate }}</p>
+        <div class="shot">
+          <img src="./assets/img/experience/traudel.webp" width="1200" height="750" [alt]="'experience.traudel.shotAlt' | translate" loading="lazy" decoding="async" />
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

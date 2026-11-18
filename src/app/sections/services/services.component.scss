@@ -1,0 +1,16 @@
+.card {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  h3 {
+    font-size: clamp(20px, 2vw, 24px);
+  }
+  p {
+    color: var(--muted);
+    font-size: 15.5px;
+  }
+  .chips {
+    gap: 8px;
+    margin-top: 4px;
+  }
+}

@@ -1,0 +1,51 @@
+<section
+  id="home"
+  class="hero"
+  [class.settled]="settled"
+  aria-labelledby="hero-title"
+  (pointermove)="onPointerMove($event)"
+  (pointerleave)="onPointerLeave()"
+>
+  <div class="wrap">
+    <h1 id="hero-title" class="t-display headline">
+      <span>{{ "hero.line1" | translate }}</span>
+      <span class="carve">{{ "hero.line2" | translate }}</span>
+      <span>{{ "hero.line3" | translate }}</span>
+    </h1>
+    <div #secret class="secret" aria-hidden="true">{{ "hero.secret" | translate }}</div>
+
+    <p class="lede">{{ "hero.lede" | translate }}</p>
+
+    <div class="cta-row">
+      <button type="button" class="btn btn-primary" (click)="toContact()">
+        {{ "hero.ctaPrimary" | translate }}
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+      </button>
+      <button type="button" class="btn" (click)="toProjects()">
+        {{ "hero.ctaSecondary" | translate }}
+      </button>
+
+      <div class="dial-wrap">
+        <div
+          #dial
+          class="dial"
+          role="slider"
+          tabindex="0"
+          [attr.aria-label]="'a11y.dial' | translate"
+          aria-valuemin="0"
+          aria-valuemax="360"
+          [attr.aria-valuenow]="angle()"
+          [style.--angle]="angle() + 'deg'"
+          (pointerdown)="onDialDown($event)"
+          (pointermove)="onDialMove($event)"
+          (pointerup)="onDialUp()"
+          (pointercancel)="onDialUp()"
+          (dblclick)="resetDial()"
+          (keydown)="onDialKey($event)"
+        >
+          <span class="ind"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

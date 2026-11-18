@@ -1,0 +1,24 @@
+<dialog #dlg class="panel" aria-labelledby="video-title" (close)="onClose()">
+  <h3 id="video-title" class="t-h3">{{ "video.title" | translate }}</h3>
+  <p>{{ "video.text" | translate }}</p>
+  <div class="video">
+    @if (loaded()) {
+    <iframe
+      [src]="url"
+      title="Empty Handed"
+      allow="encrypted-media; picture-in-picture; fullscreen"
+      referrerpolicy="strict-origin-when-cross-origin"
+      loading="lazy"
+    ></iframe>
+    } @else {
+    <button type="button" class="btn btn-primary" (click)="load()">
+      {{ "video.load" | translate }}
+    </button>
+    }
+  </div>
+  <div class="dialog-actions">
+    <button type="button" class="btn" (click)="close()">
+      {{ "a11y.closeDialog" | translate }}
+    </button>
+  </div>
+</dialog>

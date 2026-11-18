@@ -1,0 +1,25 @@
+.modules {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.label {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+.module {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  justify-items: start;
+  padding: 24px;
+  h3 {
+    font-size: clamp(20px, 2vw, 24px);
+  }
+  p {
+    color: var(--muted);
+    font-size: 15.5px;
+  }
+  .btn {
+    margin-top: 6px;
+  }
+}

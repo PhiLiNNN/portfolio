@@ -1,0 +1,23 @@
+<section appReveal id="offcode" class="section" aria-labelledby="offcode-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="offcode-title" class="t-h2">{{ "offcode.title" | translate }}</h2>
+      <p>{{ "offcode.intro" | translate }}</p>
+    </div>
+    <ul class="grid modules">
+      @for (item of items; track item.key) {
+      <li class="plate module">
+        <span class="label">{{ "offcode.items." + item.key + ".label" | translate }}</span>
+        <h3 class="t-h3">{{ "offcode.items." + item.key + ".title" | translate }}</h3>
+        <p>{{ "offcode.items." + item.key + ".text" | translate }}</p>
+        @if (item.video) {
+        <button type="button" class="btn" (click)="openVideo()">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+          {{ "offcode.video" | translate }}
+        </button>
+        }
+      </li>
+      }
+    </ul>
+  </div>
+</section>

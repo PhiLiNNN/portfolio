@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+  Angular 21 with SSR, no trackers, fonts self-hosted.
+  Questions about the code or a project: contact@philipp-wendschuch.dev
+-->
+<html lang="de">
   <head>
     <meta charset="utf-8" />
-    <title>Philipp Wendschuch – Frontend Developer</title>
+    <title>Philipp Wendschuch – Full-Stack Developer aus Leipzig</title>
     <meta
       name="description"
-      content="Philipp Wendschuch – Frontend Developer aus Leipzig. Portfolio mit Projekten in Angular, JavaScript und TypeScript."
+      content="Philipp Wendschuch, Full-Stack Developer aus Leipzig. Angular und TypeScript im Frontend, Python im Backend. Mitgründer von Webwerk Leipzig und traudel.app."
     />
     <base href="/" />
+    <meta name="color-scheme" content="dark light" />
+    <!-- Browser chrome colour (phone toolbars); theme-init.js and ThemeService keep it in step with the theme. -->
+    <meta name="theme-color" content="#1e2530" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Set the theme before first paint to avoid a light/dark flash (FOUC).
+    <!-- Set theme + accent hue before first paint to avoid a flash (FOUC).
          External (not inline) so it passes the strict CSP. -->
     <script src="theme-init.js"></script>
-    <meta property="og:title" content="Philipp Wendschuch – Frontend Developer" />
+    <meta property="og:title" content="Philipp Wendschuch – Full-Stack Developer aus Leipzig" />
     <meta
       property="og:description"
-      content="Portfolio von Philipp Wendschuch, Frontend Developer aus Leipzig."
+      content="Portfolio von Philipp Wendschuch, Full-Stack Developer aus Leipzig."
     />
     <meta property="og:type" content="website" />
-    <link rel="icon" href="green.ico" />
+    <link rel="icon" href="favicon.ico" sizes="32x32" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="author" href="humans.txt" />
     <!-- Fonts (Syne, Overpass) are self-hosted via @font-face in styles.scss.
          No Google Fonts CDN: avoids transferring visitor IPs to Google (GDPR). -->
     <link
@@ -28,13 +40,20 @@
       href="assets/fonts/syne/syne-v22-latin-800.woff2"
       crossorigin
     />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="assets/fonts/overpass/overpass-v13-latin-regular.woff2"
+      crossorigin
+    />
     <script
       defer
       src="https://c.kunisch.tech/script.js"
       data-website-id="b2723338-b571-4cd2-b6c4-53502abba6b9"
     ></script>
   </head>
-  <body class="mat-typography">
+  <body>
     <app-root></app-root>
   </body>
 </html>

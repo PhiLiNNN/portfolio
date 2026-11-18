@@ -1,53 +1,21 @@
-<div class="content-wrapper">
-  <section>
-    <div class="arrow-wrapper" [routerLink]="['']">
-      <svg
-        class="arrow"
-        width="30"
-        height="56"
-        viewBox="0 0 40 56"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          class="arrow-head"
-          d="M37.8525 17.1265L19.9263 3.00025L2.00011 17.1265"
-          stroke="black"
-          stroke-width="4"
-        />
-        <path
-          class="arrow-shaft"
-          d="M19.9263 55.0439L19.9263 3"
-          stroke="black"
-          stroke-width="4"
-        />
-      </svg>
+<section class="legal wrap" aria-labelledby="imprint-title">
+  <div class="plate">
+    <div class="legal-head">
+      <h1 id="imprint-title">{{ "imprint.title" | translate }}</h1>
+      <a class="btn btn-icon" [routerLink]="['/']" [attr.aria-label]="'a11y.backToHome' | translate">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg>
+      </a>
     </div>
-    <h1>{{ "imprint.title" | translate }}</h1>
-    <div>
-      <strong class="font-op">{{ "imprint.name" | translate }} </strong>
-      <br />
-      <strong class="font-op">{{ "imprint.address" | translate }} </strong>
-      <br />
-      <strong class="font-op">{{ "imprint.city" | translate }} </strong>
-      <br />
-      <br />
-      <h2>{{ "imprint.contact" | translate }}</h2>
-      <span class="bold font-op">{{ "imprint.phone" | translate }}: </span>
-      <span
-        ><a class="font-op" href="tel:+491627849412">0162 78 49 41 2</a></span
-      >
-      <br />
-      <span class="bold font-op">{{ "imprint.email" | translate }}: </span>
-
-      <span>
-        <a
-          class="font-op"
-          href="mailto:contact@philipp-wendschuch.dev?subject=Hi Philipp 👋🏼, I've got a project to talk about!"
-        >
-        contact&#64;philipp-wendschuch.dev
-        </a>
-      </span>
-    </div>
-  </section>
-</div>
+    <p>
+      <strong>{{ "imprint.name" | translate }}</strong><br />
+      {{ "imprint.address" | translate }}<br />
+      {{ "imprint.city" | translate }}
+    </p>
+    <h2>{{ "imprint.contact" | translate }}</h2>
+    <p>
+      {{ "imprint.phone" | translate }}: <a href="tel:+491627849412">0162 78 49 41 2</a><br />
+      {{ "imprint.email" | translate }}:
+      <a href="mailto:contact@philipp-wendschuch.dev">contact&#64;philipp-wendschuch.dev</a>
+    </p>
+  </div>
+</section>

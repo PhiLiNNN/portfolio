@@ -1,0 +1,54 @@
+@if (content(); as c) {
+<article appReveal class="topic wrap" aria-labelledby="topic-title">
+  <div class="plate head">
+    <div class="head-row">
+      <h1 id="topic-title" class="t-display">{{ c.title }}</h1>
+      <a class="btn btn-icon" [routerLink]="['/']" [attr.aria-label]="'topics.common.back' | translate">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" /></svg>
+      </a>
+    </div>
+    <p class="intro">{{ c.intro }}</p>
+  </div>
+
+  <div class="grid grid-3 sections">
+    @for (s of c.sections; track s.h) {
+    <section class="plate">
+      <h2 class="t-h3">{{ s.h }}</h2>
+      <p>{{ s.p }}</p>
+    </section>
+    }
+  </div>
+
+  <div class="grid grid-2">
+    <div class="plate">
+      <h2 class="t-h3">{{ "topics.common.stack" | translate }}</h2>
+      <div class="chips">
+        @for (t of c.stack; track t) {
+        <span class="tag">{{ t }}</span>
+        }
+      </div>
+      @if (topic().webwerk) {
+      <p class="webwerk">
+        {{ "topics.common.webwerk" | translate }}
+        <a href="https://webwerk-leipzig.de" target="_blank" rel="noopener">webwerk-leipzig.de</a>
+      </p>
+      }
+    </div>
+    <div class="plate cta">
+      <h2 class="t-h3">{{ "topics.common.cta" | translate }}</h2>
+      <p>{{ "topics.common.ctaText" | translate }}</p>
+      <button type="button" class="btn btn-primary" (click)="toContact()">
+        {{ "topics.common.cta" | translate }}
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+      </button>
+    </div>
+  </div>
+
+  <nav class="more" [attr.aria-label]="'topics.common.more' | translate">
+    <span class="t-small">{{ "topics.common.more" | translate }}</span>
+    @for (t of others(); track t.key) {
+    <a [routerLink]="['/', t.path]">{{ "topics." + t.key + ".title" | translate }}</a>
+    }
+  </nav>
+</article>
+}

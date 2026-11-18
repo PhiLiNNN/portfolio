@@ -1,223 +1,256 @@
+@use "./styles/tokens";
 @use "./styles/index" as *;
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@use "@angular/material" as mat;
-// Plus imports for other components in your app.
+/* ---------- Fonts (self-hosted, no CDN) ---------- */
+@font-face { font-display: swap; font-family: "Syne"; font-style: normal; font-weight: 400; src: url("./../public/assets/fonts/syne/syne-v22-latin-regular.woff2") format("woff2"); }
+@font-face { font-display: swap; font-family: "Syne"; font-style: normal; font-weight: 600; src: url("./../public/assets/fonts/syne/syne-v22-latin-600.woff2") format("woff2"); }
+@font-face { font-display: swap; font-family: "Syne"; font-style: normal; font-weight: 800; src: url("./../public/assets/fonts/syne/syne-v22-latin-800.woff2") format("woff2"); }
+@font-face { font-display: swap; font-family: "Overpass"; font-style: normal; font-weight: 300; src: url("./../public/assets/fonts/overpass/overpass-v13-latin-300.woff2") format("woff2"); }
+@font-face { font-display: swap; font-family: "Overpass"; font-style: normal; font-weight: 400; src: url("./../public/assets/fonts/overpass/overpass-v13-latin-regular.woff2") format("woff2"); }
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.elevation-classes();
-@include mat.app-background();
 
-// Define the theme object.
-$portfolio-theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    density: (
-      scale: 0,
-    ),
-  )
-);
+/* Metric-matched fallbacks (Arial) so text does not jump when Syne/Overpass arrive.
+   Values measured against the real fonts: Syne 800 is 1.62x wider than Arial Bold. */
+@font-face { font-family: "Syne Fallback"; src: local("Arial Bold"), local("Arial"); font-weight: 400 800; size-adjust: 162.2%; ascent-override: 57.3%; descent-override: 16.6%; line-gap-override: 0%; }
+@font-face { font-family: "Overpass Fallback"; src: local("Arial"); font-weight: 300 400; size-adjust: 100.5%; ascent-override: 87.6%; descent-override: 37.8%; line-gap-override: 0%; }
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-:root {
-  @include mat.all-component-themes($portfolio-theme);
-}
-
-// Comment out the line below if you want to use the pre-defined typography utility classes.
-// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
-// @include mat.typography-hierarchy($portfolio-theme);
-
-// Comment out the line below if you want to use the deprecated `color` inputs.
-// @include mat.color-variants-backwards-compatibility($portfolio-theme);
-
-// Theme tokens. Light values equal the original hard-coded colors, so light
-// mode is unchanged; [data-theme="dark"] (set by the header toggle / the
-// no-flash script in index.html) overrides them. The black panels (contact,
-// footer, menu bottom block) intentionally stay black in both themes.
-:root {
-  --bg: #{$bg-color};
-  --text: #000000;
-  --img-invert: none;
-  // Green for small text: darker on cream (readable), bright brand green on dark.
-  --accent-text: #00795c;
-}
-:root[data-theme="dark"] {
-  --bg: #16130d;
-  --text: #f4ecdb;
-  --img-invert: invert(1);
-  --accent-text: #{$color-highlight};
-}
-
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+html { scroll-behavior: smooth; scrollbar-color: var(--accent) transparent; }
 body {
-  margin: 0;
-  background-color: var(--bg);
+  // Plain colour only (a gradient here would tile every viewport height and
+  // show seams). iOS Safari tints its bottom toolbar with this colour; a
+  // transparent body was tried and showed the bare canvas during fast scrolls.
+  background: var(--bg);
   color: var(--text);
-  font-family: "Syne";
+  font-family: "Overpass", "Overpass Fallback", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s, color 0.3s;
 }
+button, input, textarea { font: inherit; color: inherit; }
+a { color: inherit; }
+h1, h2, h3, h4, p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+*::-webkit-scrollbar { width: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
 
-* {
-  box-sizing: border-box;
-  scrollbar-width: auto;
-  scroll-behavior: smooth;
-  scrollbar-color: $color-highlight;
-}
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 
-// Visible keyboard focus indicator (WCAG 2.4.7). Components must not remove this.
-:focus-visible {
-  outline: 3px solid $color-highlight;
-  outline-offset: 2px;
-}
-
-// Skip link: off-screen until focused, then pinned to the top-left (WCAG 2.4.1).
 .skip-link {
-  position: absolute;
-  left: 8px;
-  top: -60px;
-  z-index: 1000;
-  padding: 10px 16px;
-  background: #000;
-  color: $bg-color;
-  font-family: "Overpass";
-  font-weight: 700;
-  border-radius: 0;
+  position: absolute; left: 8px; top: -60px; z-index: 1000;
+  padding: 10px 16px; background: var(--accent); color: var(--on-accent);
+  font-weight: 700; border-radius: var(--r-pill); text-decoration: none;
   transition: top 0.15s ease-in-out;
-  &:focus-visible {
-    top: 8px;
+  &:focus-visible { top: 8px; }
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- Typography ---------- */
+.t-display { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 800; letter-spacing: -0.02em; line-height: 0.98; }
+.t-h2 { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 800; font-size: clamp(26px, 3vw, 34px); letter-spacing: -0.01em; line-height: 1.1; }
+.t-h3 { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 800; font-size: clamp(22px, 2.2vw, 28px); letter-spacing: -0.01em; line-height: 1.15; }
+.t-muted { color: var(--muted); }
+.t-small { font-size: 14px; color: var(--muted); }
+
+/* ---------- Layout ---------- */
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding: 72px 0; scroll-margin-top: var(--nav-h); }
+.section-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 18px; margin-bottom: 32px; }
+.section-head p { color: var(--on-fog); font-size: 15px; max-width: 62ch; line-height: 1.5; }
+.grid { display: grid; gap: 22px; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+/* ---------- Background layer ---------- */
+// Fixed, viewport-sized (100lvh so nothing shows when the phone browser bar
+// collapses). Carries the page colour and, until the first WebGL frame, a
+// static stand-in for the nebula. Global so it applies before the JS bundle runs.
+.fog {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100lvh;
+  z-index: 0; pointer-events: none;
+  background: var(--bg);
+  transition: background-color 0.3s;
+  &:not(.live) {
+    background:
+      radial-gradient(70% 55% at 72% 18%, var(--light-1), transparent 70%),
+      radial-gradient(60% 60% at 15% 75%, var(--light-2), transparent 70%),
+      radial-gradient(50% 40% at 50% 110%, var(--light-1), transparent 70%)
+      var(--bg);
   }
 }
 
-// Screen-reader-only utility: hidden visually, available to assistive tech.
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+/* ---------- Reveal on scroll ---------- */
+// Set at runtime by RevealDirective on heads and plates below the fold. Each
+// plays once per page visit (see RevealState).
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(36px) scale(0.975);
+  transition: opacity 0.55s ease-out, transform 0.95s cubic-bezier(0.16, 0.84, 0.26, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+  &.is-in { opacity: 1; transform: none; }
+}
+.section-head[data-reveal] { transform: translateY(22px); transition-duration: 0.5s, 0.8s; }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
 }
 
-// Respect users who prefer reduced motion (WCAG 2.3.3 / vestibular safety).
+/* ---------- Surfaces ---------- */
+.plate {
+  background: var(--plate-bg);
+  border-radius: var(--r-card);
+  box-shadow: var(--plate-shadow);
+  padding: 28px;
+  /* The frosted look only where it is cheap and renders cleanly (desktop browsers);
+     phones composite backdrop blur over an animated canvas badly. */
+  @media (hover: hover) and (pointer: fine) {
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    backdrop-filter: blur(24px) saturate(1.2);
+  }
+}
+.well { background: var(--well-bg); border-radius: var(--r-card); box-shadow: var(--sink); padding: 28px; }
+
+/* ---------- Controls ---------- */
+.btn {
+  appearance: none; border: 0; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 16px 28px; border-radius: var(--r-pill);
+  background: var(--convex); box-shadow: var(--raise-md);
+  font-weight: 600; font-size: 16px; line-height: 1.2; text-decoration: none; color: var(--text);
+  transition: box-shadow 0.18s, transform 0.18s, color 0.18s, filter 0.18s;
+  &:hover {
+    transform: translateY(-2px);
+    color: var(--accent);
+    box-shadow: var(--raise), 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  &:active, &.is-pressed { box-shadow: var(--sink); transform: translateY(1px); background: var(--well-bg); color: var(--text); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: var(--raise-sm); }
+  svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+}
+.btn-primary {
+  background: var(--accent); color: var(--on-accent);
+  box-shadow: var(--raise-md), var(--accent-glow);
+  &:hover {
+    color: var(--on-accent);
+    filter: brightness(1.1) saturate(1.1);
+    box-shadow: var(--raise), 0 0 36px color-mix(in srgb, var(--accent) 60%, transparent), 0 0 0 2px color-mix(in srgb, var(--accent) 70%, transparent);
+  }
+  &:active { filter: none; }
+  &:active { background: var(--accent); color: var(--on-accent); box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.35), inset -4px -4px 8px rgba(255, 255, 255, 0.25); }
+}
+.btn-ghost {
+  background: transparent; box-shadow: none; color: var(--muted); padding-inline: 12px;
+  &:hover { color: var(--accent); background: var(--convex); box-shadow: var(--raise), 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent); }
+}
+.btn-icon { width: 56px; height: 56px; padding: 0; border-radius: 50%; flex: 0 0 auto; }
+
+.switch {
+  position: relative; width: 64px; height: 34px; border-radius: 999px; border: 0; padding: 0; cursor: pointer;
+  background: var(--well-bg); box-shadow: var(--sink); flex: 0 0 auto;
+  &::after {
+    content: ""; position: absolute; top: 4px; left: 4px; width: 26px; height: 26px; border-radius: 50%;
+    // Off-state knob: clearly lighter than the well in the dark theme, otherwise it disappears.
+    background: color-mix(in srgb, var(--text) 32%, var(--bg)); box-shadow: var(--raise-sm), inset 0 1px 0 color-mix(in srgb, var(--text) 25%, transparent);
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+  :root[data-theme="light"] &::after { background: linear-gradient(145deg, #f3f6fa, #b4c0cf); box-shadow: var(--raise-sm); }
+  &[aria-checked="true"]::after { transform: translateX(30px); background: var(--accent); box-shadow: var(--raise-sm), 0 0 10px var(--accent); }
+}
+.switch-row { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; }
+
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: var(--r-pill);
+  background: var(--convex); box-shadow: var(--raise-sm); font-weight: 500; font-size: 14px;
+  transition: box-shadow 0.18s, color 0.18s, transform 0.18s;
+  &:hover { color: var(--accent); transform: translateY(-1px); box-shadow: var(--raise), 0 0 0 1.5px color-mix(in srgb, var(--accent) 45%, transparent); }
+  &.is-on { box-shadow: var(--sink-soft); background: var(--well-bg); color: var(--accent); }
+}
+.tag { font-size: 13px; padding: 6px 12px; border-radius: 999px; background: var(--well-bg); box-shadow: var(--sink-soft); }
+
+.field {
+  display: grid; gap: 8px; position: relative;
+  label { font-size: 14px; font-weight: 500; color: var(--muted); }
+  input, textarea {
+    width: 100%; border: 0; padding: 16px 18px; font-size: 16px; color: var(--text);
+    background: var(--well-bg); border-radius: var(--r-input); box-shadow: var(--sink);
+    &::placeholder { color: color-mix(in srgb, var(--muted) 70%, transparent); }
+    &:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    &[aria-invalid="true"] { outline: 2px solid var(--err); outline-offset: 2px; }
+  }
+  textarea { min-height: 160px; resize: vertical; }
+  .err-msg { font-size: 13px; color: var(--err); }
+}
+.check {
+  display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--muted); line-height: 1.5; cursor: pointer;
+  input {
+    appearance: none; flex: 0 0 auto; width: 24px; height: 24px; border-radius: 7px; margin: 1px 0 0;
+    background: var(--well-bg); box-shadow: var(--sink); cursor: pointer; display: grid; place-content: center;
+    &::before { content: ""; width: 12px; height: 12px; border-radius: 3px; background: var(--accent); transform: scale(0); transition: transform 0.15s; }
+    &:checked::before { transform: scale(1); }
+  }
+  a { color: var(--accent); }
+}
+
+.fader {
+  display: grid; grid-template-columns: 28px 120px 1fr; align-items: center; gap: 14px; margin: 12px 0;
+  img { width: 24px; height: 24px; }
+  span { font-size: 14px; }
+  .track { height: 12px; border-radius: 999px; background: var(--well-bg); box-shadow: var(--sink); position: relative; }
+  .fill {
+    position: absolute; left: 4px; top: 4px; bottom: 4px; border-radius: 999px; width: 0;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 40%, transparent), var(--accent));
+    transition: width 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .knob {
+    position: absolute; top: 50%; left: 0; width: 26px; height: 26px; border-radius: 50%;
+    transform: translate(-50%, -50%); background: var(--convex); box-shadow: var(--raise-sm);
+    transition: left 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    &::after { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+  }
+  @include sm { grid-template-columns: 24px 96px 1fr; }
+}
+.is-in .fader .fill { width: var(--v); }
+.is-in .fader .knob { left: var(--v); }
+
+/* ---------- Dialog ---------- */
+dialog.panel {
+  border: 0; border-radius: var(--r-card); padding: 28px; max-width: 720px; width: min(92vw, 720px);
+  // A plate like any other: plate colour and drop shadow, no two-tone shadow over the blurred page.
+  background: var(--plate); color: var(--text); box-shadow: var(--plate-shadow);
+  &::backdrop { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); }
+  p { color: var(--muted); margin-top: 10px; }
+  .dialog-actions { display: flex; gap: 24px; justify-content: flex-end; margin-top: 20px; flex-wrap: wrap; }
+}
+
+/* ---------- Legal pages ---------- */
+.legal {
+  padding: calc(var(--nav-h) + 24px) 0 72px;
+  h1 { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 800; font-size: clamp(30px, 4vw, 44px); margin-bottom: 20px; }
+  h2 { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 800; font-size: 22px; margin: 32px 0 10px; }
+  h3 { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 600; font-size: 18px; margin: 20px 0 8px; }
+  p { margin: 0 0 12px; }
+  ul { list-style: disc; padding-left: 22px; margin: 0 0 12px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--accent); word-break: break-word; }
+  .legal-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+}
+
+/* ---------- Motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-ul {
-  list-style: none;
-}
-a {
-  text-decoration: none;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin-block-start: 0;
-  margin-block-end: 0;
-}
-*::-webkit-scrollbar {
-  width: 8px;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: $color-highlight;
-  border: 3px solid #ffffff00;
-}
-/* Syne*/
-@font-face {
-  font-display: swap;
-  font-family: "Syne";
-  font-style: normal;
-  font-weight: 400;
-  src: url("./../public/assets/fonts/syne/syne-v22-latin-regular.woff2")
-    format("woff2");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Syne";
-  font-style: normal;
-  font-weight: 500;
-  src: url("./../public/assets/fonts/syne/syne-v22-latin-500.woff2")
-    format("woff2");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Syne";
-  font-style: normal;
-  font-weight: 600;
-  src: url("./../public/assets/fonts/syne/syne-v22-latin-600.woff2")
-    format("woff2");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Syne";
-  font-style: normal;
-  font-weight: 700;
-  src: url("./../public/assets/fonts/syne/syne-v22-latin-700.woff2")
-    format("woff2");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Syne";
-  font-style: normal;
-  font-weight: 800;
-  src: url("./../public/assets/fonts/syne/syne-v22-latin-800.woff2")
-    format("woff2");
-}
-
-/* overpass*/
-@font-face {
-  font-display: swap;
-  font-family: "Overpass";
-  font-style: normal;
-  font-weight: 300;
-  src: url("./../public/assets/fonts/overpass/overpass-v13-latin-300.woff2")
-    format("woff2");
-}
-
-@font-face {
-  font-display: swap;
-  font-family: "Overpass";
-  font-style: normal;
-  font-weight: 400;
-  src: url("./../public/assets/fonts/overpass/overpass-v13-latin-regular.woff2")
-    format("woff2");
-}
-
-html,
-body {
-  margin: 0;
-  height: 100%;
-}
-
-.mdc-dialog__surface {
-  border-radius: 0px !important;
 }

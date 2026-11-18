@@ -1,0 +1,14 @@
+/* TEAM */
+  Developer: Philipp Wendschuch
+  Site: https://philipp-wendschuch.dev
+  Contact: contact@philipp-wendschuch.dev
+  Location: Leipzig, Germany
+
+/* SITE */
+  Last update: 2026/11/18
+  Language: Deutsch / English
+  Standards: HTML5, CSS3, WCAG 2.2 AA
+  Components: Angular 21, Angular SSR, ngx-translate
+  Fonts: Syne, Overpass (self-hosted)
+  Analytics: Umami (self-hosted, no cookies)
+  Trackers: none
