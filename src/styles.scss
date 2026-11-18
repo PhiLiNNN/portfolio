@@ -72,6 +72,8 @@ img { max-width: 100%; display: block; }
   background: var(--plate-bg);
   border-radius: var(--r-card);
   box-shadow: var(--plate-shadow);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  backdrop-filter: blur(24px) saturate(1.2);
   padding: 28px;
 }
 .well { background: var(--well-bg); border-radius: var(--r-card); box-shadow: var(--sink); padding: 28px; }

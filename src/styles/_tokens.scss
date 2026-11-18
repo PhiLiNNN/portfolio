@@ -26,7 +26,8 @@
   --err: #ff6b7a;
 
   // Glass surfaces (plates) and wells (sunken areas).
-  --plate-bg: linear-gradient(145deg, #2a3343, #252e3c);
+  // Nearly opaque so the shadow tones still match, with a hint of the nebula showing through.
+  --plate-bg: linear-gradient(145deg, rgba(42, 51, 67, 0.9), rgba(37, 46, 60, 0.88));
   --plate-edge: rgba(255, 255, 255, 0.1);
   --well-bg: rgba(0, 0, 0, 0.18);
   --rule: rgba(255, 255, 255, 0.07);
@@ -74,7 +75,7 @@
   --accent-2: #d9472c;
   --err: #c0283a;
 
-  --plate-bg: linear-gradient(145deg, #eef2f7, #e3e9f1);
+  --plate-bg: linear-gradient(145deg, rgba(238, 242, 247, 0.9), rgba(227, 233, 241, 0.88));
   --plate-edge: #ffffff;
   --well-bg: rgba(27, 34, 48, 0.06);
   --rule: rgba(27, 34, 48, 0.1);
