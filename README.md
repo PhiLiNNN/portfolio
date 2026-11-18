@@ -45,6 +45,10 @@ public/humans.txt            humanstxt.org file, linked via <link rel="author">
   the browser (`shared/pow.service.ts`, ALTCHA-compatible scheme), a minimum
   time between challenge and submit, and one-time use of each challenge.
   Set `pow_secret` in `mail-config.php` on the server.
+  To test it locally: put a `mail-config.php` next to `public/sendMail.php`
+  (any values, see the example file), run `php -S 127.0.0.1:8787 -t public`,
+  and start `ng serve`. In dev mode the form uses the local script when it
+  answers on port 8787, otherwise the live one.
 - **Favicon**: `public/favicon.svg` is the source; the PNGs (32, 180, 192, 512)
   are rendered from it.
 
