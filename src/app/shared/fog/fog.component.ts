@@ -24,6 +24,7 @@ void main(){ v = p * .5 + .5; gl_Position = vec4(p, 0., 1.); }`;
 const FS = `#version 300 es
 precision highp float; in vec2 v; out vec4 o;
 uniform float t; uniform vec2 res; uniform vec3 colA; uniform vec3 colB; uniform float strength;
+uniform vec2 m; uniform float push;
 float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float n(vec2 p){ vec2 i = floor(p), f = fract(p); f = f*f*(3.-2.*f);
   return mix(mix(h(i), h(i+vec2(1,0)), f.x), mix(h(i+vec2(0,1)), h(i+vec2(1,1)), f.x), f.y); }
@@ -31,16 +32,23 @@ float fbm(vec2 p){ float a = .5, s = 0.; for (int k = 0; k < 6; k++) { s += a * 
 void main(){
   vec2 asp = vec2(res.x / res.y, 1.);
   vec2 q = v * asp * 1.1;
+  // Pointer: the haze is shoved outwards around the cursor and thins out
+  // there. push rises with pointer speed and decays when it rests.
+  vec2 d = (v - m) * asp;
+  float r = length(d);
+  float infl = exp(-r * r * 22.) * push;
+  q -= (d / max(r, 1e-4)) * infl * 0.28;
   vec2 drift = vec2(t * .035, t * .005);
   // Domain-warped noise: the warp gives the wispy, nebula-like filaments.
   vec2 w = vec2(fbm(q + drift), fbm(q + 7.3 + drift * .6));
   float f = fbm(q + drift + 1.6 * w);
   float g = fbm(q * .45 + drift * .5 + 3.1);
-  float m = fbm(q * .3 - drift * .3 + 11.);
-  vec3 c = mix(colA, colB, smoothstep(.35, .65, m));
+  float mx = fbm(q * .3 - drift * .3 + 11.);
+  vec3 c = mix(colA, colB, smoothstep(.35, .65, mx));
   float dens = smoothstep(.28, .72, f) * .9 + smoothstep(.38, .8, g) * .6;
   float core = smoothstep(.58, .9, f);
   c = mix(c, vec3(1.), core * .4);
+  dens *= 1. - infl * .9;
   o = vec4(c, dens * strength);
 }`;
 
@@ -65,7 +73,15 @@ export class FogComponent implements AfterViewInit, OnDestroy {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   private gl: WebGL2RenderingContext | null = null;
-  private uniforms: Record<'t' | 'res' | 'colA' | 'colB' | 'strength', WebGLUniformLocation | null> | null = null;
+  private uniforms: Record<'t' | 'res' | 'colA' | 'colB' | 'strength' | 'm' | 'push', WebGLUniformLocation | null> | null = null;
+  private readonly aim = { x: -1, y: -1 };
+  private readonly mouse = { x: -1, y: -1 };
+  private push = 0;
+  private lastFrame = 0;
+  private readonly onPointer = (e: PointerEvent) => {
+    this.aim.x = e.clientX / window.innerWidth;
+    this.aim.y = 1 - e.clientY / window.innerHeight;
+  };
   private raf = 0;
   private t0 = 0;
   private dark = true;
@@ -111,6 +127,8 @@ export class FogComponent implements AfterViewInit, OnDestroy {
       colA: gl.getUniformLocation(prog, 'colA'),
       colB: gl.getUniformLocation(prog, 'colB'),
       strength: gl.getUniformLocation(prog, 'strength'),
+      m: gl.getUniformLocation(prog, 'm'),
+      push: gl.getUniformLocation(prog, 'push'),
     };
 
     this.readTheme();
@@ -120,6 +138,7 @@ export class FogComponent implements AfterViewInit, OnDestroy {
 
     this.resize();
     window.addEventListener('resize', this.onResize, { passive: true });
+    window.addEventListener('pointermove', this.onPointer, { passive: true });
     document.addEventListener('visibilitychange', this.onVisibility);
     el.addEventListener('webglcontextlost', () => this.stop(), { once: true });
 
@@ -135,6 +154,7 @@ export class FogComponent implements AfterViewInit, OnDestroy {
     this.stop();
     if (!this.isBrowser) return;
     window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('pointermove', this.onPointer);
     document.removeEventListener('visibilitychange', this.onVisibility);
     this.themeObserver?.disconnect();
   }
@@ -175,6 +195,21 @@ export class FogComponent implements AfterViewInit, OnDestroy {
     gl.viewport(0, 0, el.width, el.height);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
+    const dt = Math.min(0.05, (now - (this.lastFrame || now)) / 1000);
+    this.lastFrame = now;
+    if (this.mouse.x < 0 && this.aim.x >= 0) {
+      this.mouse.x = this.aim.x;
+      this.mouse.y = this.aim.y;
+    }
+    const dx = this.aim.x - this.mouse.x;
+    const dy = this.aim.y - this.mouse.y;
+    this.mouse.x += dx * 0.18;
+    this.mouse.y += dy * 0.18;
+    // Speed (screen fractions per second) feeds the push; it settles back to 0 at rest.
+    const speed = Math.hypot(dx, dy) / Math.max(dt, 1e-3);
+    this.push = Math.min(1, this.push * Math.pow(0.08, dt) + speed * 0.9 * dt);
+    gl.uniform2f(u.m, this.mouse.x, this.mouse.y);
+    gl.uniform1f(u.push, this.push);
     gl.uniform1f(u.t, (now - this.t0) / 1000);
     gl.uniform2f(u.res, el.width, el.height);
     if (this.dark) {
@@ -183,9 +218,9 @@ export class FogComponent implements AfterViewInit, OnDestroy {
       gl.uniform3f(u.colB, 0.5, 0.36, 0.95);
       gl.uniform1f(u.strength, 0.42);
     } else {
-      gl.uniform3f(u.colA, 0.18, 0.42, 0.72);
-      gl.uniform3f(u.colB, 0.38, 0.33, 0.68);
-      gl.uniform1f(u.strength, 0.13);
+      gl.uniform3f(u.colA, 0.12, 0.33, 0.62);
+      gl.uniform3f(u.colB, 0.3, 0.24, 0.58);
+      gl.uniform1f(u.strength, 0.26);
     }
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }

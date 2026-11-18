@@ -4,61 +4,6 @@
   overflow-x: clip;
 }
 
-// Soft coloured lights behind the glass plates, light theme only. In the dark
-// theme the fog layer is the only thing moving in the background.
-.lights {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.45;
-  display: none;
-  :host-context([data-theme="light"]) & {
-    display: block;
-  }
-  i {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-    will-change: transform;
-  }
-  i:nth-child(1) {
-    width: 52vw;
-    height: 52vw;
-    left: -12vw;
-    top: -10vw;
-    background: var(--light-1);
-    animation: drift-a 26s ease-in-out infinite alternate;
-  }
-  i:nth-child(2) {
-    width: 44vw;
-    height: 44vw;
-    right: -14vw;
-    top: 30vh;
-    background: var(--light-2);
-    animation: drift-b 32s ease-in-out infinite alternate;
-  }
-  i:nth-child(3) {
-    width: 38vw;
-    height: 38vw;
-    left: 30vw;
-    bottom: -20vw;
-    background: var(--light-1);
-    opacity: 0.6;
-    animation: drift-a 38s ease-in-out infinite alternate-reverse;
-  }
-}
-@keyframes drift-a {
-  to {
-    transform: translate(8vw, 10vh);
-  }
-}
-@keyframes drift-b {
-  to {
-    transform: translate(-10vw, -8vh);
-  }
-}
-
 main {
   position: relative;
   z-index: 1;
