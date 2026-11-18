@@ -1,16 +1,45 @@
 # Portfolio — Philipp Wendschuch
 
 Personal portfolio site built with **Angular 21** (standalone components) and
-**Angular SSR** (server-side rendering + hydration).
+**Angular SSR** (server-side rendering, prerender + hydration).
+
+Design: "Konsole" — clean neumorphism (element in background colour, shadows as
+darker/lighter tones of that colour, large blur, no borders), glass plates for
+surfaces, matt controls. Dark is the default, light is a normal toggle. The
+design spec lives in `docs/superpowers/specs/2026-11-18-konsole-redesign-design.md`,
+the design previews in `docs/design-proposals/`.
 
 ## Stack
 
-- Angular 21 + Angular Material 21
-- SSR via `@angular/ssr` + Express (`server.ts`)
+- Angular 21, no UI library (native `<dialog>`, own controls)
+- SSR via `@angular/ssr` + Express (`server.ts`), prerendered routes
 - i18n with `@ngx-translate` (DE/EN, files in `public/assets/i18n/`)
 - Self-hosted fonts (Syne, Overpass) — no Google Fonts CDN
 - Privacy-friendly, self-hosted [Umami](https://umami.is) analytics
-- Contact form posts to a PHP `mail()` endpoint (`src/app/sendMail.php`)
+- Contact form posts to a PHP `mail()` endpoint (`public/sendMail.php`)
+- Strict CSP (`public/.htaccess` for the static host, `server.ts` for Node)
+
+## Structure
+
+```
+src/styles/_tokens.scss      design tokens (colours, shadows, radii), light theme, hue override
+src/styles.scss              fonts, base, shared classes (.plate, .well, .btn, .led, .fader, …)
+src/app/sections/*           hero, about, off-code, skills, services, experience, projects, contact
+src/app/shared/*             header (nav + overlay), footer, video dialog, theme/scroll services
+public/theme-init.js         applies stored theme + accent hue before first paint (CSP-safe)
+public/humans.txt            humanstxt.org file, linked via <link rel="author">
+```
+
+## Small details worth knowing
+
+- **Flashlight**: "Coding with Heart" under the hero headline is only visible
+  around the pointer (`.secret` in `hero.component.scss`).
+- **Dial**: the knob in the hero sets the accent hue (`ThemeService.setHue`),
+  stored as `accent-hue` in localStorage. Double-click resets it.
+- **Night shift**: between 0:00 and 4:59 local time the status line changes
+  (`shared/night-shift.ts`).
+- **Video**: the Empty-Handed video (footer cassette, "Abseits vom Code") uses
+  youtube-nocookie and loads only after an explicit click (`frame-src` in CSP).
 
 ## Development
 
@@ -22,7 +51,7 @@ npm start          # ng serve → http://localhost:4200/
 ## Build
 
 ```bash
-npm run build      # production build into dist/
+npm run build      # production build + prerender into dist/
 ```
 
 ## SSR
@@ -34,11 +63,11 @@ npm run serve:ssr:portfolio   # serves the SSR build from dist/
 ## Tests
 
 ```bash
-npm test           # Karma + Jasmine
+npm test           # Karma + Jasmine (ThemeService, night shift)
 ```
 
 ## Notes
 
-- The contact form sends mail via `src/app/sendMail.php` on the production host.
+- The contact form sends mail via `public/sendMail.php` on the production host.
   It must be deployed alongside the static build and validated/hardened
   server-side (see project notes on input validation and spam protection).

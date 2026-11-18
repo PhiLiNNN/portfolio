@@ -1,0 +1,33 @@
+<section id="projects" class="section" aria-labelledby="projects-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="projects-title" class="t-h2">{{ "projects.title" | translate }}</h2>
+      <p>{{ "projects.intro" | translate }}</p>
+    </div>
+    <ul class="grid grid-3">
+      @for (p of projects; track p.name; let i = $index) {
+      <li class="plate project">
+        <div class="shot">
+          <img [src]="p.img" width="620" height="349" [alt]="p.name + ' – Screenshot'" loading="lazy" decoding="async" />
+        </div>
+        <h3 class="t-h3">{{ p.name }}</h3>
+        <p>{{ p.description }}</p>
+        <div class="chips">
+          @for (s of p.skills; track s) {
+          <span class="tag">{{ s }}</span>
+          }
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" [href]="p.liveLink" target="_blank" rel="noopener noreferrer" (click)="track(p.name, 'live')">
+            {{ "projects.live" | translate }}
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+          </a>
+          <a class="btn" [href]="p.githubLink" target="_blank" rel="noopener noreferrer" (click)="track(p.name, 'github')">
+            {{ "projects.github" | translate }}
+          </a>
+        </div>
+      </li>
+      }
+    </ul>
+  </div>
+</section>

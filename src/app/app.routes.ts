@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { MainContentComponent } from './main-content/main-content.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-  { path: '', component: MainContentComponent },
+  { path: '', component: HomeComponent },
   {
     path: 'imprint',
     loadComponent: () =>

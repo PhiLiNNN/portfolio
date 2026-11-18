@@ -1,30 +1,13 @@
-<div class="content-wrapper" lang="de">
-  <section>
-    <div class="arrow-wrapper" [routerLink]="['']">
-      <svg
-        class="arrow"
-        width="30"
-        height="56"
-        viewBox="0 0 40 56"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          class="arrow-head"
-          d="M37.8525 17.1265L19.9263 3.00025L2.00011 17.1265"
-          stroke="black"
-          stroke-width="4"
-        />
-        <path
-          class="arrow-shaft"
-          d="M19.9263 55.0439L19.9263 3"
-          stroke="black"
-          stroke-width="4"
-        />
-      </svg>
+<section class="legal wrap" lang="de" aria-labelledby="privacy-title">
+  <div class="plate">
+    <div class="legal-head">
+      <h1 id="privacy-title">Datenschutzerklärung</h1>
+      <a class="btn btn-icon" [routerLink]="['/']" [attr.aria-label]="'a11y.backToHome' | translate">
+        <svg viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M19 12H5m6-6-6 6 6 6" /></svg>
+      </a>
     </div>
-    <h1>Datenschutzerklärung</h1>
-    <p>Stand: 16. Juni 2026</p>
+
+    <p>Stand: 18. November 2026</p>
     <h2>Verantwortlicher</h2>
     <p>Philipp Wendschuch<br />Friedrich-Bosse-Straße 49<br />04159 Leipzig</p>
     <p>
@@ -991,5 +974,43 @@
         >
       </li>
     </ul>
-  </section>
-</div>
+    <h2>Videos von YouTube (Zwei-Klick-Lösung)</h2>
+    <p>
+      Auf dieser Website kann ein Video von YouTube abgespielt werden. Das Video
+      wird <strong>nicht automatisch</strong> geladen. Erst wenn Sie im Dialog
+      auf „Video laden" klicken, wird eine Verbindung zu den Servern von YouTube
+      (youtube-nocookie.com, erweiterter Datenschutzmodus) hergestellt. Dabei
+      erhält YouTube Ihre IP-Adresse und gegebenenfalls Informationen zu Ihrem
+      Browser und Endgerät. Vor dem Klick findet keine Übermittlung statt.
+    </p>
+    <ul class="m-elements">
+      <li>
+        <strong>Dienstanbieter:</strong> Google Ireland Limited, Gordon House,
+        Barrow Street, Dublin 4, Irland;
+        <strong>Website:</strong>
+        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">https://www.youtube.com</a>;
+        <strong>Datenschutzerklärung:</strong>
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>.
+      </li>
+      <li>
+        <strong>Rechtsgrundlagen:</strong> Einwilligung (Art. 6 Abs. 1 S. 1 lit.
+        a) DSGVO), erteilt durch den Klick auf „Video laden".
+      </li>
+      <li>
+        <strong>Grundlage Drittlandtransfer:</strong> Data Privacy Framework
+        (DPF), Standardvertragsklauseln.
+      </li>
+    </ul>
+    <h2>Lokale Speicherung von Einstellungen</h2>
+    <p>
+      Ihre Auswahl von Sprache, hellem oder dunklem Design und Akzentfarbe wird
+      ausschließlich im lokalen Speicher Ihres Browsers (Local Storage) abgelegt,
+      damit die Einstellung beim nächsten Besuch erhalten bleibt. Diese Daten
+      werden nicht an uns oder Dritte übermittelt und enthalten keine
+      personenbezogenen Informationen. Sie können sie jederzeit über die
+      Einstellungen Ihres Browsers löschen.
+      <span><strong>Rechtsgrundlagen:</strong> Berechtigte Interessen (Art. 6
+      Abs. 1 S. 1 lit. f) DSGVO); § 25 Abs. 2 Nr. 2 TDDDG.</span>
+    </p>
+  </div>
+</section>

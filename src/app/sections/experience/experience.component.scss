@@ -1,0 +1,33 @@
+.entry {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  justify-items: start;
+  p {
+    color: var(--muted);
+  }
+  .status {
+    font-size: 14px;
+  }
+  .chips {
+    gap: 8px;
+  }
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--accent);
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+}

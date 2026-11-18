@@ -1,0 +1,24 @@
+<section id="about" class="section" aria-labelledby="about-title">
+  <div class="wrap">
+    <div class="plate about">
+      <div class="text">
+        <h2 id="about-title" class="t-h2">{{ "about.title" | translate }}</h2>
+        <p>{{ "about.text" | translate }}</p>
+        <p>{{ "about.contactMe" | translate }}</p>
+        <button type="button" class="btn btn-primary" (click)="toContact()">
+          {{ "about.letsTalk" | translate }}
+        </button>
+      </div>
+      <div class="portrait">
+        <img
+          src="./assets/img/application.jpg"
+          width="707"
+          height="990"
+          alt="Philipp Wendschuch"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -3,128 +3,177 @@
     "skipToContent": "Skip to content",
     "themeDark": "Switch to dark mode",
     "themeLight": "Switch to light mode",
+    "langToggle": "Sprache: Deutsch / Language: English",
     "scrollToTop": "Scroll to top",
-    "scrollDown": "Scroll to next section",
     "backToHome": "Back to home",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "github": "GitHub profile (opens in new tab)",
     "email": "Send an email",
-    "linkedin": "LinkedIn profile (opens in new tab)"
+    "linkedin": "LinkedIn profile (opens in new tab)",
+    "dial": "Accent colour (drag or use arrow keys)",
+    "cassette": "Empty Handed video",
+    "closeDialog": "Close"
   },
-  "header": {
-    "german": "German",
-    "english": "English"
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "offcode": "Off the keyboard",
+    "skills": "Skills",
+    "services": "Services",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
   },
-  "menu": {
-    "aboutMe": "About me",
-    "mySkills": "My Skills",
-    "portfolio": "Portfolio",
-    "contact": "Contact",
-    "sayHello": "Say Hi!"
+  "hero": {
+    "line1": "Full-Stack",
+    "line2": "Developer",
+    "line3": "from Leipzig.",
+    "secret": "Coding with Heart",
+    "lede": "Angular up front, Python in the back, Docker around it. I build web apps and websites end to end, from the first draft to the running server.",
+    "ctaPrimary": "Discuss a project",
+    "ctaSecondary": "See my work",
+    "status": "Available for new projects",
+    "statusNight": "Still up? So am I, most nights. Evenings are when I work best.",
+    "dialHint": "Turn the knob for your own accent colour"
   },
-  "aot": {
-    "headline": "Frontend Developer",
-    "scroll": "Scroll",
-    "down": "Down",
-    "sendMsg": "Send me a message",
-    "sendMsgMobile": "Send message"
-  },
-  "aboutMe": {
-    "aboutMe": "About me",
-    "description": "I am a Full-Stack Developer based in Leipzig, Germany. After a decade in logistics, I transitioned to education, earning a Master's in Medical Physics, where I first got into programming with Python for data analysis. For the past two years I have been working professionally as a developer, and alongside that I run my own freelance business building websites end to end — from front-end to back-end. I am passionate about coding and committed to growing as a skilled, well-rounded programmer.",
-    "contactMe": "If you think I'd be a good match for your projects, get in touch!",
+  "about": {
+    "title": "About me",
+    "text": "I am a Full-Stack Developer based in Leipzig, Germany. After a decade in logistics I went back to school, earned a Master's in Medical Physics and first got into programming with Python for data analysis. For the past two years I have been working as a developer full time, and alongside that I build websites for businesses end to end, from front-end to back-end.",
+    "contactMe": "If you think I would be a good match for your project, get in touch.",
     "letsTalk": "Let's talk"
   },
-  "mySkills": {
-    "mySkills": "My Skills",
+  "offcode": {
+    "title": "Off the keyboard",
+    "intro": "A few things about me that are not in the CV.",
+    "video": "Watch the video",
+    "items": {
+      "climbing": { "label": "Climbing & bouldering", "title": "Four years in", "text": "Indoors and on rock. In Leipzig at Bloc, Onyx, No Limit and the Mockauer Turm, outdoors in Löbejün and the Saxon Switzerland. Lead up to 7+ (UIAA), boulders up to 5." },
+      "music": { "label": "Music", "title": "Drums with Empty Handed", "text": "For a few years, not active any more. One video is still around." },
+      "sport": { "label": "Sport", "title": "Climbing is the main sport", "text": "Plus the gym two or three times a week and the occasional padel match. Before that, 19 years of football." },
+      "hours": { "label": "Working hours", "title": "Often late", "text": "Evenings are quiet. That is when I concentrate best, so that is when I work." },
+      "before": { "label": "Before", "title": "Logistics, then medical physics", "text": "Ten years in logistics, then the Master's. I wrote my thesis at Positrigo, a startup building a PET scanner dedicated to brain imaging (NeuroLF). I ran and evaluated the NEMA measurements there." },
+      "drive": { "label": "Path", "title": "Ambitious", "text": "What I start, I finish. The path surprises most people: lower secondary school, later a Master's in Medical Physics, today a full-time software developer. The job I wanted." }
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "intro": "The position says enough. What I use every day sits at the top.",
     "frontend": "Frontend",
     "backend": "Backend",
     "devops": "DevOps & Tools"
   },
   "services": {
     "title": "What I offer",
-    "intro": "From a polished landing page to a full-blown web app — I build the whole thing, and I build it right.",
+    "intro": "From a polished landing page to a full web app. I build the whole thing, and I build it properly.",
     "card1": {
       "title": "Modern websites",
-      "text": "Fast, responsive websites that are GDPR-compliant, accessible (WCAG) and meet today's web standards — looking sharp on every device.",
-      "tags": "GDPR-compliant | Accessible | Responsive | SEO-ready"
+      "text": "Fast, responsive websites that are GDPR-compliant, accessible (WCAG) and meet today's web standards. They look sharp on every device.",
+      "tags": ["GDPR-compliant", "Accessible", "Responsive", "SEO-ready"]
     },
     "card2": {
       "title": "Full-stack web apps",
-      "text": "Custom software built end to end: Angular or React on the front, solid APIs and databases on the back — whatever your product needs.",
-      "tags": "Angular | React | REST APIs | Databases"
+      "text": "Custom software built end to end: Angular or React on the front, solid APIs and databases on the back. Whatever your product needs.",
+      "tags": ["Angular", "React", "REST APIs", "Databases"]
     },
     "card3": {
       "title": "Code & consulting",
       "text": "Reviews for performance, accessibility and code quality, plus ongoing maintenance to keep your existing site fast, secure and up to date.",
-      "tags": "Performance | Accessibility | Maintenance | Code review"
+      "tags": ["Performance", "Accessibility", "Maintenance", "Code review"]
     }
   },
-  "portfolio": {
-    "headerDescription": "Explore a selection of my work here - Interact with projects to see my skills in action."
-  },
-  "references": [
-    {
-      "name": "Join",
-      "skills": ["JavaScript", "HTML", "CSS", "Firebase", "Git"],
-      "description": "Task manager inspired by the kanban system. Create and organize tasks with drag and drop functions, assign users and categories.",
-      "githubLink": "https://github.com/PhiLiNNN/Join",
-      "liveLink": "https://join.philipp-wendschuch.dev/",
-      "img": "./assets/img/references/join.png"
+  "experience": {
+    "title": "Experience",
+    "intro": "What I build alongside client work.",
+    "webwerk": {
+      "label": "Co-founder",
+      "title": "Webwerk Leipzig",
+      "text": "The two of us build fast, well-made websites for businesses in Leipzig, personal and local.",
+      "link": "webwerk-leipzig.de"
     },
-    {
-      "name": "Sharkie",
-      "skills": ["JavaScript", "HTML", "CSS", "Git"],
-      "description": "An underwater adventure game using an object-oriented approach. Guide Sharkie, collect poison, and defeat the giant shark.",
-      "githubLink": "https://github.com/PhiLiNNN/Sharkie",
-      "liveLink": "https://sharkie.philipp-wendschuch.dev/",
-      "img": "./assets/img/references/sharkie.png"
-    },
-    {
-      "name": "PokéCubes",
-      "skills": ["JavaScript", "Rest-Api", "HTML", "CSS", "Git"],
-      "description": "A web app using PokeAPI to display first-gen Pokémon on interactive, rotatable cubes. Click on a Pokémon for more info.",
-      "githubLink": "https://github.com/PhiLiNNN/Pokedex",
-      "liveLink": "https://pokecubes.philipp-wendschuch.dev/",
-      "img": "./assets/img/references/pokecubes.png"
+    "traudel": {
+      "label": "Co-founder, in progress",
+      "title": "traudel.app",
+      "text": "Being neighbours means more than living next to each other. Traudel brings neighbours back together: help, honest recommendations, lending. Runs in the browser and on the phone.",
+      "tags": ["Free", "No ads", "Give and lend", "Built in Leipzig"],
+      "status": "Not public yet. More once it launches."
     }
-  ],
-  "footer": {
-    "error": {
-      "nameEmpty": "Your name is required.",
-      "nameTooShort": "Please enter at least 2 characters!",
-      "emailEmpty": "Your email is required.",
-      "emailNotValid": "Please enter a valid email (e.g., user&#64;example.com)!",
-      "textFieldEmpty": "Your message is empty.",
-      "textFieldTooShort": "Please enter at least 10 characters!"
-    },
-    "sayHello": "Say Hi!",
-    "discussProject": "Want to discuss a new project?",
-    "contactRequest": "Say hello! Let's discuss your ideas and make them happen.",
+  },
+  "projects": {
+    "title": "Projects",
+    "intro": "A selection of my work. Open a project to see it in action.",
+    "github": "GitHub",
+    "live": "Live",
+    "list": [
+      {
+        "name": "Join",
+        "skills": ["JavaScript", "HTML", "CSS", "Firebase", "Git"],
+        "description": "Task manager inspired by the kanban system. Create and organise tasks with drag and drop, assign users and categories.",
+        "githubLink": "https://github.com/PhiLiNNN/Join",
+        "liveLink": "https://join.philipp-wendschuch.dev/",
+        "img": "./assets/img/references/join.png"
+      },
+      {
+        "name": "Sharkie",
+        "skills": ["JavaScript", "HTML", "CSS", "Git"],
+        "description": "An underwater adventure game with an object-oriented approach. Guide Sharkie, collect poison and defeat the giant shark.",
+        "githubLink": "https://github.com/PhiLiNNN/Sharkie",
+        "liveLink": "https://sharkie.philipp-wendschuch.dev/",
+        "img": "./assets/img/references/sharkie.png"
+      },
+      {
+        "name": "PokéCubes",
+        "skills": ["JavaScript", "REST API", "HTML", "CSS", "Git"],
+        "description": "A web app using the PokeAPI to show first-generation Pokémon on interactive, rotatable cubes. Click a Pokémon for details.",
+        "githubLink": "https://github.com/PhiLiNNN/Pokedex",
+        "liveLink": "https://pokecubes.philipp-wendschuch.dev/",
+        "img": "./assets/img/references/pokecubes.png"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Want to discuss a project? Write me a few lines and I will get back to you.",
     "formName": "Your name",
     "formEmail": "Your email",
     "formMessage": "Your message",
-    "privacyPolicyTextBefore": "I've read the",
+    "placeholderName": "Jane Doe",
+    "placeholderEmail": "jane@example.com",
+    "placeholderMessage": "What is it about?",
+    "privacyPolicyTextBefore": "I have read the",
     "privacyPolicy": "privacy policy",
-    "privacyPolicyTextAfter": "and agree to the processing of my data as outlined",
+    "privacyPolicyTextAfter": "and agree to the processing of my data as described.",
     "sendMessage": "Send message",
-    "sendMessageMobile": "Say hi",
     "sending": "Sending…",
     "sendError": "Couldn't send your message. Please try again.",
-    "legalNotice": "Legal notice"
+    "error": {
+      "nameEmpty": "Your name is required.",
+      "nameTooShort": "Please enter at least 2 characters.",
+      "emailEmpty": "Your email is required.",
+      "emailNotValid": "Please enter a valid email (e.g. jane@example.com).",
+      "textFieldEmpty": "Your message is empty.",
+      "textFieldTooShort": "Please enter at least 10 characters."
+    },
+    "sentTitle": "Message sent",
+    "sentText": "Thanks. I will get back to you soon."
+  },
+  "video": {
+    "title": "Empty Handed",
+    "text": "Drums, for a few years. The video comes from YouTube (youtube-nocookie.com) and loads only after you click the button.",
+    "load": "Load video"
+  },
+  "footer": {
+    "copyright": "Philipp Wendschuch, Leipzig",
+    "legalNotice": "Legal notice",
+    "privacy": "Privacy policy"
   },
   "imprint": {
-    "title": "Imprint",
+    "title": "Legal notice",
     "contact": "Contact",
     "name": "Philipp Wendschuch",
-    "address": "Friedrich-Bosse-Straße 49 ",
+    "address": "Friedrich-Bosse-Straße 49",
     "city": "04159 Leipzig",
     "phone": "Phone",
     "email": "Email"
-  },
-  "popup": {
-    "header": "Email Sent",
-    "content": "Your email was sent successfully."
   }
 }

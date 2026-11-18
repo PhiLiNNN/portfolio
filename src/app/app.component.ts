@@ -1,32 +1,35 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  PLATFORM_ID,
   inject,
 } from '@angular/core';
-import { HeaderComponent } from './shared/header/header.component';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { MenuComponent } from './shared/footer/menu.component';
-import { ContactComponent } from './shared/contact/contact.component';
 import { AnalyticsService } from './analytics.service';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { VideoDialogComponent } from './shared/video-dialog/video-dialog.component';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    TranslateModule,
-    HeaderComponent,
-    MenuComponent,
-    ContactComponent,
-  ],
+  imports: [RouterOutlet, TranslateModule, HeaderComponent, FooterComponent, VideoDialogComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  private readonly analytics = inject(AnalyticsService);
   constructor() {
-    this.analytics.init();
+    inject(AnalyticsService).init();
+
+    if (isPlatformBrowser(inject(PLATFORM_ID))) {
+      // For the people who open the dev tools.
+      console.log(
+        '%c PW ',
+        'background:#b48cff;color:#1b0f33;font-weight:800;padding:4px 8px;border-radius:6px',
+        'Angular 21 mit SSR, keine Tracker, Fonts selbst gehostet.\nFragen zum Code oder ein Projekt: contact@philipp-wendschuch.dev'
+      );
+    }
   }
 }

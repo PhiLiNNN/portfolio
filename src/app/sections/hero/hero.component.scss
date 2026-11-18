@@ -1,0 +1,138 @@
+@use "../../../styles/index" as *;
+
+.hero {
+  padding: calc(var(--nav-h) + 48px) 0 72px;
+  min-height: min(100vh, 900px);
+  @include dflex($ai: stretch);
+  .wrap {
+    width: 100%;
+  }
+}
+
+.headline {
+  font-size: clamp(40px, 8.4vw, 118px);
+  margin-top: 28px;
+  span {
+    display: block;
+  }
+  .carve {
+    color: var(--bg);
+    text-shadow: 2px 2px 2px var(--hi), -2px -2px 2px var(--lo);
+    // Small sizes lose the emboss; an outline keeps the word readable.
+    @include md {
+      color: transparent;
+      text-shadow: none;
+      -webkit-text-stroke: 1.5px color-mix(in srgb, var(--text) 55%, transparent);
+    }
+  }
+}
+
+// Flashlight: text is transparent, a radial gradient at the pointer position
+// shows through it. Touch devices get a slow sweeping band instead.
+.secret {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: clamp(26px, 4.2vw, 58px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-top: 18px;
+  color: transparent;
+  background: radial-gradient(
+    160px circle at var(--mx, -999px) var(--my, -999px),
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 45%, transparent) 45%,
+    transparent 72%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  user-select: none;
+  pointer-events: none;
+}
+@media (hover: none) {
+  .secret {
+    background: linear-gradient(90deg, transparent 0%, var(--accent) 30%, var(--accent) 70%, transparent 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: sweep 5s ease-in-out infinite;
+  }
+}
+@keyframes sweep {
+  0% {
+    background-position: 120% 0;
+  }
+  50% {
+    background-position: -20% 0;
+  }
+  100% {
+    background-position: 120% 0;
+  }
+}
+
+.lede {
+  max-width: 52ch;
+  font-size: clamp(17px, 1.4vw, 20px);
+  color: var(--muted);
+  margin-top: 28px;
+}
+
+.cta-row {
+  @include dflex($g: 16px);
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+
+.dial-wrap {
+  margin-left: auto;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  @include md {
+    margin-left: 0;
+    width: 100%;
+    justify-items: start;
+  }
+}
+.dial {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--convex);
+  box-shadow: var(--raise);
+  position: relative;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  &:active {
+    cursor: grabbing;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border-radius: 50%;
+    background: var(--well-bg);
+    box-shadow: var(--sink);
+  }
+  .ind {
+    position: absolute;
+    inset: 0;
+    transform: rotate(var(--angle, 262deg));
+    &::after {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      width: 4px;
+      height: 18px;
+      margin-left: -2px;
+      border-radius: 2px;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+  }
+  &:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+  }
+}

@@ -1,0 +1,40 @@
+@use "../../../styles/index" as *;
+
+.about {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 36px;
+  align-items: center;
+  padding: clamp(28px, 4vw, 48px);
+  @include md {
+    grid-template-columns: 1fr;
+  }
+}
+.text {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+  p {
+    color: var(--muted);
+    max-width: 62ch;
+  }
+  .btn {
+    margin-top: 8px;
+  }
+}
+.portrait {
+  border-radius: var(--r-card);
+  box-shadow: var(--sink);
+  background: var(--well-bg);
+  padding: 14px;
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--r-card) - 8px);
+    aspect-ratio: 707 / 990;
+    object-fit: cover;
+  }
+  @include md {
+    max-width: 360px;
+  }
+}

@@ -1,0 +1,89 @@
+// Design tokens for the "Konsole" look.
+//
+// Clean neumorphism (Malewicz / neumorphism.io): every element has exactly the
+// background colour; depth comes from two shadows that are a darker and a
+// lighter tone of that same colour (opaque, no black/white alpha), with a
+// large blur and no border. Glass is reserved for large surfaces (plates),
+// controls stay matt so it is obvious what can be pressed.
+//
+// Dark is the default. [data-theme="light"] swaps the tones, [data-hue]
+// overrides the accent with a user-chosen hue (the dial in the hero).
+
+:root {
+  --bg: #26232e;
+  --lo: #1b1921;
+  --hi: #312d3b;
+  --hi-soft: #292631;
+  --lo-soft: #23202a;
+  --text: #edf0f3;
+  --muted: #9aa4b0;
+  --accent: #b48cff;
+  --on-accent: #1b0f33;
+  --accent-2: #2ee6a6;
+  --err: #ff6b7a;
+
+  // Glass surfaces (plates) and wells (sunken areas).
+  --plate-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+  --plate-edge: rgba(255, 255, 255, 0.1);
+  --well-bg: rgba(0, 0, 0, 0.14);
+  --rule: rgba(255, 255, 255, 0.07);
+  --light-1: rgba(180, 140, 255, 0.18);
+  --light-2: rgba(255, 120, 200, 0.1);
+
+  // Shadows derived from the tones above.
+  --raise: 10px 10px 28px var(--lo), -10px -10px 28px var(--hi);
+  --raise-hi: 14px 14px 34px var(--lo), -14px -14px 34px var(--hi);
+  --raise-sm: 4px 4px 10px var(--lo), -4px -4px 10px var(--hi);
+  --sink: inset 6px 6px 14px var(--lo), inset -6px -6px 14px var(--hi);
+  --sink-soft: inset 3px 3px 8px var(--lo), inset -3px -3px 8px var(--hi);
+  --convex: linear-gradient(145deg, var(--hi-soft), var(--lo-soft));
+  --plate-shadow: var(--raise), inset 1px 1px 0 var(--plate-edge);
+  --accent-glow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent);
+
+  --r-card: 22px;
+  --r-pill: 16px;
+  --r-input: 16px;
+  --nav-h: 84px;
+  --wrap: 1180px;
+  --gutter: 20px;
+}
+
+:root[data-theme="light"] {
+  --bg: #e6e2f0;
+  --lo: #c1bccf;
+  --hi: #ffffff;
+  --hi-soft: #ede9f5;
+  --lo-soft: #dfdaea;
+  --text: #1e1b27;
+  --muted: #5e5970;
+  --accent: #7a4df5;
+  --on-accent: #f6f2ff;
+  --accent-2: #0a9a6c;
+  --err: #c0283a;
+
+  --plate-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.3));
+  --plate-edge: #ffffff;
+  --well-bg: rgba(30, 27, 39, 0.05);
+  --rule: rgba(30, 27, 39, 0.1);
+  --light-1: rgba(140, 90, 255, 0.12);
+  --light-2: rgba(255, 120, 200, 0.08);
+  --raise: 10px 10px 30px var(--lo), -10px -10px 30px var(--hi);
+  --raise-hi: 14px 14px 36px var(--lo), -14px -14px 36px var(--hi);
+}
+
+// User-chosen accent hue (dial). Saturation/lightness differ per theme so the
+// accent keeps enough contrast as text and as a button background.
+:root[data-hue] {
+  --accent: hsl(var(--hue) 85% 62%);
+  --on-accent: hsl(var(--hue) 60% 10%);
+  --accent-2: hsl(calc(var(--hue) + 160) 85% 62%);
+  --light-1: hsl(var(--hue) 85% 62% / 0.18);
+  --light-2: hsl(calc(var(--hue) + 60) 85% 62% / 0.1);
+}
+:root[data-theme="light"][data-hue] {
+  --accent: hsl(var(--hue) 70% 42%);
+  --on-accent: #ffffff;
+  --accent-2: hsl(calc(var(--hue) + 160) 70% 36%);
+  --light-1: hsl(var(--hue) 70% 50% / 0.12);
+  --light-2: hsl(calc(var(--hue) + 60) 70% 50% / 0.08);
+}

@@ -1,0 +1,31 @@
+<section id="experience" class="section" aria-labelledby="experience-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="experience-title" class="t-h2">{{ "experience.title" | translate }}</h2>
+      <p>{{ "experience.intro" | translate }}</p>
+    </div>
+    <div class="grid grid-2">
+      <article class="plate entry">
+        <span class="led"><i></i>{{ "experience.webwerk.label" | translate }}</span>
+        <h3 class="t-h3">{{ "experience.webwerk.title" | translate }}</h3>
+        <p>{{ "experience.webwerk.text" | translate }}</p>
+        <a class="link" href="https://webwerk-leipzig.de" target="_blank" rel="noopener">
+          {{ "experience.webwerk.link" | translate }}
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+        </a>
+      </article>
+
+      <article class="plate entry">
+        <span class="led warm"><i></i>{{ "experience.traudel.label" | translate }}</span>
+        <h3 class="t-h3">{{ "experience.traudel.title" | translate }}</h3>
+        <p>{{ "experience.traudel.text" | translate }}</p>
+        <div class="chips">
+          @for (tag of tags; track tag) {
+          <span class="tag">{{ tag }}</span>
+          }
+        </div>
+        <p class="status">{{ "experience.traudel.status" | translate }}</p>
+      </article>
+    </div>
+  </div>
+</section>

@@ -3,128 +3,177 @@
     "skipToContent": "Zum Inhalt springen",
     "themeDark": "Zu dunklem Modus wechseln",
     "themeLight": "Zu hellem Modus wechseln",
+    "langToggle": "Sprache: Deutsch / Language: English",
     "scrollToTop": "Nach oben scrollen",
-    "scrollDown": "Zum nächsten Abschnitt scrollen",
     "backToHome": "Zurück zur Startseite",
     "openMenu": "Menü öffnen",
     "closeMenu": "Menü schließen",
     "github": "GitHub-Profil (öffnet in neuem Tab)",
     "email": "E-Mail senden",
-    "linkedin": "LinkedIn-Profil (öffnet in neuem Tab)"
+    "linkedin": "LinkedIn-Profil (öffnet in neuem Tab)",
+    "dial": "Akzentfarbe (ziehen oder Pfeiltasten)",
+    "cassette": "Empty-Handed-Video",
+    "closeDialog": "Schließen"
   },
-  "header": {
-    "german": "Deutsch",
-    "english": "Englisch"
+  "nav": {
+    "home": "Start",
+    "about": "Über mich",
+    "offcode": "Abseits vom Code",
+    "skills": "Skills",
+    "services": "Angebot",
+    "experience": "Werdegang",
+    "projects": "Projekte",
+    "contact": "Kontakt"
   },
-  "menu": {
-    "aboutMe": "Über mich",
-    "mySkills": "Meine Fähigkeiten",
-    "portfolio": "Portfolio",
-    "contact": "Kontakt",
-    "sayHello": "Sag Hallo!"
+  "hero": {
+    "line1": "Full-Stack",
+    "line2": "Developer",
+    "line3": "aus Leipzig.",
+    "secret": "Coding with Heart",
+    "lede": "Angular vorn, Python hinten, Docker drumherum. Ich baue Web-Apps und Webseiten komplett, vom ersten Entwurf bis zum laufenden Server.",
+    "ctaPrimary": "Projekt besprechen",
+    "ctaSecondary": "Meine Arbeit ansehen",
+    "status": "Verfügbar für neue Projekte",
+    "statusNight": "Noch wach? Ich meistens auch. Abends arbeite ich am besten.",
+    "dialHint": "Knopf drehen für eine eigene Akzentfarbe"
   },
-  "aot": {
-    "headline": "Frontend Entwickler",
-    "scroll": "Scrolle",
-    "down": "Nach unten",
-    "sendMsg": "Nachricht senden",
-    "sendMsgMobile": "Sende Nachricht"
-  },
-  "aboutMe": {
-    "aboutMe": "Über mich",
-    "description": "Ich bin ein Full-Stack-Entwickler mit Sitz in Leipzig, Deutschland. Nach einem Jahrzehnt in der Logistik habe ich den Wechsel in die Bildung vollzogen und einen Master in Medizinischer Physik erworben, wo ich über Python für die Datenanalyse erstmals zum Programmieren kam. Seit zwei Jahren arbeite ich beruflich als Entwickler und bin nebenbei selbstständig: Ich baue Websites von A bis Z – vom Front-End bis zum Back-End. Ich bin leidenschaftlich beim Codieren und arbeite stetig daran, ein versierter und vielseitiger Programmierer zu werden.",
-    "contactMe": "Wenn Sie denken, dass ich gut zu Ihren Projekten passen würde, kontaktieren Sie mich!",
+  "about": {
+    "title": "Über mich",
+    "text": "Ich bin Full-Stack-Entwickler aus Leipzig. Nach einem Jahrzehnt in der Logistik habe ich noch einmal studiert, einen Master in Medizinischer Physik gemacht und bin dort über Python für die Datenanalyse zum Programmieren gekommen. Seit zwei Jahren arbeite ich hauptberuflich als Entwickler und baue nebenbei Webseiten für Unternehmen, vom Frontend bis zum Backend.",
+    "contactMe": "Wenn du denkst, dass ich zu deinem Projekt passe, melde dich.",
     "letsTalk": "Lass uns reden"
   },
-  "mySkills": {
-    "mySkills": "Meine Fähigkeiten",
+  "offcode": {
+    "title": "Abseits vom Code",
+    "intro": "Ein paar Dinge über mich, die nicht im Lebenslauf stehen.",
+    "video": "Video ansehen",
+    "items": {
+      "climbing": { "label": "Klettern & Bouldern", "title": "Seit vier Jahren", "text": "In der Halle und am Fels. In Leipzig im Bloc, Onyx, No Limit und am Mockauer Turm, draußen in Löbejün und in der Sächsischen Schweiz. Vorstieg bis 7+ (UIAA), Boulder bis 5." },
+      "music": { "label": "Musik", "title": "Schlagzeug bei Empty Handed", "text": "Ein paar Jahre lang, heute nicht mehr aktiv. Ein Video gibt es noch." },
+      "sport": { "label": "Sport", "title": "Klettern ist der Hauptsport", "text": "Dazu zwei- bis dreimal die Woche Gym, gelegentlich Padel. Davor 19 Jahre Fußball." },
+      "hours": { "label": "Arbeitszeit", "title": "Oft bis spät", "text": "Abends ist es ruhig. Da kann ich mich am besten konzentrieren, also arbeite ich dann." },
+      "before": { "label": "Vorher", "title": "Logistik, dann Medizinphysik", "text": "Zehn Jahre Logistik, danach der Master. Die Abschlussarbeit habe ich bei Positrigo geschrieben, einem Startup mit einem PET-Scanner speziell für Hirnaufnahmen (NeuroLF). Dort habe ich die NEMA-Messungen durchgeführt und ausgewertet." },
+      "drive": { "label": "Werdegang", "title": "Ehrgeizig", "text": "Was ich anfange, ziehe ich durch. Der Weg dahin überrascht die meisten: Hauptschulabschluss, später der Master in Medizinphysik, heute hauptberuflich Softwareentwickler. Mein Traumberuf." }
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "intro": "Die Position sagt genug. Was ich täglich benutze, steht oben.",
     "frontend": "Frontend",
     "backend": "Backend",
     "devops": "DevOps & Tools"
   },
   "services": {
     "title": "Was ich anbiete",
-    "intro": "Von der sauberen Landingpage bis zur kompletten Web-App – ich baue das Ganze, und ich baue es richtig.",
+    "intro": "Von der sauberen Landingpage bis zur kompletten Web-App. Ich baue das Ganze, und ich baue es richtig.",
     "card1": {
       "title": "Moderne Websites",
-      "text": "Schnelle, responsive Websites – DSGVO-konform, barrierefrei (WCAG) und nach aktuellen Web-Standards. Sehen auf jedem Gerät gut aus.",
-      "tags": "DSGVO-konform | Barrierefrei | Responsive | SEO-ready"
+      "text": "Schnelle, responsive Websites, DSGVO-konform, barrierefrei (WCAG) und nach aktuellen Web-Standards. Sehen auf jedem Gerät gut aus.",
+      "tags": ["DSGVO-konform", "Barrierefrei", "Responsive", "SEO-ready"]
     },
     "card2": {
       "title": "Full-Stack Web-Apps",
-      "text": "Individuelle Software, end-to-end gebaut: Angular oder React im Frontend, solide APIs und Datenbanken im Backend – ganz wie dein Produkt es braucht.",
-      "tags": "Angular | React | REST-APIs | Datenbanken"
+      "text": "Individuelle Software, von vorn bis hinten gebaut: Angular oder React im Frontend, solide APIs und Datenbanken im Backend. Ganz wie dein Produkt es braucht.",
+      "tags": ["Angular", "React", "REST-APIs", "Datenbanken"]
     },
     "card3": {
       "title": "Code & Beratung",
-      "text": "Reviews zu Performance, Barrierefreiheit und Code-Qualität – plus laufende Wartung, damit deine bestehende Seite schnell, sicher und aktuell bleibt.",
-      "tags": "Performance | Barrierefreiheit | Wartung | Code-Review"
+      "text": "Reviews zu Performance, Barrierefreiheit und Code-Qualität, plus laufende Wartung, damit deine bestehende Seite schnell, sicher und aktuell bleibt.",
+      "tags": ["Performance", "Barrierefreiheit", "Wartung", "Code-Review"]
     }
   },
-  "portfolio": {
-    "headerDescription": "Entdecke hier eine Auswahl meiner Arbeiten - Interagiere mit den Projekten, um meine Fähigkeiten in Aktion zu sehen."
-  },
-  "references": [
-    {
-      "name": "Join",
-      "skills": ["JavaScript", "HTML", "CSS", "Firebase", "Git"],
-      "description": "Aufgabenmanager inspiriert vom Kanban-System. Erstelle und organisiere Aufgaben mit Drag-and-Drop-Funktionen, weise Benutzer und Kategorien zu.",
-      "githubLink": "https://github.com/PhiLiNNN/Join",
-      "liveLink": "https://join.philipp-wendschuch.dev/",
-      "img": "./assets/img/references/join.png"
+  "experience": {
+    "title": "Werdegang",
+    "intro": "Was ich neben der Kundenarbeit aufbaue.",
+    "webwerk": {
+      "label": "Mitgründer",
+      "title": "Webwerk Leipzig",
+      "text": "Zu zweit bauen wir schnelle, handgemachte Webseiten für Betriebe in Leipzig, persönlich und lokal.",
+      "link": "webwerk-leipzig.de"
     },
-    {
-      "name": "Sharkie",
-      "skills": ["JavaScript", "HTML", "CSS", "Git"],
-      "description": "Ein Unterwasser-Abenteuerspiel mit objektorientiertem Ansatz. Führe Sharkie, sammle Gift und besiege den Riesenhai.",
-      "githubLink": "https://github.com/PhiLiNNN/Sharkie",
-      "liveLink": "https://sharkie.philipp-wendschuch.dev/",
-      "img": "./assets/img/references/sharkie.png"
-    },
-    {
-      "name": "PokéCubes",
-      "skills": ["JavaScript", "Rest-Api", "HTML", "CSS", "Git"],
-      "description": "Eine Web-App, welche die PokeAPI verwendet, um Pokémon der ersten Generation auf interaktiven, drehbaren Würfeln anzuzeigen. Klicke auf ein Pokémon für weitere Infos.",
-      "githubLink": "https://github.com/PhiLiNNN/Pokedex",
-      "liveLink": "https://pokecubes.philipp-wendschuch.dev/",
-      "img": "./assets/img/references/pokecubes.png"
+    "traudel": {
+      "label": "Mitgründer, im Aufbau",
+      "title": "traudel.app",
+      "text": "Nachbarschaft heißt mehr als nebeneinander wohnen. Traudel bringt Nachbarn wieder zusammen: Hilfe, ehrliche Empfehlungen, Verleihen. Läuft im Browser und auf dem Handy.",
+      "tags": ["Kostenlos", "Keine Werbung", "Geben & Leihen", "Gebaut in Leipzig"],
+      "status": "Noch nicht öffentlich. Mehr, sobald es losgeht."
     }
-  ],
-  "footer": {
-    "error": {
-      "nameEmpty": "Dein Name wird benötigt.",
-      "nameTooShort": "Bitte gib mindestens 2 Zeichen ein!",
-      "emailEmpty": "Deine E-Mail-Adresse wird benötigt.",
-      "emailNotValid": "Bitte gib eine gültige E-Mail-Adresse ein (z.B. user&#64;example.com)!",
-      "textFieldEmpty": "Deine Nachricht ist leer.",
-      "textFieldTooShort": "Bitte gib mindestens 10 Zeichen ein!"
-    },
-    "sayHello": "Sag Hallo!",
-    "discussProject": "Möchten Sie ein neues Projekt besprechen?",
-    "contactRequest": "Sag Hallo! Lass uns deine Ideen besprechen und umsetzen.",
+  },
+  "projects": {
+    "title": "Projekte",
+    "intro": "Eine Auswahl meiner Arbeiten. Öffne ein Projekt, um es auszuprobieren.",
+    "github": "GitHub",
+    "live": "Live",
+    "list": [
+      {
+        "name": "Join",
+        "skills": ["JavaScript", "HTML", "CSS", "Firebase", "Git"],
+        "description": "Aufgabenmanager nach dem Kanban-Prinzip. Aufgaben per Drag-and-Drop anlegen und sortieren, Nutzer und Kategorien zuweisen.",
+        "githubLink": "https://github.com/PhiLiNNN/Join",
+        "liveLink": "https://join.philipp-wendschuch.dev/",
+        "img": "./assets/img/references/join.png"
+      },
+      {
+        "name": "Sharkie",
+        "skills": ["JavaScript", "HTML", "CSS", "Git"],
+        "description": "Ein Unterwasser-Abenteuerspiel, objektorientiert gebaut. Führe Sharkie, sammle Gift und besiege den Riesenhai.",
+        "githubLink": "https://github.com/PhiLiNNN/Sharkie",
+        "liveLink": "https://sharkie.philipp-wendschuch.dev/",
+        "img": "./assets/img/references/sharkie.png"
+      },
+      {
+        "name": "PokéCubes",
+        "skills": ["JavaScript", "REST-API", "HTML", "CSS", "Git"],
+        "description": "Eine Web-App, die über die PokeAPI Pokémon der ersten Generation auf drehbaren Würfeln zeigt. Klick auf ein Pokémon für Details.",
+        "githubLink": "https://github.com/PhiLiNNN/Pokedex",
+        "liveLink": "https://pokecubes.philipp-wendschuch.dev/",
+        "img": "./assets/img/references/pokecubes.png"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "intro": "Du willst ein Projekt besprechen? Schreib mir ein paar Zeilen, ich melde mich.",
     "formName": "Dein Name",
     "formEmail": "Deine E-Mail",
     "formMessage": "Deine Nachricht",
-    "privacyPolicyTextBefore": "Ich habe die ",
+    "placeholderName": "Max Mustermann",
+    "placeholderEmail": "max@beispiel.de",
+    "placeholderMessage": "Worum geht es?",
+    "privacyPolicyTextBefore": "Ich habe die",
     "privacyPolicy": "Datenschutzerklärung",
-    "privacyPolicyTextAfter": " gelesen und stimme der Verarbeitung meiner Daten zu.",
+    "privacyPolicyTextAfter": "gelesen und stimme der Verarbeitung meiner Daten zu.",
     "sendMessage": "Nachricht senden",
-    "sendMessageMobile": "Sag Hallo",
     "sending": "Wird gesendet…",
     "sendError": "Nachricht konnte nicht gesendet werden. Bitte erneut versuchen.",
-    "legalNotice": "Impressum"
+    "error": {
+      "nameEmpty": "Dein Name wird benötigt.",
+      "nameTooShort": "Bitte gib mindestens 2 Zeichen ein.",
+      "emailEmpty": "Deine E-Mail-Adresse wird benötigt.",
+      "emailNotValid": "Bitte gib eine gültige E-Mail-Adresse ein (z. B. max@beispiel.de).",
+      "textFieldEmpty": "Deine Nachricht ist leer.",
+      "textFieldTooShort": "Bitte gib mindestens 10 Zeichen ein."
+    },
+    "sentTitle": "Nachricht gesendet",
+    "sentText": "Danke. Ich melde mich bald."
+  },
+  "video": {
+    "title": "Empty Handed",
+    "text": "Schlagzeug, ein paar Jahre lang. Das Video kommt von YouTube (youtube-nocookie.com) und wird erst geladen, wenn du auf den Button klickst.",
+    "load": "Video laden"
+  },
+  "footer": {
+    "copyright": "Philipp Wendschuch, Leipzig",
+    "legalNotice": "Impressum",
+    "privacy": "Datenschutz"
   },
   "imprint": {
     "title": "Impressum",
     "contact": "Kontakt",
     "name": "Philipp Wendschuch",
-    "address": "Friedrich-Bosse-Straße 49 ",
+    "address": "Friedrich-Bosse-Straße 49",
     "city": "04159 Leipzig",
     "phone": "Telefon",
     "email": "E-Mail"
-  },
-  "popup": {
-    "header": "E-Mail gesendet",
-    "content": "E-Mail wurde erfolgreich gesendet."
   }
 }

@@ -1,21 +1,3 @@
-$color-highlight: #00bc8f;
-$bg-color: #fffcf3;
-$navHeight: 70px;
-// Brightened from #e61c40 to meet WCAG AA 4.5:1 against the dark form background.
-$err-color: #ff5c77;
-
-.autoShow {
-  animation: autoShowAnimation both;
-  animation-timeline: view(70% 5%);
-}
-
-@keyframes autoShowAnimation {
-  from {
-    opacity: 0;
-    transform: translateY(200px) scale(0.3);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
+// Sass-only values (breakpoints cannot be CSS custom properties).
+$bp-md: 900px;
+$bp-sm: 600px;

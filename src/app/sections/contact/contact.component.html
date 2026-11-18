@@ -1,0 +1,123 @@
+<section id="contact" class="section" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="plate contact">
+      <div class="intro">
+        <h2 id="contact-title" class="t-h2">{{ "contact.title" | translate }}</h2>
+        <p>{{ "contact.intro" | translate }}</p>
+        <a class="mail" href="mailto:contact@philipp-wendschuch.dev">contact&#64;philipp-wendschuch.dev</a>
+      </div>
+
+      <form class="form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
+        <!-- Honeypot: hidden from users, bots tend to fill it. Server rejects if set. -->
+        <div class="sr-only" aria-hidden="true">
+          <label for="contact-website">Leave this field empty</label>
+          <input id="contact-website" type="text" name="website" tabindex="-1" autocomplete="off" [(ngModel)]="honeypot" />
+        </div>
+
+        <div class="field">
+          <label for="contact-name">{{ "contact.formName" | translate }}</label>
+          <input
+            id="contact-name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            minlength="2"
+            required
+            aria-required="true"
+            #nameInput="ngModel"
+            [(ngModel)]="contactData.name"
+            [placeholder]="'contact.placeholderName' | translate"
+            [attr.aria-invalid]="nameInput.touched && nameInput.invalid"
+            [attr.aria-describedby]="nameInput.touched && nameInput.invalid ? 'name-err' : null"
+          />
+          @if (nameInput.touched && nameInput.invalid) {
+          <span id="name-err" class="err-msg" role="alert">
+            {{ (nameInput.errors?.["required"] ? "contact.error.nameEmpty" : "contact.error.nameTooShort") | translate }}
+          </span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="contact-email">{{ "contact.formEmail" | translate }}</label>
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            aria-required="true"
+            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+            #emailInput="ngModel"
+            [(ngModel)]="contactData.email"
+            [placeholder]="'contact.placeholderEmail' | translate"
+            [attr.aria-invalid]="emailInput.touched && emailInput.invalid"
+            [attr.aria-describedby]="emailInput.touched && emailInput.invalid ? 'email-err' : null"
+          />
+          @if (emailInput.touched && emailInput.invalid) {
+          <span id="email-err" class="err-msg" role="alert">
+            {{ (emailInput.errors?.["required"] ? "contact.error.emailEmpty" : "contact.error.emailNotValid") | translate }}
+          </span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="contact-message">{{ "contact.formMessage" | translate }}</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            minlength="10"
+            required
+            aria-required="true"
+            #messageInput="ngModel"
+            [(ngModel)]="contactData.message"
+            [placeholder]="'contact.placeholderMessage' | translate"
+            [attr.aria-invalid]="messageInput.touched && messageInput.invalid"
+            [attr.aria-describedby]="messageInput.touched && messageInput.invalid ? 'message-err' : null"
+          ></textarea>
+          @if (messageInput.touched && messageInput.invalid) {
+          <span id="message-err" class="err-msg" role="alert">
+            {{ (messageInput.errors?.["required"] ? "contact.error.textFieldEmpty" : "contact.error.textFieldTooShort") | translate }}
+          </span>
+          }
+        </div>
+
+        <label class="check">
+          <input type="checkbox" name="privacyPolicy" required aria-required="true" ngModel #consent="ngModel" />
+          <span>
+            {{ "contact.privacyPolicyTextBefore" | translate }}
+            <a [routerLink]="['/privacy-policy']">{{ "contact.privacyPolicy" | translate }}</a>
+            {{ "contact.privacyPolicyTextAfter" | translate }}
+          </span>
+        </label>
+
+        <div class="actions">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="contactForm.form.invalid || isSubmitting()"
+            [attr.aria-busy]="isSubmitting()"
+          >
+            @if (isSubmitting()) {
+            <span class="spinner" aria-hidden="true"></span>
+            {{ "contact.sending" | translate }}
+            } @else {
+            {{ "contact.sendMessage" | translate }}
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            }
+          </button>
+          @if (submitFailed()) {
+          <p class="send-error" role="alert">{{ "contact.sendError" | translate }}</p>
+          }
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<dialog #sent class="panel" aria-labelledby="sent-title">
+  <h3 id="sent-title" class="t-h3">{{ "contact.sentTitle" | translate }}</h3>
+  <p>{{ "contact.sentText" | translate }}</p>
+  <div class="dialog-actions">
+    <button type="button" class="btn btn-primary" (click)="closeSent()">OK</button>
+  </div>
+</dialog>

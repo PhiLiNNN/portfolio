@@ -1,0 +1,75 @@
+@use "../../../styles/index" as *;
+
+.footer {
+  position: relative;
+  z-index: 1;
+  padding: 24px 0 48px;
+}
+.foot {
+  @include dflex($jc: space-between, $g: 20px);
+  flex-wrap: wrap;
+  padding: 24px 28px;
+}
+.logo {
+  border: 0;
+  cursor: pointer;
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--convex);
+  box-shadow: var(--raise-sm);
+  &:active {
+    box-shadow: var(--sink-soft);
+  }
+}
+.meta {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--muted);
+  a {
+    color: var(--muted);
+    text-decoration: none;
+    &:hover {
+      color: var(--text);
+    }
+  }
+  .legal-links {
+    display: flex;
+    gap: 14px;
+  }
+}
+.socials {
+  @include dflex($g: 14px);
+  .btn-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
+.tape {
+  border: 0;
+  cursor: pointer;
+  width: 44px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--well-bg);
+  box-shadow: var(--sink-soft);
+  opacity: 0.45;
+  display: grid;
+  place-content: center;
+  transition: opacity 0.2s;
+  svg {
+    width: 28px;
+    height: 18px;
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 1.6;
+  }
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+  }
+}

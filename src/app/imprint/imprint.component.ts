@@ -1,28 +1,24 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Inject,
   OnInit,
   PLATFORM_ID,
+  inject,
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-imprint',
-  standalone: true,
   imports: [TranslateModule, RouterModule],
   templateUrl: './imprint.component.html',
-  styleUrl: './imprint.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImprintComponent implements OnInit {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   ngOnInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (this.isBrowser) window.scrollTo({ top: 0 });
   }
 }

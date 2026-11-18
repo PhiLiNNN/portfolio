@@ -1,0 +1,14 @@
+.group {
+  padding: 24px;
+  h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  // Icons are dark line art; brighten them on the dark theme.
+  img {
+    filter: var(--icon-filter, none);
+  }
+}
+:host-context([data-theme="dark"]) .group img {
+  filter: invert(1) brightness(1.4);
+}
