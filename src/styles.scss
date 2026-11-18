@@ -19,10 +19,10 @@
 html, body { margin: 0; height: 100%; }
 html { scroll-behavior: smooth; scrollbar-color: var(--accent) transparent; }
 body {
-  // No document background: iOS Safari tints its bottom toolbar with the page
-  // background colour, which showed as a solid grey/white bar. The fixed nebula
-  // canvas (.fog) carries the page colour instead, so the toolbar stays translucent.
-  background: transparent;
+  // Plain colour only (a gradient here would tile every viewport height and
+  // show seams). iOS Safari tints its bottom toolbar with this colour; a
+  // transparent body was tried and showed the bare canvas during fast scrolls.
+  background: var(--bg);
   color: var(--text);
   font-family: "Overpass", "Overpass Fallback", system-ui, sans-serif;
   font-size: 17px;
