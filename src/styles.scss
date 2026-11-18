@@ -110,7 +110,7 @@ img { max-width: 100%; display: block; }
   background: transparent; box-shadow: none; color: var(--muted); padding-inline: 12px;
   &:hover { color: var(--accent); background: var(--convex); box-shadow: var(--raise), 0 0 0 2px color-mix(in srgb, var(--accent) 45%, transparent); }
 }
-.btn-icon { width: 56px; height: 56px; padding: 0; border-radius: 50%; }
+.btn-icon { width: 56px; height: 56px; padding: 0; border-radius: 50%; flex: 0 0 auto; }
 
 .switch {
   position: relative; width: 64px; height: 34px; border-radius: 999px; border: 0; padding: 0; cursor: pointer;

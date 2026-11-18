@@ -1,26 +1,30 @@
 <footer class="footer">
   <div class="wrap">
     <div class="plate foot">
-      <button type="button" class="logo" (click)="top()" [attr.aria-label]="'a11y.scrollToTop' | translate"><span aria-hidden="true">PW</span></button>
+      <div class="brand">
+        <button type="button" class="logo" (click)="top()" [attr.aria-label]="'a11y.scrollToTop' | translate"><span aria-hidden="true">PW</span></button>
+        <span class="copy">© {{ year }} {{ "footer.copyright" | translate }}</span>
+        @if (night()) {
+        <span class="copy">{{ "footer.night" | translate }}</span>
+        }
+      </div>
 
-      <nav class="focus" [attr.aria-label]="'footer.focus' | translate">
-        <span class="focus-title">{{ "footer.focus" | translate }}</span>
+      <nav class="col" [attr.aria-label]="'footer.focus' | translate">
+        <span class="col-title">{{ "footer.focus" | translate }}</span>
         @for (t of topics; track t.key) {
         <a [routerLink]="['/', t.path]">{{ "topics." + t.key + ".title" | translate }}</a>
         }
         <a href="https://webwerk-leipzig.de" target="_blank" rel="noopener">{{ "footer.webwerk" | translate }} ↗</a>
       </nav>
 
-      <div class="meta">
-        <span>© {{ year }} {{ "footer.copyright" | translate }}</span>
-        @if (night()) {
-        <span>{{ "footer.night" | translate }}</span>
-        }
+      <div class="col">
+        <span class="col-title">{{ "footer.contact" | translate }}</span>
         <a href="mailto:contact@philipp-wendschuch.dev">contact&#64;philipp-wendschuch.dev</a>
-        <nav class="legal-links" aria-label="Rechtliches">
-          <a [routerLink]="['/imprint']">{{ "footer.legalNotice" | translate }}</a>
-          <a [routerLink]="['/privacy-policy']">{{ "footer.privacy" | translate }}</a>
-        </nav>
+        <a href="https://github.com/PhiLiNNN" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/philipp-wendschuch-53228129a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span class="col-title legal-title">{{ "footer.legal" | translate }}</span>
+        <a [routerLink]="['/imprint']">{{ "footer.legalNotice" | translate }}</a>
+        <a [routerLink]="['/privacy-policy']">{{ "footer.privacy" | translate }}</a>
       </div>
 
       <div class="socials">

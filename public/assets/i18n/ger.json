@@ -50,50 +50,50 @@
       "climbing": {
         "label": "Klettern & Bouldern",
         "title": "Seit vier Jahren",
-        "text": "In der Halle und am Fels. In Leipzig im Bloc, Onyx, No Limit und am Mockauer Turm, draußen in Löbejün und in der Sächsischen Schweiz. Vorstieg bis 7+ (UIAA), Boulder bis 5."
+        "text": "Seit vier Jahren klettere und bouldere ich, in der Halle und am Fels. In Leipzig bin ich im Bloc, im Onyx, im No Limit und am Mockauer Turm unterwegs, draußen in Löbejün und in der Sächsischen Schweiz. Im Vorstieg klettere ich bis 7+ (UIAA), beim Bouldern bis 5."
       },
       "music": {
         "label": "Musik",
         "title": "Schlagzeug bei Empty Handed",
-        "text": "Ein paar Jahre lang, heute nicht mehr aktiv. Ein Video gibt es noch."
+        "text": "Mit Empty Handed habe ich einige Jahre Schlagzeug gespielt. Die Band gibt es nicht mehr, aber das Musikvideo zu „Patience\" ist noch online."
       },
       "sport": {
         "label": "Sport",
         "title": "Klettern ist der Hauptsport",
-        "text": "Dazu zwei- bis dreimal die Woche Gym, gelegentlich Padel. Davor 19 Jahre Fußball."
+        "text": "Klettern ist mein Hauptsport. Dazu gehe ich zwei- bis dreimal die Woche ins Gym und spiele gelegentlich Padel. Davor habe ich 19 Jahre lang Fußball gespielt."
       },
       "hours": {
         "label": "Arbeitszeit",
         "title": "Oft bis spät",
-        "text": "Abends ist es ruhig. Da kann ich mich am besten konzentrieren, also arbeite ich dann."
+        "text": "Ich arbeite oft bis spät in den Abend. Dann ist es ruhig, nichts unterbricht, und ich kann mich am besten konzentrieren."
       },
       "before": {
         "label": "Vorher",
         "title": "Logistik, dann Medizinphysik",
-        "text": "Zehn Jahre Logistik, danach der Master. Die Abschlussarbeit habe ich bei Positrigo geschrieben, einem Startup mit einem PET-Scanner speziell für Hirnaufnahmen (NeuroLF). Dort habe ich die NEMA-Messungen durchgeführt und ausgewertet."
+        "text": "Nach zehn Jahren in der Logistik habe ich noch einmal studiert und einen Master in Medizinischer Physik gemacht. Die Abschlussarbeit habe ich bei Positrigo geschrieben, einem Startup, das einen PET-Scanner speziell für Hirnaufnahmen entwickelt (NeuroLF). Dort habe ich die NEMA-Messungen durchgeführt und ausgewertet."
       },
       "drive": {
         "label": "Werdegang",
         "title": "Ehrgeizig",
-        "text": "Was ich anfange, ziehe ich durch. Der Weg dahin überrascht die meisten: Hauptschulabschluss, später der Master in Medizinphysik, heute hauptberuflich Softwareentwickler. Mein Traumberuf."
+        "text": "Was ich anfange, ziehe ich durch. Der Weg dahin überrascht die meisten: vom Hauptschulabschluss über den Master in Medizinphysik bis zum hauptberuflichen Softwareentwickler, meinem Traumberuf."
       }
     }
   },
   "skills": {
     "title": "Skills",
-    "intro": "Die Position sagt genug. Was ich täglich benutze, steht oben.",
+    "intro": "Die Regler zeigen, womit ich am meisten arbeite. Was ich täglich benutze, steht oben.",
     "frontend": "Frontend",
     "backend": "Backend",
     "devops": "DevOps & Tools",
     "ai": "KI-gestützte Entwicklung",
-    "aiNote": "Gehört zu meinem Arbeitsalltag: Claude Code im Terminal, Aufgaben in Spezifikation und Plan zerlegen, Agenten umsetzen lassen, Ergebnis prüfen.",
+    "aiNote": "Claude Code gehört zu meinem Arbeitsalltag. Ich zerlege Aufgaben in Spezifikation und Plan, lasse Agenten die Umsetzung übernehmen und prüfe das Ergebnis, bevor es in den Hauptzweig geht.",
     "aiAgents": "Agentische Workflows",
     "aiSpec": "Spec-getriebene Entwicklung",
     "aiReview": "KI-gestütztes Code-Review"
   },
   "services": {
     "title": "Was ich anbiete",
-    "intro": "Von der sauberen Landingpage bis zur kompletten Web-App. Ich baue das Ganze, und ich baue es richtig.",
+    "intro": "Von der Landingpage bis zur kompletten Web-Anwendung: Ich übernehme das ganze Projekt, von der Planung bis zum Betrieb.",
     "card1": {
       "title": "Moderne Websites",
       "text": "Schnelle, responsive Websites, DSGVO-konform, barrierefrei (WCAG) und nach aktuellen Web-Standards. Sehen auf jedem Gerät gut aus.",
@@ -127,11 +127,11 @@
   },
   "experience": {
     "title": "Werdegang",
-    "intro": "Was ich neben der Kundenarbeit aufbaue.",
+    "intro": "Zwei Projekte, die ich neben der Kundenarbeit mit aufbaue.",
     "webwerk": {
       "label": "Mitgründer",
       "title": "Webwerk Leipzig",
-      "text": "Zu zweit bauen wir schnelle, handgemachte Webseiten für Betriebe in Leipzig, persönlich und lokal.",
+      "text": "Zusammen mit Andreas Kunisch baue ich unter dem Namen Webwerk Leipzig Webseiten für Handwerk, Gastronomie und kleine Betriebe in Leipzig. Handgeschrieben, schnell und mit festen Preisen.",
       "link": "webwerk-leipzig.de"
     },
     "traudel": {
@@ -200,7 +200,7 @@
   },
   "contact": {
     "title": "Kontakt",
-    "intro": "Du willst ein Projekt besprechen? Schreib mir ein paar Zeilen, ich melde mich.",
+    "intro": "Wenn du ein Projekt besprechen möchtest, schreib mir ein paar Zeilen. Ich melde mich in der Regel innerhalb eines Werktags.",
     "formName": "Dein Name",
     "formEmail": "Deine E-Mail",
     "formMessage": "Deine Nachricht",
@@ -232,7 +232,7 @@
   },
   "video": {
     "title": "Empty Handed",
-    "text": "Schlagzeug, ein paar Jahre lang. Das Video kommt von YouTube (youtube-nocookie.com) und wird erst geladen, wenn du auf den Button klickst.",
+    "text": "Mit Empty Handed habe ich einige Jahre Schlagzeug gespielt. Die Band gibt es nicht mehr, das Musikvideo zu „Patience\" ist aber noch auf YouTube. Wenn du auf „Video laden\" klickst, wird eine Verbindung zu YouTube aufgebaut (youtube-nocookie.com). Vorher wird nichts geladen.",
     "load": "Video laden"
   },
   "footer": {
@@ -241,7 +241,9 @@
     "privacy": "Datenschutz",
     "night": "Noch wach? Ich meistens auch. Abends arbeite ich am besten.",
     "focus": "Schwerpunkte",
-    "webwerk": "Webwerk Leipzig"
+    "webwerk": "Webwerk Leipzig",
+    "contact": "Kontakt",
+    "legal": "Rechtliches"
   },
   "imprint": {
     "title": "Impressum",

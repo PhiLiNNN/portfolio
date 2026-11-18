@@ -50,50 +50,50 @@
       "climbing": {
         "label": "Climbing & bouldering",
         "title": "Four years in",
-        "text": "Indoors and on rock. In Leipzig at Bloc, Onyx, No Limit and the Mockauer Turm, outdoors in Löbejün and the Saxon Switzerland. Lead up to 7+ (UIAA), boulders up to 5."
+        "text": "I have been climbing and bouldering for four years, indoors and on rock. In Leipzig you will find me at Bloc, Onyx, No Limit and the Mockauer Turm, outdoors in Löbejün and the Saxon Switzerland. I lead up to 7+ (UIAA) and boulder up to 5."
       },
       "music": {
         "label": "Music",
         "title": "Drums with Empty Handed",
-        "text": "For a few years, not active any more. One video is still around."
+        "text": "I played drums with Empty Handed for a few years. The band no longer exists, but the music video for \"Patience\" is still online."
       },
       "sport": {
         "label": "Sport",
         "title": "Climbing is the main sport",
-        "text": "Plus the gym two or three times a week and the occasional padel match. Before that, 19 years of football."
+        "text": "Climbing is my main sport. On top of that I go to the gym two or three times a week and play padel now and then. Before that I played football for 19 years."
       },
       "hours": {
         "label": "Working hours",
         "title": "Often late",
-        "text": "Evenings are quiet. That is when I concentrate best, so that is when I work."
+        "text": "I often work late into the evening. It is quiet then, nothing interrupts, and that is when I concentrate best."
       },
       "before": {
         "label": "Before",
         "title": "Logistics, then medical physics",
-        "text": "Ten years in logistics, then the Master's. I wrote my thesis at Positrigo, a startup building a PET scanner dedicated to brain imaging (NeuroLF). I ran and evaluated the NEMA measurements there."
+        "text": "After ten years in logistics I went back to university and did a Master's in Medical Physics. I wrote my thesis at Positrigo, a startup building a PET scanner dedicated to brain imaging (NeuroLF). I ran and evaluated the NEMA measurements there."
       },
       "drive": {
         "label": "Path",
         "title": "Ambitious",
-        "text": "What I start, I finish. The path surprises most people: lower secondary school, later a Master's in Medical Physics, today a full-time software developer. The job I wanted."
+        "text": "What I start, I finish. The path surprises most people: from lower secondary school to a Master's in Medical Physics to a full-time software developer, the job I wanted."
       }
     }
   },
   "skills": {
     "title": "Skills",
-    "intro": "The position says enough. What I use every day sits at the top.",
+    "intro": "The faders show what I work with most. What I use every day sits at the top.",
     "frontend": "Frontend",
     "backend": "Backend",
     "devops": "DevOps & Tools",
     "ai": "AI-assisted development",
-    "aiNote": "Part of my daily work: Claude Code in the terminal, breaking tasks into spec and plan, letting agents implement, reviewing the result.",
+    "aiNote": "Claude Code is part of my daily work. I break tasks into a specification and a plan, let agents handle the implementation and review the result before it goes into the main branch.",
     "aiAgents": "Agentic workflows",
     "aiSpec": "Spec-driven development",
     "aiReview": "AI-assisted code review"
   },
   "services": {
     "title": "What I offer",
-    "intro": "From a polished landing page to a full web app. I build the whole thing, and I build it properly.",
+    "intro": "From a landing page to a complete web application: I take on the whole project, from planning to operation.",
     "card1": {
       "title": "Modern websites",
       "text": "Fast, responsive websites that are GDPR-compliant, accessible (WCAG) and meet today's web standards. They look sharp on every device.",
@@ -127,11 +127,11 @@
   },
   "experience": {
     "title": "Experience",
-    "intro": "What I build alongside client work.",
+    "intro": "Two projects I am building alongside client work.",
     "webwerk": {
       "label": "Co-founder",
       "title": "Webwerk Leipzig",
-      "text": "The two of us build fast, well-made websites for businesses in Leipzig, personal and local.",
+      "text": "Together with Andreas Kunisch I build websites for trades, restaurants and small businesses in Leipzig under the name Webwerk Leipzig. Hand-written, fast and with fixed prices.",
       "link": "webwerk-leipzig.de"
     },
     "traudel": {
@@ -200,7 +200,7 @@
   },
   "contact": {
     "title": "Contact",
-    "intro": "Want to discuss a project? Write me a few lines and I will get back to you.",
+    "intro": "If you would like to discuss a project, write me a few lines. I usually get back within one working day.",
     "formName": "Your name",
     "formEmail": "Your email",
     "formMessage": "Your message",
@@ -232,7 +232,7 @@
   },
   "video": {
     "title": "Empty Handed",
-    "text": "Drums, for a few years. The video comes from YouTube (youtube-nocookie.com) and loads only after you click the button.",
+    "text": "I played drums with Empty Handed for a few years. The band no longer exists, but the music video for \"Patience\" is still on YouTube. When you click \"Load video\", a connection to YouTube is opened (youtube-nocookie.com). Nothing is loaded before that.",
     "load": "Load video"
   },
   "footer": {
@@ -241,7 +241,9 @@
     "privacy": "Privacy policy",
     "night": "Still up? So am I, most nights. Evenings are when I work best.",
     "focus": "Focus areas",
-    "webwerk": "Webwerk Leipzig"
+    "webwerk": "Webwerk Leipzig",
+    "contact": "Contact",
+    "legal": "Legal"
   },
   "imprint": {
     "title": "Legal notice",

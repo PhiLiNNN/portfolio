@@ -5,39 +5,33 @@
   z-index: 1;
   padding: 24px 0 48px;
 }
+
+// Four columns: brand | focus areas | contact + legal | social buttons.
 .foot {
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  grid-template-areas: "logo focus socials" "logo meta socials";
-  align-items: start;
-  gap: 18px 28px;
-  padding: 24px 28px;
-  > .logo { grid-area: logo; }
-  > .focus { grid-area: focus; }
-  > .meta { grid-area: meta; }
-  > .socials { grid-area: socials; }
+  grid-template-columns: 1.1fr 1.3fr 1fr auto;
+  gap: 28px 40px;
+  padding: 32px;
   @include md {
+    grid-template-columns: 1fr 1fr;
+    .socials {
+      grid-column: 1 / -1;
+      justify-content: flex-start;
+    }
+  }
+  @include sm {
     grid-template-columns: 1fr;
-    grid-template-areas: "logo" "focus" "meta" "socials";
   }
 }
-.focus {
+
+.brand {
   display: grid;
-  gap: 6px;
-  font-size: 14px;
-  .focus-title {
-    font-family: "Syne", "Syne Fallback", sans-serif;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 2px;
-  }
-  a {
+  gap: 12px;
+  align-content: start;
+  justify-items: start;
+  .copy {
+    font-size: 14px;
     color: var(--muted);
-    text-decoration: none;
-    width: fit-content;
-    &:hover {
-      color: var(--accent);
-    }
   }
 }
 .logo {
@@ -55,25 +49,35 @@
     box-shadow: var(--sink-soft);
   }
 }
-.meta {
+
+.col {
   display: grid;
-  gap: 6px;
+  gap: 8px;
+  align-content: start;
   font-size: 14px;
-  color: var(--muted);
+  .col-title {
+    font-family: "Syne", "Syne Fallback", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .legal-title {
+    margin-top: 12px;
+  }
   a {
     color: var(--muted);
     text-decoration: none;
+    width: fit-content;
     &:hover {
-      color: var(--text);
+      color: var(--accent);
     }
   }
-  .legal-links {
-    display: flex;
-    gap: 14px;
-  }
 }
+
 .socials {
   @include dflex($g: 22px);
+  align-self: start;
   .btn-icon {
     width: 48px;
     height: 48px;
