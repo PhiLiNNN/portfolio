@@ -11,6 +11,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { finalize } from 'rxjs';
+import { MailEndpointService } from '../../shared/mail-endpoint.service';
 import { PowService } from '../../shared/pow.service';
 
 interface ContactData {
@@ -18,8 +19,6 @@ interface ContactData {
   email: string;
   message: string;
 }
-
-const ENDPOINT = 'https://philipp-wendschuch.dev/sendMail.php';
 
 @Component({
   selector: 'app-contact',
@@ -31,6 +30,7 @@ const ENDPOINT = 'https://philipp-wendschuch.dev/sendMail.php';
 export class ContactComponent {
   private readonly http = inject(HttpClient);
   readonly pow = inject(PowService);
+  private readonly endpoint = inject(MailEndpointService);
   private readonly sentDialog = viewChild<ElementRef<HTMLDialogElement>>('sent');
 
   contactData: ContactData = { name: '', email: '', message: '' };
@@ -45,7 +45,7 @@ export class ContactComponent {
 
   /** First interaction with the form starts the invisible spam check. */
   onInteract(): void {
-    void this.pow.prepare(ENDPOINT);
+    void this.endpoint.resolve().then((url) => this.pow.prepare(url));
   }
 
   async onSubmit(ngForm: NgForm): Promise<void> {
@@ -55,11 +55,12 @@ export class ContactComponent {
     this.isSubmitting.set(true);
 
     // Make sure the proof of work is done (normally finished long before).
-    const altcha = await this.pow.prepare(ENDPOINT);
+    const url = await this.endpoint.resolve();
+    const altcha = await this.pow.prepare(url);
     const payload = { ...this.contactData, website: this.honeypot, altcha };
 
     this.http
-      .post(ENDPOINT, JSON.stringify(payload), {
+      .post(url, JSON.stringify(payload), {
         headers: { 'Content-Type': 'text/plain' },
         responseType: 'text',
       })

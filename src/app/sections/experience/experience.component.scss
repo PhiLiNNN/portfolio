@@ -20,6 +20,18 @@
   h3 {
     color: var(--brand-ink);
   }
+  // The whole plate is tinted in the brand colour (glass over a coloured base).
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    linear-gradient(145deg, color-mix(in srgb, var(--brand) 34%, var(--bg)), color-mix(in srgb, var(--brand) 16%, var(--bg)));
+  box-shadow: var(--raise), inset 1px 1px 0 color-mix(in srgb, var(--brand) 35%, transparent);
+  p {
+    color: color-mix(in srgb, var(--text) 78%, var(--brand));
+  }
+  .tag,
+  .led {
+    background: color-mix(in srgb, var(--brand) 12%, rgba(0, 0, 0, 0.25));
+  }
   .led i {
     background: var(--brand);
     box-shadow: 0 0 10px var(--brand), 0 0 22px color-mix(in srgb, var(--brand) 60%, transparent);
@@ -48,11 +60,24 @@
   --brand: #ffd11b;
   --brand-ink: #ffd84a;
 }
+:host-context([data-theme="light"]) .entry {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2)),
+    linear-gradient(145deg, color-mix(in srgb, var(--brand) 42%, var(--bg)), color-mix(in srgb, var(--brand) 20%, var(--bg)));
+  box-shadow: var(--raise), inset 1px 1px 0 #fff;
+  p {
+    color: color-mix(in srgb, var(--text) 85%, var(--brand));
+  }
+  .tag,
+  .led {
+    background: rgba(255, 255, 255, 0.45);
+  }
+}
 :host-context([data-theme="light"]) .webwerk {
   --brand-ink: #a8283f;
 }
 :host-context([data-theme="light"]) .traudel {
-  --brand: #e6b800;
+  --brand: #f2c200;
   --brand-ink: #6f5300;
 }
 
