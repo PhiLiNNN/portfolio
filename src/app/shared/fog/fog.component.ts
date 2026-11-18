@@ -100,6 +100,14 @@ void main(){
     :host { display: contents; }
     /* Cover the large viewport, so nothing shows when the phone browser bar collapses. */
     .fog { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100lvh; z-index: 0; pointer-events: none; }
+    /* Static stand-in until the first WebGL frame (and when WebGL2 is missing). The
+       canvas is fixed and viewport-sized, so this gradient never tiles. */
+    .fog:not(.live) {
+      background:
+        radial-gradient(70% 55% at 72% 18%, var(--light-1), transparent 70%),
+        radial-gradient(60% 60% at 15% 75%, var(--light-2), transparent 70%),
+        radial-gradient(50% 40% at 50% 110%, var(--light-1), transparent 70%);
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -247,6 +255,7 @@ export class FogComponent implements AfterViewInit, OnDestroy {
     const u = this.uniforms;
     if (!gl || !u) return;
     const el = this.canvas().nativeElement;
+    el.classList.add('live');
     gl.viewport(0, 0, el.width, el.height);
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
