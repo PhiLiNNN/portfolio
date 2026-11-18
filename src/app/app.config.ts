@@ -18,7 +18,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
  * @returns {TranslateHttpLoader} - An instance of TranslateHttpLoader.
  */
 export const provideTranslation = () => ({
-  defaultLanguage: 'en',
+  defaultLanguage: 'ger',
   loader: {
     provide: TranslateLoader,
     useFactory: HttpLoaderFactory,

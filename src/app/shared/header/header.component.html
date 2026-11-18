@@ -1,6 +1,6 @@
 <header class="bar">
   <div class="wrap bar-inner">
-    <a class="logo" href="/" (click)="go($event, 'home')" [attr.aria-label]="'a11y.backToHome' | translate">PW</a>
+    <a class="logo" href="/" (click)="go($event, 'home')" [attr.aria-label]="'a11y.backToHome' | translate"><span aria-hidden="true">PW</span></a>
 
     <nav class="nav" aria-label="Hauptnavigation">
       @for (item of primary; track item.id) {

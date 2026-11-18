@@ -15,9 +15,14 @@
   span {
     display: block;
   }
+  // Pressed-in word. The fill is a mid tone (≥ 3:1 against the background and
+  // the shadow tones, WCAG 1.4.3 for large text) so the word stays readable.
   .carve {
-    color: var(--bg);
+    color: color-mix(in srgb, var(--text) 46%, var(--bg));
     text-shadow: 2px 2px 2px var(--hi), -2px -2px 2px var(--lo);
+    @at-root :host-context([data-theme="light"]) .carve {
+      color: color-mix(in srgb, var(--text) 54%, var(--bg));
+    }
     // Small sizes lose the emboss; an outline keeps the word readable.
     @include md {
       color: transparent;
@@ -30,7 +35,7 @@
 // Flashlight: text is transparent, a radial gradient at the pointer position
 // shows through it. Touch devices get a slow sweeping band instead.
 .secret {
-  font-family: "Syne", sans-serif;
+  font-family: "Syne", "Syne Fallback", sans-serif;
   font-weight: 800;
   font-size: clamp(26px, 4.2vw, 58px);
   letter-spacing: -0.02em;

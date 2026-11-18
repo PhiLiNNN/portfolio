@@ -16,7 +16,7 @@
 }
 
 .logo {
-  font-family: "Syne", sans-serif;
+  font-family: "Syne", "Syne Fallback", sans-serif;
   font-weight: 800;
   font-size: 20px;
   letter-spacing: -0.02em;
@@ -101,7 +101,7 @@
   padding-bottom: 40px;
   a {
     text-decoration: none;
-    font-family: "Syne", sans-serif;
+    font-family: "Syne", "Syne Fallback", sans-serif;
     font-weight: 800;
     font-size: clamp(24px, 6vw, 34px);
     padding: 14px 18px;

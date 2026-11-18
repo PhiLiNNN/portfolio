@@ -2,11 +2,17 @@
 @use "./styles/index" as *;
 
 /* ---------- Fonts (self-hosted, no CDN) ---------- */
-@font-face { font-display: swap; font-family: "Syne"; font-style: normal; font-weight: 400; src: url("./../public/assets/fonts/syne/syne-v22-latin-regular.woff2") format("woff2"); }
-@font-face { font-display: swap; font-family: "Syne"; font-style: normal; font-weight: 600; src: url("./../public/assets/fonts/syne/syne-v22-latin-600.woff2") format("woff2"); }
-@font-face { font-display: swap; font-family: "Syne"; font-style: normal; font-weight: 800; src: url("./../public/assets/fonts/syne/syne-v22-latin-800.woff2") format("woff2"); }
+@font-face { font-display: swap; font-family: "Syne", "Syne Fallback", sans-serif; font-style: normal; font-weight: 400; src: url("./../public/assets/fonts/syne/syne-v22-latin-regular.woff2") format("woff2"); }
+@font-face { font-display: swap; font-family: "Syne", "Syne Fallback", sans-serif; font-style: normal; font-weight: 600; src: url("./../public/assets/fonts/syne/syne-v22-latin-600.woff2") format("woff2"); }
+@font-face { font-display: swap; font-family: "Syne", "Syne Fallback", sans-serif; font-style: normal; font-weight: 800; src: url("./../public/assets/fonts/syne/syne-v22-latin-800.woff2") format("woff2"); }
 @font-face { font-display: swap; font-family: "Overpass"; font-style: normal; font-weight: 300; src: url("./../public/assets/fonts/overpass/overpass-v13-latin-300.woff2") format("woff2"); }
 @font-face { font-display: swap; font-family: "Overpass"; font-style: normal; font-weight: 400; src: url("./../public/assets/fonts/overpass/overpass-v13-latin-regular.woff2") format("woff2"); }
+
+
+/* Metric-matched fallbacks (Arial) so text does not jump when Syne/Overpass arrive.
+   Values measured against the real fonts: Syne 800 is 1.62x wider than Arial Bold. */
+@font-face { font-family: "Syne Fallback"; src: local("Arial Bold"), local("Arial"); font-weight: 400 800; size-adjust: 162.2%; ascent-override: 57.3%; descent-override: 16.6%; line-gap-override: 0%; }
+@font-face { font-family: "Overpass Fallback"; src: local("Arial"); font-weight: 300 400; size-adjust: 100.5%; ascent-override: 87.6%; descent-override: 37.8%; line-gap-override: 0%; }
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -15,7 +21,7 @@ html { scroll-behavior: smooth; scrollbar-color: var(--accent) transparent; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: "Overpass", system-ui, sans-serif;
+  font-family: "Overpass", "Overpass Fallback", system-ui, sans-serif;
   font-size: 17px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -45,9 +51,9 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---------- Typography ---------- */
-.t-display { font-family: "Syne", sans-serif; font-weight: 800; letter-spacing: -0.02em; line-height: 0.98; }
-.t-h2 { font-family: "Syne", sans-serif; font-weight: 800; font-size: clamp(26px, 3vw, 34px); letter-spacing: -0.01em; line-height: 1.1; }
-.t-h3 { font-family: "Syne", sans-serif; font-weight: 800; font-size: clamp(22px, 2.2vw, 28px); letter-spacing: -0.01em; line-height: 1.15; }
+.t-display { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 800; letter-spacing: -0.02em; line-height: 0.98; }
+.t-h2 { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 800; font-size: clamp(26px, 3vw, 34px); letter-spacing: -0.01em; line-height: 1.1; }
+.t-h3 { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 800; font-size: clamp(22px, 2.2vw, 28px); letter-spacing: -0.01em; line-height: 1.15; }
 .t-muted { color: var(--muted); }
 .t-small { font-size: 14px; color: var(--muted); }
 
@@ -189,9 +195,9 @@ dialog.panel {
 /* ---------- Legal pages ---------- */
 .legal {
   padding: calc(var(--nav-h) + 24px) 0 72px;
-  h1 { font-family: "Syne", sans-serif; font-weight: 800; font-size: clamp(30px, 4vw, 44px); margin-bottom: 20px; }
-  h2 { font-family: "Syne", sans-serif; font-weight: 800; font-size: 22px; margin: 32px 0 10px; }
-  h3 { font-family: "Syne", sans-serif; font-weight: 600; font-size: 18px; margin: 20px 0 8px; }
+  h1 { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 800; font-size: clamp(30px, 4vw, 44px); margin-bottom: 20px; }
+  h2 { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 800; font-size: 22px; margin: 32px 0 10px; }
+  h3 { font-family: "Syne", "Syne Fallback", sans-serif; font-weight: 600; font-size: 18px; margin: 20px 0 8px; }
   p { margin: 0 0 12px; }
   ul { list-style: disc; padding-left: 22px; margin: 0 0 12px; }
   li { margin-bottom: 6px; }

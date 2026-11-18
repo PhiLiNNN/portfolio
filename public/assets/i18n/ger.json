@@ -4,8 +4,8 @@
     "themeDark": "Zu dunklem Modus wechseln",
     "themeLight": "Zu hellem Modus wechseln",
     "langToggle": "Sprache: Deutsch / Language: English",
-    "scrollToTop": "Nach oben scrollen",
-    "backToHome": "Zurück zur Startseite",
+    "scrollToTop": "PW – nach oben",
+    "backToHome": "PW – zurück zur Startseite",
     "openMenu": "Menü öffnen",
     "closeMenu": "Menü schließen",
     "github": "GitHub-Profil (öffnet in neuem Tab)",
@@ -138,10 +138,12 @@
     "traudel": {
       "label": "Mitgründer, im Aufbau",
       "title": "traudel.app",
-      "text": "Nachbarschaft heißt mehr als nebeneinander wohnen. Traudel bringt Nachbarn wieder zusammen: Hilfe, ehrliche Empfehlungen, Verleihen. Läuft im Browser und auf dem Handy.",
+      "text": "Nachbarschaft heißt mehr als nebeneinander wohnen. Traudel zeigt, was in Leipzig gerade passiert: Veranstaltungen und Treffen in der Nähe, Hilfe gesucht und angeboten, ehrliche Tipps, Dinge verschenken und verleihen. Mit Chat, Reaktionen und Sortierung nach Nähe oder Startzeit. Läuft im Browser und als App auf dem Handy.",
       "tags": [
         "Kostenlos",
         "Keine Werbung",
+        "Events & Treffen",
+        "Hilfe & Tipps",
         "Geben & Leihen",
         "Gebaut in Leipzig"
       ],
@@ -166,7 +168,7 @@
         "description": "Aufgabenmanager nach dem Kanban-Prinzip. Aufgaben per Drag-and-Drop anlegen und sortieren, Nutzer und Kategorien zuweisen.",
         "githubLink": "https://github.com/PhiLiNNN/Join",
         "liveLink": "https://join.philipp-wendschuch.dev/",
-        "img": "./assets/img/references/join.png"
+        "img": "./assets/img/references/join.webp"
       },
       {
         "name": "Sharkie",
@@ -179,7 +181,7 @@
         "description": "Ein Unterwasser-Abenteuerspiel, objektorientiert gebaut. Führe Sharkie, sammle Gift und besiege den Riesenhai.",
         "githubLink": "https://github.com/PhiLiNNN/Sharkie",
         "liveLink": "https://sharkie.philipp-wendschuch.dev/",
-        "img": "./assets/img/references/sharkie.png"
+        "img": "./assets/img/references/sharkie.webp"
       },
       {
         "name": "PokéCubes",
@@ -193,7 +195,7 @@
         "description": "Eine Web-App, die über die PokeAPI Pokémon der ersten Generation auf drehbaren Würfeln zeigt. Klick auf ein Pokémon für Details.",
         "githubLink": "https://github.com/PhiLiNNN/Pokedex",
         "liveLink": "https://pokecubes.philipp-wendschuch.dev/",
-        "img": "./assets/img/references/pokecubes.png"
+        "img": "./assets/img/references/pokecubes.webp"
       }
     ]
   },

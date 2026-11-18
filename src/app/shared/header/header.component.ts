@@ -59,17 +59,19 @@ export class HeaderComponent {
 
   readonly active = signal('home');
   readonly menuOpen = signal(false);
-  readonly lang = signal<'ger' | 'en'>('en');
+  readonly lang = signal<'ger' | 'en'>('ger');
 
   constructor() {
-    let lang: 'ger' | 'en' = 'en';
+    // German is the default (also for SSR/prerender). English only when the
+    // visitor chose it or the browser is not set to German.
+    let lang: 'ger' | 'en' = 'ger';
     if (this.isBrowser) {
       let stored: string | null = null;
       try {
         stored = localStorage.getItem(LANG_KEY);
       } catch {}
       if (stored === 'ger' || stored === 'en') lang = stored;
-      else if (navigator.language?.toLowerCase().startsWith('de')) lang = 'ger';
+      else if (navigator.language && !navigator.language.toLowerCase().startsWith('de')) lang = 'en';
     }
     this.useLang(lang, false);
   }

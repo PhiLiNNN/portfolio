@@ -31,7 +31,7 @@ export class SkillsComponent {
         { icon: 'javascript', name: 'JavaScript', level: 86 },
         { icon: 'html', name: 'HTML', level: 90 },
         { icon: 'css', name: 'CSS', level: 86 },
-        { icon: 'material', name: 'Material Design', level: 70 },
+        { icon: 'material', name: 'Material Design', level: 62 },
       ],
     },
     {
@@ -39,11 +39,11 @@ export class SkillsComponent {
       skills: [
         { icon: 'python', name: 'Python', level: 78 },
         { icon: 'api', name: 'REST API', level: 80 },
-        { icon: 'fastapi', name: 'FastAPI', level: 66 },
-        { icon: 'django', name: 'Django', level: 60 },
-        { icon: 'flask', name: 'Flask', level: 60 },
+        { icon: 'fastapi', name: 'FastAPI', level: 48 },
+        { icon: 'django', name: 'Django', level: 52 },
+        { icon: 'flask', name: 'Flask', level: 52 },
         { icon: 'firebase', name: 'Firebase', level: 62 },
-        { icon: 'plsql', name: 'PL/SQL', level: 50 },
+        { icon: 'plsql', name: 'PL/SQL', level: 85 },
       ],
     },
     {
@@ -60,8 +60,8 @@ export class SkillsComponent {
       skills: [
         { icon: 'git', name: 'Git', level: 86 },
         { icon: 'docker', name: 'Docker', level: 64 },
-        { icon: 'cicd', name: 'CI/CD', level: 58 },
-        { icon: 'scrum', name: 'Scrum', level: 70 },
+        { icon: 'cicd', name: 'CI/CD', level: 50 },
+        { icon: 'scrum', name: 'Scrum', level: 62 },
       ],
     },
   ];
