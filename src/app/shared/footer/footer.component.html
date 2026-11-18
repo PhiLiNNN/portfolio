@@ -3,8 +3,19 @@
     <div class="plate foot">
       <button type="button" class="logo" (click)="top()" [attr.aria-label]="'a11y.scrollToTop' | translate"><span aria-hidden="true">PW</span></button>
 
+      <nav class="focus" [attr.aria-label]="'footer.focus' | translate">
+        <span class="focus-title">{{ "footer.focus" | translate }}</span>
+        @for (t of topics; track t.key) {
+        <a [routerLink]="['/', t.path]">{{ "topics." + t.key + ".title" | translate }}</a>
+        }
+        <a href="https://webwerk-leipzig.de" target="_blank" rel="noopener">{{ "footer.webwerk" | translate }} ↗</a>
+      </nav>
+
       <div class="meta">
         <span>© {{ year }} {{ "footer.copyright" | translate }}</span>
+        @if (night()) {
+        <span>{{ "footer.night" | translate }}</span>
+        }
         <a href="mailto:contact@philipp-wendschuch.dev">contact&#64;philipp-wendschuch.dev</a>
         <nav class="legal-links" aria-label="Rechtliches">
           <a [routerLink]="['/imprint']">{{ "footer.legalNotice" | translate }}</a>

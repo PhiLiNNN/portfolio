@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { SeoService } from '../shared/seo.service';
 import { AboutComponent } from '../sections/about/about.component';
 import { ContactComponent } from '../sections/contact/contact.component';
 import { ExperienceComponent } from '../sections/experience/experience.component';
@@ -32,4 +33,8 @@ import { SkillsComponent } from '../sections/skills/skills.component';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class HomeComponent {
+  constructor() {
+    inject(SeoService).set({ titleKey: 'seo.home.title', descriptionKey: 'seo.home.description', path: '/' });
+  }
+}

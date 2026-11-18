@@ -124,19 +124,6 @@ img { max-width: 100%; display: block; }
 }
 .switch-row { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; }
 
-.led {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 14px; color: var(--muted); padding: 10px 16px; border-radius: 999px;
-  background: var(--well-bg); box-shadow: var(--sink-soft);
-  i {
-    width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto;
-    background: var(--accent);
-    box-shadow: 0 0 10px var(--accent), 0 0 22px color-mix(in srgb, var(--accent) 60%, transparent);
-    animation: led-blink 2.6s ease-in-out infinite;
-  }
-  &.warm i { background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2), 0 0 22px color-mix(in srgb, var(--accent-2) 60%, transparent); }
-}
-@keyframes led-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
 
 .chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip {

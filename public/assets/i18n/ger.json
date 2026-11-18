@@ -23,19 +23,18 @@
     "services": "Angebot",
     "experience": "Werdegang",
     "projects": "Projekte",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "topics": "Schwerpunkte"
   },
   "hero": {
     "line1": "Full-Stack",
     "line2": "Developer",
     "line3": "aus Leipzig.",
     "secret": "Coding with Heart",
-    "lede": "Angular vorn, Python hinten, Docker drumherum. Ich baue Web-Apps und Webseiten komplett, vom ersten Entwurf bis zum laufenden Server.",
+    "lede": "Ich entwickle Web-Anwendungen und Webseiten komplett, vom Konzept bis zum laufenden System. Im Frontend mit Angular und TypeScript, im Backend mit Python, dazu Docker und CI/CD.",
     "ctaPrimary": "Projekt besprechen",
     "ctaSecondary": "Meine Arbeit ansehen",
-    "status": "Verfügbar für neue Projekte",
-    "statusNight": "Noch wach? Ich meistens auch. Abends arbeite ich am besten.",
-    "dialHint": "Knopf drehen für eine eigene Akzentfarbe"
+    "statusNight": "Noch wach? Ich meistens auch. Abends arbeite ich am besten."
   },
   "about": {
     "title": "Über mich",
@@ -239,7 +238,10 @@
   "footer": {
     "copyright": "Philipp Wendschuch, Leipzig",
     "legalNotice": "Impressum",
-    "privacy": "Datenschutz"
+    "privacy": "Datenschutz",
+    "night": "Noch wach? Ich meistens auch. Abends arbeite ich am besten.",
+    "focus": "Schwerpunkte",
+    "webwerk": "Webwerk Leipzig"
   },
   "imprint": {
     "title": "Impressum",
@@ -249,5 +251,147 @@
     "city": "04159 Leipzig",
     "phone": "Telefon",
     "email": "E-Mail"
+  },
+  "seo": {
+    "home": {
+      "title": "Philipp Wendschuch – Full-Stack Developer aus Leipzig",
+      "description": "Full-Stack Developer aus Leipzig: Angular und TypeScript im Frontend, Python im Backend. Mitgründer von Webwerk Leipzig und traudel.app."
+    },
+    "imprint": {
+      "title": "Impressum – Philipp Wendschuch",
+      "description": "Impressum von Philipp Wendschuch, Full-Stack Developer aus Leipzig."
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung – Philipp Wendschuch",
+      "description": "Datenschutzerklärung für philipp-wendschuch.dev."
+    }
+  },
+  "topics": {
+    "common": {
+      "cta": "Projekt besprechen",
+      "ctaText": "Du hast ein Projekt in diesem Bereich? Schreib mir ein paar Zeilen, ich melde mich innerhalb eines Werktags.",
+      "stack": "Werkzeuge",
+      "more": "Weitere Schwerpunkte",
+      "back": "Zur Startseite",
+      "webwerk": "Webseiten für Betriebe in Leipzig baue ich zusammen mit Andreas Kunisch bei Webwerk Leipzig."
+    },
+    "angular": {
+      "title": "Angular-Entwicklung in Leipzig",
+      "seoTitle": "Angular-Entwicklung Leipzig – Philipp Wendschuch",
+      "description": "Angular-Entwickler aus Leipzig: Web-Anwendungen mit Angular, TypeScript und SSR, von der Komponente bis zum Deployment.",
+      "intro": "Angular ist mein tägliches Werkzeug, beruflich und in eigenen Projekten. Ich baue damit Anwendungen, die auch nach Jahren noch wartbar sind: klare Komponentenstruktur, typisierte Schnittstellen, Tests dort, wo sie etwas fangen.",
+      "sections": [
+        {
+          "h": "Was ich mit Angular baue",
+          "p": "Interne Werkzeuge, Kundenportale, Dashboards und Web-Apps, die im Browser und als App auf dem Handy laufen. Aktuelles Beispiel ist traudel.app, eine Nachbarschafts-App, deren Frontend in Angular entsteht und über Capacitor in die App Stores geht."
+        },
+        {
+          "h": "Wie ich arbeite",
+          "p": "Standalone-Komponenten, Signals, strikte Typisierung und Server-Side Rendering, wenn Ladezeit und Auffindbarkeit zählen. Diese Seite ist selbst ein Beispiel: Angular 21 mit SSR, vorgerendert, ohne Tracker."
+        },
+        {
+          "h": "Bestehende Anwendungen",
+          "p": "Ich übernehme auch gewachsene Angular-Projekte: Upgrade auf aktuelle Versionen, Umstellung auf Standalone und Signals, Performance- und Barrierefreiheits-Review, Testabdeckung dort, wo es weh tut."
+        }
+      ],
+      "stack": [
+        "Angular 21",
+        "TypeScript",
+        "RxJS",
+        "Signals",
+        "Angular SSR",
+        "Capacitor",
+        "Vitest",
+        "Karma"
+      ]
+    },
+    "python": {
+      "title": "Python-Backend-Entwicklung",
+      "seoTitle": "Python-Backend-Entwicklung Leipzig – Philipp Wendschuch",
+      "description": "Backend-Entwicklung mit Python aus Leipzig: REST-APIs mit FastAPI, Django und Flask, Datenbanken, Docker und CI/CD.",
+      "intro": "Mit Python habe ich das Programmieren angefangen, damals für die Datenanalyse im Medizinphysik-Studium. Heute baue ich damit die Schnittstellen und Datenmodelle hinter Web-Anwendungen.",
+      "sections": [
+        {
+          "h": "APIs und Datenmodelle",
+          "p": "REST-APIs mit FastAPI oder Django, sauber dokumentiert, mit Validierung und Tests. Datenbankschemata, die zum Produkt passen, und Migrationen, die man auch nach einem Jahr noch versteht. PL/SQL gehört zu meinem Arbeitsalltag."
+        },
+        {
+          "h": "Betrieb",
+          "p": "Docker-Images, die reproduzierbar bauen, CI/CD-Pipelines, die Tests und Deployment übernehmen, und Logging, das bei einem Fehler weiterhilft. Ich liefere keine Anwendung ab, die nur auf meinem Rechner läuft."
+        },
+        {
+          "h": "Zusammenspiel mit dem Frontend",
+          "p": "Weil ich beide Seiten baue, passen API und Oberfläche zusammen: keine Felder, die niemand braucht, keine Endpunkte, die dreimal abgefragt werden."
+        }
+      ],
+      "stack": [
+        "Python",
+        "FastAPI",
+        "Django",
+        "Flask",
+        "PL/SQL",
+        "PostgreSQL",
+        "Docker",
+        "GitLab CI"
+      ]
+    },
+    "websites": {
+      "title": "Webseiten für Unternehmen in Leipzig",
+      "seoTitle": "Webseiten für Unternehmen Leipzig – Philipp Wendschuch",
+      "description": "Webseiten für Betriebe, Praxen und Dienstleister in Leipzig: schnell, DSGVO-konform, barrierefrei, mit Betreuung. Zusammen mit Webwerk Leipzig.",
+      "intro": "Eine Webseite muss gefunden werden, schnell laden und auf dem Handy funktionieren. Alles andere ist Dekoration. Ich baue Seiten, die diese drei Dinge zuverlässig tun, und kümmere mich danach darum, dass es so bleibt.",
+      "sections": [
+        {
+          "h": "Was dazugehört",
+          "p": "Konzept und Texte gemeinsam mit dir, Gestaltung, Umsetzung ohne schwergewichtige Baukästen, Impressum und Datenschutz, Kontaktformular mit Spamschutz, Anbindung an Google Business. Auf Wunsch Hosting und laufende Pflege."
+        },
+        {
+          "h": "Technik, die hält",
+          "p": "Handgeschriebenes HTML, CSS und JavaScript oder Angular, je nach Bedarf. Selbst gehostete Schriften, keine Tracker ohne Einwilligung, Ladezeiten unter einer Sekunde, Barrierefreiheit nach WCAG."
+        },
+        {
+          "h": "Webwerk Leipzig",
+          "p": "Für Handwerk, Gastronomie und kleine Betriebe arbeite ich mit Andreas Kunisch unter dem Namen Webwerk Leipzig. Dort gibt es feste Pakete mit klaren Preisen, einmalig oder im Betreuungsmodell."
+        }
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Angular",
+        "Vite",
+        "Matomo/Umami",
+        "WCAG 2.2",
+        "DSGVO"
+      ]
+    },
+    "ai": {
+      "title": "KI-gestützte Softwareentwicklung",
+      "seoTitle": "KI-gestützte Softwareentwicklung – Philipp Wendschuch",
+      "description": "Softwareentwicklung mit Claude Code und agentischen Workflows: schneller liefern, ohne die Kontrolle über Qualität und Architektur abzugeben.",
+      "intro": "Ich arbeite seit über einem Jahr täglich mit Claude Code. Nicht als Autovervollständigung, sondern als Werkzeug, das Aufgaben nach Spezifikation umsetzt, während ich Architektur, Review und Entscheidungen behalte.",
+      "sections": [
+        {
+          "h": "So sieht das in der Praxis aus",
+          "p": "Eine Aufgabe wird erst in eine Spezifikation und einen Plan zerlegt. Dann setzen Agenten die Schritte um, mit Tests. Ich prüfe jeden Schritt, bevor er in den Hauptzweig geht. Das Ergebnis ist schneller als Handarbeit und sauberer als Durchwinken."
+        },
+        {
+          "h": "Wo es sich lohnt",
+          "p": "Migrationen und Upgrades, Testabdeckung für bestehenden Code, Prototypen, die in Tagen statt Wochen stehen, wiederkehrende Routinearbeit wie Formulare, Schnittstellen und Dokumentation."
+        },
+        {
+          "h": "Wo ich vorsichtig bin",
+          "p": "Sicherheitsrelevanter Code, Datenschutz und alles, was ein Mensch verantworten muss, wird von mir gelesen und verstanden, bevor es läuft. KI beschleunigt die Arbeit, die Verantwortung bleibt bei mir."
+        }
+      ],
+      "stack": [
+        "Claude Code",
+        "Agentische Workflows",
+        "Spec-getriebene Entwicklung",
+        "Code-Review",
+        "MCP",
+        "Git-Worktrees"
+      ]
+    }
   }
 }

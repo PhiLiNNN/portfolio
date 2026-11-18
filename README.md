@@ -30,6 +30,16 @@ public/theme-init.js         applies stored theme + accent hue before first pain
 public/humans.txt            humanstxt.org file, linked via <link rel="author">
 ```
 
+## SEO
+
+- Four focus-area pages (`src/app/topics/`), content in the i18n files under
+  `topics.*`, routes in `topics.ts`. They are prerendered and linked from the
+  footer. Add a page: entry in `TOPICS`, texts in both JSON files, URL in
+  `public/sitemap.xml`.
+- `SeoService` sets title, description, canonical and Open Graph tags per
+  route and injects the Person JSON-LD. `robots.txt` and `sitemap.xml` live in
+  `public/`.
+
 ## Small details worth knowing
 
 - **Flashlight**: "Coding with Heart" under the hero headline is only visible

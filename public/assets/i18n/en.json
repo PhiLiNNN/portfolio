@@ -23,19 +23,18 @@
     "services": "Services",
     "experience": "Experience",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "topics": "Focus areas"
   },
   "hero": {
     "line1": "Full-Stack",
     "line2": "Developer",
     "line3": "from Leipzig.",
     "secret": "Coding with Heart",
-    "lede": "Angular up front, Python in the back, Docker around it. I build web apps and websites end to end, from the first draft to the running server.",
+    "lede": "I build web applications and websites end to end, from concept to a running system. Angular and TypeScript on the front end, Python on the back end, Docker and CI/CD around it.",
     "ctaPrimary": "Discuss a project",
     "ctaSecondary": "See my work",
-    "status": "Available for new projects",
-    "statusNight": "Still up? So am I, most nights. Evenings are when I work best.",
-    "dialHint": "Turn the knob for your own accent colour"
+    "statusNight": "Still up? So am I, most nights. Evenings are when I work best."
   },
   "about": {
     "title": "About me",
@@ -239,7 +238,10 @@
   "footer": {
     "copyright": "Philipp Wendschuch, Leipzig",
     "legalNotice": "Legal notice",
-    "privacy": "Privacy policy"
+    "privacy": "Privacy policy",
+    "night": "Still up? So am I, most nights. Evenings are when I work best.",
+    "focus": "Focus areas",
+    "webwerk": "Webwerk Leipzig"
   },
   "imprint": {
     "title": "Legal notice",
@@ -249,5 +251,147 @@
     "city": "04159 Leipzig",
     "phone": "Phone",
     "email": "Email"
+  },
+  "seo": {
+    "home": {
+      "title": "Philipp Wendschuch – Full-Stack Developer from Leipzig",
+      "description": "Full-Stack Developer from Leipzig: Angular and TypeScript on the front end, Python on the back end. Co-founder of Webwerk Leipzig and traudel.app."
+    },
+    "imprint": {
+      "title": "Legal notice – Philipp Wendschuch",
+      "description": "Legal notice of Philipp Wendschuch, Full-Stack Developer from Leipzig."
+    },
+    "privacy": {
+      "title": "Privacy policy – Philipp Wendschuch",
+      "description": "Privacy policy for philipp-wendschuch.dev."
+    }
+  },
+  "topics": {
+    "common": {
+      "cta": "Discuss a project",
+      "ctaText": "Have a project in this area? Write me a few lines and I will get back to you within one working day.",
+      "stack": "Tools",
+      "more": "More focus areas",
+      "back": "Back to home",
+      "webwerk": "Websites for businesses in Leipzig I build together with Andreas Kunisch at Webwerk Leipzig."
+    },
+    "angular": {
+      "title": "Angular development in Leipzig",
+      "seoTitle": "Angular development Leipzig – Philipp Wendschuch",
+      "description": "Angular developer from Leipzig: web applications with Angular, TypeScript and SSR, from component to deployment.",
+      "intro": "Angular is my daily tool, at work and in my own projects. I use it to build applications that stay maintainable for years: clear component structure, typed interfaces, tests where they catch something.",
+      "sections": [
+        {
+          "h": "What I build with Angular",
+          "p": "Internal tools, customer portals, dashboards and web apps that run in the browser and as an app on the phone. A current example is traudel.app, a neighbourhood app whose front end is built in Angular and shipped to the app stores via Capacitor."
+        },
+        {
+          "h": "How I work",
+          "p": "Standalone components, signals, strict typing and server-side rendering where load time and discoverability matter. This site is an example: Angular 21 with SSR, prerendered, no trackers."
+        },
+        {
+          "h": "Existing applications",
+          "p": "I also take over grown Angular projects: upgrades to current versions, moving to standalone and signals, performance and accessibility reviews, test coverage where it hurts."
+        }
+      ],
+      "stack": [
+        "Angular 21",
+        "TypeScript",
+        "RxJS",
+        "Signals",
+        "Angular SSR",
+        "Capacitor",
+        "Vitest",
+        "Karma"
+      ]
+    },
+    "python": {
+      "title": "Python back-end development",
+      "seoTitle": "Python back-end development Leipzig – Philipp Wendschuch",
+      "description": "Back-end development with Python from Leipzig: REST APIs with FastAPI, Django and Flask, databases, Docker and CI/CD.",
+      "intro": "Python is where I started programming, back then for data analysis during my medical physics degree. Today I use it for the interfaces and data models behind web applications.",
+      "sections": [
+        {
+          "h": "APIs and data models",
+          "p": "REST APIs with FastAPI or Django, properly documented, with validation and tests. Database schemas that fit the product, and migrations you still understand a year later. PL/SQL is part of my daily work."
+        },
+        {
+          "h": "Operations",
+          "p": "Docker images that build reproducibly, CI/CD pipelines that run tests and deployments, and logging that actually helps when something breaks. I do not hand over an application that only runs on my machine."
+        },
+        {
+          "h": "Working with the front end",
+          "p": "Because I build both sides, API and interface fit together: no fields nobody needs, no endpoints queried three times."
+        }
+      ],
+      "stack": [
+        "Python",
+        "FastAPI",
+        "Django",
+        "Flask",
+        "PL/SQL",
+        "PostgreSQL",
+        "Docker",
+        "GitLab CI"
+      ]
+    },
+    "websites": {
+      "title": "Websites for businesses in Leipzig",
+      "seoTitle": "Websites for businesses Leipzig – Philipp Wendschuch",
+      "description": "Websites for businesses, practices and service providers in Leipzig: fast, GDPR-compliant, accessible, with ongoing care. Together with Webwerk Leipzig.",
+      "intro": "A website has to be found, load fast and work on the phone. Everything else is decoration. I build sites that do these three things reliably, and I keep them that way afterwards.",
+      "sections": [
+        {
+          "h": "What is included",
+          "p": "Concept and copy together with you, design, implementation without heavyweight page builders, legal pages, a contact form with spam protection, Google Business integration. Hosting and ongoing maintenance on request."
+        },
+        {
+          "h": "Technology that lasts",
+          "p": "Hand-written HTML, CSS and JavaScript or Angular, depending on the need. Self-hosted fonts, no trackers without consent, load times under a second, accessibility to WCAG."
+        },
+        {
+          "h": "Webwerk Leipzig",
+          "p": "For trades, restaurants and small businesses I work with Andreas Kunisch under the name Webwerk Leipzig. There you get fixed packages with clear prices, one-off or as a care plan."
+        }
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Angular",
+        "Vite",
+        "Matomo/Umami",
+        "WCAG 2.2",
+        "GDPR"
+      ]
+    },
+    "ai": {
+      "title": "AI-assisted software development",
+      "seoTitle": "AI-assisted software development – Philipp Wendschuch",
+      "description": "Software development with Claude Code and agentic workflows: deliver faster without giving up control over quality and architecture.",
+      "intro": "I have worked with Claude Code every day for more than a year. Not as autocomplete, but as a tool that implements tasks from a specification while I keep architecture, review and decisions.",
+      "sections": [
+        {
+          "h": "What it looks like in practice",
+          "p": "A task is first broken down into a specification and a plan. Then agents implement the steps, with tests. I review every step before it goes into the main branch. The result is faster than by hand and cleaner than waving things through."
+        },
+        {
+          "h": "Where it pays off",
+          "p": "Migrations and upgrades, test coverage for existing code, prototypes that stand in days instead of weeks, recurring routine work such as forms, interfaces and documentation."
+        },
+        {
+          "h": "Where I am careful",
+          "p": "Security-relevant code, data protection and everything a person has to answer for is read and understood by me before it runs. AI speeds up the work, the responsibility stays with me."
+        }
+      ],
+      "stack": [
+        "Claude Code",
+        "Agentic workflows",
+        "Spec-driven development",
+        "Code review",
+        "MCP",
+        "Git worktrees"
+      ]
+    }
   }
 }

@@ -6,9 +6,39 @@
   padding: 24px 0 48px;
 }
 .foot {
-  @include dflex($jc: space-between, $g: 20px);
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "logo focus socials" "logo meta socials";
+  align-items: start;
+  gap: 18px 28px;
   padding: 24px 28px;
+  > .logo { grid-area: logo; }
+  > .focus { grid-area: focus; }
+  > .meta { grid-area: meta; }
+  > .socials { grid-area: socials; }
+  @include md {
+    grid-template-columns: 1fr;
+    grid-template-areas: "logo" "focus" "meta" "socials";
+  }
+}
+.focus {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  .focus-title {
+    font-family: "Syne", "Syne Fallback", sans-serif;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  a {
+    color: var(--muted);
+    text-decoration: none;
+    width: fit-content;
+    &:hover {
+      color: var(--accent);
+    }
+  }
 }
 .logo {
   border: 0;

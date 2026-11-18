@@ -1,17 +1,12 @@
-import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  OnInit,
-  PLATFORM_ID,
   computed,
   inject,
-  signal,
   viewChild,
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { isNightShift } from '../../shared/night-shift';
 import { ScrollService } from '../../shared/scroll.service';
 import { ThemeService } from '../../shared/theme.service';
 
@@ -25,20 +20,14 @@ const DEFAULT_HUE = 196;
   styleUrl: './hero.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeroComponent implements OnInit {
+export class HeroComponent {
   private readonly theme = inject(ThemeService);
   private readonly scroll = inject(ScrollService);
-  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly secret = viewChild<ElementRef<HTMLElement>>('secret');
   private readonly dial = viewChild<ElementRef<HTMLElement>>('dial');
 
-  readonly night = signal(false);
   readonly angle = computed(() => this.theme.hue() ?? DEFAULT_HUE);
   private dragging = false;
-
-  ngOnInit(): void {
-    if (this.isBrowser) this.night.set(isNightShift(new Date()));
-  }
 
   toContact(): void {
     void this.scroll.to('contact');

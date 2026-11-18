@@ -1,6 +1,11 @@
 .modules {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
+.label {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
 .module {
   display: grid;
   gap: 12px;

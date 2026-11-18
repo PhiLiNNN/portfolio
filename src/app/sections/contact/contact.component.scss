@@ -38,11 +38,9 @@
 }
 .antispam {
   font-size: 13px;
-  &.off i {
-    background: var(--muted);
-    box-shadow: none;
-    animation: none;
-    opacity: 0.5;
+  color: var(--muted);
+  &.ready {
+    color: var(--accent);
   }
 }
 .send-error {

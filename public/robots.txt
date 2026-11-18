@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /sendMail.php
+
+Sitemap: https://philipp-wendschuch.dev/sitemap.xml

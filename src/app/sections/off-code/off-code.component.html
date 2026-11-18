@@ -7,7 +7,7 @@
     <ul class="grid modules">
       @for (item of items; track item.key) {
       <li class="plate module">
-        <span class="led" [class.warm]="item.warm"><i></i>{{ "offcode.items." + item.key + ".label" | translate }}</span>
+        <span class="label">{{ "offcode.items." + item.key + ".label" | translate }}</span>
         <h3 class="t-h3">{{ "offcode.items." + item.key + ".title" | translate }}</h3>
         <p>{{ "offcode.items." + item.key + ".text" | translate }}</p>
         @if (item.video) {

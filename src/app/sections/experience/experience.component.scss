@@ -28,13 +28,13 @@
   p {
     color: color-mix(in srgb, var(--text) 78%, var(--brand));
   }
-  .tag,
-  .led {
+  .tag {
     background: color-mix(in srgb, var(--brand) 12%, rgba(0, 0, 0, 0.25));
   }
-  .led i {
-    background: var(--brand);
-    box-shadow: 0 0 10px var(--brand), 0 0 22px color-mix(in srgb, var(--brand) 60%, transparent);
+  .label {
+    font-size: 13px;
+    color: var(--brand-ink);
+    font-weight: 600;
   }
   > * {
     position: relative;
@@ -56,8 +56,7 @@
   p {
     color: color-mix(in srgb, var(--text) 85%, var(--brand));
   }
-  .tag,
-  .led {
+  .tag {
     background: rgba(255, 255, 255, 0.45);
   }
 }
