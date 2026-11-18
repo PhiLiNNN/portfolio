@@ -63,11 +63,13 @@ void main(){
   }
   // Clearings: the haze thins out under text that sits directly on the nebula
   // (section intros, hero lede), so it stays readable without halos or boxes.
+  // Soft elliptical falloff that reaches well past the text, so there is no
+  // visible shape, just thinner fog around it.
   for (int i = 0; i < 8; i++) {
     if (i >= nClears) break;
-    vec2 cd = abs(v * asp - clears[i].xy * asp) - clears[i].zw * asp;
-    float cr = length(max(cd, 0.));
-    densMul *= 1. - .72 * exp(-cr * cr * 110.);
+    vec2 ce = (v * asp - clears[i].xy * asp) / (clears[i].zw * asp + .16);
+    float cr = dot(ce, ce);
+    densMul *= 1. - .6 * exp(-cr * 1.4);
   }
   // Domain-warped noise: the warp gives the wispy, nebula-like filaments.
   vec2 w = vec2(fbm(q + drift), fbm(q + 7.3 + drift * .6));
@@ -120,7 +122,7 @@ export class FogComponent implements AfterViewInit, OnDestroy {
   private readonly clearData = new Float32Array(8 * 4);
   private clearEls: Element[] = [];
   private plates: Element[] = [];
-  private platesStamp = 0;
+  private platesStamp = -1e9;
   private lastFrame = 0;
   private readonly onPointer = (e: PointerEvent) => {
     this.aim.x = e.clientX / window.innerWidth;
