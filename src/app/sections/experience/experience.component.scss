@@ -31,6 +31,13 @@
     border-radius: 12px;
     flex: 0 0 auto;
   }
+  // Webwerk mark: W in two strokes, the right half in the brand rose.
+  .ww-mark {
+    width: 56px;
+    height: 45px;
+    border-radius: 0;
+    color: var(--text);
+  }
 }
 :host-context([data-theme="light"]) .entry {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
