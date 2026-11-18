@@ -5,19 +5,28 @@
       <p>{{ "experience.intro" | translate }}</p>
     </div>
     <div class="grid grid-2">
-      <article class="plate entry webwerk">
+      <article class="plate entry">
         <span class="label">{{ "experience.webwerk.label" | translate }}</span>
-        <h3 class="t-h3">{{ "experience.webwerk.title" | translate }}</h3>
+        <div class="title-row">
+          <img class="logo" src="./assets/img/experience/webwerk-logo.svg" width="48" height="48" alt="" />
+          <h3 class="t-h3">{{ "experience.webwerk.title" | translate }}</h3>
+        </div>
         <p>{{ "experience.webwerk.text" | translate }}</p>
         <a class="link" href="https://webwerk-leipzig.de" target="_blank" rel="noopener">
           {{ "experience.webwerk.link" | translate }}
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
         </a>
+        <a class="shot" href="https://webwerk-leipzig.de" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img src="./assets/img/experience/webwerk.webp" width="1200" height="750" [alt]="'experience.webwerk.shotAlt' | translate" loading="lazy" decoding="async" />
+        </a>
       </article>
 
-      <article class="plate entry traudel">
+      <article class="plate entry">
         <span class="label">{{ "experience.traudel.label" | translate }}</span>
-        <h3 class="t-h3">{{ "experience.traudel.title" | translate }}</h3>
+        <div class="title-row">
+          <img class="logo" src="./assets/img/experience/traudel-logo.svg" width="48" height="48" alt="" />
+          <h3 class="t-h3">{{ "experience.traudel.title" | translate }}</h3>
+        </div>
         <p>{{ "experience.traudel.text" | translate }}</p>
         <div class="chips">
           @for (tag of tags; track tag) {
@@ -25,6 +34,9 @@
           }
         </div>
         <p class="status">{{ "experience.traudel.status" | translate }}</p>
+        <div class="shot">
+          <img src="./assets/img/experience/traudel.webp" width="1200" height="750" [alt]="'experience.traudel.shotAlt' | translate" loading="lazy" decoding="async" />
+        </div>
       </article>
     </div>
   </div>

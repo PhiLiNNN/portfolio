@@ -132,7 +132,8 @@
       "label": "Mitgründer",
       "title": "Webwerk Leipzig",
       "text": "Zusammen mit Andreas Kunisch baue ich unter dem Namen Webwerk Leipzig Webseiten für Handwerk, Gastronomie und kleine Betriebe in Leipzig. Handgeschrieben, schnell und mit festen Preisen.",
-      "link": "webwerk-leipzig.de"
+      "link": "webwerk-leipzig.de",
+      "shotAlt": "Startseite von webwerk-leipzig.de"
     },
     "traudel": {
       "label": "Mitgründer, im Aufbau",
@@ -146,7 +147,8 @@
         "Geben & Leihen",
         "Gebaut in Leipzig"
       ],
-      "status": "Noch nicht öffentlich. Mehr, sobald es losgeht."
+      "status": "Noch nicht öffentlich. Mehr, sobald es losgeht.",
+      "shotAlt": "Der Feed von traudel.app mit Beiträgen aus Leipzig"
     }
   },
   "projects": {

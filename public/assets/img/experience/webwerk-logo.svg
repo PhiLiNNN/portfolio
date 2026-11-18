@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Paper tile, ink W in the illustration stroke, rose dot -->
+  <rect width="64" height="64" rx="12" fill="#f3efe8"/>
+  <path d="M11 20l8 26 9-20 9 20 8-26" fill="none" stroke="#17140f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="52" cy="44" r="4.5" fill="#fb7d8f"/>
+</svg>

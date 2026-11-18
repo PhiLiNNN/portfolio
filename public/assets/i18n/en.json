@@ -132,7 +132,8 @@
       "label": "Co-founder",
       "title": "Webwerk Leipzig",
       "text": "Together with Andreas Kunisch I build websites for trades, restaurants and small businesses in Leipzig under the name Webwerk Leipzig. Hand-written, fast and with fixed prices.",
-      "link": "webwerk-leipzig.de"
+      "link": "webwerk-leipzig.de",
+      "shotAlt": "Home page of webwerk-leipzig.de"
     },
     "traudel": {
       "label": "Co-founder, in progress",
@@ -146,7 +147,8 @@
         "Give and lend",
         "Built in Leipzig"
       ],
-      "status": "Not public yet. More once it launches."
+      "status": "Not public yet. More once it launches.",
+      "shotAlt": "The traudel.app feed with posts from Leipzig"
     }
   },
   "projects": {

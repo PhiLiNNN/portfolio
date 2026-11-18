@@ -1,13 +1,11 @@
-// Each entry carries the brand colour of the project: Webwerk's rose, Traudel's
-// yellow. --brand is used for the LED and a soft glow, --brand-ink for text
-// (darker in the light theme to keep ≥ 4.5:1).
+// Both tiles share one neutral surface, a touch lighter than the other plates,
+// so the two logos carry the colour.
 .entry {
-  position: relative;
-  overflow: hidden;
   display: grid;
   gap: 14px;
   align-content: start;
   justify-items: start;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--text) 9%, var(--bg)), color-mix(in srgb, var(--text) 4%, var(--bg)));
   p {
     color: var(--muted);
   }
@@ -17,55 +15,25 @@
   .chips {
     gap: 8px;
   }
-  h3 {
-    color: var(--brand-ink);
-  }
-  // The whole plate is tinted in the brand colour (glass over a coloured base).
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
-    linear-gradient(145deg, color-mix(in srgb, var(--brand) 34%, var(--bg)), color-mix(in srgb, var(--brand) 16%, var(--bg)));
-  box-shadow: var(--raise), inset 1px 1px 0 color-mix(in srgb, var(--brand) 35%, transparent);
-  p {
-    color: color-mix(in srgb, var(--text) 78%, var(--brand));
-  }
-  .tag {
-    background: color-mix(in srgb, var(--brand) 12%, rgba(0, 0, 0, 0.25));
-  }
   .label {
     font-size: 13px;
-    color: var(--brand-ink);
-    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.01em;
   }
-  > * {
-    position: relative;
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
-}
-.webwerk {
-  --brand: #fb7d8f;
-  --brand-ink: #ff9bab;
-}
-.traudel {
-  --brand: #ffd11b;
-  --brand-ink: #ffd84a;
+  .logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    flex: 0 0 auto;
+  }
 }
 :host-context([data-theme="light"]) .entry {
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2)),
-    linear-gradient(145deg, color-mix(in srgb, var(--brand) 42%, var(--bg)), color-mix(in srgb, var(--brand) 20%, var(--bg)));
-  box-shadow: var(--raise), inset 1px 1px 0 #fff;
-  p {
-    color: color-mix(in srgb, var(--text) 85%, var(--brand));
-  }
-  .tag {
-    background: rgba(255, 255, 255, 0.45);
-  }
-}
-:host-context([data-theme="light"]) .webwerk {
-  --brand-ink: #a8283f;
-}
-:host-context([data-theme="light"]) .traudel {
-  --brand: #f2c200;
-  --brand-ink: #6f5300;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55));
 }
 
 .link {
@@ -74,7 +42,7 @@
   gap: 8px;
   font-weight: 600;
   text-decoration: none;
-  color: var(--brand-ink);
+  color: var(--accent);
   svg {
     width: 16px;
     height: 16px;
@@ -84,5 +52,24 @@
   }
   &:hover {
     text-decoration: underline;
+  }
+}
+
+// Screenshot sunk into the plate, pushed to the bottom so both tiles line up.
+.shot {
+  margin-top: auto;
+  width: 100%;
+  border-radius: calc(var(--r-card) - 6px);
+  background: var(--well-bg);
+  box-shadow: var(--sink);
+  padding: 10px;
+  display: block;
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--r-card) - 12px);
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
   }
 }
